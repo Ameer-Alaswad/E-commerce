@@ -11,6 +11,7 @@ import Button from "@mui/material/Button";
 // Types
 import { productsType } from "./displayProductsInterface";
 import { fetchProducts } from "../../fetchers/fetch";
+import RatingComponent from "./Rating";
 
 const DisplayProducts = () => {
     const navigate = useNavigate();
@@ -19,7 +20,7 @@ const DisplayProducts = () => {
     const [loading, setLoading] = useState<string>("");
 
     useEffect(() => {
-        fetchProducts(setProducts, SetNoProductsError, setLoading)
+        fetchProducts(setProducts, SetNoProductsError, setLoading, "/api/products")
     }, []);
 
     return (
@@ -43,12 +44,12 @@ const DisplayProducts = () => {
                 } }
             >
                 { loading ? <p>{ loading }</p> : products.map((product) => {
-                    const { name, image, price, description, id } = product;
+                    const { name, image, price, description, label, numReviews, rating } = product;
 
                     return (
                         <Card
-                            onClick={ () => navigate(`/product/${id}`) }
-                            key={ id }
+                            onClick={ () => navigate(`/product/label/${label}`) }
+                            key={ label }
                             sx={ { maxWidth: 500, marginBottom: "20px", width: "400px" } }
                         >
                             <CardActionArea>
@@ -73,6 +74,7 @@ const DisplayProducts = () => {
                                     <Typography gutterBottom variant="h5" component="div">
                                         { price }$
                                     </Typography>
+                                    <RatingComponent numReviews={ numReviews } rating={ rating } />
                                     <Typography variant="body2" color="text.secondary">
                                         { description }
                                     </Typography>

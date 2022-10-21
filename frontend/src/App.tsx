@@ -4,18 +4,18 @@ import DisplayProducts from "./components/display-products/DisplayProducts";
 import { BrowserRouter, Route } from "react-router-dom";
 import { Routes } from "react-router";
 import DisplayProduct from "./components/display-product/DisplayProduct";
+import Footer from "./components/footer/Footer";
 
 function App() {
   return (
     <div>
-      <header>
-        <PrimarySearchAppBar />
-      </header>
       <BrowserRouter>
+        <PrimarySearchAppBar />
         <Routes>
           <Route path="/" element={ <DisplayProducts /> } />
-          <Route path="/product/:id" element={ <DisplayProduct /> } />
+          <Route path="/product/label/:label" element={ <DisplayProduct /> } />
         </Routes>
+        <Footer />
       </BrowserRouter>
     </div>
   );

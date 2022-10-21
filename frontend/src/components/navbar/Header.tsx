@@ -15,6 +15,7 @@ import AccountCircle from '@mui/icons-material/AccountCircle';
 import MailIcon from '@mui/icons-material/Mail';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import MoreIcon from '@mui/icons-material/MoreVert';
+import { Link } from "react-router-dom";
 
 const Search = styled('div')(({ theme }) => ({
     position: 'relative',
@@ -156,9 +157,9 @@ export default function PrimarySearchAppBar() {
     );
 
     return (
-        <Box sx={ { flexGrow: 1 } }>
-            <AppBar position="static">
-                <Toolbar>
+        <Box sx={ { flexGrow: 1, } }>
+            <AppBar position="fixed">
+                <Toolbar  >
                     <IconButton
                         size="large"
                         edge="start"
@@ -168,14 +169,16 @@ export default function PrimarySearchAppBar() {
                     >
                         <MenuIcon />
                     </IconButton>
-                    <Typography
-                        variant="h6"
-                        noWrap
-                        component="div"
-                        sx={ { display: { xs: 'none', sm: 'block' } } }
-                    >
-                        E-commerce
-                    </Typography>
+                    <Link to="/" style={ { color: "white", textDecoration: "none" } }>
+                        <Typography
+                            variant="h6"
+                            noWrap
+                            component="div"
+                            sx={ { display: { xs: 'none', sm: 'block' } } }
+                        >
+                            E-commerce
+                        </Typography>
+                    </Link>
                     <Search>
                         <SearchIconWrapper>
                             <SearchIcon />

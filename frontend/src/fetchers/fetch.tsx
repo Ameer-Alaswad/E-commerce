@@ -4,11 +4,14 @@ import { productsType } from "../components/display-products/displayProductsInte
 export const fetchProducts = async (
     setProducts: (value: productsType[]) => void,
     SetNoProductsError: (value: string) => void,
-    setLoading: (value: string) => void
+    setLoading: (value: string) => void,
+    URL: string
 ) => {
     setLoading("Loading");
     try {
-        const { data } = await axios.get("/api/products");
+        const { data } = await axios.get(URL);
+        console.log(data);
+
         setLoading("");
         setProducts(data);
     } catch (error) {
