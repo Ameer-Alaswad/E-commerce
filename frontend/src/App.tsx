@@ -1,7 +1,6 @@
 import React from "react";
 import PrimarySearchAppBar from "./components/navbar/Header";
 import DisplayProducts from "./components/display-products/DisplayProducts";
-import products from "./assets/data";
 import { BrowserRouter, Route } from "react-router-dom";
 import { Routes } from "react-router";
 import DisplayProduct from "./components/display-product/DisplayProduct";
@@ -14,7 +13,7 @@ function App() {
       </header>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={ <DisplayProducts products={ products } /> } />
+          <Route path="/" element={ <DisplayProducts /> } />
           <Route path="/product/:id" element={ <DisplayProduct /> } />
         </Routes>
       </BrowserRouter>
