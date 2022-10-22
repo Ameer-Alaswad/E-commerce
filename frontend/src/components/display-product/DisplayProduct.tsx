@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import useProducts from "../../fetchers/useProducts";
+import Product from "./Product";
 
 const DisplayProduct = () => {
     const params = useParams();
@@ -12,9 +13,9 @@ const DisplayProduct = () => {
     if (isError) return <h1>Something went wrong </h1>;
 
     return (
-        <Box style={ { marginTop: "64px" } }>
-            { data && data?.length !== 0 && <Box> { data[0]?.name }</Box> }
-        </Box>
+        <>
+            <Product data={ data } />
+        </>
     );
 };
 
