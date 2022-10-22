@@ -1,7 +1,4 @@
-import React from "react";
 import useProducts from "../../fetchers/useProducts";
-
-// Types
 import Products from "./Products";
 
 const DisplayProducts = () => {
