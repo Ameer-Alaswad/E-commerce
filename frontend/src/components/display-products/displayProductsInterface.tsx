@@ -1,7 +1,7 @@
 export type productsType = {
 
     name: string
-    id: string
+    label: string
     category: string
     image: string // 679px × 829px
     price: number
