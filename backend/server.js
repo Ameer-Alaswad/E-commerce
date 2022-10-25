@@ -13,6 +13,13 @@ app.get("/api/product/label/:label", (req, res) => {
   if (product) return res.status(200).send([product]);
   return res.status(404).send({ message: "product does not exist" });
 });
+
+app.get("/api/product/name/:name", (req, res) => {
+  const product = products.find((product) => product.name === req.params.name);
+  if (product) return res.status(200).send([product]);
+  return res.status(404).send({ message: "product does not exist" });
+});
+
 const port = process.env.PORT || 8000;
 app.listen(port, () => {
   console.log(`server is connected at http://localhost:${port}`);

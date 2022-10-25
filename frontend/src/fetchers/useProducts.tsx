@@ -7,3 +7,6 @@ const useProducts = (URL: string) => {
     return { isError, isLoading, data }
 }
 export default useProducts
+
+
+
