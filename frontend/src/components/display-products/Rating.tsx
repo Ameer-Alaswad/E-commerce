@@ -1,12 +1,14 @@
+// This component requires styling 
+
+// React 
 import React from 'react'
+// Material UI
 import Stack from '@mui/material/Stack';
 import Rating from '@mui/material/Rating';
 import Box from '@mui/material/Box';
-interface Props {
-    numReviews: number
-    rating: number
-}
-const RatingComponent: React.FC<Props> = (Props) => {
+import { RatingProps } from './displayProductsInterface';
+
+const RatingComponent: React.FC<RatingProps> = (Props) => {
     const { numReviews, rating } = Props
     return (
         <Stack style={ { display: "flex", justifyContent: "space-between", flexDirection: "row", alignItems: "center" } } spacing={ 1 }>

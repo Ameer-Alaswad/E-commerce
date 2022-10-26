@@ -6,7 +6,7 @@ interface Props {
 }
 const Product: React.FC<Props> = ({ data }) => {
     return (
-        <Box style={ { marginTop: "64px" } }>
+        <Box style={ { marginTop: "64px", height: "100vh" } }>
             { data && data?.length !== 0 && <Box> { data[0]?.name }</Box> }
         </Box>
     )

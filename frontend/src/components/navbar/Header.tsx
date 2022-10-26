@@ -1,3 +1,4 @@
+// This component Requires refactoring 
 import * as React from 'react';
 import { styled, alpha } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
@@ -13,9 +14,9 @@ import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import MailIcon from '@mui/icons-material/Mail';
-import NotificationsIcon from '@mui/icons-material/Notifications';
 import MoreIcon from '@mui/icons-material/MoreVert';
 import { Link } from "react-router-dom";
+import ShoppingCart from './ShoppingCart';
 
 const Search = styled('div')(({ theme }) => ({
     position: 'relative',
@@ -58,6 +59,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 export default function PrimarySearchAppBar() {
+
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
     const [mobileMoreAnchorEl, setMobileMoreAnchorEl] =
         React.useState<null | HTMLElement>(null);
@@ -130,16 +132,7 @@ export default function PrimarySearchAppBar() {
                 <p>Messages</p>
             </MenuItem>
             <MenuItem>
-                <IconButton
-                    size="large"
-                    aria-label="show 17 new notifications"
-                    color="inherit"
-                >
-                    <Badge badgeContent={ 17 } color="error">
-                        <NotificationsIcon />
-                    </Badge>
-                </IconButton>
-                <p>Notifications</p>
+                <ShoppingCart />
             </MenuItem>
             <MenuItem onClick={ handleProfileMenuOpen }>
                 <IconButton
@@ -195,15 +188,7 @@ export default function PrimarySearchAppBar() {
                                 <MailIcon />
                             </Badge>
                         </IconButton>
-                        <IconButton
-                            size="large"
-                            aria-label="show 17 new notifications"
-                            color="inherit"
-                        >
-                            <Badge badgeContent={ 17 } color="error">
-                                <NotificationsIcon />
-                            </Badge>
-                        </IconButton>
+                        <ShoppingCart />
                         <IconButton
                             size="large"
                             edge="end"

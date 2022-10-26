@@ -1,5 +1,6 @@
 const products = [
   {
+    _id: "1",
     name: "Nike Slim shirt",
     label: "nike-slim-shirt",
     category: "Shirts",
@@ -12,6 +13,7 @@ const products = [
     description: "high quality shirt",
   },
   {
+    _id: "2",
     name: "Adidas Fit Shirt",
     label: "adidas-fit-shirt",
     category: "Shirts",
@@ -24,6 +26,7 @@ const products = [
     description: "high quality product",
   },
   {
+    _id: "3",
     name: "Nike Slim Pant",
     label: "nike-slim-pant",
     category: "Pants",
@@ -36,6 +39,7 @@ const products = [
     description: "high quality product",
   },
   {
+    _id: "4",
     name: "Adidas Fit Pant",
     label: "adidas-fit-pant",
     category: "Pants",

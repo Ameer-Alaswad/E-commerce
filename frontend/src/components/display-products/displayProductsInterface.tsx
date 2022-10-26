@@ -12,3 +12,12 @@ export type productsType = {
     description: string
 
 }
+
+export type RatingProps = {
+    numReviews: number
+    rating: number
+}
+
+export type productProps = {
+    data: productsType[] | undefined
+}

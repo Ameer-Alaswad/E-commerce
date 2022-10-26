@@ -6,21 +6,26 @@ import { Routes } from "react-router";
 import DisplayProduct from "./components/display-product/DisplayProduct";
 import { QueryClientProvider, QueryClient } from "react-query"
 import Footer from "./components/footer/Footer";
+import { ShoppingCartProvider } from "./contexts/shopping-cart-context/shoppingCartContext";
+import CartPage from "./components/cart-page/CartPage";
 const reactQueryClient = new QueryClient()
 
 function App() {
   return (
     <div>
-      <QueryClientProvider client={ reactQueryClient }>
-        <BrowserRouter>
-          <PrimarySearchAppBar />
-          <Routes>
-            <Route path="/" element={ <DisplayProducts /> } />
-            <Route path="/product/label/:label" element={ <DisplayProduct /> } />
-          </Routes>
-          <Footer />
-        </BrowserRouter>
-      </QueryClientProvider>
+      <ShoppingCartProvider>
+        <QueryClientProvider client={ reactQueryClient }>
+          <BrowserRouter>
+            <PrimarySearchAppBar />
+            <Routes>
+              <Route path="/" element={ <DisplayProducts /> } />
+              <Route path="/product/label/:label" element={ <DisplayProduct /> } />
+              <Route path="/cart" element={ <CartPage /> } />
+            </Routes>
+            <Footer />
+          </BrowserRouter>
+        </QueryClientProvider>
+      </ShoppingCartProvider>
     </div>
   );
 }
