@@ -1,6 +1,6 @@
 import React from 'react'
 import { useContext } from "react";
-import { ShoppingCartContext } from '../../contexts/shoppingCartContext';
+import { ShoppingCartContext } from '../../contexts/shopping-cart-context/shoppingCartContext';
 import Box from '@mui/material/Box';
 import Typography from "@mui/material/Typography";
 
@@ -10,7 +10,7 @@ const CartPage = () => {
     console.log(cartItems);
 
     return (
-        <Box style={ { marginTop: "66px" } }>
+        <Box style={ { marginTop: "66px", height: "100vh" } }>
             <Typography
                 gutterBottom variant="h4" component="div"
             >
@@ -20,7 +20,7 @@ const CartPage = () => {
                 Your Cart is empty!
             </Typography> :
                 cartItems.map((item) => {
-                    return <Box>
+                    return <Box key={ item.productId }>
                         <Typography
                             gutterBottom variant="h4" component="span"
                         >

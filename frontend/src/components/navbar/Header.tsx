@@ -1,3 +1,4 @@
+// This component Requires refactoring 
 import * as React from 'react';
 import { styled, alpha } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
@@ -15,7 +16,6 @@ import AccountCircle from '@mui/icons-material/AccountCircle';
 import MailIcon from '@mui/icons-material/Mail';
 import MoreIcon from '@mui/icons-material/MoreVert';
 import { Link } from "react-router-dom";
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import ShoppingCart from './ShoppingCart';
 
 const Search = styled('div')(({ theme }) => ({

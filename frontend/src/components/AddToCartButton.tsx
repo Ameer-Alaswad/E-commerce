@@ -1,16 +1,14 @@
-import Button from "@mui/material/Button";
-import { useContext, useState } from "react";
-import { product, ShoppingCartContext } from "../contexts/shoppingCartContext";
+// Context 
+import { useContext } from "react";
+import { ShoppingCartContext } from "../contexts/shopping-cart-context/shoppingCartContext";
+// fetch 
 import { fetchProducts } from "../fetchers/fetch";
+// utils 
 import { addToShoppingCartLogic } from "../utils/utils";
+// type 
 import { productsType } from "./display-products/displayProductsInterface";
-
-type props = {
-    productName: string
-    cartItems: productsType[]
-    setCartItems: (value: {}[]) => void
-    product: product[]
-}
+// Material UI 
+import Button from "@mui/material/Button";
 
 const AddToCartButton = () => {
     const shoppingCartContext = useContext(ShoppingCartContext);

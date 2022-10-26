@@ -1,10 +1,13 @@
+// React 
+import { useContext } from "react";
+import { useNavigate } from "react-router";
+// Material UI 
 import IconButton from '@mui/material/IconButton';
 import Badge from '@mui/material/Badge';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import useMediaQuery from '@mui/material/useMediaQuery';
-import { useContext } from "react";
-import { ShoppingCartContext } from '../../contexts/shoppingCartContext';
-import { useNavigate } from "react-router";
+// Context 
+import { ShoppingCartContext } from '../../contexts/shopping-cart-context/shoppingCartContext';
 
 const ShoppingCart = () => {
     const navigate = useNavigate();

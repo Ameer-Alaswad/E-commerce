@@ -1,7 +1,10 @@
-import useProducts from "../../fetchers/useProducts";
+// Hooks 
+import useProducts from "../../hooks/useProducts";
+// Components 
 import Products from "./Products";
 import Loading from "../Loading"
 import Error from "../Error"
+
 const DisplayProducts = () => {
 
     const { isError, isLoading, data } = useProducts("/api/products")

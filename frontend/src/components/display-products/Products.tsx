@@ -1,26 +1,26 @@
+// React 
 import React from 'react'
 import { useNavigate } from "react-router";
-import { productsType } from "./displayProductsInterface"
-// material Ui
+// Types 
+import { productProps } from "./displayProductsInterface"
+// Material Ui
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { CardActionArea } from "@mui/material";
 import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
+// Components 
 import RatingComponent from "./Rating";
 import AddToCartButton from '../AddToCartButton';
 
-interface Props {
-    data: productsType[] | undefined
-}
-const Products: React.FC<Props> = ({ data }) => {
+const Products: React.FC<productProps> = ({ data }) => {
     const navigate = useNavigate();
     return (
-        <>
+
+        <Box style={ { height: "100vh" } }>
             <Typography
-                style={ { textAlign: "center", marginTop: "15px" } }
+                style={ { textAlign: "center", marginTop: "200px" } }
                 gutterBottom
                 variant="h4"
                 component="div"
@@ -79,7 +79,9 @@ const Products: React.FC<Props> = ({ data }) => {
                     );
                 }) }
             </Box>
-        </>
+        </Box>
+
+
     )
 }
 

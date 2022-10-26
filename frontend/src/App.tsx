@@ -6,7 +6,7 @@ import { Routes } from "react-router";
 import DisplayProduct from "./components/display-product/DisplayProduct";
 import { QueryClientProvider, QueryClient } from "react-query"
 import Footer from "./components/footer/Footer";
-import { ShoppingCartProvider } from "./contexts/shoppingCartContext";
+import { ShoppingCartProvider } from "./contexts/shopping-cart-context/shoppingCartContext";
 import CartPage from "./components/cart-page/CartPage";
 const reactQueryClient = new QueryClient()
 

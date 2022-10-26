@@ -1,11 +1,13 @@
+// react router 
 import { useParams } from "react-router-dom";
-import useProducts from "../../fetchers/useProducts";
+// hooks 
+import useProducts from "../../hooks/useProducts";
+// components 
 import Product from "./Product";
 import Loading from "../Loading"
 import Error from "../Error"
 
 const DisplayProduct = () => {
-
 
     const params = useParams();
     const { label } = params;
