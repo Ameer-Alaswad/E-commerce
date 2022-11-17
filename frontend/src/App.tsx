@@ -8,6 +8,7 @@ import { QueryClientProvider, QueryClient } from "react-query"
 import Footer from "./components/footer/Footer";
 import { ShoppingCartProvider } from "./contexts/shopping-cart-context/shoppingCartContext";
 import CartPage from "./components/cart-page/CartPage";
+import SignIn from "./components/authentication/sign-in/signIn";
 const reactQueryClient = new QueryClient()
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
               <Route path="/" element={ <DisplayProducts /> } />
               <Route path="/product/label/:label" element={ <DisplayProduct /> } />
               <Route path="/cart" element={ <CartPage /> } />
+              <Route path="/user/signin" element={ <SignIn /> } />
             </Routes>
             <Footer />
           </BrowserRouter>
@@ -29,5 +31,4 @@ function App() {
     </div>
   );
 }
-
 export default App;

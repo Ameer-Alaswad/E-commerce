@@ -1,14 +1,30 @@
 import React from 'react'
+// context 
 import { useContext } from "react";
 import { ShoppingCartContext } from '../../contexts/shopping-cart-context/shoppingCartContext';
+// Material UI 
 import Box from '@mui/material/Box';
 import Typography from "@mui/material/Typography";
+import Button from "@mui/material/Button";
+import { useNavigate } from 'react-router-dom';
 
 const CartPage = () => {
+    const navigate = useNavigate()
     const shoppingCartContext = useContext(ShoppingCartContext)
-    const { cartItems } = shoppingCartContext;
-    console.log(cartItems);
+    const { cartItems, userSignin } = shoppingCartContext;
 
+    const user: any = localStorage.getItem('userData')
+    const parsedUser = JSON.parse(user)
+    let userSigned = userSignin
+    !userSignin ? userSigned = parsedUser : userSigned = userSignin
+    const handleProceedToCheckout = () => {
+        if (userSigned) {
+            navigate('/user/shipping')
+        }
+        else {
+            navigate('/user/signin?redirect=/shipping')
+        }
+    }
     return (
         <Box style={ { marginTop: "66px", height: "100vh" } }>
             <Typography
@@ -34,6 +50,7 @@ const CartPage = () => {
                     </Box>
                 })
             }
+            <Button onClick={ handleProceedToCheckout }>Proceed to checkout</Button>
         </Box>
     )
 }

@@ -20,7 +20,7 @@ const Products: React.FC<productProps> = ({ data }) => {
 
         <Box style={ { height: "100vh" } }>
             <Typography
-                style={ { textAlign: "center", marginTop: "200px" } }
+                style={ { textAlign: "center", marginTop: "90px" } }
                 gutterBottom
                 variant="h4"
                 component="div"

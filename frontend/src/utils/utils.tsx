@@ -1,6 +1,6 @@
 // Types 
 import { productsType } from "../components/display-products/displayProductsInterface"
-import { product } from "../contexts/shopping-cart-context/shoppingCartContextTypes"
+import { product, userSignin } from "../contexts/shopping-cart-context/shoppingCartContextTypes"
 
 type addToShoppingCartTypes = {
     productName: string
@@ -17,6 +17,8 @@ export const addToShoppingCartLogic = ({ productName, cartItems, setCartItems, p
     }
 
     return cartItems.forEach((item) => {
+        console.log(item);
+
         if (item?.productId === productName && item?.productLimit <= 1) {
             return alert("product per purchase limit")
         }
@@ -38,4 +40,12 @@ export const addToShoppingCartLogic = ({ productName, cartItems, setCartItems, p
         }
     })
 
+}
+
+export const checkUserLoggedIn = (userSignin: userSignin | null) => {
+    const user: any = localStorage.getItem('userData')
+    const parsedUser = JSON.parse(user)
+    let userSigned = userSignin
+    !userSignin ? userSigned = parsedUser : userSigned = userSignin
+    return userSigned
 }
