@@ -10,13 +10,8 @@ type addToShoppingCartTypes = {
 }
 
 export const addToShoppingCartLogic = ({ productName, cartItems, setCartItems, product }: addToShoppingCartTypes) => {
-    const productIsNotInShoppingCart = cartItems.every(item => productName !== item.productId)
-
-    if (productIsNotInShoppingCart) {
-        return setCartItems([...cartItems, { productId: String(productName), quantity: 1, productLimit: 6 }])
-    }
+    //    declarations
     const handleProductQuantityLimitations = cartItems.forEach((item) => {
-        console.log(item);
 
         if (item?.productId === productName && item?.productLimit <= 1) {
             return alert("product per purchase limit")
@@ -36,6 +31,11 @@ export const addToShoppingCartLogic = ({ productName, cartItems, setCartItems, p
                 return item
             })
             return setCartItems([...changeProductQuantity])
+        }
+        const productIsNotInShoppingCart = cartItems.every(item => productName !== item.productId)
+        //  here the logic starts 
+        if (productIsNotInShoppingCart) {
+            return setCartItems([...cartItems, { productId: String(productName), quantity: 1, productLimit: 6 }])
         }
     })
     return handleProductQuantityLimitations
