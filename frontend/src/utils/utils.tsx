@@ -15,8 +15,7 @@ export const addToShoppingCartLogic = ({ productName, cartItems, setCartItems, p
     if (productIsNotInShoppingCart) {
         return setCartItems([...cartItems, { productId: String(productName), quantity: 1, productLimit: 6 }])
     }
-
-    return cartItems.forEach((item) => {
+    const handleProductQuantityLimitations = cartItems.forEach((item) => {
         console.log(item);
 
         if (item?.productId === productName && item?.productLimit <= 1) {
@@ -39,6 +38,7 @@ export const addToShoppingCartLogic = ({ productName, cartItems, setCartItems, p
             return setCartItems([...changeProductQuantity])
         }
     })
+    return handleProductQuantityLimitations
 
 }
 
