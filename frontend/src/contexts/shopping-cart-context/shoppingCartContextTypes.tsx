@@ -1,7 +1,3 @@
-export type ShoppingCart = {
-    cartItems: product[]
-    setCartItems: React.Dispatch<React.SetStateAction<product[]>>
-}
 
 export type product = {
     productId: string
@@ -11,4 +7,18 @@ export type product = {
 
 export type shoppingCartChildren = {
     children: React.ReactNode
+}
+
+export type userSignin = {
+    _id: string
+    name: string
+    email: string
+    isAdmin: boolean
+    token: string
+}
+export type ShoppingCart = {
+    cartItems: product[]
+    setCartItems: React.Dispatch<React.SetStateAction<product[]>>
+    userSignin: userSignin | null
+    setUserSignin: React.Dispatch<React.SetStateAction<userSignin | null>>
 }

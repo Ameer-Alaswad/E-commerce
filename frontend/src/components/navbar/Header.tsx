@@ -15,8 +15,10 @@ import SearchIcon from '@mui/icons-material/Search';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import MailIcon from '@mui/icons-material/Mail';
 import MoreIcon from '@mui/icons-material/MoreVert';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import ShoppingCart from './ShoppingCart';
+import { useContext } from "react";
+import { ShoppingCartContext } from '../../contexts/shopping-cart-context/shoppingCartContext';
 
 const Search = styled('div')(({ theme }) => ({
     position: 'relative',
@@ -59,6 +61,15 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 export default function PrimarySearchAppBar() {
+    const navigate = useNavigate()
+
+    const shoppingCartContext = useContext(ShoppingCartContext);
+    const { userSignin, setUserSignin } = shoppingCartContext;
+    const user: any = localStorage.getItem('userData')
+    const parsedUser = JSON.parse(user)
+    let userSigned = userSignin
+    !userSignin ? userSigned = parsedUser : userSigned = userSignin
+
 
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
     const [mobileMoreAnchorEl, setMobileMoreAnchorEl] =
@@ -69,21 +80,30 @@ export default function PrimarySearchAppBar() {
 
     const handleProfileMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
         setAnchorEl(event.currentTarget);
+
     };
 
     const handleMobileMenuClose = () => {
+        setAnchorEl(null);
         setMobileMoreAnchorEl(null);
     };
 
     const handleMenuClose = () => {
         setAnchorEl(null);
-        handleMobileMenuClose();
+        setMobileMoreAnchorEl(null);
+
     };
 
     const handleMobileMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
         setMobileMoreAnchorEl(event.currentTarget);
     };
-
+    const handleSignOut = () => {
+        localStorage.removeItem("userData")
+        setUserSignin(null)
+        setAnchorEl(null);
+        handleMobileMenuClose();
+        navigate('/user/signin')
+    };
     const menuId = 'primary-search-account-menu';
     const renderMenu = (
         <Menu
@@ -103,6 +123,7 @@ export default function PrimarySearchAppBar() {
         >
             <MenuItem onClick={ handleMenuClose }>Profile</MenuItem>
             <MenuItem onClick={ handleMenuClose }>My account</MenuItem>
+            <MenuItem onClick={ handleSignOut }>Sign out</MenuItem>
         </Menu>
     );
 
@@ -198,6 +219,7 @@ export default function PrimarySearchAppBar() {
                             onClick={ handleProfileMenuOpen }
                             color="inherit"
                         >
+                            { userSigned ? userSigned?.name : "" }
                             <AccountCircle />
                         </IconButton>
                     </Box>

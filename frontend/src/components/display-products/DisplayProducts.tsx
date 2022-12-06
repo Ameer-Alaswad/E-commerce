@@ -7,7 +7,7 @@ import Error from "../Error"
 
 const DisplayProducts = () => {
 
-    const { isError, isLoading, data } = useProducts("/api/products")
+    const { isError, isLoading, data } = useProducts("/api/product")
 
     if (isLoading) return <h1 style={ { marginTop: "200px" } }><Loading /></h1>;
     if (isError) return <Error />;

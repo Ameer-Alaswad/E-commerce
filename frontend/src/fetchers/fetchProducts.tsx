@@ -7,7 +7,7 @@ export const fetchProducts = async (URL: string): Promise<productsType[]> => {
 
     try {
         const { data } = await axios.get(URL);
-        return await data
+        return data
     } catch (error: any) {
         throw new Error(error)
     }

@@ -1,25 +1,34 @@
 import express from "express";
-import products from "./assets/data.js";
+import dotenv from "dotenv";
+import mongoose from "mongoose";
+import fillingRouter from "./routes/fillingRoute.js";
+import productsRouter from "./routes/productsRoute.js";
+import userRouter from "./routes/usersRoutes.js";
+dotenv.config();
+
 const app = express();
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
-app.get("/api/products", (req, res) => {
-  res.send(products);
+mongoose
+  .connect(
+    `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@${process.env.DB_HOST}/${process.env.DB_NAME}`
+  )
+  .then(() => {
+    console.log("Database connected! 😃");
+  })
+  .catch((error) => {
+    console.log(error.message);
+    console.log("🤨");
+  });
+
+app.use("/api/seed", fillingRouter);
+app.use("/api/product", productsRouter);
+app.use("/api/users", userRouter);
+
+app.use((err, req, res, next) => {
+  res.status(500).send({ message: err.message });
 });
-
-app.get("/api/product/label/:label", (req, res) => {
-  const product = products.find(
-    (product) => product.label === req.params.label
-  );
-  if (product) return res.status(200).send([product]);
-  return res.status(404).send({ message: "product does not exist" });
-});
-
-app.get("/api/product/name/:name", (req, res) => {
-  const product = products.find((product) => product.name === req.params.name);
-  if (product) return res.status(200).send([product]);
-  return res.status(404).send({ message: "product does not exist" });
-});
-
 const port = process.env.PORT || 8000;
 app.listen(port, () => {
   console.log(`server is connected at http://localhost:${port}`);
