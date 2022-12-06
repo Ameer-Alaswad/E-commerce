@@ -1,10 +1,25 @@
-const products = [
+import bcrypt from "bcryptjs";
+export const users = [
   {
-    _id: "1",
+    name: "Ameer",
+    email: "admin@gmail.com",
+    password: bcrypt.hashSync("123456"),
+    isAdmin: true,
+  },
+  {
+    name: "Ghaith",
+    email: "Ghaith@gmail.com",
+    password: bcrypt.hashSync("123456"),
+    isAdmin: false,
+  },
+];
+
+export const products = [
+  {
     name: "Nike Slim shirt",
     label: "nike-slim-shirt",
     category: "Shirts",
-    image: "/images/p1.png", // 679px × 829px
+    image: "/images/p1.jpg", // 679px × 829px
     price: 120,
     countInStock: 10,
     brand: "Nike",
@@ -13,11 +28,10 @@ const products = [
     description: "high quality shirt",
   },
   {
-    _id: "2",
     name: "Adidas Fit Shirt",
     label: "adidas-fit-shirt",
     category: "Shirts",
-    image: "/images/p2.png",
+    image: "/images/p2.jpg",
     price: 250,
     countInStock: 20,
     brand: "Adidas",
@@ -26,7 +40,6 @@ const products = [
     description: "high quality product",
   },
   {
-    _id: "3",
     name: "Nike Slim Pant",
     label: "nike-slim-pant",
     category: "Pants",
@@ -39,11 +52,10 @@ const products = [
     description: "high quality product",
   },
   {
-    _id: "4",
     name: "Adidas Fit Pant",
     label: "adidas-fit-pant",
     category: "Pants",
-    image: "/images/p4.png",
+    image: "/images/p4.jpg",
     price: 65,
     countInStock: 5,
     brand: "Puma",
@@ -52,5 +64,3 @@ const products = [
     description: "high quality product",
   },
 ];
-
-export default products;
