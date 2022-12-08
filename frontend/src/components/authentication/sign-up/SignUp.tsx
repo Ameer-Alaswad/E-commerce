@@ -1,4 +1,4 @@
-// This component requires refactoring 
+// This component requires refactoring
 import * as React from "react";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
@@ -18,8 +18,10 @@ import { useContext } from "react";
 import { ShoppingCartContext } from "../../../contexts/shopping-cart-context/shoppingCartContext";
 import { useLocation, useNavigate } from "react-router-dom";
 import { checkUserLoggedIn } from "../../../utils/utils";
+import { toast } from "react-toastify";
 
 function Copyright(props: any) {
+    const navigate = useNavigate();
     return (
         <Typography
             variant="body2"
@@ -28,7 +30,7 @@ function Copyright(props: any) {
             { ...props }
         >
             { "Copyright © " }
-            <Link color="inherit" href="https://mui.com/">
+            <Link color="inherit" onClick={ () => navigate("/") }>
                 Your Website
             </Link>{ " " }
             { new Date().getFullYear() }
@@ -38,31 +40,41 @@ function Copyright(props: any) {
 }
 
 const theme = createTheme();
-export default function SignIn() {
-    // this tracks the clicked URL before getting redirected to signin page if existed 
-    const { search } = useLocation()
-    const redirectInUrl = new URLSearchParams(search).get('redirect')
-    const redirect = redirectInUrl ? redirectInUrl : '/'
+export default function SignUp() {
+    // this tracks the clicked URL before getting redirected to signin page if existed
+    const { search } = useLocation();
+    const redirectInUrl = new URLSearchParams(search).get("redirect");
+    const redirect = redirectInUrl ? redirectInUrl : "/";
 
-    const navigate = useNavigate()
+    const navigate = useNavigate();
     const shoppingCartContext = useContext(ShoppingCartContext);
     const { userSignin, setUserSignin } = shoppingCartContext;
 
-    const userSigned = checkUserLoggedIn(userSignin)
+    const userSigned = checkUserLoggedIn(userSignin);
 
     React.useEffect(() => {
-        if (userSigned) navigate(redirect)
-    }, [userSigned, navigate, redirect])
-
+        if (userSigned) navigate("/");
+    }, [userSigned, navigate]);
 
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
-        postUser("/api/users/signin", {
-            email: String(data.get("email")),
-            password: String(data.get("password")),
-        }, setUserSignin, navigate, redirect)
-    }
+        console.log(data.get("password"), data.get("confirmPassword"));
+
+        if (data.get("password") !== data.get("confirmPassword"))
+            return toast.error("passwords do not match!");
+        postUser(
+            "/api/users/signup",
+            {
+                name: String(data.get("name")),
+                email: String(data.get("email")),
+                password: String(data.get("password")),
+            },
+            setUserSignin,
+            navigate,
+            redirect
+        );
+    };
     return (
         <ThemeProvider theme={ theme }>
             <Container
@@ -89,13 +101,19 @@ export default function SignIn() {
                         <LockOutlinedIcon />
                     </Avatar>
                     <Typography component="h1" variant="h5">
-                        Sign in
+                        Sign up
                     </Typography>
-                    <Box
-                        component="form"
-                        onSubmit={ handleSubmit }
-                        sx={ { mt: 1 } }
-                    >
+                    <Box component="form" onSubmit={ handleSubmit } sx={ { mt: 1 } }>
+                        <TextField
+                            margin="normal"
+                            required
+                            fullWidth
+                            id="name"
+                            label="Name"
+                            name="name"
+                            autoComplete="name"
+                            autoFocus
+                        />
                         <TextField
                             margin="normal"
                             required
@@ -104,7 +122,6 @@ export default function SignIn() {
                             label="Email Address"
                             name="email"
                             autoComplete="email"
-                            autoFocus
                         />
                         <TextField
                             margin="normal"
@@ -116,27 +133,33 @@ export default function SignIn() {
                             id="password"
                             autoComplete="current-password"
                         />
-                        <FormControlLabel
-                            control={ <Checkbox value="remember" color="primary" /> }
-                            label="Remember me"
+                        <TextField
+                            margin="normal"
+                            required
+                            fullWidth
+                            name="confirmPassword"
+                            label="Confirm Password"
+                            type="password"
+                            id="confirmPassword"
+                            autoComplete="current-password"
                         />
+
                         <Button
                             type="submit"
                             fullWidth
                             variant="contained"
                             sx={ { mt: 3, mb: 2 } }
                         >
-                            Sign In
+                            Sign up
                         </Button>
                         <Grid container>
-                            <Grid item xs>
-                                <Link href="#" variant="body2">
-                                    Forgot password?
-                                </Link>
-                            </Grid>
                             <Grid item>
-                                <Link onClick={ () => navigate(`/user/signup?redirect=${redirect}`) } variant="body2">
-                                    { "Don't have an account? Sign Up" }
+                                <Link
+                                    style={ { cursor: "pointer" } }
+                                    onClick={ () => navigate(`/user/signin?redirect=${redirect}`) }
+                                    variant="body2"
+                                >
+                                    { "Already have an account? Sign In" }
                                 </Link>
                             </Grid>
                         </Grid>
