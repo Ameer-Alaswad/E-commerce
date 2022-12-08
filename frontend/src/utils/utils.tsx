@@ -4,6 +4,7 @@ import {
     product,
     userSignin,
 } from "../contexts/shopping-cart-context/shoppingCartContextTypes";
+import { toast } from "react-toastify"
 
 export type AddToShoppingCartTypes = {
     productName: string;
@@ -34,7 +35,7 @@ export const addToShoppingCartLogic = ({
         if (reachedProductLimitForUser) {
             console.log("reached limit");
 
-            return alert("product per purchase limit");
+            return toast.error("product per purchase limit");
         }
         const productInStock =
             item?.productId === productName &&
@@ -42,7 +43,7 @@ export const addToShoppingCartLogic = ({
         if (!productInStock) {
             console.log("not in stock");
 
-            return alert("error")
+            return toast.error("error")
         }
         if (productInStock) {
             console.log("in stock");

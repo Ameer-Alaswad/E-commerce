@@ -21,4 +21,15 @@ export type ShoppingCart = {
     setCartItems: React.Dispatch<React.SetStateAction<product[]>>
     userSignin: userSignin | null
     setUserSignin: React.Dispatch<React.SetStateAction<userSignin | null>>
+    shippingAddresData: ShippingAddressDataType
+    setShippingAddresData: React.Dispatch<React.SetStateAction<ShippingAddressDataType>>
+    progressStep: number
+    setProgressStep: React.Dispatch<React.SetStateAction<number>>
+}
+export type ShippingAddressDataType = {
+    fullName: string
+    address: string
+    city: string
+    postalCode: string
+    country: string
 }

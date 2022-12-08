@@ -19,7 +19,7 @@ const CartPage = () => {
     !userSignin ? userSigned = parsedUser : userSigned = userSignin
     const handleProceedToCheckout = () => {
         if (userSigned) {
-            navigate('/user/shipping')
+            navigate('/shipping')
         }
         else {
             navigate('/user/signin?redirect=/shipping')

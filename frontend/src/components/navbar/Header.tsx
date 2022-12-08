@@ -64,7 +64,7 @@ export default function PrimarySearchAppBar() {
     const navigate = useNavigate()
 
     const shoppingCartContext = useContext(ShoppingCartContext);
-    const { userSignin, setUserSignin } = shoppingCartContext;
+    const { userSignin, setUserSignin, setShippingAddresData, setCartItems } = shoppingCartContext;
     const user: any = localStorage.getItem('userData')
     const parsedUser = JSON.parse(user)
     let userSigned = userSignin
@@ -99,6 +99,15 @@ export default function PrimarySearchAppBar() {
     };
     const handleSignOut = () => {
         localStorage.removeItem("userData")
+        localStorage.removeItem("shippingCardAddress")
+        setShippingAddresData({
+            fullName: "",
+            address: "",
+            city: "",
+            postalCode: "",
+            country: ""
+        })
+        setCartItems([])
         setUserSignin(null)
         setAnchorEl(null);
         handleMobileMenuClose();
