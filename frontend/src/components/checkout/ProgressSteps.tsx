@@ -5,7 +5,7 @@ import Step from "@mui/material/Step";
 import StepLabel from "@mui/material/StepLabel";
 import { ShoppingCartContext } from "../../contexts/shopping-cart-context/shoppingCartContext";
 
-const steps = ["Shipping Address", "Payment", "kalb"];
+const steps = ["Shipping Address", "Payment", "Placing Order"];
 
 export default function ProgressSteps() {
     const shoppingCartContext = useContext(ShoppingCartContext);

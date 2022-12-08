@@ -20,6 +20,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { checkUserLoggedIn } from "../../../utils/utils";
 
 function Copyright(props: any) {
+    const navigate = useNavigate()
     return (
         <Typography
             variant="body2"
@@ -28,7 +29,7 @@ function Copyright(props: any) {
             { ...props }
         >
             { "Copyright © " }
-            <Link color="inherit" href="https://mui.com/">
+            <Link color="inherit" onClick={ () => navigate("/") }>
                 Your Website
             </Link>{ " " }
             { new Date().getFullYear() }
@@ -135,7 +136,7 @@ export default function SignIn() {
                                 </Link>
                             </Grid>
                             <Grid item>
-                                <Link onClick={ () => navigate(`/user/signup?redirect=${redirect}`) } variant="body2">
+                                <Link style={ { cursor: "pointer" } } onClick={ () => navigate(`/user/signup?redirect=${redirect}`) } variant="body2">
                                     { "Don't have an account? Sign Up" }
                                 </Link>
                             </Grid>
