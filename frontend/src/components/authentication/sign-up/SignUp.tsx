@@ -59,7 +59,6 @@ export default function SignUp() {
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
-        console.log(data.get("password"), data.get("confirmPassword"));
 
         if (data.get("password") !== data.get("confirmPassword"))
             return toast.error("passwords do not match!");

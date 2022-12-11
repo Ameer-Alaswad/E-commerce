@@ -25,6 +25,8 @@ export type ShoppingCart = {
     setShippingAddresData: React.Dispatch<React.SetStateAction<ShippingAddressDataType>>
     progressStep: number
     setProgressStep: React.Dispatch<React.SetStateAction<number>>
+    paymentMethod: string
+    setPaymentMethod: React.Dispatch<React.SetStateAction<string>>
 }
 export type ShippingAddressDataType = {
     fullName: string
