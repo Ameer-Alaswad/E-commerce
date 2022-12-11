@@ -64,7 +64,7 @@ export default function PrimarySearchAppBar() {
     const navigate = useNavigate()
 
     const shoppingCartContext = useContext(ShoppingCartContext);
-    const { userSignin, setUserSignin, setShippingAddresData, setCartItems } = shoppingCartContext;
+    const { userSignin, setUserSignin, setShippingAddresData, setCartItems, setPaymentMethod } = shoppingCartContext;
     const user: any = localStorage.getItem('userData')
     const parsedUser = JSON.parse(user)
     let userSigned = userSignin
@@ -109,6 +109,7 @@ export default function PrimarySearchAppBar() {
         })
         setCartItems([])
         setUserSignin(null)
+        setPaymentMethod("")
         setAnchorEl(null);
         handleMobileMenuClose();
         navigate('/user/signin')

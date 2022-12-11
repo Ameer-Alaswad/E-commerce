@@ -13,6 +13,7 @@ import ShippingAddressUi from "./components/checkout/ShippingAddressUi";
 import { ToastContainer } from "react-toastify"
 import 'react-toastify/dist/ReactToastify.css'
 import SignUp from "./components/authentication/sign-up/SignUp";
+import PaymentUi from "./components/checkout/PaymentUi";
 const reactQueryClient = new QueryClient()
 
 function App() {
@@ -30,6 +31,7 @@ function App() {
               <Route path="/user/signin" element={ <SignIn /> } />
               <Route path="/user/signup" element={ <SignUp /> } />
               <Route path="/shipping" element={ <ShippingAddressUi /> } />
+              <Route path="/payment" element={ <PaymentUi /> } />
             </Routes>
             <Footer />
           </BrowserRouter>
