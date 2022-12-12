@@ -9,18 +9,18 @@ import ProgressSteps from "./ProgressSteps";
 const ShippingAddressUi = () => {
   const navigate = useNavigate()
   const shoppingCartContext = useContext(ShoppingCartContext);
-  const { setShippingAddresData, shippingAddresData, userSignin, setProgressStep } = shoppingCartContext;
+  const { setShippingAddressData, shippingAddressData, userSignin, setProgressStep } = shoppingCartContext;
   const [shippingAddress, setshippingAddress] = useState<ShippingAddressDataType>({
-    fullName: shippingAddresData?.fullName || "",
-    address: shippingAddresData?.address || "",
-    city: shippingAddresData?.city || "",
-    postalCode: shippingAddresData?.postalCode || "",
-    country: shippingAddresData?.country || ""
+    fullName: shippingAddressData?.fullName || "",
+    address: shippingAddressData?.address || "",
+    city: shippingAddressData?.city || "",
+    postalCode: shippingAddressData?.postalCode || "",
+    country: shippingAddressData?.country || ""
   })
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    setShippingAddresData(shippingAddress)
+    setShippingAddressData(shippingAddress)
     localStorage.setItem("shippingCardAddress", JSON.stringify(shippingAddress))
     navigate("/payment")
   };

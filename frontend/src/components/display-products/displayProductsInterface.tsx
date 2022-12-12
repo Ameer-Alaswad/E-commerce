@@ -10,6 +10,7 @@ export type productsType = {
     rating: number
     numReviews: number
     description: string
+    product: string
 
 }
 
