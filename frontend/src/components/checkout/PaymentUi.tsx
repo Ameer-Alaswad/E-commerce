@@ -19,7 +19,7 @@ const PaymentUi = () => {
     const {
         setProgressStep,
         userSignin,
-        shippingAddresData,
+        shippingAddressData,
         setPaymentMethod,
         paymentMethod,
     } = shoppingCartContext;
@@ -36,13 +36,13 @@ const PaymentUi = () => {
                 toast.error("Sign in first!");
             }, 100);
         }
-        if (!shippingAddresData.address) {
+        if (!shippingAddressData.address) {
             navigate("/shipping?redirect=/payment");
             setTimeout(() => {
                 toast.error("Add your Address first!");
             }, 100);
         }
-    }, [userSigned, navigate, setProgressStep, shippingAddresData]);
+    }, [userSigned, navigate, setProgressStep, shippingAddressData]);
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         console.log((event.target as HTMLInputElement).value);

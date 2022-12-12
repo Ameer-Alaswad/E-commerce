@@ -4,7 +4,7 @@ import {
     product,
     userSignin,
 } from "../contexts/shopping-cart-context/shoppingCartContextTypes";
-import { toast } from "react-toastify"
+import { toast } from "react-toastify";
 
 export type AddToShoppingCartTypes = {
     productName: string;
@@ -23,28 +23,31 @@ export const addToShoppingCartLogic = ({
         (item) => productName !== item.productId
     );
     if (productIsNotInShoppingCart) {
+        console.log(product);
+
         return setCartItems([
             ...cartItems,
-            { productId: String(productName), quantity: 1, productLimit: 6 },
+            {
+                productId: String(productName),
+                quantity: 1,
+                productLimit: 6,
+                image: product[0]?.image,
+                price: product[0]?.price,
+                product: product[0]?.product,
+            },
         ]);
     }
     const handleProductQuantityLimitations = cartItems.forEach((item) => {
-
         const reachedProductLimitForUser =
             item?.productId === productName && item?.productLimit <= 1;
         if (reachedProductLimitForUser) {
             console.log("reached limit");
 
-            return toast.error("product per purchase limit");
+            return alert("product per purchase limit");
         }
         const productInStock =
             item?.productId === productName &&
             product[0]?.countInStock >= item?.quantity;
-        if (!productInStock) {
-            console.log("not in stock");
-
-            return toast.error("error")
-        }
         if (productInStock) {
             console.log("in stock");
 
@@ -60,9 +63,14 @@ export const addToShoppingCartLogic = ({
 
             return setCartItems([...changeProductQuantity]);
         }
+        if (
+            item?.productId === productName &&
+            product[0]?.countInStock <= item?.quantity
+        ) {
+            return alert("error");
+        }
 
         //  here the logic starts
-
     });
     return handleProductQuantityLimitations;
 };

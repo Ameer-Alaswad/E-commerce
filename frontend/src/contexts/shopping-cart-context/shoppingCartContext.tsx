@@ -19,7 +19,7 @@ export const ShoppingCartContext = createContext({} as ShoppingCart);
 export const ShoppingCartProvider = ({ children }: shoppingCartChildren) => {
     const [cartItems, setCartItems] = useState<product[]>([]);
     const [progressStep, setProgressStep] = useState<number>(0);
-    const [shippingAddresData, setShippingAddresData] =
+    const [shippingAddressData, setShippingAddressData] =
         useState<ShippingAddressDataType>(
             addressDataInStorage || {
                 fullName: "",
@@ -39,8 +39,8 @@ export const ShoppingCartProvider = ({ children }: shoppingCartChildren) => {
                 setCartItems,
                 userSignin,
                 setUserSignin,
-                shippingAddresData,
-                setShippingAddresData,
+                shippingAddressData,
+                setShippingAddressData,
                 progressStep,
                 setProgressStep,
                 setPaymentMethod,

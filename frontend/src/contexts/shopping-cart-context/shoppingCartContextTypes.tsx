@@ -3,6 +3,9 @@ export type product = {
     productId: string
     quantity: number
     productLimit: number
+    image: string
+    price: number
+    product: string
 }
 
 export type shoppingCartChildren = {
@@ -21,8 +24,8 @@ export type ShoppingCart = {
     setCartItems: React.Dispatch<React.SetStateAction<product[]>>
     userSignin: userSignin | null
     setUserSignin: React.Dispatch<React.SetStateAction<userSignin | null>>
-    shippingAddresData: ShippingAddressDataType
-    setShippingAddresData: React.Dispatch<React.SetStateAction<ShippingAddressDataType>>
+    shippingAddressData: ShippingAddressDataType
+    setShippingAddressData: React.Dispatch<React.SetStateAction<ShippingAddressDataType>>
     progressStep: number
     setProgressStep: React.Dispatch<React.SetStateAction<number>>
     paymentMethod: string
