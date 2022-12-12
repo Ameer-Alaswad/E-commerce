@@ -27,7 +27,6 @@ export const postUser = async (URL: string, orderData: OrderData,
         setCartItems([])
         navigate(`/order/${data.order._id}`)
     } catch (error: any) {
-
         toast.error(error?.message)
     }
 
