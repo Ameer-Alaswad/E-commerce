@@ -17,20 +17,9 @@ import { ShoppingCartContext } from "../../../contexts/shopping-cart-context/sho
 import { useLocation, useNavigate } from "react-router-dom";
 import { captureRedirectionRoute, checkUserLoggedIn } from "../../../utils/utils";
 import Copyright from "../Copyright";
+import { mainContainer, signinContainer } from "../styles";
 
-const mainContainer = {
-    height: "100vh",
-    justifyContent: "center",
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-}
-const signinContainer = {
-    marginTop: 8,
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-}
+
 
 export default function SignIn() {
 
