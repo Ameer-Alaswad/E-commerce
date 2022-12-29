@@ -22,7 +22,9 @@ mongoose
     console.log(error.message);
     console.log("🤨");
   });
-
+app.get("/api/keys/paypal", (req, res) => {
+  res.send(process.env.PAYPAL_CLIENT_ID || "sb");
+});
 app.use("/api/seed", fillingRouter);
 app.use("/api/product", productsRouter);
 app.use("/api/users", userRouter);
