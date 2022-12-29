@@ -7,6 +7,7 @@ import {
     shoppingCartChildren,
     userSignin,
     ShippingAddressDataType,
+    OrderData
 } from "./shoppingCartContextTypes";
 const addressDataInStorage = JSON.parse(
     localStorage.getItem("shippingCardAddress") || "{}"
@@ -29,6 +30,7 @@ export const ShoppingCartProvider = ({ children }: shoppingCartChildren) => {
                 country: "",
             }
         );
+    const [orderData, setOrderData] = useState<OrderData | null>(null)
     const [userSignin, setUserSignin] = useState<userSignin | null>(null);
     const [paymentMethod, setPaymentMethod] = useState<string>(paymentMethodInStorage || "");
 
@@ -44,7 +46,10 @@ export const ShoppingCartProvider = ({ children }: shoppingCartChildren) => {
                 progressStep,
                 setProgressStep,
                 setPaymentMethod,
-                paymentMethod
+                paymentMethod,
+                orderData,
+                setOrderData
+
             } }
         >
             { children }

@@ -154,14 +154,7 @@ export default function PrimarySearchAppBar() {
             open={ isMobileMenuOpen }
             onClose={ handleMobileMenuClose }
         >
-            <MenuItem>
-                <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-                    <Badge badgeContent={ 4 } color="error">
-                        <MailIcon />
-                    </Badge>
-                </IconButton>
-                <p>Messages</p>
-            </MenuItem>
+
             <MenuItem>
                 <ShoppingCart />
             </MenuItem>
@@ -184,15 +177,6 @@ export default function PrimarySearchAppBar() {
         <Box sx={ { flexGrow: 1, } }>
             <AppBar position="fixed">
                 <Toolbar  >
-                    <IconButton
-                        size="large"
-                        edge="start"
-                        color="inherit"
-                        aria-label="open drawer"
-                        sx={ { mr: 2 } }
-                    >
-                        <MenuIcon />
-                    </IconButton>
                     <Link to="/" style={ { color: "white", textDecoration: "none" } }>
                         <Typography
                             variant="h6"
@@ -214,24 +198,27 @@ export default function PrimarySearchAppBar() {
                     </Search>
                     <Box sx={ { flexGrow: 1 } } />
                     <Box sx={ { display: { xs: 'none', md: 'flex' } } }>
-                        <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-                            <Badge badgeContent={ 4 } color="error">
-                                <MailIcon />
-                            </Badge>
-                        </IconButton>
                         <ShoppingCart />
-                        <IconButton
-                            size="large"
-                            edge="end"
-                            aria-label="account of current user"
-                            aria-controls={ menuId }
-                            aria-haspopup="true"
-                            onClick={ handleProfileMenuOpen }
-                            color="inherit"
-                        >
-                            { userSigned ? userSigned?.name : "" }
-                            <AccountCircle />
-                        </IconButton>
+                        { userSigned ?
+                            <IconButton
+                                size="large"
+                                edge="end"
+                                aria-label="account of current user"
+                                aria-controls={ menuId }
+                                aria-haspopup="true"
+                                onClick={ handleProfileMenuOpen }
+                                color="inherit"
+                            >
+                                { userSigned?.name }&nbsp;
+                                <AccountCircle />
+                            </IconButton>
+                            :
+                            <Box sx={ { marginTop: "11px" } }>
+                                <Link style={ { color: "white", textDecoration: "none" } } to="/user/signin">Signin!</Link> /
+                                <Link style={ { color: "white", textDecoration: "none" } } to="/user/signup"> Signup!</Link>
+                            </Box>
+                        }
+
                     </Box>
                     <Box sx={ { display: { xs: 'flex', md: 'none' } } }>
                         <IconButton
