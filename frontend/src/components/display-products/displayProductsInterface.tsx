@@ -11,6 +11,7 @@ export type productsType = {
     numReviews: number
     description: string
     product: string
+    _id: string
 
 }
 

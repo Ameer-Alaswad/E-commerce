@@ -7,6 +7,8 @@ import Box from '@mui/material/Box';
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import { useNavigate } from 'react-router-dom';
+import { Card, CardContent, Divider } from '@mui/material';
+import ItemsList from '../checkout/placeorder/items/ItemsList';
 
 const CartPage = () => {
     const navigate = useNavigate()
@@ -26,31 +28,46 @@ const CartPage = () => {
         }
     }
     return (
-        <Box style={ { marginTop: "66px", height: "100vh" } }>
-            <Typography
-                gutterBottom variant="h4" component="div"
-            >
-                Shopping Cart
-            </Typography>
+        <Box style={ { marginTop: "100px", display: "flex", justifyContent: "center", } }>
             { cartItems.length === 0 ? <Typography gutterBottom variant="h4" component="div">
                 Your Cart is empty!
             </Typography> :
-                cartItems.map((item) => {
-                    return <Box key={ item.productId }>
-                        <Typography
-                            gutterBottom variant="h4" component="span"
-                        >
-                            { item?.productId }{ " " }
+
+                <Card sx={ { minWidth: 275, width: "600px", marginRight: "40px" } }>
+                    <Typography
+                        gutterBottom variant="h4" component="div"
+                    >
+                        Shopping Cart
+                    </Typography>
+                    <CardContent>
+                        <Typography sx={ { marginBottom: "10px" } } fontWeight="fontWeightBold">
+                            Items
                         </Typography>
-                        <Typography
-                            gutterBottom variant="h4" component="span"
-                        >
-                            Quantity{ item?.quantity }
-                        </Typography>
-                    </Box>
-                })
+                        <ItemsList />
+                    </CardContent>
+
+                </Card>
             }
-            <Button onClick={ handleProceedToCheckout }>Proceed to checkout</Button>
+            { cartItems?.length !== 0 ?
+
+                <Card sx={ {
+                    width: "300px", height: "150px"
+                } } >
+                    <CardContent>
+                        < Typography sx={ { marginBottom: "10px" } } variant="h5" fontWeight="fontWeightBold">
+                            Total ({ cartItems.reduce((a, c) => a + c.quantity, 0) } items) : $
+                            { cartItems.reduce((a, c) => a + c.price * c.quantity, 0) }
+                        </ Typography>
+                        <Divider />
+                    </CardContent >
+                    <Box sx={ {
+                        display: "flex", justifyContent: "center"
+                    } }>
+                        <Button onClick={ handleProceedToCheckout } sx={ { width: "220px" }
+                        } variant="contained">Proceed to CHeckout</Button>
+                    </Box>
+                </Card >
+                : null }
         </Box>
     )
 }

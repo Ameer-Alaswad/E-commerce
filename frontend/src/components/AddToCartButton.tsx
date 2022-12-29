@@ -10,6 +10,7 @@ import { productsType } from "./display-products/displayProductsInterface";
 // Material UI
 import Button from "@mui/material/Button";
 
+
 const AddToCartButton = () => {
     const shoppingCartContext = useContext(ShoppingCartContext);
     const { cartItems, setCartItems } = shoppingCartContext;

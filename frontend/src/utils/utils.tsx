@@ -23,7 +23,8 @@ export const addToShoppingCartLogic = ({
         (item) => productName !== item.productId
     );
     if (productIsNotInShoppingCart) {
-        console.log(product);
+        console.log(product[0]);
+        console.log(cartItems);
 
         return setCartItems([
             ...cartItems,
@@ -33,8 +34,9 @@ export const addToShoppingCartLogic = ({
                 productLimit: 6,
                 image: product[0]?.image,
                 price: product[0]?.price,
-                product: product[0]?.product,
+                product: product[0]._id,
             },
+
         ]);
     }
     const handleProductQuantityLimitations = cartItems.forEach((item) => {

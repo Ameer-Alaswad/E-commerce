@@ -15,6 +15,7 @@ import 'react-toastify/dist/ReactToastify.css'
 import SignUp from "./components/authentication/sign-up/SignUp";
 import PaymentUi from "./components/checkout/PaymentUi";
 import PlaceOrderUi from "./components/checkout/placeorder";
+import OrderScreen from "./components/orders/OrderScreen";
 const reactQueryClient = new QueryClient()
 
 function App() {
@@ -34,6 +35,7 @@ function App() {
               <Route path="/shipping" element={ <ShippingAddressUi /> } />
               <Route path="/payment" element={ <PaymentUi /> } />
               <Route path="/placeOrder" element={ <PlaceOrderUi /> } />
+              <Route path="/order/:id" element={ <OrderScreen /> } />
             </Routes>
             <Footer />
           </BrowserRouter>
