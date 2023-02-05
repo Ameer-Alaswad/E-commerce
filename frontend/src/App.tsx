@@ -16,11 +16,12 @@ import SignUp from "./components/authentication/sign-up/SignUp";
 import PaymentUi from "./components/checkout/PaymentUi";
 import PlaceOrderUi from "./components/checkout/placeorder";
 import OrderScreen from "./components/orders/OrderScreen";
+import { Box } from "@mui/material";
 const reactQueryClient = new QueryClient()
 
 function App() {
   return (
-    <div>
+    <Box>
       <ShoppingCartProvider>
         <QueryClientProvider client={ reactQueryClient }>
           <BrowserRouter>
@@ -41,7 +42,7 @@ function App() {
           </BrowserRouter>
         </QueryClientProvider>
       </ShoppingCartProvider>
-    </div>
+    </Box>
   );
 }
 export default App;

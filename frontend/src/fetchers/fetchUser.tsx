@@ -24,7 +24,6 @@ export const postUser = async (URL: string, userData: user,
         navigate(redirect || "/")
     } catch (error: any) {
         console.log(error);
-
         toast.error('wrong email or password')
     }
 
