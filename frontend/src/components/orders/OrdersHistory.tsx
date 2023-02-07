@@ -1,6 +1,9 @@
 import { type } from '@testing-library/user-event/dist/type'
-import React, { useReducer } from 'react'
+import axios from 'axios';
+import React, { useContext, useEffect, useReducer } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { ShoppingCartContext } from '../../contexts/shopping-cart-context/shoppingCartContext';
+
 type State = {
     loading: boolean;
     error: string;
@@ -13,9 +16,9 @@ type Action = {
 const initialState = {
     loading: false,
     error: '',
-    orders: {}
+    orders: [{}]
 }
-const reducer = (state: State, action: Action) => {
+const reducer = (state: State, action: any) => {
     switch (action.type) {
         case 'FETCH_REQUEST':
             return { ...state, loading: true }
@@ -27,12 +30,49 @@ const reducer = (state: State, action: Action) => {
             return state
     }
 }
+
+
 const OrdersHistory = () => {
+    const shoppingCartContext = useContext(ShoppingCartContext)
+    const { cartItems, userSignin } = shoppingCartContext;
     const navigate = useNavigate()
 
+    const user: any = localStorage.getItem('userData')
+    const parsedUser = JSON.parse(user)
+    let userSigned = userSignin
+    !userSignin ? userSigned = parsedUser : userSigned = userSignin
+
     const [state, dispatch] = useReducer(reducer, initialState)
+    useEffect(() => {
+        const fetchData = async () => {
+            dispatch({ type: 'FETCH_REQUEST' })
+            try {
+                const { data } = await axios.get(
+                    `/api/orders/mine`,
+                    { headers: { Authorization: `Bearer ${userSigned?.token}` } }
+                )
+
+                console.log(data);
+
+                dispatch({ type: `FETCH_SUCCESS`, payload: data })
+
+            } catch (error) {
+                dispatch({
+                    type: `FETCH_FAIL`,
+                    // payload: alert('error')
+                })
+            }
+        }
+        fetchData()
+    }, [userSigned?.token])
+    if (state) {
+        console.log(state?.orders);
+
+    }
     return (
-        <div>OrderHistory</div>
+        <div>
+            kalb
+        </div>
     )
 }
 

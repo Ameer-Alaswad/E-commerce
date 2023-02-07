@@ -17,6 +17,7 @@ import PaymentUi from "./components/checkout/PaymentUi";
 import PlaceOrderUi from "./components/checkout/placeorder";
 import OrderScreen from "./components/orders/OrderScreen";
 import { Box } from "@mui/material";
+import OrdersHistory from "./components/orders/OrdersHistory";
 const reactQueryClient = new QueryClient()
 
 function App() {
@@ -37,6 +38,7 @@ function App() {
               <Route path="/payment" element={ <PaymentUi /> } />
               <Route path="/placeOrder" element={ <PlaceOrderUi /> } />
               <Route path="/order/:id" element={ <OrderScreen /> } />
+              <Route path="/ordershistory" element={ <OrdersHistory /> } />
             </Routes>
             <Footer />
           </BrowserRouter>

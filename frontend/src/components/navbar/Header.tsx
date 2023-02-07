@@ -131,7 +131,7 @@ export default function PrimarySearchAppBar() {
         >
             <MenuItem onClick={ handleMenuClose }>Profile</MenuItem>
             <MenuItem onClick={ handleMenuClose }>My account</MenuItem>
-            <MenuItem onClick={ handleMenuClose }>My Orders</MenuItem>
+            <MenuItem onClick={ () => navigate('/ordershistory') }>My Orders</MenuItem>
             <MenuItem onClick={ handleSignOut }>Sign out</MenuItem>
         </Menu>
     );
