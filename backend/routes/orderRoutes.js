@@ -30,8 +30,15 @@ orderRouter.post("/", isAuth, async (req, res) => {
   res.status(201).send({ message: "New Order Created", order });
 });
 
+orderRouter.get("/mine", isAuth, async (req, res) => {
+  const orders = await Order.find({ user: req.user._id });
+  console.log(orders);
+  res.send(orders);
+});
+
 orderRouter.get("/:id", isAuth, async (req, res) => {
-  const order = await Order.findById(req.params.id);
+  const orderId = req.params.id;
+  const order = await Order.findById(orderId);
   if (order) {
     res.send(order);
   } else {
