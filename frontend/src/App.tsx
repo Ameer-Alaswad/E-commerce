@@ -17,7 +17,7 @@ import PaymentUi from "./components/checkout/PaymentUi";
 import PlaceOrderUi from "./components/checkout/placeorder";
 import OrderScreen from "./components/orders/OrderScreen";
 import { Box } from "@mui/material";
-import OrdersHistory from "./components/orders/OrdersHistory";
+import OrdersHistory from "./components/orders/order-history";
 const reactQueryClient = new QueryClient()
 
 function App() {
