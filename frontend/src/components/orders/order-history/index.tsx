@@ -36,12 +36,13 @@ const OrdersHistory = () => {
     useEffect(() => {
         if (!userSigned) {
             navigate("/user/signin");
-            setTimeout(() => {
-                toast.error("Sign in first !");
-            }, 100);
+            toast.error("Sign in first !");
         }
-        userSignedRef.current = userSigned // get the userSigned value from somewhere
-    });
+    }, [userSigned, navigate]);
+
+    useEffect(() => {
+        userSignedRef.current = userSigned;
+    }, [userSigned]);
 
     useEffect(() => {
         fetchOrderHistory(setLoading, `/api/orders/mine`, userSignedRef.current).then(orderHistory => {
