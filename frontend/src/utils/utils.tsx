@@ -84,3 +84,10 @@ export const checkUserLoggedIn = (userSignin: userSignin | null) => {
     !userSignin ? (userSigned = parsedUser) : (userSigned = userSignin);
     return userSigned;
 };
+
+
+export const captureRedirectionRoute = (search: string) => {
+    const redirectInUrl = new URLSearchParams(search).get('redirect')
+    const redirect = redirectInUrl ? redirectInUrl : '/'
+    return redirect
+}

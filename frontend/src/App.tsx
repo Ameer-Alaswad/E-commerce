@@ -14,13 +14,15 @@ import { ToastContainer } from "react-toastify"
 import 'react-toastify/dist/ReactToastify.css'
 import SignUp from "./components/authentication/sign-up/SignUp";
 import PaymentUi from "./components/checkout/PaymentUi";
-import PlaceOrderUi from "./components/checkout/placeorder";
+import PlaceOrderUi from "./components/checkout/place-order";
 import OrderScreen from "./components/orders/OrderScreen";
+import { Box } from "@mui/material";
+import OrdersHistory from "./components/orders/order-history";
 const reactQueryClient = new QueryClient()
 
 function App() {
   return (
-    <div>
+    <Box>
       <ShoppingCartProvider>
         <QueryClientProvider client={ reactQueryClient }>
           <BrowserRouter>
@@ -36,12 +38,13 @@ function App() {
               <Route path="/payment" element={ <PaymentUi /> } />
               <Route path="/placeOrder" element={ <PlaceOrderUi /> } />
               <Route path="/order/:id" element={ <OrderScreen /> } />
+              <Route path="/ordershistory" element={ <OrdersHistory /> } />
             </Routes>
             <Footer />
           </BrowserRouter>
         </QueryClientProvider>
       </ShoppingCartProvider>
-    </div>
+    </Box>
   );
 }
 export default App;

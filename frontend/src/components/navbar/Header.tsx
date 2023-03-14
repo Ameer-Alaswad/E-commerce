@@ -7,13 +7,11 @@ import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import InputBase from '@mui/material/InputBase';
-import Badge from '@mui/material/Badge';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
-import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
 import AccountCircle from '@mui/icons-material/AccountCircle';
-import MailIcon from '@mui/icons-material/Mail';
+import ViewListIcon from '@mui/icons-material/ViewList';
 import MoreIcon from '@mui/icons-material/MoreVert';
 import { Link, useNavigate } from "react-router-dom";
 import ShoppingCart from './ShoppingCart';
@@ -133,6 +131,7 @@ export default function PrimarySearchAppBar() {
         >
             <MenuItem onClick={ handleMenuClose }>Profile</MenuItem>
             <MenuItem onClick={ handleMenuClose }>My account</MenuItem>
+            <MenuItem onClick={ () => navigate('/ordershistory') }>My Orders</MenuItem>
             <MenuItem onClick={ handleSignOut }>Sign out</MenuItem>
         </Menu>
     );
@@ -170,6 +169,19 @@ export default function PrimarySearchAppBar() {
                 </IconButton>
                 <p>Profile</p>
             </MenuItem>
+            <MenuItem onClick={ handleProfileMenuOpen }>
+                <IconButton
+                    size="large"
+                    aria-label="shopping cart"
+                    aria-controls="primary-search-account-menu"
+                    aria-haspopup="true"
+                    color="inherit"
+                >
+                    <ViewListIcon />
+                </IconButton>
+                <p>My Orders</p>
+            </MenuItem>
+
         </Menu>
     );
 
