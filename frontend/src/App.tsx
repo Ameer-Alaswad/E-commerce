@@ -14,7 +14,7 @@ import { ToastContainer } from "react-toastify"
 import 'react-toastify/dist/ReactToastify.css'
 import SignUp from "./components/authentication/sign-up/SignUp";
 import PaymentUi from "./components/checkout/PaymentUi";
-import PlaceOrderUi from "./components/checkout/placeorder";
+import PlaceOrderUi from "./components/checkout/place-order";
 import OrderScreen from "./components/orders/OrderScreen";
 import { Box } from "@mui/material";
 import OrdersHistory from "./components/orders/order-history";

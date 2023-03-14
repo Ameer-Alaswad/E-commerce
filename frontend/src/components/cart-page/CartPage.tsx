@@ -8,7 +8,7 @@ import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import { useNavigate } from 'react-router-dom';
 import { Card, CardContent, Divider } from '@mui/material';
-import ItemsList from '../checkout/placeorder/items/ItemsList';
+import ItemsList from '../checkout/place-order/order-itmes/ItemsList';
 
 const CartPage = () => {
     const navigate = useNavigate()

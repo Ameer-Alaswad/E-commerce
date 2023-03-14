@@ -1,13 +1,12 @@
-// External library 
-import axios from "axios";
+// External library
 import { useContext, useEffect, useRef, useState } from "react";
-import { toast } from "react-toastify"
-// Internal component 
-import Loading from "../../Loading"
+import { toast } from "react-toastify";
+// Internal component
+import Loading from "../../Loading";
 import { Box } from "@mui/material";
-// Context 
+// Context
 import { ShoppingCartContext } from "../../../contexts/shopping-cart-context/shoppingCartContext";
-// Component 
+// Component
 import OrdersTable from "./orders-table";
 import { OrderHistory } from "./OrdersTypes";
 import { fetchOrderHistory } from "../../../fetchers/fetchOrdersHistory";
@@ -18,14 +17,14 @@ const orderHistoryContainer = {
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-}
+};
 
 const OrdersHistory = () => {
     const shoppingCartContext = useContext(ShoppingCartContext);
     const { userSignin } = shoppingCartContext;
-    const navigate = useNavigate()
-    const [orderHistory, setOrderHistory] = useState<OrderHistory[]>([])
-    const [loading, setLoading] = useState<boolean>(false)
+    const navigate = useNavigate();
+    const [orderHistory, setOrderHistory] = useState<OrderHistory[]>([]);
+    const [loading, setLoading] = useState<boolean>(false);
     const userSignedRef = useRef<any>(null);
 
     const user: any = localStorage.getItem("userData");
@@ -45,15 +44,17 @@ const OrdersHistory = () => {
     }, [userSigned]);
 
     useEffect(() => {
-        fetchOrderHistory(setLoading, `/api/orders/mine`, userSignedRef.current).then(orderHistory => {
-            setOrderHistory(orderHistory)
-        })
+        fetchOrderHistory(
+            setLoading,
+            `/api/orders/mine`,
+            userSignedRef.current
+        ).then((orderHistory) => {
+            setOrderHistory(orderHistory);
+        });
     }, [userSignedRef]);
 
     return (
-        <Box
-            sx={ orderHistoryContainer }
-        >
+        <Box sx={ orderHistoryContainer }>
             { loading ? <Loading /> : <OrdersTable orderHistory={ orderHistory } /> }
         </Box>
     );

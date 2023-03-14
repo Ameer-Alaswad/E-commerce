@@ -19,8 +19,6 @@ export default function ItemsList() {
             return product.productId !== productName
         })
 
-        console.log(filterProductsInCart);
-
         setCartItems(filterProductsInCart)
     }
 
