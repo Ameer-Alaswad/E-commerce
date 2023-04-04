@@ -5,6 +5,7 @@ import fillingRouter from "./routes/fillingRoute.js";
 import productsRouter from "./routes/productsRoute.js";
 import userRouter from "./routes/usersRoutes.js";
 import orderRouter from "./routes/orderRoutes.js";
+import path from "path";
 dotenv.config();
 
 const app = express();
@@ -30,6 +31,11 @@ app.use("/api/product", productsRouter);
 app.use("/api/users", userRouter);
 app.use("/api/orders", orderRouter);
 
+const __dirname = path.resolve();
+app.use(express.static(path.join(__dirname, "frontend/build")));
+app.get("*", (req, res) =>
+  res.sendFile(path.join(__dirname, "/frontend/build/index.html"))
+);
 app.use((err, req, res, next) => {
   res.status(500).send({ message: err.message });
 });
