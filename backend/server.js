@@ -13,9 +13,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 mongoose
-  .connect(
-    `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@${process.env.DB_HOST}/${process.env.DB_NAME}`
-  )
+  .connect(process.env.MONGODB_URL)
   .then(() => {
     console.log("Database connected! 😃");
   })
