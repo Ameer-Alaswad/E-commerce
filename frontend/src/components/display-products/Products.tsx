@@ -15,6 +15,8 @@ import RatingComponent from "./Rating";
 import AddToCartButton from '../AddToCartButton';
 
 const Products: React.FC<productProps> = ({ data }) => {
+    console.log(data);
+
     const navigate = useNavigate();
     return (
 
@@ -37,7 +39,8 @@ const Products: React.FC<productProps> = ({ data }) => {
                     marginTop: "50px",
                 } }
             >
-                { data && data?.map((product) => {
+                { data ? data?.map((product) => {
+
                     const { name, image, price, description, label, numReviews, rating } = product;
 
                     return (
@@ -77,7 +80,7 @@ const Products: React.FC<productProps> = ({ data }) => {
                             </CardActionArea>
                         </Card>
                     );
-                }) }
+                }) : null }
             </Box>
         </Box>
 
