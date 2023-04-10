@@ -31,7 +31,7 @@ To run the application locally, follow these steps:
 
 ## Dependencies
 
-**Backend**
+""Backend""
 
 * Node.js
 * Express
