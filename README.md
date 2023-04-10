@@ -1,13 +1,18 @@
-## E-commerce Website
+# E-commerce Website
 
-This is a full-stack e-commerce website that allows users to browse products, add them to their shopping cart, checkout, and view their order history and details. This project was built using Node.js and Express for the backend, React and TypeScript for the frontend, and Material UI for styling.
-# goodcarbon search app
-
-Search for Nature-based solutions projects to help restore nature across the forest.
+This is a full-stack e-commerce website that allows users to browse products, add them to their shopping cart, checkout, and view their order history and details.
 
 ## Installation
 
-`To get the project up and running, and view components in the browser, complete the following steps:`
+To run the application locally, follow these steps:
+
+1. Clone the repository to your local machine.
+2. In the root folder, run `npm install` to install the backend dependencies.
+3. `cd` into the backend folder and run `npm install` to install the backend dependencies.
+4. Run `npm run dev` to start the backend server.
+5. `cd` into the frontend folder and run `npm install` to install the frontend dependencies.
+6. Run `npm start` to start the frontend server.
+7. Visit http://localhost:3000 in your browser to view the application.
 
 1- Clone this repo
 
