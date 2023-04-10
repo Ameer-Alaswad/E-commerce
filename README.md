@@ -1,4 +1,4 @@
-# E-commerce Website
+# E-commerce Website (on going project)
 
 This is a full-stack e-commerce website that allows users to browse and purchase products online. The application features a responsive design, making it accessible on both desktop and mobile devices. Users can browse products, add items to their shopping cart, checkout and pay for their purchases via PayPal, and view their order history and details.
 
@@ -68,4 +68,11 @@ React Router is a popular routing library for React that provides a simple and e
 ## Conclusion
 
 Overall, this e-commerce website provides users with a modern and user-friendly way to purchase products online. With its responsive design, fast performance, and robust technology stack, it is an ideal choice for anyone looking to build a secure and scalable e-commerce application.
+
+## Screenshots
+
+![Available products](https://user-images.githubusercontent.com/17381734/230824300-d7fe344a-e1db-42a1-8edc-daa2dd12611b.png)
+![The steps you need to complete the order](https://user-images.githubusercontent.com/17381734/230824319-4d87956a-3ff5-4ea9-a2d8-9b6dc2707f7b.png)
+![Here you can sign in to your account](https://user-images.githubusercontent.com/17381734/230824328-71a221f3-1d3e-42a0-946b-b09943adb8ee.png)
+
 
