@@ -25,6 +25,22 @@ To run the application locally, follow these steps:
 
 * Browse products: Users can view all available products and filter them by category.
 * Add to cart: Users can add products to their shopping cart, and the cart will update in real-time.
-* Checkout: Users can checkout and pay for their items using Stripe.
+* Checkout: Users can checkout and pay for their items using Paybal.
 * Order history: Users can view their order history and order details.
 * Responsive design: The application is designed to be responsive on desktop and mobile devices.
+
+## Dependencies
+
+**Backend**
+
+* Node.js
+* Express
+
+**Frontend**
+
+* React
+* TypeScript
+* Material UI
+* Axios
+* React Router
+* React Toastify
