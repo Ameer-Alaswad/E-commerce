@@ -27,7 +27,7 @@ function App() {
         <QueryClientProvider client={ reactQueryClient }>
           <BrowserRouter>
             <ToastContainer position="bottom-center" limit={ 1 } />
-            {/* <PrimarySearchAppBar /> */ }
+            <PrimarySearchAppBar />
             <Routes>
               <Route path="/" element={ <DisplayProducts /> } />
               <Route path="/product/label/:label" element={ <DisplayProduct /> } />

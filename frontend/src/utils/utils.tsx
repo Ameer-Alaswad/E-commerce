@@ -45,7 +45,7 @@ export const addToShoppingCartLogic = ({
         if (reachedProductLimitForUser) {
             console.log("reached limit");
 
-            return alert("product per purchase limit");
+            return toast.error("product per purchase limit");
         }
         const productInStock =
             item?.productId === productName &&
@@ -69,7 +69,7 @@ export const addToShoppingCartLogic = ({
             item?.productId === productName &&
             product[0]?.countInStock <= item?.quantity
         ) {
-            return alert("error");
+            return toast.error("error");
         }
 
         //  here the logic starts
