@@ -15,7 +15,6 @@ import RatingComponent from "./Rating";
 import AddToCartButton from '../AddToCartButton';
 
 const Products: React.FC<productProps> = ({ data }) => {
-    console.log(data);
 
     const navigate = useNavigate();
     return (

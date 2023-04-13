@@ -4,6 +4,7 @@ import useProducts from "../../hooks/useProducts";
 import Products from "./Products";
 import Loading from "../Loading"
 import Error from "../Error"
+import { Box } from "@mui/material";
 
 const DisplayProducts = () => {
 
@@ -13,9 +14,9 @@ const DisplayProducts = () => {
     if (isError) return <Error />;
 
     return (
-        <>
+        <Box>
             <Products data={ data } />
-        </>
+        </Box>
     );
 };
 
