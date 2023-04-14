@@ -18,11 +18,12 @@ import PlaceOrderUi from "./components/checkout/place-order";
 import OrderScreen from "./components/orders/OrderScreen";
 import OrdersHistory from "./components/orders/order-history";
 import ProfileUpdate from "./components/ProfileUpdate";
+import { Box } from "@mui/material";
 const reactQueryClient = new QueryClient()
 
 function App() {
   return (
-    <>
+    <Box>
       <ShoppingCartProvider>
         <QueryClientProvider client={ reactQueryClient }>
           <BrowserRouter>
@@ -45,7 +46,7 @@ function App() {
           </BrowserRouter>
         </QueryClientProvider>
       </ShoppingCartProvider>
-    </>
+    </Box>
   );
 }
 export default App;
