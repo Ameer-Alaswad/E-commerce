@@ -28,7 +28,7 @@ const CartPage = () => {
         }
     }
     return (
-        <Box style={ { marginTop: "100px", display: "flex", justifyContent: "center", } }>
+        <div id="cart-page-container" style={ { marginTop: "100px", display: "flex", justifyContent: "center", height: '100vh' } }>
             { cartItems.length === 0 ? <Typography gutterBottom variant="h4" component="div">
                 Your Cart is empty!
             </Typography> :
@@ -68,7 +68,7 @@ const CartPage = () => {
                     </Box>
                 </Card >
                 : null }
-        </Box>
+        </div>
     )
 }
 

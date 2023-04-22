@@ -19,7 +19,7 @@ const Products: React.FC<productProps> = ({ data }) => {
     const navigate = useNavigate();
     return (
 
-        <Box style={ { height: "100vh" } }>
+        <Box id="products-container"  >
             <Typography
                 style={ { textAlign: "center", marginTop: "90px" } }
                 gutterBottom
@@ -46,7 +46,7 @@ const Products: React.FC<productProps> = ({ data }) => {
                         <Card
                             onClick={ () => navigate(`/product/label/${label}`) }
                             key={ label }
-                            sx={ { maxWidth: 500, marginBottom: "20px", width: "400px" } }
+                            sx={ { maxWidth: 500, marginBottom: "60px", width: "400px" } }
                         >
                             <CardActionArea>
                                 <CardMedia

@@ -14,9 +14,9 @@ const DisplayProducts = () => {
     if (isError) return <Error />;
 
     return (
-        <Box>
-            <Products data={ data } />
-        </Box>
+
+        <Products data={ data } />
+
     );
 };
 

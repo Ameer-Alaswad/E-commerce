@@ -1,4 +1,3 @@
-import React from "react";
 import PrimarySearchAppBar from "./components/navbar/Header";
 import DisplayProducts from "./components/display-products/DisplayProducts";
 import { BrowserRouter, Route } from "react-router-dom";
@@ -18,12 +17,11 @@ import PlaceOrderUi from "./components/checkout/place-order";
 import OrderScreen from "./components/orders/OrderScreen";
 import OrdersHistory from "./components/orders/order-history";
 import ProfileUpdate from "./components/ProfileUpdate";
-import { Box } from "@mui/material";
 const reactQueryClient = new QueryClient()
 
 function App() {
   return (
-    <Box>
+    <div id="app container" style={ { position: 'relative' } } >
       <ShoppingCartProvider>
         <QueryClientProvider client={ reactQueryClient }>
           <BrowserRouter>
@@ -46,7 +44,7 @@ function App() {
           </BrowserRouter>
         </QueryClientProvider>
       </ShoppingCartProvider>
-    </Box>
+    </div>
   );
 }
 export default App;

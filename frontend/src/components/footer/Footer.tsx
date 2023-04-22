@@ -10,17 +10,20 @@ import { Box, Button } from "@mui/material";
 const Footer: React.FC = () => {
     return (
         <Box
+            id="footer-container"
             sx={ {
-
+                position: "absolute",
+                bottom: "0",
                 width: "100%",
                 height: "50px",
                 backgroundColor: "#f2f2f2",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "space-between",
+
             } }
         >
-            <Box>Ameer Alaswad</Box>
+            <Box style={ { marginLeft: "5px" } }>Copyright © Ameer Alaswad 2023.</Box>
             <Box sx={ { display: "flex", alignItems: "center" } }>
                 <Button
                     sx={ { marginLeft: 1 } }
