@@ -4,7 +4,6 @@ import {
     FormControlLabel,
     Radio,
     RadioGroup,
-    TextField,
     Typography,
 } from "@mui/material";
 import { useContext, useEffect } from "react";
@@ -45,8 +44,6 @@ const PaymentUi = () => {
     }, [userSigned, navigate, setProgressStep, shippingAddressData]);
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        console.log((event.target as HTMLInputElement).value);
-
         setPaymentMethod((event.target as HTMLInputElement).value);
     };
 

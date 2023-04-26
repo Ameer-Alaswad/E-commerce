@@ -23,8 +23,7 @@ export const addToShoppingCartLogic = ({
         (item) => productName !== item.productId
     );
     if (productIsNotInShoppingCart) {
-        console.log(product[0]);
-        console.log(cartItems);
+
 
         return setCartItems([
             ...cartItems,
@@ -43,15 +42,12 @@ export const addToShoppingCartLogic = ({
         const reachedProductLimitForUser =
             item?.productId === productName && item?.productLimit <= 1;
         if (reachedProductLimitForUser) {
-            console.log("reached limit");
-
             return toast.error("product per purchase limit");
         }
         const productInStock =
             item?.productId === productName &&
             product[0]?.countInStock >= item?.quantity;
         if (productInStock) {
-            console.log("in stock");
 
             const changeProductQuantity = cartItems.filter((item) => {
                 if (item?.productId === productName) {
@@ -61,8 +57,6 @@ export const addToShoppingCartLogic = ({
                 }
                 return item;
             });
-            console.log(changeProductQuantity);
-
             return setCartItems([...changeProductQuantity]);
         }
         if (

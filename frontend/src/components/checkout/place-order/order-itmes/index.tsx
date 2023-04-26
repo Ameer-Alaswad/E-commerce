@@ -12,7 +12,6 @@ import ItemsList from './ItemsList';
 export default function Items() {
     const shoppingCartContext = useContext(ShoppingCartContext);
     const { cartItems } = shoppingCartContext;
-    console.log(cartItems);
 
     const navigate = useNavigate()
     return (

@@ -4,7 +4,6 @@ const productsRouter = express.Router();
 
 productsRouter.get("/", async (req, res) => {
   const createdProducts = await Product.find();
-  console.log(createdProducts);
   res.send(createdProducts);
 });
 

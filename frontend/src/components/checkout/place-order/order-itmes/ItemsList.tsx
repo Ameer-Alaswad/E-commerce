@@ -15,7 +15,6 @@ export default function ItemsList() {
 
 
         const filterProductsInCart = cartItems?.filter(product => {
-            console.log(product.productId, productName);
             return product.productId !== productName
         })
 
