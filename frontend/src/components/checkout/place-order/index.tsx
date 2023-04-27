@@ -38,7 +38,7 @@ const PlaceOrderUi = () => {
 
 
     return (
-        <>
+        <div style={ { height: "100vh" } }>
             <ProgressSteps />
             <Box sx={ { display: "flex", margin: "0 auto", justifyContent: "space-between", marginTop: "60px", width: "1000px" } }>
                 <Box>
@@ -49,7 +49,7 @@ const PlaceOrderUi = () => {
                 </Box>
                 <OrderSummary />
             </Box>
-        </>
+        </div>
     )
 }
 

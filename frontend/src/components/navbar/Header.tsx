@@ -186,7 +186,7 @@ export default function PrimarySearchAppBar() {
     );
 
     return (
-        <Box sx={ { flexGrow: 1, } }>
+        <div id="header-container"  >
             <AppBar position="fixed">
                 <Toolbar  >
                     <Link to="/" style={ { color: "white", textDecoration: "none" } }>
@@ -248,6 +248,6 @@ export default function PrimarySearchAppBar() {
             </AppBar>
             { renderMobileMenu }
             { renderMenu }
-        </Box>
+        </div>
     );
 }

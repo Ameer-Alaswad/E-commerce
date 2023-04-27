@@ -1,4 +1,3 @@
-import React from "react";
 import PrimarySearchAppBar from "./components/navbar/Header";
 import DisplayProducts from "./components/display-products/DisplayProducts";
 import { BrowserRouter, Route } from "react-router-dom";
@@ -22,7 +21,7 @@ const reactQueryClient = new QueryClient()
 
 function App() {
   return (
-    <>
+    <div id="app container" style={ { position: 'relative' } } >
       <ShoppingCartProvider>
         <QueryClientProvider client={ reactQueryClient }>
           <BrowserRouter>
@@ -45,7 +44,7 @@ function App() {
           </BrowserRouter>
         </QueryClientProvider>
       </ShoppingCartProvider>
-    </>
+    </div>
   );
 }
 export default App;

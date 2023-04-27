@@ -14,5 +14,6 @@ module.exports = {
   },
   rules: {
     // Your rules here
+    "no-console": "error",
   },
 };
