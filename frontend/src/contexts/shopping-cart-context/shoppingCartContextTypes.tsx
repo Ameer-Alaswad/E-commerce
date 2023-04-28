@@ -6,6 +6,7 @@ export type product = {
     image: string
     price: number
     product: string
+    countInStock: number
 }
 
 export type OrderItems = {

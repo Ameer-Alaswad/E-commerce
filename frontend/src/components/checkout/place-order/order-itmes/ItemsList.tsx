@@ -1,53 +1,92 @@
-import { Button, IconButton, Typography } from "@mui/material";
-import { useContext } from "react";
-import DeleteIcon from '@mui/icons-material/Delete';
+import { Button, Card, Tooltip, Typography } from "@mui/material";
+import { useContext, useState } from "react";
 import { ShoppingCartContext } from "../../../../contexts/shopping-cart-context/shoppingCartContext";
-import Card from '@mui/material/Card';
-import { log } from "console";
-import { WidthWideOutlined } from "@mui/icons-material";
+import DeleteIcon from "@mui/icons-material/Delete";
+import AddIcon from "@mui/icons-material/Add";
+import RemoveIcon from "@mui/icons-material/Remove";
+import "react-toastify/dist/ReactToastify.css";
+import { useShoppingCartHandlers } from "./handlers";
+import { product } from "../../../../contexts/shopping-cart-context/shoppingCartContextTypes";
+
+const styles = {
+    cardContainer: {
+        minWidth: 350,
+        display: "flex",
+        justifyContent: "space-around",
+        alignItems: "center",
+        marginBottom: "10px",
+    },
+    itemImage: {
+        width: "60px",
+        height: "80px",
+    },
+    deleteButton: {
+        fontSize: "0.7rem",
+        padding: "10px 10px",
+    },
+    tooltip: {
+        fontSize: "0.8rem",
+    },
+};
 
 export default function ItemsList() {
-    const shoppingCartContext = useContext(ShoppingCartContext);
-    const { cartItems, setCartItems } = shoppingCartContext;
-    const handleProductDelete = (event: React.MouseEvent<HTMLButtonElement>) => {
-        const button = event.target as HTMLElement;
-        const productName = button?.parentElement?.parentElement?.children[1]?.children[1]?.textContent
+    const { cartItems } = useContext(ShoppingCartContext);
+    const {
+        handleProductDelete,
+        handleQuantityIncrement,
+        handleQuantityDecrement,
+    } = useShoppingCartHandlers();
 
-
-        const filterProductsInCart = cartItems?.filter(product => {
-            return product.productId !== productName
-        })
-
-        setCartItems(filterProductsInCart)
-    }
 
     return (
         <>
-            { cartItems
-                ? cartItems.map((item) => {
-                    return <Card sx={ { minWidth: 275, display: "flex", justifyContent: "space-around", alignItems: "center", marginBottom: "10px" } }>
+            { cartItems?.map(
+                ({
+                    productId,
+                    image,
+                    quantity,
+                    price,
+                    productLimit,
+                    countInStock,
+                }: product) => (
+                    <Card sx={ styles.cardContainer } key={ productId }>
                         <Card>
-
-                            <img style={ { width: "60px", height: "80px" } } src={ item?.image } alt="items-img" />
+                            <img style={ styles.itemImage } src={ image } alt="items-img" />
                         </Card>
-                        <Typography>{ item?.productId }</Typography>
-                        <Typography>{ item?.quantity }</Typography>
-                        <Typography>{ item?.price }$</Typography>
-                        { window.location.pathname === "/cart" ?
+                        <Typography>{ productId }</Typography>
+                        <Typography>{ price }$</Typography>
+                        <Button
+                            onClick={ handleQuantityDecrement(productId) }
+                            disabled={ quantity === 1 }
+                        >
+                            <RemoveIcon />
+                        </Button>
+                        <Typography>{ quantity }</Typography>
 
+                        <Button
+                            onClick={ handleQuantityIncrement(
+                                productId,
+                                productLimit,
+                                quantity,
+                                countInStock,
+                            ) }
+                            disabled={ quantity === productLimit || quantity === 6 || quantity >= countInStock }
+                        >
+                            <AddIcon />
+                        </Button>
+                        { window.location.pathname === "/cart" && (
                             <Button
-                                onClick={ handleProductDelete }
-                                style={ { marginTop: "10px" } }
+                                onClick={ handleProductDelete(productId) }
                                 variant="contained"
+                                startIcon={ <DeleteIcon /> }
+                                sx={ styles.deleteButton }
                             >
-                                Delete
+                                DELETE
                             </Button>
-                            : null }
-
-                    </Card >;
-                })
-                : null }
+                        ) }
+                    </Card>
+                )
+            ) }
         </>
-    )
-
+    );
 }
