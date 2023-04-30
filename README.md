@@ -12,17 +12,11 @@ How to Use the Application:
 
 1. Clone the repository to your local machine.
  
-2. In the root folder, run `npm install` to install the backend dependencies.
+2. In the root folder, run `npm install` to install the dependencies.
 
-3. `cd` into the backend folder and run `npm install` to install the backend dependencies.
-
-4. Run `npm run dev` to start the backend server.
+4. Run `npm run dev` to start the backend and frontend server.
  
-5. `cd` into the frontend folder and run `npm install` to install the frontend dependencies.
- 
-6. Run `npm start` to start the frontend server.
- 
-7. Visit http://localhost:3000 in your browser to view the application.
+5. Visit http://localhost:3000 in your browser to view the application.
 
 ### Once you have the application running, you can do the following:
 
