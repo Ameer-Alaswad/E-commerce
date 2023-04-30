@@ -6,6 +6,7 @@ import RatingComponent from "../display-products/Rating";
 import { fetchProducts } from "../../fetchers/fetchProducts";
 import { addToShoppingCartLogic } from "../../utils/utils";
 import { ShoppingCartContext } from "../../contexts/shopping-cart-context/shoppingCartContext";
+import ProductQuantity from "../display-products/ProductQuantity";
 interface Props {
     data: productsType[] | undefined;
 }
@@ -33,6 +34,7 @@ const Product: React.FC<Props> = ({ data }) => {
         }
 
     }
+
     return (
         <Box style={ { marginTop: "80px", height: "100vh" } }>
             { data && data?.length !== 0 && (
@@ -44,7 +46,11 @@ const Product: React.FC<Props> = ({ data }) => {
                         width: "1200px",
                     } }
                 >
-                    <img style={ { width: "500px" } } src={ data[0]?.image } alt="product-img" />
+                    <div>
+
+                        <img style={ { width: "500px" } } src={ data[0]?.image } alt="product-img" />
+                        <ProductQuantity name={ data[0]?.name } />
+                    </div>
                     <Box sx={ { marginLeft: "10px" } }>
                         <Typography
                             sx={ { paddingTop: "10px", paddingBottom: "10px" } }
@@ -96,6 +102,7 @@ const Product: React.FC<Props> = ({ data }) => {
                         >
                             <Button onClick={ handleToCart } sx={ { width: "220px" }
                             } variant="contained">Add to Cart</Button>
+
                         </Box>
                     </Card>
                 </Box>
