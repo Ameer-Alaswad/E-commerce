@@ -2,22 +2,20 @@ import { Typography } from "@mui/material";
 import Link from "@mui/material/Link";
 import { useNavigate } from "react-router-dom";
 
-function Copyright(props: any) {
-    const navigate = useNavigate()
+const Copyright = (props: any) => {
+    const navigate = useNavigate();
+
+    const handleClick = () => navigate("/");
+
     return (
-        <Typography
-            variant="body2"
-            color="text.secondary"
-            align="center"
-            { ...props }
-        >
+        <Typography variant="body2" color="text.secondary" align="center" { ...props }>
             { "Copyright © " }
-            <Link color="inherit" onClick={ () => navigate("/") }>
+            <Link color="inherit" onClick={ handleClick }>
                 Your Website
             </Link>{ " " }
-            { new Date().getFullYear() }
-            { "." }
+            { new Date().getFullYear() }{ "." }
         </Typography>
     );
-}
-export default Copyright
+};
+
+export default Copyright;

@@ -1,4 +1,3 @@
-import * as React from "react";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -11,63 +10,33 @@ import Box from "@mui/material/Box";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
-import { postUser } from "../../../fetchers/fetchUser";
-import { useContext } from "react";
-import { ShoppingCartContext } from "../../../contexts/shopping-cart-context/shoppingCartContext";
-import { useLocation, useNavigate } from "react-router-dom";
-import { captureRedirectionRoute, checkUserLoggedIn } from "../../../utils/utils";
+
+import {
+    avatarStyle,
+    copyrightStyle,
+    mainContainer,
+    signinContainer,
+    submitButtonStyle,
+} from "../styles";
 import Copyright from "../Copyright";
-import { mainContainer, signinContainer } from "../styles";
 
+type SignInFormProps = {
+    handleSubmit: (event: React.FormEvent<HTMLFormElement>) => Promise<void>;
+    handleNavigate: () => void;
+};
 
-
-export default function SignIn() {
-
-    const navigate = useNavigate()
-    // this tracks the clicked URL before getting redirected to signin page if existed 
-    const { search } = useLocation()
-    const redirect = captureRedirectionRoute(search)
-
-    const shoppingCartContext = useContext(ShoppingCartContext);
-    const { userSignin, setUserSignin } = shoppingCartContext;
-
-    const userSigned = checkUserLoggedIn(userSignin)
-
-    React.useEffect(() => {
-        if (userSigned) navigate(redirect)
-    }, [userSigned, navigate, redirect])
-
-
-    const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-        event.preventDefault();
-        const data = new FormData(event.currentTarget);
-        postUser("/api/users/signin", {
-            email: String(data.get("email")),
-            password: String(data.get("password")),
-        }, setUserSignin, navigate, redirect)
-    }
-
+const SignInForm = ({ handleSubmit, handleNavigate }: SignInFormProps) => {
     return (
-        <Container
-            sx={ mainContainer }
-            component="main"
-            maxWidth="xs"
-        >
+        <Container sx={ mainContainer } component="main" maxWidth="xs">
             <CssBaseline />
-            <Box
-                sx={ signinContainer }
-            >
-                <Avatar sx={ { m: 1, bgcolor: "secondary.main" } }>
+            <Box sx={ signinContainer }>
+                <Avatar sx={ avatarStyle }>
                     <LockOutlinedIcon />
                 </Avatar>
                 <Typography component="h1" variant="h5">
                     Sign in
                 </Typography>
-                <Box
-                    component="form"
-                    onSubmit={ handleSubmit }
-                    sx={ { mt: 1 } }
-                >
+                <Box component="form" onSubmit={ handleSubmit } sx={ { mt: 1 } }>
                     <TextField
                         margin="normal"
                         required
@@ -96,7 +65,7 @@ export default function SignIn() {
                         type="submit"
                         fullWidth
                         variant="contained"
-                        sx={ { mt: 3, mb: 2 } }
+                        sx={ submitButtonStyle }
                     >
                         Sign In
                     </Button>
@@ -107,14 +76,20 @@ export default function SignIn() {
                             </Link>
                         </Grid>
                         <Grid item>
-                            <Link style={ { cursor: "pointer" } } onClick={ () => navigate(`/user/signup?redirect=${redirect}`) } variant="body2">
+                            <Link
+                                style={ { cursor: "pointer" } }
+                                onClick={ handleNavigate }
+                                variant="body2"
+                            >
                                 { "Don't have an account? Sign Up" }
                             </Link>
                         </Grid>
                     </Grid>
                 </Box>
             </Box>
-            <Copyright sx={ { mt: 8, mb: 4 } } />
+            <Copyright sx={ copyrightStyle } />
         </Container>
     );
-}
+};
+
+export default SignInForm;
