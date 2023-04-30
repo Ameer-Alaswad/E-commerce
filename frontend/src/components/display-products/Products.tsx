@@ -1,5 +1,5 @@
 // React 
-import React from 'react'
+import React, { useContext } from 'react'
 import { useNavigate } from "react-router";
 // Types 
 import { productProps } from "./displayProductsInterface"
@@ -13,9 +13,10 @@ import Box from "@mui/material/Box";
 // Components 
 import RatingComponent from "./Rating";
 import AddToCartButton from '../AddToCartButton';
+import { ShoppingCartContext } from '../../contexts/shopping-cart-context/shoppingCartContext';
+import ProductQuantity from './ProductQuantity';
 
 const Products: React.FC<productProps> = ({ data }) => {
-
     const navigate = useNavigate();
     return (
 
@@ -75,6 +76,7 @@ const Products: React.FC<productProps> = ({ data }) => {
                                         { description }
                                     </Typography>
                                     <AddToCartButton />
+                                    <ProductQuantity name={ name } />
                                 </CardContent>
                             </CardActionArea>
                         </Card>
