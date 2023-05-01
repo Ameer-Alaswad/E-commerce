@@ -11,7 +11,7 @@ import SignIn from "./components/authentication/sign-in";
 import ShippingAddressUi from "./components/checkout/ShippingAddressUi";
 import { ToastContainer } from "react-toastify"
 import 'react-toastify/dist/ReactToastify.css'
-import SignUp from "./components/authentication/sign-up/SignUp";
+import SignUp from "./components/authentication/sign-up/index";
 import PaymentUi from "./components/checkout/PaymentUi";
 import PlaceOrderUi from "./components/checkout/place-order";
 import OrderScreen from "./components/orders/OrderScreen";

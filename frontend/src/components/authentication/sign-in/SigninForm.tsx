@@ -20,13 +20,15 @@ import {
 } from "../styles";
 import Copyright from "../Copyright";
 
-type SignInFormProps = {
+export type SignInFormProps = {
     handleSubmit: (event: React.FormEvent<HTMLFormElement>) => Promise<void>;
     handleNavigate: () => void;
 };
 
 const SignInForm = ({ handleSubmit, handleNavigate }: SignInFormProps) => {
+
     return (
+
         <Container sx={ mainContainer } component="main" maxWidth="xs">
             <CssBaseline />
             <Box sx={ signinContainer }>
