@@ -8,7 +8,7 @@ import Footer from "./components/footer/Footer";
 import { ShoppingCartProvider } from "./contexts/shopping-cart-context/shoppingCartContext";
 import CartPage from "./components/cart-page";
 import SignIn from "./components/authentication/sign-in";
-import ShippingAddressUi from "./components/checkout/ShippingAddressUi";
+import ShippingAddressUi from "./components/checkout/shopping-address";
 import { ToastContainer } from "react-toastify"
 import 'react-toastify/dist/ReactToastify.css'
 import SignUp from "./components/authentication/sign-up/index";
