@@ -1,6 +1,5 @@
 // react
-import { SettingsInputAntenna } from "@mui/icons-material";
-import { createContext, useEffect, useState } from "react";
+import { createContext, useState } from "react";
 // types
 import {
     product,
@@ -8,7 +7,8 @@ import {
     shoppingCartChildren,
     userSignin,
     ShippingAddressDataType,
-    OrderData
+    OrderData,
+    UserData
 } from "./shoppingCartContextTypes";
 const addressDataInStorage = JSON.parse(
     localStorage.getItem("shippingCardAddress") || "{}"
@@ -18,6 +18,10 @@ const addressDataInStorage = JSON.parse(
 const paymentMethodInStorage = JSON.parse(
     localStorage.getItem("paymentMethod") || "{}"
 );
+
+const UserDataStorage: string | null = localStorage.getItem('userData');
+const userData: UserData | null = UserDataStorage ? JSON.parse(UserDataStorage) : null;
+
 export const ShoppingCartContext = createContext({} as ShoppingCart);
 
 export const ShoppingCartProvider = ({ children }: shoppingCartChildren) => {
@@ -34,7 +38,9 @@ export const ShoppingCartProvider = ({ children }: shoppingCartChildren) => {
             }
         );
     const [orderData, setOrderData] = useState<OrderData | null>(null)
-    const [userSignin, setUserSignin] = useState<userSignin | null>(null);
+    const [userSignin, setUserSignin] = useState<userSignin | null>(userData);
+    console.log(userSignin);
+
     const [paymentMethod, setPaymentMethod] = useState<string>(paymentMethodInStorage || "");
 
     return (

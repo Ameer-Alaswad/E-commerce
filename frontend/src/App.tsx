@@ -6,7 +6,7 @@ import DisplayProduct from "./components/display-product/DisplayProduct";
 import { QueryClientProvider, QueryClient } from "react-query"
 import Footer from "./components/footer/Footer";
 import { ShoppingCartProvider } from "./contexts/shopping-cart-context/shoppingCartContext";
-import CartPage from "./components/cart-page/CartPage";
+import CartPage from "./components/cart-page";
 import SignIn from "./components/authentication/sign-in";
 import ShippingAddressUi from "./components/checkout/ShippingAddressUi";
 import { ToastContainer } from "react-toastify"

@@ -66,3 +66,10 @@ export type ShoppingCart = {
     orderData: OrderData | null
     setOrderData: React.Dispatch<React.SetStateAction<OrderData | null>>
 }
+export type UserData = {
+    _id: string;
+    name: string;
+    email: string;
+    isAdmin: boolean;
+    token: string;
+}
