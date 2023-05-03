@@ -8,6 +8,7 @@ import { toast } from "react-toastify";
 import ShoppingAdressForm from "./ShoppingAdressForm";
 
 const ShippingAddressUi = () => {
+
   const navigate = useNavigate();
   const shoppingCartContext = useContext(ShoppingCartContext);
   const {
@@ -16,6 +17,7 @@ const ShippingAddressUi = () => {
     userSignin,
     setProgressStep,
   } = shoppingCartContext;
+
   const [shippingAddress, setshippingAddress] =
     useState<ShippingAddressDataType>({
       fullName: shippingAddressData?.fullName || "",
@@ -34,6 +36,7 @@ const ShippingAddressUi = () => {
     );
     navigate("/payment");
   };
+
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setshippingAddress({
       ...shippingAddress,

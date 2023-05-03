@@ -18,3 +18,23 @@ export const shoppingAddressStyles = {
         mb: 2,
     },
 };
+export const paymentStyles = {
+    container: {
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "flex-start",
+        alignItems: "center",
+        height: "100vh",
+    },
+    form: {
+        width: "600px",
+        marginTop: "170px",
+    },
+    heading: {
+        textAlign: "center",
+    },
+    button: {
+        mt: 3,
+        mb: 2,
+    },
+};
