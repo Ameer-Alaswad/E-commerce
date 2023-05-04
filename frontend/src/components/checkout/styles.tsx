@@ -38,3 +38,35 @@ export const paymentStyles = {
         mb: 2,
     },
 };
+
+
+export const orderSummaryStyles = {
+    card: {
+        width: "300px",
+        height: "300px",
+    },
+    title: {
+        marginBottom: "10px",
+    },
+    itemPrice: {
+        paddingTop: "10px",
+        paddingBottom: "10px",
+    },
+    divider: {
+        marginTop: "10px",
+        marginBottom: "10px",
+    },
+    bold: {
+        fontWeight: "fontWeightBold",
+    },
+    box: {
+        marginLeft: "10px",
+    },
+    buttonBox: {
+        display: "flex",
+        justifyContent: "center",
+    },
+    button: {
+        width: "220px",
+    },
+};

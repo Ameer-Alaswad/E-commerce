@@ -1,48 +1,71 @@
-import { Typography } from '@mui/material'
-import { Box } from '@mui/system'
-import { useContext, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
-import { toast } from 'react-toastify'
-import { ShoppingCartContext } from '../../../contexts/shopping-cart-context/shoppingCartContext'
-import ProgressSteps from '../ProgressSteps'
-import Items from './order-itmes'
-import OrderSummary from './OrderSummary'
-import Payment from './Payment'
-import Shipping from './Shipping'
+import { Typography } from "@mui/material";
+import { Box } from "@mui/system";
+import { useContext } from "react";
+import { ShoppingCartContext } from "../../../contexts/shopping-cart-context/shoppingCartContext";
+import ProgressSteps from "../ProgressSteps";
+import Items from "./order-itmes";
+import OrderSummary from "./OrderSummary";
+import Payment from "./Payment";
+import Shipping from "./Shipping";
+import useRedirect from "../useRedirect";
+import { getPaymentRedirectProps } from "../utils";
+
+const styles = {
+    mainContainer: {
+        height: "100vh",
+    },
+    orderDetailsContainer: {
+        display: "flex",
+        margin: "0 auto",
+        justifyContent: "space-between",
+        marginTop: "60px",
+        width: "1000px",
+    },
+    PreviewOrder: {
+        marginBottom: "15px",
+    },
+};
+const { mainContainer, orderDetailsContainer, PreviewOrder } = styles;
 
 const PlaceOrderUi = () => {
-    const navigate = useNavigate()
     const shoppingCartContext = useContext(ShoppingCartContext);
     const { setProgressStep, userSignin, paymentMethod } = shoppingCartContext;
 
-    const user: any = localStorage.getItem('userData')
-    const parsedUser = JSON.parse(user)
-    let userSigned = userSignin || parsedUser
+    const {
+        progressStep,
+        userNotSignedLink,
+        userNotSignedMessage,
+        redirectLink,
+        redirectMessage,
+    } = getPaymentRedirectProps({
+        progressStepNumber: 2,
+        pageName: "shipping",
+        errorMessage: "Choose a payment Method first !",
+        stepName: "payment",
+        redirectName: "shipping",
+    });
 
-    useEffect(() => {
-        setProgressStep(2)
-
-        if (!userSigned) {
-            navigate("/user/signin?redirect=/shipping")
-            setTimeout(() => {
-                toast.error("Sign in first !")
-            }, 100);
-        }
-        if (!paymentMethod) {
-            navigate("/payment")
-            setTimeout(() => {
-                toast.error("Choose payment Method 1st !")
-            }, 100);
-        }
-    }, [userSigned, navigate, setProgressStep, paymentMethod])
-
+    useRedirect(
+        {
+            userSignin,
+            setProgressStep,
+            progressStep,
+            userNotSignedLink,
+            userNotSignedMessage,
+            redirectLink,
+            redirectMessage,
+        },
+        paymentMethod
+    );
 
     return (
-        <div style={ { height: "100vh" } }>
+        <div style={ mainContainer }>
             <ProgressSteps />
-            <Box sx={ { display: "flex", margin: "0 auto", justifyContent: "space-between", marginTop: "60px", width: "1000px" } }>
+            <Box sx={ orderDetailsContainer }>
                 <Box>
-                    <Typography sx={ { marginBottom: "15px" } } variant='h3'>Preview Order</Typography>
+                    <Typography sx={ PreviewOrder } variant="h3">
+                        Preview Order
+                    </Typography>
                     <Shipping />
                     <Payment />
                     <Items />
@@ -50,7 +73,7 @@ const PlaceOrderUi = () => {
                 <OrderSummary />
             </Box>
         </div>
-    )
-}
+    );
+};
 
-export default PlaceOrderUi
+export default PlaceOrderUi;

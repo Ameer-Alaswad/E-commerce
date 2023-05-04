@@ -7,13 +7,14 @@ import {
     Typography,
 } from "@mui/material";
 
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { ShoppingCartContext } from "../../contexts/shopping-cart-context/shoppingCartContext";
 import ProgressSteps from "./ProgressSteps";
 import { paymentStyles } from "./styles";
-import usePaymentRedirect from "./usePaymentRedirect";
+import usePaymentRedirect from "./useRedirect";
+import { getPaymentRedirectProps } from "./utils";
 const { container, form, heading, button } = paymentStyles;
 
 const PaymentUi = () => {
@@ -27,8 +28,25 @@ const PaymentUi = () => {
         paymentMethod,
     } = shoppingCartContext;
 
+    const { progressStep, userNotSignedLink, userNotSignedMessage, redirectLink, redirectMessage } = getPaymentRedirectProps({
+        progressStepNumber: 1,
+        pageName: "payment",
+        errorMessage: "Add your Address first!",
+        stepName: "payment",
+        redirectName: "shipping"
+    });
+
+    const paymentRedirectProps = {
+        userSignin,
+        setProgressStep,
+        progressStep,
+        userNotSignedLink,
+        userNotSignedMessage,
+        redirectLink,
+        redirectMessage,
+    };
     // this hook takes care of redirecting the user based on logged in or not.
-    usePaymentRedirect(userSignin, setProgressStep, shippingAddressData);
+    usePaymentRedirect(paymentRedirectProps, shippingAddressData?.address);
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setPaymentMethod((event.target as HTMLInputElement).value);
