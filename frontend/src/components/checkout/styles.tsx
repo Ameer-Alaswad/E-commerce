@@ -70,3 +70,29 @@ export const orderSummaryStyles = {
         width: "220px",
     },
 };
+export const placeOrderStyles = {
+    mainContainer: {
+        height: "100vh",
+    },
+    orderDetailsContainer: {
+        display: "flex",
+        margin: "0 auto",
+        justifyContent: "space-between",
+        marginTop: "60px",
+        width: "1000px",
+    },
+    PreviewOrder: {
+        marginBottom: "15px",
+    },
+};
+export const placeOrderComponentsStyles = {
+    container: {
+        minWidth: 275,
+        width: "600px",
+        marginBottom: "15px"
+    },
+    title: {
+        marginBottom: "10px",
+        fontWeight: "bold"
+    }
+}

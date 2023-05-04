@@ -5,27 +5,14 @@ import { ShoppingCartContext } from "../../../contexts/shopping-cart-context/sho
 import ProgressSteps from "../ProgressSteps";
 import Items from "./order-itmes";
 import OrderSummary from "./OrderSummary";
-import Payment from "./Payment";
+import PaymentMethod from "./PaymentMethod";
 import Shipping from "./Shipping";
 import useRedirect from "../useRedirect";
 import { getPaymentRedirectProps } from "../utils";
+import { placeOrderStyles } from "../styles";
 
-const styles = {
-    mainContainer: {
-        height: "100vh",
-    },
-    orderDetailsContainer: {
-        display: "flex",
-        margin: "0 auto",
-        justifyContent: "space-between",
-        marginTop: "60px",
-        width: "1000px",
-    },
-    PreviewOrder: {
-        marginBottom: "15px",
-    },
-};
-const { mainContainer, orderDetailsContainer, PreviewOrder } = styles;
+
+const { mainContainer, orderDetailsContainer, PreviewOrder } = placeOrderStyles;
 
 const PlaceOrderUi = () => {
     const shoppingCartContext = useContext(ShoppingCartContext);
@@ -67,7 +54,7 @@ const PlaceOrderUi = () => {
                         Preview Order
                     </Typography>
                     <Shipping />
-                    <Payment />
+                    <PaymentMethod />
                     <Items />
                 </Box>
                 <OrderSummary />
