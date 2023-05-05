@@ -1,20 +1,26 @@
-import { useContext } from 'react';
-import { Card, CardActions, CardContent, Button, Typography } from '@mui/material'
+import { useContext } from "react";
+import {
+    Card,
+    CardActions,
+    CardContent,
+    Button,
+    Typography,
+} from "@mui/material";
 
-import { useNavigate } from 'react-router-dom';
-import { ShoppingCartContext } from '../../../contexts/shopping-cart-context/shoppingCartContext';
-import { placeOrderComponentsStyles } from '../styles';
+import { useNavigate } from "react-router-dom";
+import { ShoppingCartContext } from "../../../contexts/shopping-cart-context/shoppingCartContext";
+import { placeOrderComponentsStyles } from "../styles";
 
-const { container, title } = placeOrderComponentsStyles
+const { container, title } = placeOrderComponentsStyles;
 
 export default function Shipping() {
 
     const shoppingCartContext = useContext(ShoppingCartContext);
     const { shippingAddressData } = shoppingCartContext;
-    const { fullName, address } = shippingAddressData
-    const navigate = useNavigate()
+    const { fullName, address } = shippingAddressData;
+    const navigate = useNavigate();
 
-    const handleNavigate = () => navigate("/shipping")
+    const handleNavigate = () => navigate("/shipping");
 
     return (
         <Card sx={ container }>
@@ -28,10 +34,12 @@ export default function Shipping() {
                 <Typography variant="body1">
                     <strong>Address:</strong> { address }
                 </Typography>
-            </CardContent >
+            </CardContent>
             <CardActions>
-                <Button onClick={ handleNavigate } size="small">Edit</Button>
+                <Button onClick={ handleNavigate } size="small">
+                    Edit
+                </Button>
             </CardActions>
-        </Card >
+        </Card>
     );
 }

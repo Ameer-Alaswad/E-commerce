@@ -11,10 +11,10 @@ import useRedirect from "../useRedirect";
 import { getPaymentRedirectProps } from "../utils";
 import { placeOrderStyles } from "../styles";
 
-
 const { mainContainer, orderDetailsContainer, PreviewOrder } = placeOrderStyles;
 
 const PlaceOrderUi = () => {
+
     const shoppingCartContext = useContext(ShoppingCartContext);
     const { setProgressStep, userSignin, paymentMethod } = shoppingCartContext;
 

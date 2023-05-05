@@ -96,3 +96,21 @@ export const placeOrderComponentsStyles = {
         fontWeight: "bold"
     }
 }
+
+export const orderItemsListStyles = {
+    cardContainer: {
+        minWidth: 350,
+        display: "flex",
+        justifyContent: "space-around",
+        alignItems: "center",
+        marginBottom: "10px",
+    },
+    itemImage: {
+        width: "60px",
+        height: "80px",
+    },
+    deleteButton: {
+        fontSize: "0.7rem",
+        padding: "10px 10px",
+    },
+};
