@@ -1,5 +1,3 @@
-// This component requires styling 
-
 // React 
 import React from 'react'
 // Material UI

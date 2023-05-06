@@ -3,7 +3,7 @@ import { ShoppingCartContext } from '../../contexts/shopping-cart-context/shoppi
 import { Typography } from '@mui/material';
 
 interface ProductQuantityProps {
-    name: string
+    name: string | undefined
 }
 
 const ProductQuantity: React.FC<ProductQuantityProps> = ({ name }) => {

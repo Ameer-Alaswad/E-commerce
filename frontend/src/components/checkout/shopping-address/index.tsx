@@ -1,4 +1,3 @@
-
 import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -18,7 +17,7 @@ const ShippingAddressUi = () => {
     setProgressStep,
   } = shoppingCartContext;
 
-  const [shippingAddress, setshippingAddress] =
+  const [shippingAddress, setShippingAddress] =
     useState<ShippingAddressDataType>({
       fullName: shippingAddressData?.fullName || "",
       address: shippingAddressData?.address || "",
@@ -26,7 +25,6 @@ const ShippingAddressUi = () => {
       postalCode: shippingAddressData?.postalCode || "",
       country: shippingAddressData?.country || "",
     });
-
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setShippingAddressData(shippingAddress);
@@ -35,10 +33,11 @@ const ShippingAddressUi = () => {
       JSON.stringify(shippingAddress)
     );
     navigate("/payment");
+
   };
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setshippingAddress({
+    setShippingAddress({
       ...shippingAddress,
       [event.target.name]: event.target.value,
     });
