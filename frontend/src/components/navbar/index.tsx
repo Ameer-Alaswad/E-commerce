@@ -1,72 +1,29 @@
 // This component Requires refactoring 
 import * as React from 'react';
-import { styled, alpha } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
-import InputBase from '@mui/material/InputBase';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
 import AccountCircle from '@mui/icons-material/AccountCircle';
-import ViewListIcon from '@mui/icons-material/ViewList';
 import MoreIcon from '@mui/icons-material/MoreVert';
 import { Link, useNavigate } from "react-router-dom";
 import ShoppingCart from './ShoppingCart';
 import { useContext } from "react";
 import { ShoppingCartContext } from '../../contexts/shopping-cart-context/shoppingCartContext';
+import { Search, SearchIconWrapper, StyledInputBase } from './MuiComponents';
+import MobileMenu from './MobileMenu';
 
-const Search = styled('div')(({ theme }) => ({
-    position: 'relative',
-    borderRadius: theme.shape.borderRadius,
-    backgroundColor: alpha(theme.palette.common.white, 0.15),
-    '&:hover': {
-        backgroundColor: alpha(theme.palette.common.white, 0.25),
-    },
-    marginRight: theme.spacing(2),
-    marginLeft: 0,
-    width: '100%',
-    [theme.breakpoints.up('sm')]: {
-        marginLeft: theme.spacing(3),
-        width: 'auto',
-    },
-}));
 
-const SearchIconWrapper = styled('div')(({ theme }) => ({
-    padding: theme.spacing(0, 2),
-    height: '100%',
-    position: 'absolute',
-    pointerEvents: 'none',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-}));
-
-const StyledInputBase = styled(InputBase)(({ theme }) => ({
-    color: 'inherit',
-    '& .MuiInputBase-input': {
-        padding: theme.spacing(1, 1, 1, 0),
-        // vertical padding + font size from searchIcon
-        paddingLeft: `calc(1em + ${theme.spacing(4)})`,
-        transition: theme.transitions.create('width'),
-        width: '100%',
-        [theme.breakpoints.up('md')]: {
-            width: '20ch',
-        },
-    },
-}));
 
 export default function PrimarySearchAppBar() {
     const navigate = useNavigate()
 
     const shoppingCartContext = useContext(ShoppingCartContext);
     const { userSignin, setUserSignin, setShippingAddressData, setCartItems, setPaymentMethod } = shoppingCartContext;
-    const user: any = localStorage.getItem('userData')
-    const parsedUser = JSON.parse(user)
-    let userSigned = userSignin
-    !userSignin ? userSigned = parsedUser : userSigned = userSignin
 
 
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -137,54 +94,13 @@ export default function PrimarySearchAppBar() {
     );
 
     const mobileMenuId = 'primary-search-account-menu-mobile';
-    const renderMobileMenu = (
-        <Menu
-            anchorEl={ mobileMoreAnchorEl }
-            anchorOrigin={ {
-                vertical: 'top',
-                horizontal: 'right',
-            } }
-            id={ mobileMenuId }
-            keepMounted
-            transformOrigin={ {
-                vertical: 'top',
-                horizontal: 'right',
-            } }
-            open={ isMobileMenuOpen }
-            onClose={ handleMobileMenuClose }
-        >
 
-            <MenuItem>
-                <ShoppingCart />
-            </MenuItem>
-            <MenuItem onClick={ handleProfileMenuOpen }>
-                <IconButton
-                    size="large"
-                    aria-label="account of current user"
-                    aria-controls="primary-search-account-menu"
-                    aria-haspopup="true"
-                    color="inherit"
-                >
-                    <AccountCircle />
-                </IconButton>
-                <p>Profile</p>
-            </MenuItem>
-            <MenuItem onClick={ handleProfileMenuOpen }>
-                <IconButton
-                    size="large"
-                    aria-label="shopping cart"
-                    aria-controls="primary-search-account-menu"
-                    aria-haspopup="true"
-                    color="inherit"
-                >
-                    <ViewListIcon />
-                </IconButton>
-                <p>My Orders</p>
-            </MenuItem>
-
-        </Menu>
-    );
-
+    const MobileMenuProps = {
+        mobileMoreAnchorEl,
+        isMobileMenuOpen,
+        handleMobileMenuClose,
+        handleProfileMenuOpen
+    }
     return (
         <div id="header-container"  >
             <AppBar position="fixed">
@@ -211,7 +127,7 @@ export default function PrimarySearchAppBar() {
                     <Box sx={ { flexGrow: 1 } } />
                     <Box sx={ { display: { xs: 'none', md: 'flex' } } }>
                         <ShoppingCart />
-                        { userSigned ?
+                        { userSignin ?
                             <IconButton
                                 size="large"
                                 edge="end"
@@ -221,7 +137,7 @@ export default function PrimarySearchAppBar() {
                                 onClick={ handleProfileMenuOpen }
                                 color="inherit"
                             >
-                                { userSigned?.name }&nbsp;
+                                { userSignin?.name }&nbsp;
                                 <AccountCircle />
                             </IconButton>
                             :
@@ -246,7 +162,7 @@ export default function PrimarySearchAppBar() {
                     </Box>
                 </Toolbar>
             </AppBar>
-            { renderMobileMenu }
+            <MobileMenu { ...MobileMenuProps } />
             { renderMenu }
         </div>
     );

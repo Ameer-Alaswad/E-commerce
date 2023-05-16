@@ -2,8 +2,8 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { ToastContainer } from 'react-toastify';
 
-import PrimarySearchAppBar from './components/navbar/Header';
-import DisplayProducts from './components/display-products/DisplayProducts';
+import PrimarySearchAppBar from './components/navbar';
+import DisplayProducts from './components/display-products';
 import DisplayProduct from './components/display-product';
 import CartPage from './components/cart-page';
 import SignIn from './components/authentication/sign-in';
