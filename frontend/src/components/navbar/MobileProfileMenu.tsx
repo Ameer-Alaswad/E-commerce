@@ -13,7 +13,7 @@ interface MobileMenuProps {
     handleProfileMenuOpen: (event: React.MouseEvent<HTMLElement>) => void;
 }
 
-const MobileMenu: React.FC<MobileMenuProps> = ({
+const MobileProfileMenu: React.FC<MobileMenuProps> = ({
     mobileMoreAnchorEl,
     isMobileMenuOpen,
     handleMobileMenuClose,
@@ -66,4 +66,4 @@ const MobileMenu: React.FC<MobileMenuProps> = ({
     );
 }
 
-export default MobileMenu;
+export default MobileProfileMenu;
