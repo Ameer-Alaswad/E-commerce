@@ -28,6 +28,7 @@ export default function PrimarySearchAppBar() {
         handleSignOut,
         navigate,
         userSignin,
+        getMenuClickHandler
     } = useProfileMenu();
 
     const menuId = "primary-search-account-menu";
@@ -40,13 +41,16 @@ export default function PrimarySearchAppBar() {
         handleMenuClose,
         handleSignOut,
         navigate,
-        menuId
+        menuId,
+        getMenuClickHandler
     }
     const MobileMenuProps = {
         mobileMoreAnchorEl,
         isMobileMenuOpen,
         handleMobileMenuClose,
         handleProfileMenuOpen,
+        getMenuClickHandler
+
     };
     const userMenuProps = { userSignin, handleProfileMenuOpen }
 

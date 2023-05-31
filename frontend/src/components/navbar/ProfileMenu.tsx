@@ -7,6 +7,8 @@ interface MenuProfileProps {
     handleSignOut: () => void;
     navigate: (path: string) => void;
     menuId: string;
+    getMenuClickHandler: (path: string) => () => void
+
 }
 
 const MenuProfile: React.FC<MenuProfileProps> = ({
@@ -14,9 +16,11 @@ const MenuProfile: React.FC<MenuProfileProps> = ({
     isMenuOpen,
     handleMenuClose,
     handleSignOut,
-    navigate,
     menuId,
+    getMenuClickHandler
+
 }) => {
+
     return (
         <Menu
             anchorEl={ anchorEl }
@@ -33,9 +37,8 @@ const MenuProfile: React.FC<MenuProfileProps> = ({
             open={ isMenuOpen }
             onClose={ handleMenuClose }
         >
-            <MenuItem onClick={ handleMenuClose }>Profile</MenuItem>
-            <MenuItem onClick={ handleMenuClose }>My account</MenuItem>
-            <MenuItem onClick={ () => navigate('/ordershistory') }>My Orders</MenuItem>
+            <MenuItem onClick={ getMenuClickHandler("/user/update") }>Profile</MenuItem>
+            <MenuItem onClick={ getMenuClickHandler('/ordershistory') }>My Orders</MenuItem>
             <MenuItem onClick={ handleSignOut }>Sign out</MenuItem>
         </Menu>
     );

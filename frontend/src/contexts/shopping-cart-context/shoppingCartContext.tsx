@@ -39,7 +39,6 @@ export const ShoppingCartProvider = ({ children }: shoppingCartChildren) => {
         );
     const [orderData, setOrderData] = useState<OrderData | null>(null)
     const [userSignin, setUserSignin] = useState<userSignin | null>(userData);
-    console.log(userSignin);
 
     const [paymentMethod, setPaymentMethod] = useState<string>(paymentMethodInStorage || "");
 

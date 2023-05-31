@@ -1,8 +1,15 @@
-import { useState, useContext } from 'react';
-import { Box, Button, Container, CssBaseline, TextField, Typography } from '@mui/material';
-import axios from 'axios';
-import { toast } from 'react-toastify';
-import { ShoppingCartContext } from '../contexts/shopping-cart-context/shoppingCartContext';
+import { useState, useContext } from "react";
+import {
+    Box,
+    Button,
+    Container,
+    CssBaseline,
+    TextField,
+    Typography,
+} from "@mui/material";
+import { toast } from "react-toastify";
+import { ShoppingCartContext } from "../contexts/shopping-cart-context/shoppingCartContext";
+import useProfileUpdate from "../hooks/useProfileUpdate";
 interface UserData {
     _id: string;
     name: string;
@@ -10,47 +17,71 @@ interface UserData {
     isAdmin: boolean;
     token: string;
 }
-const ProfileUpdate = () => {
-    const UserDataStorage: string | null = localStorage.getItem('userData');
-    const userData: UserData | null = UserDataStorage ? JSON.parse(UserDataStorage) : null;
-    const { userSignin, setUserSignin } = useContext(ShoppingCartContext);
-    const { name: userName, token: userToken, email: userEmail } = userSignin || {};
+const styles = {
+    profileUpdateContainer: {
+        marginTop: "60px",
+    },
+    formContainer: {
+        width: "100%",
+        display: "flex",
+        alignItems: "center",
+        flexDirection: "column",
+        height: "100vh",
+        justifyContent: "center",
+    },
+};
+const { profileUpdateContainer, formContainer } = styles;
 
-    const [name, setName] = useState<string | undefined>(userName || userData?.name);
+const ProfileUpdate = () => {
+    const { handleProfileUpdate } = useProfileUpdate();
+    const UserDataStorage: string | null = localStorage.getItem("userData");
+    const userData: UserData | null = UserDataStorage
+        ? JSON.parse(UserDataStorage)
+        : null;
+    const { userSignin, setUserSignin } = useContext(ShoppingCartContext);
+    const {
+        name: userName,
+        token: userToken,
+        email: userEmail,
+    } = userSignin || {};
+
+    const [name, setName] = useState<string | undefined>(
+        userName || userData?.name
+    );
     const [token] = useState<string | undefined>(userToken || userData?.token);
-    const [email, setEmail] = useState<string | undefined>(userEmail || userData?.email);
-    const [password, setPassword] = useState<string>('');
-    const [repeatPassword, setRepeatPassword] = useState<string>('');
+    const [email, setEmail] = useState<string | undefined>(
+        userEmail || userData?.email
+    );
+    const [password, setPassword] = useState<string>("");
+    const [repeatPassword, setRepeatPassword] = useState<string>("");
     const [isLoading, setIsLoading] = useState<boolean>(false);
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        const errorMessage = password !== repeatPassword ? 'Passwords must match!' : '';
+        const errorMessage =
+            password !== repeatPassword ? "Passwords must match!" : "";
         if (errorMessage) {
             return toast.error(errorMessage);
         }
         setIsLoading(true);
         try {
-            const { data } = await axios.put(
-                '/api/users/profile',
-                { name, email, password },
-                { headers: { Authorization: `Bearer ${token}` } }
-            );
+            const data = await handleProfileUpdate({ name, email, password, token });
             setUserSignin(data);
-            localStorage.setItem('userData', `${JSON.stringify(data)}`);
-            toast.success('User updated successfully');
+            localStorage.setItem("userData", JSON.stringify(data));
         } catch (error) {
-            toast.error('User already exists!');
+            toast.error("Failed to update profile. Please try again later.");
         } finally {
             setIsLoading(false);
         }
     };
 
     return (
-        <Container component="main" maxWidth="xs" sx={ { marginTop: '60px' } }>
-            <Box className='kalb'>
+        <Container component="main" maxWidth="xs" sx={ profileUpdateContainer }>
+            <Box className="kalb">
                 <CssBaseline />
-                <Box sx={ { width: '100%', display: 'flex', alignItems: 'center', flexDirection: 'column', height: "100vh", justifyContent: 'center' } }>
+                <Box
+                    sx={ formContainer }
+                >
                     <Typography component="h1" variant="h5">
                         Update your Profile
                     </Typography>
@@ -102,12 +133,11 @@ const ProfileUpdate = () => {
                             sx={ { mt: 3, mb: 2 } }
                             disabled={ isLoading }
                         >
-                            { isLoading ? 'Updating...' : 'Update' }
+                            { isLoading ? "Updating..." : "Update" }
                         </Button>
                     </Box>
                 </Box>
             </Box>
-
         </Container>
     );
 };

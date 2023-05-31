@@ -11,13 +11,15 @@ interface MobileMenuProps {
     isMobileMenuOpen: boolean;
     handleMobileMenuClose: () => void;
     handleProfileMenuOpen: (event: React.MouseEvent<HTMLElement>) => void;
+    getMenuClickHandler: (path: string) => () => void
+
 }
 
 const MobileProfileMenu: React.FC<MobileMenuProps> = ({
     mobileMoreAnchorEl,
     isMobileMenuOpen,
-    handleMobileMenuClose,
-    handleProfileMenuOpen,
+    getMenuClickHandler
+
 }) => {
     return (
         <Menu
@@ -33,12 +35,12 @@ const MobileProfileMenu: React.FC<MobileMenuProps> = ({
                 horizontal: 'right',
             } }
             open={ isMobileMenuOpen }
-            onClose={ handleMobileMenuClose }
+            onClose={ getMenuClickHandler('/') }
         >
             <MenuItem>
                 <ShoppingCart />
             </MenuItem>
-            <MenuItem onClick={ handleProfileMenuOpen }>
+            <MenuItem onClick={ getMenuClickHandler("/user/update") }>
                 <IconButton
                     size="large"
                     aria-label="account of current user"
@@ -50,7 +52,7 @@ const MobileProfileMenu: React.FC<MobileMenuProps> = ({
                 </IconButton>
                 <p>Profile</p>
             </MenuItem>
-            <MenuItem onClick={ handleProfileMenuOpen }>
+            <MenuItem onClick={ getMenuClickHandler('/ordershistory') }>
                 <IconButton
                     size="large"
                     aria-label="shopping cart"

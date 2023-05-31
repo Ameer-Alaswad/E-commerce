@@ -34,6 +34,15 @@ const useProfileMenu = () => {
         setMobileMoreAnchorEl(event.currentTarget);
     };
 
+    const handleNavigation = (text: string) => {
+        navigate(text)
+        handleMenuClose();
+    }
+
+    const getMenuClickHandler = (path: string) => {
+        return () => handleNavigation(path);
+    };
+
     const handleSignOut = () => {
         localStorage.removeItem('userData');
         localStorage.removeItem('shippingCardAddress');
@@ -64,6 +73,7 @@ const useProfileMenu = () => {
         handleSignOut,
         navigate,
         userSignin,
+        getMenuClickHandler
 
     };
 };
