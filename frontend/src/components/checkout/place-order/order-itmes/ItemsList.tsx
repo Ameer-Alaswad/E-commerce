@@ -1,42 +1,24 @@
-import { Button, Card, Tooltip, Typography } from "@mui/material";
-import { useContext, useState } from "react";
+import { Button, Card, Typography } from "@mui/material";
+import { useContext } from "react";
 import { ShoppingCartContext } from "../../../../contexts/shopping-cart-context/shoppingCartContext";
 import DeleteIcon from "@mui/icons-material/Delete";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
-import "react-toastify/dist/ReactToastify.css";
+
 import { useShoppingCartHandlers } from "./handlers";
 import { product } from "../../../../contexts/shopping-cart-context/shoppingCartContextTypes";
+import { orderItemsListStyles } from "../../styles";
 
-const styles = {
-    cardContainer: {
-        minWidth: 350,
-        display: "flex",
-        justifyContent: "space-around",
-        alignItems: "center",
-        marginBottom: "10px",
-    },
-    itemImage: {
-        width: "60px",
-        height: "80px",
-    },
-    deleteButton: {
-        fontSize: "0.7rem",
-        padding: "10px 10px",
-    },
-    tooltip: {
-        fontSize: "0.8rem",
-    },
-};
+const { cardContainer, itemImage, deleteButton } = orderItemsListStyles
 
 export default function ItemsList() {
+
     const { cartItems } = useContext(ShoppingCartContext);
     const {
         handleProductDelete,
         handleQuantityIncrement,
         handleQuantityDecrement,
     } = useShoppingCartHandlers();
-
 
     return (
         <>
@@ -49,9 +31,9 @@ export default function ItemsList() {
                     productLimit,
                     countInStock,
                 }: product) => (
-                    <Card sx={ styles.cardContainer } key={ productId }>
+                    <Card sx={ cardContainer } key={ productId }>
                         <Card>
-                            <img style={ styles.itemImage } src={ image } alt="items-img" />
+                            <img style={ itemImage } src={ image } alt="items-img" />
                         </Card>
                         <Typography>{ productId }</Typography>
                         <Typography>{ price }$</Typography>
@@ -79,7 +61,7 @@ export default function ItemsList() {
                                 onClick={ handleProductDelete(productId) }
                                 variant="contained"
                                 startIcon={ <DeleteIcon /> }
-                                sx={ styles.deleteButton }
+                                sx={ deleteButton }
                             >
                                 DELETE
                             </Button>

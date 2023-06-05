@@ -1,25 +1,33 @@
 import { Box, Button, CardContent, Divider, Typography } from "@mui/material";
 import { useContext } from "react";
 import { ShoppingCartContext } from "../../../contexts/shopping-cart-context/shoppingCartContext";
-import Card from '@mui/material/Card';
+import Card from "@mui/material/Card";
 import { postUser } from "../../../fetchers/postOrder";
 import { useNavigate } from "react-router-dom";
+import { orderSummaryStyles } from "../styles";
+import { calculateCartTotalPrices } from "../utils";
+
+const { card, title, itemPrice, divider, bold, box, buttonBox, button } =
+    orderSummaryStyles;
 
 export default function OrderSummary() {
-    const navigate = useNavigate()
+    const navigate = useNavigate();
     const shoppingCartContext = useContext(ShoppingCartContext);
-    const { cartItems, shippingAddressData, paymentMethod, userSignin, setCartItems } = shoppingCartContext;
 
-    const convertToTwoDecimal = (num: number) => Math.round(num * 100 + Number.EPSILON) / 100
-    const totalItemsPrice = convertToTwoDecimal(cartItems.reduce((a, c) => a + c.quantity * c.price, 0))
-    const shippingPrice = totalItemsPrice > 100 ? convertToTwoDecimal(0) : convertToTwoDecimal(10)
-    const taxes = convertToTwoDecimal(0.15 * totalItemsPrice)
-    const totalPrice = totalItemsPrice + shippingPrice + taxes
+    const {
+        cartItems,
+        shippingAddressData,
+        paymentMethod,
+        userSignin,
+        setCartItems,
+    } = shoppingCartContext;
 
-    const user: any = localStorage.getItem('userData')
-    const parsedUser = JSON.parse(user)
-    let userSigned = userSignin
-    !userSignin ? userSigned = parsedUser : userSigned = userSignin
+    const {
+        totalItemsPrice,
+        shippingPrice,
+        taxes,
+        totalPrice,
+    } = calculateCartTotalPrices(cartItems)
 
     const orderData = {
         orderItems: cartItems,
@@ -28,37 +36,42 @@ export default function OrderSummary() {
         totalItemsPrice,
         shippingPrice,
         taxes,
-        totalPrice
-    }
+        totalPrice,
+    };
     const handleOrder = () => {
-        postUser("/api/orders", orderData, navigate, userSigned?.token, setCartItems)
-    }
+        postUser(
+            "/api/orders",
+            orderData,
+            navigate,
+            userSignin?.token,
+            setCartItems
+        );
+    };
 
     return (
-        <Card sx={ {
-            width: "300px", height: "300px"
-        } } >
+        <Card sx={ card }>
             <CardContent>
-                < Typography sx={ { marginBottom: "10px" } } variant="h5" fontWeight="fontWeightBold"> Order Summary</ Typography>
-                <Box sx={ { marginLeft: "10px" } }>
-                    <Typography sx={ { paddingTop: "10px", paddingBottom: "10px" } }>Items: ${ totalItemsPrice }</Typography>
-                    <Divider />
-                    <Typography sx={ { paddingTop: "10px", paddingBottom: "10px" } }>Shipping: ${ shippingPrice }</Typography>
-                    <Divider />
-                    <Typography sx={ { paddingTop: "10px", paddingBottom: "10px" } }>Tax: ${ taxes }</Typography>
-                    <Divider />
-                    <Typography sx={ { paddingTop: "10px", paddingBottom: "10px" } } fontWeight="fontWeightBold">Total: ${ totalPrice }</Typography>
-                    <Divider />
+                <Typography sx={ { ...title, ...bold } } variant="h5">
+                    Order Summary
+                </Typography>
+                <Box sx={ box }>
+                    <Typography sx={ itemPrice }>Items: ${ totalItemsPrice }</Typography>
+                    <Divider sx={ divider } />
+                    <Typography sx={ itemPrice }>Shipping: ${ shippingPrice }</Typography>
+                    <Divider sx={ divider } />
+                    <Typography sx={ itemPrice }>Tax: ${ taxes }</Typography>
+                    <Divider sx={ divider } />
+                    <Typography sx={ { ...itemPrice, ...bold } }>
+                        Total: ${ totalPrice }
+                    </Typography>
+                    <Divider sx={ divider } />
                 </Box>
-            </CardContent >
-            <Box sx={ {
-                display: "flex", justifyContent: "center"
-            } }>
-                <Button onClick={ handleOrder } sx={ { width: "220px" }
-                } variant="contained">Place Order</Button>
+            </CardContent>
+            <Box sx={ buttonBox }>
+                <Button onClick={ handleOrder } sx={ button } variant="contained">
+                    Place Order
+                </Button>
             </Box>
-        </Card >
-
-    )
-
+        </Card>
+    );
 }

@@ -16,8 +16,8 @@ export type productsType = {
 }
 
 export type RatingProps = {
-    numReviews: number
-    rating: number
+    numReviews: number | undefined
+    rating: number | undefined
 }
 
 export type productProps = {

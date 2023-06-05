@@ -3,106 +3,109 @@ import Box from "@mui/material/Box";
 import { productsType } from "../display-products/displayProductsInterface";
 import { Button, Card, CardContent, Divider, Typography } from "@mui/material";
 import RatingComponent from "../display-products/Rating";
-import { fetchProducts } from "../../fetchers/fetchProducts";
-import { addToShoppingCartLogic } from "../../utils/utils";
 import { ShoppingCartContext } from "../../contexts/shopping-cart-context/shoppingCartContext";
 import ProductQuantity from "../display-products/ProductQuantity";
-interface Props {
+import { handleToCart } from "./handlers";
+import styles from "./styles";
+
+const {
+    container,
+    contentContainer,
+    imageContainer,
+    productQuantityContainer,
+    productInfoContainer,
+    ratingContainer,
+    priceContainer,
+    descriptionContainer,
+    cardContainer,
+    cardContentContainer,
+    cardPriceContainer,
+    cardStatusContainer,
+    buttonContainer,
+    addToCartButton,
+    productNameStyles
+} = styles;
+
+type ProductProps = {
     data: productsType[] | undefined;
-}
-const Product: React.FC<Props> = ({ data }) => {
+};
+
+const Product: React.FC<ProductProps> = ({ data }) => {
+
     const shoppingCartContext = useContext(ShoppingCartContext);
     const { cartItems, setCartItems } = shoppingCartContext;
 
-    const handleToCart = (event: React.MouseEvent<HTMLButtonElement>) => {
+    const { name: productName, image, numReviews, rating, price, description, countInStock } = data?.[0] || {}
+
+    const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
         event.stopPropagation();
-        if (data) {
-            const productName = data[0]?.name
-
-            if (productName) {
-                fetchProducts(`/api/product/name/${productName}`).then(
-                    (product: productsType[]) => {
-                        addToShoppingCartLogic({
-                            productName,
-                            cartItems,
-                            setCartItems,
-                            product,
-                        });
-                    }
-                );
-            }
-        }
-
-    }
+        handleToCart({ event, data, cartItems, setCartItems });
+    };
 
     return (
-        <Box style={ { marginTop: "80px", height: "100vh" } }>
+        <Box style={ container }>
             { data && data?.length !== 0 && (
-                <Box
-                    sx={ {
-                        display: "flex",
-                        justifyContent: "space-around",
-                        alignItems: "flex-start",
-                        width: "1200px",
-                    } }
-                >
-                    <div>
 
-                        <img style={ { width: "500px" } } src={ data[0]?.image } alt="product-img" />
-                        <ProductQuantity name={ data[0]?.name } />
+                <Box sx={ contentContainer }>
+                    <div style={ productQuantityContainer }>
+                        <img
+                            style={ imageContainer }
+                            src={ image }
+                            alt="product-img"
+                        />
+                        <ProductQuantity name={ productName } />
                     </div>
-                    <Box sx={ { marginLeft: "10px" } }>
+                    <Box sx={ productInfoContainer }>
                         <Typography
-                            sx={ { paddingTop: "10px", paddingBottom: "10px" } }
+                            sx={ productNameStyles }
                             variant="h4"
                         >
-                            { data[0]?.name }
+                            { productName }
                         </Typography>
                         <Divider />
-                        <Box sx={ { paddingTop: "10px", paddingBottom: "10px" } }>
+                        <Box sx={ ratingContainer }>
                             <RatingComponent
-                                numReviews={ data[0]?.numReviews }
-                                rating={ data[0]?.rating }
+                                numReviews={ numReviews }
+                                rating={ rating }
                             />
                         </Box>
                         <Divider />
-                        <Typography sx={ { paddingTop: "10px", paddingBottom: "10px" } }>
-                            Price ${ data[0]?.price }
+                        <Typography sx={ priceContainer }>
+                            Price ${ price }
                         </Typography>
                         <Divider />
-                        <Typography sx={ { paddingTop: "10px", paddingBottom: "10px" } }>
-                            Description: { data[0]?.description }
+                        <Typography sx={ descriptionContainer }>
+                            Description: { description }
                         </Typography>
                         <Divider />
                     </Box>
                     <Card
-                        sx={ {
-                            width: "250px",
-                            height: "180px",
-                        } }
+                        sx={ cardContainer }
                     >
                         <CardContent>
-                            <Box sx={ { marginLeft: "10px" } }>
-                                <Typography sx={ { paddingTop: "10px", paddingBottom: "10px" } }>
-                                    Price: ${ data[0]?.price }
+                            <Box sx={ cardContentContainer }>
+                                <Typography sx={ cardPriceContainer }>
+                                    Price: ${ price }
                                 </Typography>
+
                                 <Divider />
-                                <Typography sx={ { paddingTop: "10px", paddingBottom: "10px" } }>
+                                <Typography sx={ cardStatusContainer }>
                                     Status:{ " " }
-                                    { data[0]?.countInStock === 0 ? "Not in Stock" : "In Stock" }
+                                    { countInStock === 0 ? "Not in Stock" : "In Stock" }
                                 </Typography>
                                 <Divider />
                             </Box>
                         </CardContent>
                         <Box
-                            sx={ {
-                                display: "flex",
-                                justifyContent: "center",
-                            } }
+                            sx={ buttonContainer }
                         >
-                            <Button onClick={ handleToCart } sx={ { width: "220px" }
-                            } variant="contained">Add to Cart</Button>
-
+                            <Button
+                                onClick={ handleClick }
+                                sx={ addToCartButton }
+                                variant="contained"
+                            >
+                                Add to Cart
+                            </Button>
                         </Box>
                     </Card>
                 </Box>

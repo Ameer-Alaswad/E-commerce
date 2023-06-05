@@ -2,6 +2,7 @@ import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import GitHubIcon from '@mui/icons-material/GitHub';
 import PublicIcon from "@mui/icons-material/Public";
 import { Box, Button } from "@mui/material";
+import Copyright from "../authentication/Copyright";
 
 const styles = {
     container: {
@@ -15,7 +16,7 @@ const styles = {
         justifyContent: "space-between",
     },
     copy: {
-        marginLeft: "5px",
+        marginLeft: "10px",
     },
     buttonGroup: {
         display: "flex",
@@ -31,7 +32,7 @@ const Footer: React.FC = () => {
     return (
         <Box id="footer-container" sx={ styles.container }>
             <Box sx={ styles.copy }>
-                Copyright © Ameer Alaswad 2023.
+                <Copyright />
             </Box>
             <Box sx={ styles.buttonGroup }>
                 <Button
