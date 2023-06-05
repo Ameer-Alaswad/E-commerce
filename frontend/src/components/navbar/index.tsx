@@ -2,7 +2,7 @@ import { AppBar, Box, Toolbar, IconButton, Typography } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import MoreIcon from "@mui/icons-material/MoreVert";
 
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 import ShoppingCart from "./ShoppingCart";
 import { Search, SearchIconWrapper, StyledInputBase } from "./MuiComponents";
@@ -54,6 +54,9 @@ export default function PrimarySearchAppBar() {
     };
     const userMenuProps = { userSignin, handleProfileMenuOpen }
 
+    const location = useLocation();
+    const isHomePage = location.pathname === "/";
+
     return (
         <div id="header-container">
             <AppBar position="fixed">
@@ -68,15 +71,17 @@ export default function PrimarySearchAppBar() {
                             E-commerce
                         </Typography>
                     </Link>
-                    <Search>
-                        <SearchIconWrapper>
-                            <SearchIcon />
-                        </SearchIconWrapper>
-                        <StyledInputBase
-                            placeholder="Search…"
-                            inputProps={ { "aria-label": "search" } }
-                        />
-                    </Search>
+                    { isHomePage && (
+                        <Search>
+                            <SearchIconWrapper>
+                                <SearchIcon />
+                            </SearchIconWrapper>
+                            <StyledInputBase
+                                placeholder="Search…"
+                                inputProps={ { "aria-label": "search" } }
+                            />
+                        </Search>
+                    ) }
                     <Box sx={ { flexGrow: 1 } } />
                     <Box sx={ { display: { xs: "none", md: "flex" } } }>
                         <ShoppingCart />
