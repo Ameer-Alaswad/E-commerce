@@ -29,11 +29,9 @@ const CartPage = () => {
     const { cartItems, userSignin } = useContext(ShoppingCartContext);
 
     const handleProceedToCheckout = () => {
-        if (userSignin) {
-            navigate("/shipping");
-        } else {
-            navigate("/user/signin?redirect=/shipping");
-        }
+        userSignin
+            ? navigate("/shipping")
+            : navigate("/user/signin?redirect=/shipping");
     };
     const navigateHome = () => navigate("/");
 
