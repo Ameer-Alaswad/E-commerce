@@ -30,9 +30,13 @@ const continueShoppingButtonContainerStyle = {
     justifyContent: "center",
     marginTop: "20px",
     height: "35px",
-    marginLeft: "15px"
+    marginLeft: "15px",
 };
-const emptyCartContainer = { display: "flex", flexDirection: 'column', alignItems: 'center' }
+const emptyCartContainer = {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+};
 const cartStyles = {
     containerStyle,
     cartCardStyle,
@@ -40,6 +44,6 @@ const cartStyles = {
     buttonContainerStyle,
     buttonStyle,
     continueShoppingButtonContainerStyle,
-    emptyCartContainer
+    emptyCartContainer,
 };
 export default cartStyles;

@@ -11,13 +11,11 @@ import {
     Typography,
     Button,
 } from "@mui/material";
-import ItemsList from "../checkout/place-order/order-itmes/ItemsList";
 // styles
 import cartStyles from "./CartStyles";
-import EmptyCartMessage from "./EmptyCartMessage";
+import CartItemsSection from "./CartItemsSection";
 const {
     containerStyle,
-    cartCardStyle,
     totalCardStyle,
     buttonContainerStyle,
     buttonStyle,
@@ -25,6 +23,7 @@ const {
 } = cartStyles;
 
 const CartPage = () => {
+    // Variables names from context need to be changed, this will be done in a separate branch later. 
     const navigate = useNavigate();
     const { cartItems, userSignin } = useContext(ShoppingCartContext);
 
@@ -33,29 +32,12 @@ const CartPage = () => {
             ? navigate("/shipping")
             : navigate("/user/signin?redirect=/shipping");
     };
+
     const navigateHome = () => navigate("/");
 
     return (
         <div id="cart-page-container" style={ containerStyle }>
-            { cartItems.length === 0 ? (
-                <EmptyCartMessage navigateHome={ navigateHome } />
-            ) : (
-                <Card id="cart-card" sx={ cartCardStyle }>
-                    <Typography id="cart-title" gutterBottom variant="h4" component="div">
-                        Shopping Cart
-                    </Typography>
-                    <CardContent>
-                        <Typography
-                            id="cart-items-label"
-                            sx={ { marginBottom: "10px" } }
-                            fontWeight="fontWeightBold"
-                        >
-                            Items
-                        </Typography>
-                        <ItemsList />
-                    </CardContent>
-                </Card>
-            ) }
+            <CartItemsSection />
             { cartItems?.length !== 0 && (
                 <Card id="total-card" sx={ totalCardStyle }>
                     <CardContent>
