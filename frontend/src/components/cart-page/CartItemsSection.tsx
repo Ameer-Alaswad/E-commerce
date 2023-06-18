@@ -17,7 +17,7 @@ const CartItemsSection = () => {
     const navigateHome = () => navigate("/");
 
     const renderCartContent = () => {
-        const isCartEmpty = cartItems.length === 0;
+        const isCartEmpty = cartItems?.length === 0;
 
         return isCartEmpty ? (
             <EmptyCartMessage navigateHome={ navigateHome } />
