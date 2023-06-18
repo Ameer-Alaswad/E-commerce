@@ -15,10 +15,11 @@ const CartSummarySection = () => {
     const navigate = useNavigate();
     const { cartItems, userSignin } = useContext(ShoppingCartContext);
 
+    const SHIPPING_PATH = "/shipping";
+    const SIGNIN_PATH = "/user/signin";
+
     const handleProceedToCheckout = () => {
-        userSignin
-            ? navigate("/shipping")
-            : navigate("/user/signin?redirect=/shipping");
+        userSignin ? navigate(SHIPPING_PATH) : navigate(`${SIGNIN_PATH}?redirect=${SHIPPING_PATH}`);
     };
 
     const calculateTotal = () => {
