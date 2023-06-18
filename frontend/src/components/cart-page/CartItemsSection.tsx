@@ -14,7 +14,8 @@ const CartItemsSection = () => {
     const navigate = useNavigate();
     const { cartItems } = useContext(ShoppingCartContext);
 
-    const navigateHome = () => navigate("/");
+    const HOME_PATH = "/"
+    const navigateHome = () => navigate(HOME_PATH);
 
     const renderCartContent = () => {
         const isCartEmpty = cartItems?.length === 0;
