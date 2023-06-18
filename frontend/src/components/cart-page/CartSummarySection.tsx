@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { ShoppingCartContext } from '../../contexts/shopping-cart-context/shoppingCartContext';
 import { Box, Button, Card, CardContent, Divider, Typography } from "@mui/material";
 
-import cartStyles from './CartStyles';
+import cartStyles from './cartStyles';
 const {
     totalCardStyle,
     buttonContainerStyle,

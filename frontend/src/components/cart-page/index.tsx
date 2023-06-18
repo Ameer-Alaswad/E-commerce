@@ -1,5 +1,5 @@
 
-import cartStyles from "./CartStyles";
+import cartStyles from "./cartStyles";
 import CartItemsSection from "./CartItemsSection";
 import CartSummarySection from "./CartSummarySection";
 

@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { ShoppingCartContext } from "../../contexts/shopping-cart-context/shoppingCartContext";
 import { Card, CardContent, Typography } from "@mui/material";
 
-import cartStyles from "./CartStyles";
+import cartStyles from "./cartStyles";
 import ItemsList from "../checkout/place-order/order-itmes/ItemsList";
 import EmptyCartMessage from "./EmptyCartMessage";
 
