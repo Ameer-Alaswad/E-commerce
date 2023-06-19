@@ -22,11 +22,6 @@ const CartSummarySection = () => {
         userSignin ? navigate(SHIPPING_PATH) : navigate(`${SIGNIN_PATH}?redirect=${SHIPPING_PATH}`);
     };
 
-    // const calculateTotal = () => {
-    //     const totalItems = cartItems.reduce((a, c) => a + c.quantity, 0);
-    //     const totalPrice = cartItems.reduce((a, c) => a + c.price * c.quantity, 0);
-    //     return `Total (${totalItems} items) : $${totalPrice}`;
-    // };
 
     const calculateTotalPrice = useMemo(() => {
         return cartItems.reduce((a, c) => a + c.price * c.quantity, 0);
