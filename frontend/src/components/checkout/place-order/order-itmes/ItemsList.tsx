@@ -8,6 +8,7 @@ import RemoveIcon from "@mui/icons-material/Remove";
 import { useShoppingCartHandlers } from "./handlers";
 import { Product } from "../../../../contexts/shopping-cart-context/shoppingCartContextTypes";
 import { orderItemsListStyles } from "../../styles";
+import { CURRENCY_DOLLAR } from "../../../constants";
 
 const { cardContainer, itemImage, deleteButton } = orderItemsListStyles;
 
@@ -44,7 +45,7 @@ export default function ItemsList() {
                                 <img id="image" style={ itemImage } src={ image } alt="items-img" />
                             </Card>
                             <Typography id="product-id">{ productId }</Typography>
-                            <Typography id="product-price">{ price }$</Typography>
+                            <Typography id="product-price">{ price }{ CURRENCY_DOLLAR }</Typography>
                             <Button
                                 id="decrement-button"
                                 onClick={ handleQuantityDecrement(productId) }
