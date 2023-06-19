@@ -19,6 +19,8 @@ export default function ItemsList() {
         handleQuantityDecrement,
     } = useShoppingCartHandlers();
 
+    const isCartPage = window.location.pathname === "/cart"
+
     return (
         <>
             { cartItems?.map(
@@ -66,7 +68,7 @@ export default function ItemsList() {
                             >
                                 <AddIcon />
                             </Button>
-                            { window.location.pathname === "/cart" && (
+                            { isCartPage && (
                                 <Button
                                     id="delete-button"
                                     onClick={ handleProductDelete(productId) }
