@@ -17,6 +17,7 @@ import {
     buttonStyle,
 } from "./cartStyles";
 import { CURRENCY_DOLLAR, SHIPPING_PATH, SIGNIN_PATH } from "../constants";
+import { calculateCartTotalPrices } from "../checkout/utils";
 
 const CartSummarySection = () => {
     const navigate = useNavigate();
@@ -28,15 +29,15 @@ const CartSummarySection = () => {
             : navigate(`${SIGNIN_PATH}?redirect=${SHIPPING_PATH}`);
     };
 
-    const calculateTotalPrice = useMemo(() => {
-        return cartItems.reduce((a, c) => a + c.price * c.quantity, 0);
+    const { totalItemsPrice: calculateTotalItemsPrice } = useMemo(() => {
+        return calculateCartTotalPrices(cartItems);
     }, [cartItems]);
 
     const calculateTotalItems = useMemo(() => {
         return cartItems.reduce((a, c) => a + c.quantity, 0);
     }, [cartItems]);
 
-    const totalPriceAndItemsText = `Total (${calculateTotalItems} items) : ${CURRENCY_DOLLAR}${calculateTotalPrice}`;
+    const totalPriceAndItemsText = `Total (${calculateTotalItems} items) : ${CURRENCY_DOLLAR}${calculateTotalItemsPrice}`;
 
     const renderCartSummary = () => {
         return cartItems?.length !== 0 ? (
