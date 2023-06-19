@@ -1,23 +1,31 @@
-import { useContext, useMemo } from 'react'
-import { useNavigate } from 'react-router-dom';
+import { useContext, useMemo } from "react";
+import { useNavigate } from "react-router-dom";
 
-import { ShoppingCartContext } from '../../contexts/shopping-cart-context/shoppingCartContext';
-import { Box, Button, Card, CardContent, Divider, Typography } from "@mui/material";
+import { ShoppingCartContext } from "../../contexts/shopping-cart-context/shoppingCartContext";
+import {
+    Box,
+    Button,
+    Card,
+    CardContent,
+    Divider,
+    Typography,
+} from "@mui/material";
 
-import cartStyles from './cartStyles';
-import { CURRENCY_DOLLAR, SHIPPING_PATH, SIGNIN_PATH } from '../constants';
-const {
+import {
     totalCardStyle,
     buttonContainerStyle,
     buttonStyle,
-} = cartStyles;
+} from "./cartStyles";
+import { CURRENCY_DOLLAR, SHIPPING_PATH, SIGNIN_PATH } from "../constants";
 
 const CartSummarySection = () => {
     const navigate = useNavigate();
     const { cartItems, userSignin } = useContext(ShoppingCartContext);
 
     const handleProceedToCheckout = () => {
-        userSignin ? navigate(SHIPPING_PATH) : navigate(`${SIGNIN_PATH}?redirect=${SHIPPING_PATH}`);
+        userSignin
+            ? navigate(SHIPPING_PATH)
+            : navigate(`${SIGNIN_PATH}?redirect=${SHIPPING_PATH}`);
     };
 
     const calculateTotalPrice = useMemo(() => {
@@ -56,14 +64,9 @@ const CartSummarySection = () => {
                 </Box>
             </Card>
         ) : null;
+    };
 
-    }
+    return <>{ renderCartSummary() }</>;
+};
 
-    return (
-        <>
-            { renderCartSummary() }
-        </>
-    )
-}
-
-export default CartSummarySection
+export default CartSummarySection;

@@ -4,17 +4,16 @@ import { useNavigate } from "react-router-dom";
 import { ShoppingCartContext } from "../../contexts/shopping-cart-context/shoppingCartContext";
 import { Card, CardContent, Typography } from "@mui/material";
 
-import cartStyles from "./cartStyles";
+import { cartCardStyle } from "./cartStyles";
 import ItemsList from "../checkout/place-order/order-itmes/ItemsList";
 import EmptyCartMessage from "./EmptyCartMessage";
+import { HOME_PATH } from "../constants";
 
-const { cartCardStyle } = cartStyles;
 
 const CartItemsSection = () => {
     const navigate = useNavigate();
     const { cartItems } = useContext(ShoppingCartContext);
 
-    const HOME_PATH = "/"
     const navigateHome = () => navigate(HOME_PATH);
 
     const renderCartContent = () => {
