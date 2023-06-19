@@ -5,6 +5,7 @@ import { ShoppingCartContext } from '../../contexts/shopping-cart-context/shoppi
 import { Box, Button, Card, CardContent, Divider, Typography } from "@mui/material";
 
 import cartStyles from './cartStyles';
+import { CURRENCY_DOLLAR, SHIPPING_PATH, SIGNIN_PATH } from '../constants';
 const {
     totalCardStyle,
     buttonContainerStyle,
@@ -15,13 +16,9 @@ const CartSummarySection = () => {
     const navigate = useNavigate();
     const { cartItems, userSignin } = useContext(ShoppingCartContext);
 
-    const SHIPPING_PATH = "/shipping";
-    const SIGNIN_PATH = "/user/signin";
-
     const handleProceedToCheckout = () => {
         userSignin ? navigate(SHIPPING_PATH) : navigate(`${SIGNIN_PATH}?redirect=${SHIPPING_PATH}`);
     };
-
 
     const calculateTotalPrice = useMemo(() => {
         return cartItems.reduce((a, c) => a + c.price * c.quantity, 0);
@@ -31,7 +28,7 @@ const CartSummarySection = () => {
         return cartItems.reduce((a, c) => a + c.quantity, 0);
     }, [cartItems]);
 
-    const totalPriceAndItemsText = `Total (${calculateTotalItems} items) : $${calculateTotalPrice}`;
+    const totalPriceAndItemsText = `Total (${calculateTotalItems} items) : ${CURRENCY_DOLLAR}${calculateTotalPrice}`;
 
     const renderCartSummary = () => {
         return cartItems?.length !== 0 ? (
