@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { ShoppingCartContext } from "../../contexts/shopping-cart-context/shoppingCartContext";
 import { Typography } from "@mui/material";
-import { product } from "../../contexts/shopping-cart-context/shoppingCartContextTypes";
+import { Product } from "../../contexts/shopping-cart-context/shoppingCartContextTypes";
 
 interface ProductQuantityProps {
     name: string | undefined;
@@ -17,7 +17,7 @@ const ProductQuantity: React.FC<ProductQuantityProps> = ({ name }) => {
 
     return (
         <div id="quantity">
-            { cartItems.map((item: product) => {
+            { cartItems.map((item: Product) => {
                 const { productId, quantity } = item || {};
                 if (item?.productId === name) {
                     return (

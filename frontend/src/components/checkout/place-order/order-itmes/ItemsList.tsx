@@ -6,7 +6,7 @@ import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 
 import { useShoppingCartHandlers } from "./handlers";
-import { product } from "../../../../contexts/shopping-cart-context/shoppingCartContextTypes";
+import { Product } from "../../../../contexts/shopping-cart-context/shoppingCartContextTypes";
 import { orderItemsListStyles } from "../../styles";
 
 const { cardContainer, itemImage, deleteButton } = orderItemsListStyles;
@@ -29,7 +29,7 @@ export default function ItemsList() {
                     price,
                     productLimit,
                     countInStock,
-                }: product) => {
+                }: Product) => {
 
                     const disabledButtonLogic =
                         quantity === productLimit ||

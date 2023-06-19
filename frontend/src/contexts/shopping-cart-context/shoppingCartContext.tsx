@@ -2,7 +2,7 @@
 import { createContext, useState } from "react";
 // types
 import {
-    product,
+    Product,
     ShoppingCart,
     shoppingCartChildren,
     userSignin,
@@ -25,7 +25,7 @@ const userData: UserData | null = UserDataStorage ? JSON.parse(UserDataStorage) 
 export const ShoppingCartContext = createContext({} as ShoppingCart);
 
 export const ShoppingCartProvider = ({ children }: shoppingCartChildren) => {
-    const [cartItems, setCartItems] = useState<product[]>([]);
+    const [cartItems, setCartItems] = useState<Product[]>([]);
     const [progressStep, setProgressStep] = useState<number>(0);
     const [shippingAddressData, setShippingAddressData] =
         useState<ShippingAddressDataType>(

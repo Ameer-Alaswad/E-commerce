@@ -1,15 +1,15 @@
 // Types
 import { productsType } from "../components/display-products/displayProductsInterface";
 import {
-    product,
+    Product,
     userSignin,
 } from "../contexts/shopping-cart-context/shoppingCartContextTypes";
 import { toast } from "react-toastify";
 
 export type AddToShoppingCartTypes = {
     productName: string;
-    cartItems: product[];
-    setCartItems: (value: product[]) => void;
+    cartItems: Product[];
+    setCartItems: (value: Product[]) => void;
     product: productsType[];
 };
 
