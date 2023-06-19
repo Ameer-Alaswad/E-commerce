@@ -1,4 +1,4 @@
-import { useContext } from 'react'
+import { useContext, useMemo } from 'react'
 import { useNavigate } from 'react-router-dom';
 
 import { ShoppingCartContext } from '../../contexts/shopping-cart-context/shoppingCartContext';
@@ -22,11 +22,21 @@ const CartSummarySection = () => {
         userSignin ? navigate(SHIPPING_PATH) : navigate(`${SIGNIN_PATH}?redirect=${SHIPPING_PATH}`);
     };
 
-    const calculateTotal = () => {
-        const totalItems = cartItems.reduce((a, c) => a + c.quantity, 0);
-        const totalPrice = cartItems.reduce((a, c) => a + c.price * c.quantity, 0);
-        return `Total (${totalItems} items) : $${totalPrice}`;
-    };
+    // const calculateTotal = () => {
+    //     const totalItems = cartItems.reduce((a, c) => a + c.quantity, 0);
+    //     const totalPrice = cartItems.reduce((a, c) => a + c.price * c.quantity, 0);
+    //     return `Total (${totalItems} items) : $${totalPrice}`;
+    // };
+
+    const calculateTotalPrice = useMemo(() => {
+        return cartItems.reduce((a, c) => a + c.price * c.quantity, 0);
+    }, [cartItems]);
+
+    const calculateTotalItems = useMemo(() => {
+        return cartItems.reduce((a, c) => a + c.quantity, 0);
+    }, [cartItems]);
+
+    const totalPriceAndItemsText = `Total (${calculateTotalItems} items) : $${calculateTotalPrice}`;
 
     const renderCartSummary = () => {
         return cartItems?.length !== 0 ? (
@@ -38,7 +48,7 @@ const CartSummarySection = () => {
                         variant="h5"
                         fontWeight="fontWeightBold"
                     >
-                        { calculateTotal() }
+                        { totalPriceAndItemsText }
                     </Typography>
                     <Divider />
                 </CardContent>
