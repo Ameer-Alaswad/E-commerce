@@ -20,7 +20,7 @@ export default function ItemsList() {
         handleQuantityDecrement,
     } = useShoppingCartHandlers();
 
-    const isCartPage = window.location.pathname === "/cart"
+    const isCartPage = window.location.pathname === "/cart";
 
     return (
         <>
@@ -33,23 +33,29 @@ export default function ItemsList() {
                     productLimit,
                     countInStock,
                 }: Product) => {
-
-                    const disabledButtonLogic =
-                        quantity === productLimit ||
-                        quantity === 6 ||
-                        quantity >= countInStock;
+                    const isQuantityEqualToLimit = quantity === productLimit;
+                    // countInStock is what's left of that specific product in the store.
+                    const isQuantityGreaterThanStock = quantity >= countInStock;
+                    const isDecrementButtonDisabled = quantity === 1;
+                    const isIncrementButtonDisabled =
+                        isQuantityEqualToLimit || isQuantityGreaterThanStock;
 
                     return (
                         <Card id="card-container" sx={ cardContainer } key={ productId }>
                             <Card id="image-container">
-                                <img id="image" style={ itemImage } src={ image } alt="items-img" />
+                                <img
+                                    id="image"
+                                    style={ itemImage }
+                                    src={ image }
+                                    alt="items-img"
+                                />
                             </Card>
                             <Typography id="product-id">{ productId }</Typography>
                             <Typography id="product-price">{ price }{ CURRENCY_DOLLAR }</Typography>
                             <Button
                                 id="decrement-button"
                                 onClick={ handleQuantityDecrement(productId) }
-                                disabled={ quantity === 1 }
+                                disabled={ isDecrementButtonDisabled }
                             >
                                 <RemoveIcon />
                             </Button>
@@ -57,15 +63,13 @@ export default function ItemsList() {
 
                             <Button
                                 id="increment-button"
-                                onClick={ handleQuantityIncrement(
-                                    {
-                                        productId,
-                                        productLimit,
-                                        quantity,
-                                        countInStock
-                                    }
-                                ) }
-                                disabled={ disabledButtonLogic }
+                                onClick={ handleQuantityIncrement({
+                                    productId,
+                                    productLimit,
+                                    quantity,
+                                    countInStock,
+                                }) }
+                                disabled={ isIncrementButtonDisabled }
                             >
                                 <AddIcon />
                             </Button>
