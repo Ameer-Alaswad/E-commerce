@@ -1,5 +1,5 @@
 
-export type product = {
+export type Product = {
     productId: string
     quantity: number
     productLimit: number
@@ -53,8 +53,8 @@ export type userSignin = {
     token: string
 }
 export type ShoppingCart = {
-    cartItems: product[]
-    setCartItems: React.Dispatch<React.SetStateAction<product[]>>
+    cartItems: Product[]
+    setCartItems: React.Dispatch<React.SetStateAction<Product[]>>
     userSignin: userSignin | null
     setUserSignin: React.Dispatch<React.SetStateAction<userSignin | null>>
     shippingAddressData: ShippingAddressDataType

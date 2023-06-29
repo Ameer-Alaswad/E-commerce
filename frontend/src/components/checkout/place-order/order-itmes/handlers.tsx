@@ -11,29 +11,31 @@ export const useShoppingCartHandlers = () => {
         );
         setCartItems(filterProductsInCart);
     };
+    type HandleQuantityIncrement = {
+        productId: string;
+        productLimit: number;
+        quantity: number;
+        countInStock: number;
+    };
 
     const handleQuantityIncrement =
-        (
-            productId: string,
-            productLimit: number,
-            quantity: number,
-            countInStock: number,
-        ) =>
+        ({
+            productId,
+            productLimit,
+            quantity,
+            countInStock,
+        }: HandleQuantityIncrement) =>
             () => {
                 const updatedCartItems = cartItems.map((item) =>
-
                     item.productId === productId
                         ? item.quantity < productLimit && item.quantity < countInStock // check if quantity is less than productLimit and countInStock
                             ? { ...item, quantity: item.quantity + 1 }
                             : item
                         : item
                 );
-                console.log(quantity);
-                console.log(countInStock);
 
                 if (quantity >= countInStock) {
                     toast.error(`This product is out of stock`);
-
                 } else if (quantity >= 6) {
                     toast.error(`You have reached the limit for this product`);
                 } else if (

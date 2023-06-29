@@ -6,19 +6,21 @@ import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 
 import { useShoppingCartHandlers } from "./handlers";
-import { product } from "../../../../contexts/shopping-cart-context/shoppingCartContextTypes";
+import { Product } from "../../../../contexts/shopping-cart-context/shoppingCartContextTypes";
 import { orderItemsListStyles } from "../../styles";
+import { CURRENCY_DOLLAR } from "../../../constants";
 
-const { cardContainer, itemImage, deleteButton } = orderItemsListStyles
+const { cardContainer, itemImage, deleteButton } = orderItemsListStyles;
 
 export default function ItemsList() {
-
     const { cartItems } = useContext(ShoppingCartContext);
     const {
         handleProductDelete,
         handleQuantityIncrement,
         handleQuantityDecrement,
     } = useShoppingCartHandlers();
+
+    const isCartPage = window.location.pathname === "/cart";
 
     return (
         <>
@@ -30,44 +32,61 @@ export default function ItemsList() {
                     price,
                     productLimit,
                     countInStock,
-                }: product) => (
-                    <Card sx={ cardContainer } key={ productId }>
-                        <Card>
-                            <img style={ itemImage } src={ image } alt="items-img" />
-                        </Card>
-                        <Typography>{ productId }</Typography>
-                        <Typography>{ price }$</Typography>
-                        <Button
-                            onClick={ handleQuantityDecrement(productId) }
-                            disabled={ quantity === 1 }
-                        >
-                            <RemoveIcon />
-                        </Button>
-                        <Typography>{ quantity }</Typography>
+                }: Product) => {
+                    const isQuantityEqualToLimit = quantity === productLimit;
+                    // countInStock is what's left of that specific product in the store.
+                    const isQuantityGreaterThanStock = quantity >= countInStock;
+                    const isDecrementButtonDisabled = quantity === 1;
+                    const isIncrementButtonDisabled =
+                        isQuantityEqualToLimit || isQuantityGreaterThanStock;
 
-                        <Button
-                            onClick={ handleQuantityIncrement(
-                                productId,
-                                productLimit,
-                                quantity,
-                                countInStock,
-                            ) }
-                            disabled={ quantity === productLimit || quantity === 6 || quantity >= countInStock }
-                        >
-                            <AddIcon />
-                        </Button>
-                        { window.location.pathname === "/cart" && (
+                    return (
+                        <Card id="card-container" sx={ cardContainer } key={ productId }>
+                            <Card id="image-container">
+                                <img
+                                    id="image"
+                                    style={ itemImage }
+                                    src={ image }
+                                    alt="items-img"
+                                />
+                            </Card>
+                            <Typography id="product-id">{ productId }</Typography>
+                            <Typography id="product-price">{ price }{ CURRENCY_DOLLAR }</Typography>
                             <Button
-                                onClick={ handleProductDelete(productId) }
-                                variant="contained"
-                                startIcon={ <DeleteIcon /> }
-                                sx={ deleteButton }
+                                id="decrement-button"
+                                onClick={ handleQuantityDecrement(productId) }
+                                disabled={ isDecrementButtonDisabled }
                             >
-                                DELETE
+                                <RemoveIcon />
                             </Button>
-                        ) }
-                    </Card>
-                )
+                            <Typography id="product-quantity">{ quantity }</Typography>
+
+                            <Button
+                                id="increment-button"
+                                onClick={ handleQuantityIncrement({
+                                    productId,
+                                    productLimit,
+                                    quantity,
+                                    countInStock,
+                                }) }
+                                disabled={ isIncrementButtonDisabled }
+                            >
+                                <AddIcon />
+                            </Button>
+                            { isCartPage && (
+                                <Button
+                                    id="delete-button"
+                                    onClick={ handleProductDelete(productId) }
+                                    variant="contained"
+                                    startIcon={ <DeleteIcon /> }
+                                    sx={ deleteButton }
+                                >
+                                    DELETE
+                                </Button>
+                            ) }
+                        </Card>
+                    );
+                }
             ) }
         </>
     );

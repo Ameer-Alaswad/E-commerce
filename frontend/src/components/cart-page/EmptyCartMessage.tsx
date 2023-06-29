@@ -1,7 +1,6 @@
 import { Button, Container, Typography } from "@mui/material";
-import cartStyles from "./CartStyles";
+import { emptyCartContainer } from "./cartStyles";
 
-const { emptyCartContainer } = cartStyles;
 type NavigateHome = {
     navigateHome: () => void
 }
