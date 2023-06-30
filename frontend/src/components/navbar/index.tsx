@@ -1,21 +1,19 @@
 import { AppBar, Box, Toolbar, IconButton, Typography } from "@mui/material";
-import SearchIcon from "@mui/icons-material/Search";
 import MoreIcon from "@mui/icons-material/MoreVert";
 
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import ShoppingCart from "./ShoppingCart";
-import { Search, SearchIconWrapper, StyledInputBase } from "./MuiComponents";
-import MobileMenu from "./MobileProfileMenu";
+import UserOptionsMobileMenu from "./UserOptionsMobileMenu";
+import UserOptionsMenu from "./UserOptionsMenu";
 import useProfileMenu from "./useProfileMenu";
-import ProfileMenu from "./ProfileMenu";
-import UserMenu from "./UserMenu";
-import { headerStyles } from "./styles";
+import UserAccountMenu from "./UserAccountMenu";
+import ProductSearch from "./ProductSearch";
 
-const { linkToLanding } = headerStyles
+import { headerStyles } from "./styles";
+const { linkToLanding } = headerStyles;
 
 export default function PrimarySearchAppBar() {
-
     const {
         anchorEl,
         mobileMoreAnchorEl,
@@ -28,34 +26,30 @@ export default function PrimarySearchAppBar() {
         handleSignOut,
         navigate,
         userSignin,
-        getMenuClickHandler
+        getMenuClickHandler,
     } = useProfileMenu();
 
     const menuId = "primary-search-account-menu";
 
     const mobileMenuId = "primary-search-account-menu-mobile";
 
-    const menuProfileProps = {
+    const UserOptionsMenuProps = {
         anchorEl,
         isMenuOpen,
         handleMenuClose,
         handleSignOut,
         navigate,
         menuId,
-        getMenuClickHandler
-    }
-    const MobileMenuProps = {
+        getMenuClickHandler,
+    };
+    const UserOptionsMobileMenuProps = {
         mobileMoreAnchorEl,
         isMobileMenuOpen,
         handleMobileMenuClose,
         handleProfileMenuOpen,
-        getMenuClickHandler
-
+        getMenuClickHandler,
     };
-    const userMenuProps = { userSignin, handleProfileMenuOpen }
-
-    const location = useLocation();
-    const isHomePage = location.pathname === "/";
+    const UserAccountMenuProps = { userSignin, handleProfileMenuOpen };
 
     return (
         <div id="header-container">
@@ -71,21 +65,11 @@ export default function PrimarySearchAppBar() {
                             E-commerce
                         </Typography>
                     </Link>
-                    { isHomePage && (
-                        <Search>
-                            <SearchIconWrapper>
-                                <SearchIcon />
-                            </SearchIconWrapper>
-                            <StyledInputBase
-                                placeholder="Search…"
-                                inputProps={ { "aria-label": "search" } }
-                            />
-                        </Search>
-                    ) }
+                    <ProductSearch />
                     <Box sx={ { flexGrow: 1 } } />
                     <Box sx={ { display: { xs: "none", md: "flex" } } }>
                         <ShoppingCart />
-                        <UserMenu { ...userMenuProps } />
+                        <UserAccountMenu { ...UserAccountMenuProps } />
                     </Box>
                     <Box sx={ { display: { xs: "flex", md: "none" } } }>
                         <IconButton
@@ -101,8 +85,8 @@ export default function PrimarySearchAppBar() {
                     </Box>
                 </Toolbar>
             </AppBar>
-            <MobileMenu { ...MobileMenuProps } />
-            <ProfileMenu { ...menuProfileProps } />
+            <UserOptionsMobileMenu { ...UserOptionsMobileMenuProps } />
+            <UserOptionsMenu { ...UserOptionsMenuProps } />
         </div>
     );
 }

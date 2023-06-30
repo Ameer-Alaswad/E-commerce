@@ -11,7 +11,7 @@ interface MenuProfileProps {
 
 }
 
-const MenuProfile: React.FC<MenuProfileProps> = ({
+const UserOptionsMenu: React.FC<MenuProfileProps> = ({
     anchorEl,
     isMenuOpen,
     handleMenuClose,
@@ -44,4 +44,4 @@ const MenuProfile: React.FC<MenuProfileProps> = ({
     );
 };
 
-export default MenuProfile;
+export default UserOptionsMenu;

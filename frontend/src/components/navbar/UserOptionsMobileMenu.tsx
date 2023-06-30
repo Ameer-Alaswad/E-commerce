@@ -15,7 +15,7 @@ interface MobileMenuProps {
 
 }
 
-const MobileProfileMenu: React.FC<MobileMenuProps> = ({
+const UserOptionsMobileMenu: React.FC<MobileMenuProps> = ({
     mobileMoreAnchorEl,
     isMobileMenuOpen,
     getMenuClickHandler
@@ -68,4 +68,4 @@ const MobileProfileMenu: React.FC<MobileMenuProps> = ({
     );
 }
 
-export default MobileProfileMenu;
+export default UserOptionsMobileMenu;
