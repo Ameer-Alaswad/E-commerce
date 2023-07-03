@@ -10,13 +10,12 @@ import useProfileMenu from "./useProfileMenu";
 import UserAccountMenu from "./UserAccountMenu";
 import ProductSearch from "./ProductSearch";
 
-import { headerStyles } from "./styles";
-const { linkToLanding } = headerStyles;
+import { linkToLanding, linkStyles, cartAndUserMenuStyles, mobileMenuStyles } from "./styles";
 
 export default function PrimarySearchAppBar() {
     const {
-        anchorEl,
-        mobileMoreAnchorEl,
+        userOptionsOpen,
+        userOptionsOpenMobile,
         isMenuOpen,
         isMobileMenuOpen,
         handleProfileMenuOpen,
@@ -29,21 +28,19 @@ export default function PrimarySearchAppBar() {
         getMenuClickHandler,
     } = useProfileMenu();
 
-    const menuId = "primary-search-account-menu";
 
     const mobileMenuId = "primary-search-account-menu-mobile";
 
     const UserOptionsMenuProps = {
-        anchorEl,
+        userOptionsOpen,
         isMenuOpen,
         handleMenuClose,
         handleSignOut,
         navigate,
-        menuId,
         getMenuClickHandler,
     };
     const UserOptionsMobileMenuProps = {
-        mobileMoreAnchorEl,
+        userOptionsOpenMobile,
         isMobileMenuOpen,
         handleMobileMenuClose,
         handleProfileMenuOpen,
@@ -60,18 +57,18 @@ export default function PrimarySearchAppBar() {
                             variant="h6"
                             noWrap
                             component="div"
-                            sx={ { display: { xs: "none", sm: "block" } } }
+                            sx={ { display: { ...linkStyles } } }
                         >
                             E-commerce
                         </Typography>
                     </Link>
                     <ProductSearch />
                     <Box sx={ { flexGrow: 1 } } />
-                    <Box sx={ { display: { xs: "none", md: "flex" } } }>
+                    <Box sx={ { display: { ...cartAndUserMenuStyles } } }>
                         <ShoppingCart />
                         <UserAccountMenu { ...UserAccountMenuProps } />
                     </Box>
-                    <Box sx={ { display: { xs: "flex", md: "none" } } }>
+                    <Box sx={ { display: { ...mobileMenuStyles } } }>
                         <IconButton
                             size="large"
                             aria-label="show more"

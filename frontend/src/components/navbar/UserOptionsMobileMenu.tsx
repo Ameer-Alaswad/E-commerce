@@ -7,23 +7,23 @@ import AccountCircle from '@mui/icons-material/AccountCircle';
 import ViewListIcon from '@mui/icons-material/ViewList';
 
 interface MobileMenuProps {
-    mobileMoreAnchorEl: null | HTMLElement;
+    userOptionsOpenMobile: null | HTMLElement;
     isMobileMenuOpen: boolean;
     handleMobileMenuClose: () => void;
     handleProfileMenuOpen: (event: React.MouseEvent<HTMLElement>) => void;
-    getMenuClickHandler: (path: string) => () => void
-
+    getMenuClickHandler: (path: string) => () => void;
 }
 
 const UserOptionsMobileMenu: React.FC<MobileMenuProps> = ({
-    mobileMoreAnchorEl,
+    userOptionsOpenMobile,
     isMobileMenuOpen,
-    getMenuClickHandler
-
+    handleMobileMenuClose,
+    getMenuClickHandler,
+    handleProfileMenuOpen,
 }) => {
     return (
         <Menu
-            anchorEl={ mobileMoreAnchorEl }
+            anchorEl={ userOptionsOpenMobile }
             anchorOrigin={ {
                 vertical: 'top',
                 horizontal: 'right',
@@ -35,18 +35,19 @@ const UserOptionsMobileMenu: React.FC<MobileMenuProps> = ({
                 horizontal: 'right',
             } }
             open={ isMobileMenuOpen }
-            onClose={ getMenuClickHandler('/') }
+            onClose={ handleMobileMenuClose }
         >
             <MenuItem>
                 <ShoppingCart />
             </MenuItem>
-            <MenuItem onClick={ getMenuClickHandler("/user/update") }>
+            <MenuItem onClick={ getMenuClickHandler('/user/update') }>
                 <IconButton
                     size="large"
                     aria-label="account of current user"
                     aria-controls="primary-search-account-menu"
                     aria-haspopup="true"
                     color="inherit"
+                    onClick={ handleProfileMenuOpen }
                 >
                     <AccountCircle />
                 </IconButton>
@@ -66,6 +67,6 @@ const UserOptionsMobileMenu: React.FC<MobileMenuProps> = ({
             </MenuItem>
         </Menu>
     );
-}
+};
 
 export default UserOptionsMobileMenu;

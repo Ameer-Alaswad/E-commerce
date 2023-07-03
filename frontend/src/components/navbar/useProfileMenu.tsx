@@ -9,29 +9,30 @@ const useProfileMenu = () => {
     const shoppingCartContext = useContext(ShoppingCartContext);
     const { userSignin, setUserSignin, setShippingAddressData, setCartItems, setPaymentMethod } = shoppingCartContext;
 
-    const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
-    const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState<HTMLElement | null>(null);
+    const [userOptionsOpen, setUserOptionsOpen] = useState<HTMLElement | null>(null);
+    const [userOptionsOpenMobile, setUserOptionsOpenMobile] = useState<HTMLElement | null>(null);
 
-    const isMenuOpen = Boolean(anchorEl);
-    const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
+    const isMenuOpen = Boolean(userOptionsOpen);
+    const isMobileMenuOpen = Boolean(userOptionsOpenMobile);
 
 
     const handleProfileMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
-        setAnchorEl(event.currentTarget);
+
+        setUserOptionsOpen(event.currentTarget);
     };
 
     const handleMobileMenuClose = () => {
-        setAnchorEl(null);
-        setMobileMoreAnchorEl(null);
+        setUserOptionsOpen(null);
+        setUserOptionsOpenMobile(null);
     };
 
     const handleMenuClose = () => {
-        setAnchorEl(null);
-        setMobileMoreAnchorEl(null);
+        setUserOptionsOpen(null);
+        setUserOptionsOpenMobile(null);
     };
 
     const handleMobileMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
-        setMobileMoreAnchorEl(event.currentTarget);
+        setUserOptionsOpenMobile(event.currentTarget);
     };
 
     const handleNavigation = (text: string) => {
@@ -56,14 +57,14 @@ const useProfileMenu = () => {
         setCartItems([]);
         setUserSignin(null);
         setPaymentMethod('');
-        setAnchorEl(null);
+        setUserOptionsOpen(null);
         handleMobileMenuClose();
         navigate('/user/signin');
     };
 
     return {
-        anchorEl,
-        mobileMoreAnchorEl,
+        userOptionsOpen,
+        userOptionsOpenMobile,
         isMenuOpen,
         isMobileMenuOpen,
         handleProfileMenuOpen,
@@ -74,7 +75,6 @@ const useProfileMenu = () => {
         navigate,
         userSignin,
         getMenuClickHandler
-
     };
 };
 

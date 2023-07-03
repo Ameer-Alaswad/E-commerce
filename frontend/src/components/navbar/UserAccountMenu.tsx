@@ -3,9 +3,8 @@ import { Link } from "react-router-dom";
 import { IconButton, Box } from "@mui/material";
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import { userSignin } from "../../contexts/shopping-cart-context/shoppingCartContextTypes";
-import { headerStyles } from "./styles";
+import { linkToLanding } from "./styles";
 
-const { linkToLanding } = headerStyles
 
 
 interface UserMenuProps {

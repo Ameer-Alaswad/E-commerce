@@ -1,29 +1,29 @@
 import { Menu, MenuItem } from '@mui/material';
 
 interface MenuProfileProps {
-    anchorEl: HTMLElement | null;
+    userOptionsOpen: HTMLElement | null;
     isMenuOpen: boolean;
     handleMenuClose: () => void;
     handleSignOut: () => void;
     navigate: (path: string) => void;
-    menuId: string;
     getMenuClickHandler: (path: string) => () => void
 
 }
 
 const UserOptionsMenu: React.FC<MenuProfileProps> = ({
-    anchorEl,
+    userOptionsOpen,
     isMenuOpen,
     handleMenuClose,
     handleSignOut,
-    menuId,
     getMenuClickHandler
 
 }) => {
 
+    const menuId = "primary-search-account-menu";
+
     return (
         <Menu
-            anchorEl={ anchorEl }
+            anchorEl={ userOptionsOpen }
             anchorOrigin={ {
                 vertical: 'top',
                 horizontal: 'right',
