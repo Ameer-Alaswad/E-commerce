@@ -12,7 +12,7 @@ interface UserMenuProps {
     handleProfileMenuOpen: (event: React.MouseEvent<HTMLElement>) => void;
 }
 
-const UserAccountMenu: React.FC<UserMenuProps> = ({
+const IsUserOptionsMenuOpen: React.FC<UserMenuProps> = ({
     userSignin,
     handleProfileMenuOpen,
 }) => {
@@ -49,4 +49,4 @@ const UserAccountMenu: React.FC<UserMenuProps> = ({
     );
 };
 
-export default UserAccountMenu;
+export default IsUserOptionsMenuOpen;

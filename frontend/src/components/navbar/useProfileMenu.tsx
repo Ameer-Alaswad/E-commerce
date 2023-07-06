@@ -31,9 +31,9 @@ const useProfileMenu = () => {
         setUserOptionsOpenMobile(null);
     };
 
-    const handleMobileMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
+    const handleMobileMenuOpen = (event: React.MouseEvent<HTMLElement>) =>
         setUserOptionsOpenMobile(event.currentTarget);
-    };
+
 
     const handleNavigation = (text: string) => {
         navigate(text)

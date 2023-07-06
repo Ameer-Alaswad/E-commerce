@@ -7,10 +7,11 @@ import ShoppingCart from "./ShoppingCart";
 import UserOptionsMobileMenu from "./UserOptionsMobileMenu";
 import UserOptionsMenu from "./UserOptionsMenu";
 import useProfileMenu from "./useProfileMenu";
-import UserAccountMenu from "./UserAccountMenu";
 import ProductSearch from "./ProductSearch";
 
 import { linkToLanding, linkStyles, cartAndUserMenuStyles, mobileMenuStyles } from "./styles";
+import IsUserOptionsMenuOpen from "./IsUserOptionsMenuOpen";
+import IsUserOptionsMobileMenuOpen from "./IsUserOptionsMobileMenuOpen";
 
 export default function PrimarySearchAppBar() {
     const {
@@ -29,7 +30,6 @@ export default function PrimarySearchAppBar() {
     } = useProfileMenu();
 
 
-    const mobileMenuId = "primary-search-account-menu-mobile";
 
     const UserOptionsMenuProps = {
         userOptionsOpen,
@@ -66,24 +66,15 @@ export default function PrimarySearchAppBar() {
                     <Box sx={ { flexGrow: 1 } } />
                     <Box sx={ { display: { ...cartAndUserMenuStyles } } }>
                         <ShoppingCart />
-                        <UserAccountMenu { ...UserAccountMenuProps } />
+                        <IsUserOptionsMenuOpen { ...UserAccountMenuProps } />
+                        <UserOptionsMenu { ...UserOptionsMenuProps } />
                     </Box>
                     <Box sx={ { display: { ...mobileMenuStyles } } }>
-                        <IconButton
-                            size="large"
-                            aria-label="show more"
-                            aria-controls={ mobileMenuId }
-                            aria-haspopup="true"
-                            onClick={ handleMobileMenuOpen }
-                            color="inherit"
-                        >
-                            <MoreIcon />
-                        </IconButton>
+                        < IsUserOptionsMobileMenuOpen handleMobileMenuOpen={ handleMobileMenuOpen } />
                     </Box>
                 </Toolbar>
             </AppBar>
             <UserOptionsMobileMenu { ...UserOptionsMobileMenuProps } />
-            <UserOptionsMenu { ...UserOptionsMenuProps } />
         </div>
     );
 }
