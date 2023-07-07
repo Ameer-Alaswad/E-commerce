@@ -14,6 +14,7 @@ import IsUserOptionsMenuOpen from "./IsUserOptionsMenuOpen";
 import IsUserOptionsMobileMenuOpen from "./IsUserOptionsMobileMenuOpen";
 
 export default function PrimarySearchAppBar() {
+
     const {
         userOptionsOpen,
         userOptionsOpenMobile,
@@ -66,7 +67,7 @@ export default function PrimarySearchAppBar() {
                     <Box sx={ { flexGrow: 1 } } />
                     <Box sx={ { display: { ...cartAndUserMenuStyles } } }>
                         <ShoppingCart />
-                        <IsUserOptionsMenuOpen { ...UserAccountMenuProps } />
+                        <IsUserOptionsMenuOpen />
                         <UserOptionsMenu { ...UserOptionsMenuProps } />
                     </Box>
                     <Box sx={ { display: { ...mobileMenuStyles } } }>

@@ -1,4 +1,7 @@
 import { Menu, MenuItem } from '@mui/material';
+import { useContext } from 'react';
+import { ShoppingCartContext } from '../../contexts/shopping-cart-context/shoppingCartContext';
+import { useNavigate } from 'react-router-dom';
 
 interface MenuProfileProps {
     userOptionsOpen: HTMLElement | null;
@@ -11,14 +14,13 @@ interface MenuProfileProps {
 }
 
 const UserOptionsMenu: React.FC<MenuProfileProps> = ({
-    userOptionsOpen,
-    isMenuOpen,
-    handleMenuClose,
+
     handleSignOut,
-    getMenuClickHandler
 
 }) => {
-
+    const navigate = useNavigate()
+    const shoppingCartContext = useContext(ShoppingCartContext);
+    const { userOptionsOpen, isMenuOpen, handleMenuClose, getMenuClickHandler } = shoppingCartContext;
     const menuId = "primary-search-account-menu";
 
     return (
@@ -37,8 +39,8 @@ const UserOptionsMenu: React.FC<MenuProfileProps> = ({
             open={ isMenuOpen }
             onClose={ handleMenuClose }
         >
-            <MenuItem onClick={ getMenuClickHandler("/user/update") }>Profile</MenuItem>
-            <MenuItem onClick={ getMenuClickHandler('/ordershistory') }>My Orders</MenuItem>
+            <MenuItem onClick={ getMenuClickHandler("/user/update", navigate) }>Profile</MenuItem>
+            <MenuItem onClick={ getMenuClickHandler('/ordershistory', navigate) }>My Orders</MenuItem>
             <MenuItem onClick={ handleSignOut }>Sign out</MenuItem>
         </Menu>
     );

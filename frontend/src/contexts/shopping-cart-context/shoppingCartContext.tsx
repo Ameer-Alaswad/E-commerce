@@ -1,6 +1,7 @@
 // react
 import { createContext, useState } from "react";
 // types
+import { NavigateFunction } from "react-router-dom";
 import {
     Product,
     ShoppingCart,
@@ -8,25 +9,43 @@ import {
     userSignin,
     ShippingAddressDataType,
     OrderData,
-    UserData
+    UserData,
 } from "./shoppingCartContextTypes";
+import { useNavigate } from "react-router-dom";
 const addressDataInStorage = JSON.parse(
     localStorage.getItem("shippingCardAddress") || "{}"
 );
-
 
 const paymentMethodInStorage = JSON.parse(
     localStorage.getItem("paymentMethod") || "{}"
 );
 
-const UserDataStorage: string | null = localStorage.getItem('userData');
-const userData: UserData | null = UserDataStorage ? JSON.parse(UserDataStorage) : null;
+const UserDataStorage: string | null = localStorage.getItem("userData");
+const userData: UserData | null = UserDataStorage
+    ? JSON.parse(UserDataStorage)
+    : null;
 
 export const ShoppingCartContext = createContext({} as ShoppingCart);
 
 export const ShoppingCartProvider = ({ children }: shoppingCartChildren) => {
     const [cartItems, setCartItems] = useState<Product[]>([]);
     const [progressStep, setProgressStep] = useState<number>(0);
+    const [orderData, setOrderData] = useState<OrderData | null>(null);
+    const [userSignin, setUserSignin] = useState<userSignin | null>(userData);
+
+    const [paymentMethod, setPaymentMethod] = useState<string>(
+        paymentMethodInStorage || ""
+    );
+    /////////////
+    const [userOptionsOpen, setUserOptionsOpen] = useState<HTMLElement | null>(
+        null
+    );
+    const [userOptionsOpenMobile, setUserOptionsOpenMobile] =
+        useState<HTMLElement | null>(null);
+
+    const isMenuOpen = Boolean(userOptionsOpen);
+    const isMobileMenuOpen = Boolean(userOptionsOpenMobile);
+    ////////////////////////////
     const [shippingAddressData, setShippingAddressData] =
         useState<ShippingAddressDataType>(
             addressDataInStorage || {
@@ -37,10 +56,35 @@ export const ShoppingCartProvider = ({ children }: shoppingCartChildren) => {
                 country: "",
             }
         );
-    const [orderData, setOrderData] = useState<OrderData | null>(null)
-    const [userSignin, setUserSignin] = useState<userSignin | null>(userData);
 
-    const [paymentMethod, setPaymentMethod] = useState<string>(paymentMethodInStorage || "");
+    const handleProfileMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
+        console.log(isMenuOpen);
+
+        setUserOptionsOpen(event.currentTarget);
+    };
+
+    const handleMobileMenuClose = () => {
+        setUserOptionsOpen(null);
+        setUserOptionsOpenMobile(null);
+    };
+
+    const handleMenuClose = () => {
+        setUserOptionsOpen(null);
+        setUserOptionsOpenMobile(null);
+    };
+
+    const handleMobileMenuOpen = (event: React.MouseEvent<HTMLElement>) =>
+        setUserOptionsOpenMobile(event.currentTarget);
+
+
+    const handleNavigation = (text: string, navigate: NavigateFunction) => {
+        navigate(text);
+        handleMenuClose();
+    };
+
+    const getMenuClickHandler = (path: string, navigate: NavigateFunction) => {
+        return () => handleNavigation(path, navigate);
+    };
 
     return (
         <ShoppingCartContext.Provider
@@ -56,8 +100,19 @@ export const ShoppingCartProvider = ({ children }: shoppingCartChildren) => {
                 setPaymentMethod,
                 paymentMethod,
                 orderData,
-                setOrderData
-
+                setOrderData,
+                userOptionsOpen,
+                setUserOptionsOpen,
+                userOptionsOpenMobile,
+                setUserOptionsOpenMobile,
+                isMenuOpen,
+                isMobileMenuOpen,
+                handleMobileMenuClose,
+                handleMenuClose,
+                handleMobileMenuOpen,
+                handleNavigation,
+                getMenuClickHandler,
+                handleProfileMenuOpen
             } }
         >
             { children }

@@ -1,21 +1,21 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { IconButton, Box } from "@mui/material";
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import { userSignin } from "../../contexts/shopping-cart-context/shoppingCartContextTypes";
 import { linkToLanding } from "./styles";
+import { ShoppingCartContext } from "../../contexts/shopping-cart-context/shoppingCartContext";
 
 
 
-interface UserMenuProps {
-    userSignin?: userSignin | null;
-    handleProfileMenuOpen: (event: React.MouseEvent<HTMLElement>) => void;
-}
 
-const IsUserOptionsMenuOpen: React.FC<UserMenuProps> = ({
-    userSignin,
-    handleProfileMenuOpen,
-}) => {
+
+const IsUserOptionsMenuOpen = (
+) => {
+
+    const shoppingCartContext = useContext(ShoppingCartContext);
+    const { userSignin, handleProfileMenuOpen } = shoppingCartContext;
+
     const menuId = "user-menu";
 
     return (
