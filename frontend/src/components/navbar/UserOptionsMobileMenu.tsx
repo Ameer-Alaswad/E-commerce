@@ -1,26 +1,19 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import IconButton from '@mui/material/IconButton';
 import ShoppingCart from './ShoppingCart';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import ViewListIcon from '@mui/icons-material/ViewList';
+import { ShoppingCartContext } from '../../contexts/shopping-cart-context/shoppingCartContext';
+import { useNavigate } from 'react-router-dom';
 
-interface MobileMenuProps {
-    userOptionsOpenMobile: null | HTMLElement;
-    isMobileMenuOpen: boolean;
-    handleMobileMenuClose: () => void;
-    handleProfileMenuOpen: (event: React.MouseEvent<HTMLElement>) => void;
-    getMenuClickHandler: (path: string) => () => void;
-}
 
-const UserOptionsMobileMenu: React.FC<MobileMenuProps> = ({
-    userOptionsOpenMobile,
-    isMobileMenuOpen,
-    handleMobileMenuClose,
-    getMenuClickHandler,
-    handleProfileMenuOpen,
-}) => {
+const UserOptionsMobileMenu = () => {
+    const navigate = useNavigate()
+
+    const shoppingCartContext = useContext(ShoppingCartContext);
+    const { isMobileMenuOpen, handleMobileMenuClose, getMenuClickHandler, userOptionsOpenMobile, handleProfileMenuOpen } = shoppingCartContext;
     return (
         <Menu
             anchorEl={ userOptionsOpenMobile }
@@ -40,7 +33,7 @@ const UserOptionsMobileMenu: React.FC<MobileMenuProps> = ({
             <MenuItem>
                 <ShoppingCart />
             </MenuItem>
-            <MenuItem onClick={ getMenuClickHandler('/user/update') }>
+            <MenuItem onClick={ getMenuClickHandler('/user/update', navigate) }>
                 <IconButton
                     size="large"
                     aria-label="account of current user"
@@ -53,7 +46,7 @@ const UserOptionsMobileMenu: React.FC<MobileMenuProps> = ({
                 </IconButton>
                 <p>Profile</p>
             </MenuItem>
-            <MenuItem onClick={ getMenuClickHandler('/ordershistory') }>
+            <MenuItem onClick={ getMenuClickHandler('/ordershistory', navigate) }>
                 <IconButton
                     size="large"
                     aria-label="shopping cart"

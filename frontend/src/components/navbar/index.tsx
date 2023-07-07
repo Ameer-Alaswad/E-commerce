@@ -1,12 +1,10 @@
-import { AppBar, Box, Toolbar, IconButton, Typography } from "@mui/material";
-import MoreIcon from "@mui/icons-material/MoreVert";
+import { AppBar, Box, Toolbar, Typography } from "@mui/material";
 
 import { Link } from "react-router-dom";
 
 import ShoppingCart from "./ShoppingCart";
 import UserOptionsMobileMenu from "./UserOptionsMobileMenu";
 import UserOptionsMenu from "./UserOptionsMenu";
-import useProfileMenu from "./useProfileMenu";
 import ProductSearch from "./ProductSearch";
 
 import { linkToLanding, linkStyles, cartAndUserMenuStyles, mobileMenuStyles } from "./styles";
@@ -15,39 +13,6 @@ import IsUserOptionsMobileMenuOpen from "./IsUserOptionsMobileMenuOpen";
 
 export default function PrimarySearchAppBar() {
 
-    const {
-        userOptionsOpen,
-        userOptionsOpenMobile,
-        isMenuOpen,
-        isMobileMenuOpen,
-        handleProfileMenuOpen,
-        handleMobileMenuClose,
-        handleMenuClose,
-        handleMobileMenuOpen,
-        handleSignOut,
-        navigate,
-        userSignin,
-        getMenuClickHandler,
-    } = useProfileMenu();
-
-
-
-    const UserOptionsMenuProps = {
-        userOptionsOpen,
-        isMenuOpen,
-        handleMenuClose,
-        handleSignOut,
-        navigate,
-        getMenuClickHandler,
-    };
-    const UserOptionsMobileMenuProps = {
-        userOptionsOpenMobile,
-        isMobileMenuOpen,
-        handleMobileMenuClose,
-        handleProfileMenuOpen,
-        getMenuClickHandler,
-    };
-    const UserAccountMenuProps = { userSignin, handleProfileMenuOpen };
 
     return (
         <div id="header-container">
@@ -68,14 +33,14 @@ export default function PrimarySearchAppBar() {
                     <Box sx={ { display: { ...cartAndUserMenuStyles } } }>
                         <ShoppingCart />
                         <IsUserOptionsMenuOpen />
-                        <UserOptionsMenu { ...UserOptionsMenuProps } />
+                        <UserOptionsMenu />
                     </Box>
                     <Box sx={ { display: { ...mobileMenuStyles } } }>
-                        < IsUserOptionsMobileMenuOpen handleMobileMenuOpen={ handleMobileMenuOpen } />
+                        < IsUserOptionsMobileMenuOpen />
+                        <UserOptionsMobileMenu />
                     </Box>
                 </Toolbar>
             </AppBar>
-            <UserOptionsMobileMenu { ...UserOptionsMobileMenuProps } />
         </div>
     );
 }

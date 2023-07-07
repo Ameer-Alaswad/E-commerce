@@ -11,7 +11,6 @@ import {
     OrderData,
     UserData,
 } from "./shoppingCartContextTypes";
-import { useNavigate } from "react-router-dom";
 const addressDataInStorage = JSON.parse(
     localStorage.getItem("shippingCardAddress") || "{}"
 );
@@ -86,6 +85,23 @@ export const ShoppingCartProvider = ({ children }: shoppingCartChildren) => {
         return () => handleNavigation(path, navigate);
     };
 
+    const handleSignOut = (navigate: NavigateFunction) => {
+        localStorage.removeItem('userData');
+        localStorage.removeItem('shippingCardAddress');
+        setShippingAddressData({
+            fullName: '',
+            address: '',
+            city: '',
+            postalCode: '',
+            country: ''
+        });
+        setCartItems([]);
+        setUserSignin(null);
+        setPaymentMethod('');
+        setUserOptionsOpen(null);
+        handleMobileMenuClose();
+        navigate('/user/signin');
+    };
     return (
         <ShoppingCartContext.Provider
             value={ {
@@ -112,7 +128,8 @@ export const ShoppingCartProvider = ({ children }: shoppingCartChildren) => {
                 handleMobileMenuOpen,
                 handleNavigation,
                 getMenuClickHandler,
-                handleProfileMenuOpen
+                handleProfileMenuOpen,
+                handleSignOut
             } }
         >
             { children }

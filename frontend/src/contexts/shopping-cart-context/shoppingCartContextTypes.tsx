@@ -78,6 +78,7 @@ export type ShoppingCart = {
     handleNavigation: (text: string, navigate: NavigateFunction) => void;
     getMenuClickHandler: (path: string, navigate: NavigateFunction) => () => void;
     handleProfileMenuOpen: (event: React.MouseEvent<HTMLElement>) => void
+    handleSignOut: (navigate: NavigateFunction) => void;
 }
 export type UserData = {
     _id: string;

@@ -3,24 +3,11 @@ import { useContext } from 'react';
 import { ShoppingCartContext } from '../../contexts/shopping-cart-context/shoppingCartContext';
 import { useNavigate } from 'react-router-dom';
 
-interface MenuProfileProps {
-    userOptionsOpen: HTMLElement | null;
-    isMenuOpen: boolean;
-    handleMenuClose: () => void;
-    handleSignOut: () => void;
-    navigate: (path: string) => void;
-    getMenuClickHandler: (path: string) => () => void
 
-}
-
-const UserOptionsMenu: React.FC<MenuProfileProps> = ({
-
-    handleSignOut,
-
-}) => {
+const UserOptionsMenu = () => {
     const navigate = useNavigate()
     const shoppingCartContext = useContext(ShoppingCartContext);
-    const { userOptionsOpen, isMenuOpen, handleMenuClose, getMenuClickHandler } = shoppingCartContext;
+    const { userOptionsOpen, isMenuOpen, handleMenuClose, getMenuClickHandler, handleSignOut } = shoppingCartContext;
     const menuId = "primary-search-account-menu";
 
     return (
@@ -41,7 +28,7 @@ const UserOptionsMenu: React.FC<MenuProfileProps> = ({
         >
             <MenuItem onClick={ getMenuClickHandler("/user/update", navigate) }>Profile</MenuItem>
             <MenuItem onClick={ getMenuClickHandler('/ordershistory', navigate) }>My Orders</MenuItem>
-            <MenuItem onClick={ handleSignOut }>Sign out</MenuItem>
+            <MenuItem onClick={ () => handleSignOut(navigate) }>Sign out</MenuItem>
         </Menu>
     );
 };

@@ -1,11 +1,13 @@
 import { IconButton } from '@mui/material'
 import MoreIcon from "@mui/icons-material/MoreVert";
+import { useContext } from 'react';
+import { ShoppingCartContext } from '../../contexts/shopping-cart-context/shoppingCartContext';
 
-interface IsUserOptionsMobileMenuOpenProps {
-    handleMobileMenuOpen: (event: React.MouseEvent<HTMLElement>) => void;
-}
 
-const IsUserOptionsMobileMenuOpen: React.FC<IsUserOptionsMobileMenuOpenProps> = ({ handleMobileMenuOpen }) => {
+
+const IsUserOptionsMobileMenuOpen = () => {
+    const shoppingCartContext = useContext(ShoppingCartContext);
+    const { handleMobileMenuOpen } = shoppingCartContext;
     const mobileMenuId = "primary-search-account-menu-mobile";
 
     return (
