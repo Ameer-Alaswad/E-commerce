@@ -1,14 +1,12 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { IconButton, Box } from "@mui/material";
 import AccountCircle from "@mui/icons-material/AccountCircle";
-import { userSignin } from "../../contexts/shopping-cart-context/shoppingCartContextTypes";
-import { linkToLanding } from "./styles";
+
+import { landingLinkStyles } from "./styles";
+
 import { ShoppingCartContext } from "../../contexts/shopping-cart-context/shoppingCartContext";
-
-
-
-
+import { SIGNIN_PATH, SIGNIN_TEXT, SIGNUP_PATH, SIGNUP_TEXT } from "../constants";
 
 const IsUserOptionsMenuOpen = (
 ) => {
@@ -16,37 +14,34 @@ const IsUserOptionsMenuOpen = (
     const shoppingCartContext = useContext(ShoppingCartContext);
     const { userSignin, handleProfileMenuOpen } = shoppingCartContext;
 
-    const menuId = "user-menu";
-
-    return (
-        <>
-            { userSignin ? (
-                <IconButton
-                    size="large"
-                    edge="end"
-                    aria-label="account of current user"
-                    aria-controls={ menuId }
-                    aria-haspopup="true"
-                    onClick={ handleProfileMenuOpen }
-                    color="inherit"
-                >
-                    { userSignin.name }&nbsp;
-                    <AccountCircle />
-                </IconButton>
-            ) : (
-                <Box sx={ { marginTop: "11px" } }>
-                    <Link style={ linkToLanding } to="/user/signin">
-                        Signin!
-                    </Link>{ " " }
-                    /
-                    <Link style={ linkToLanding } to="/user/signup">
-                        { " " }
-                        Signup!
-                    </Link>
-                </Box>
-            ) }
-        </>
-    );
+    if (userSignin) {
+        const { name: userName } = userSignin
+        return (
+            <IconButton
+                size="large"
+                edge="end"
+                aria-label="account of current user"
+                aria-haspopup="true"
+                onClick={ handleProfileMenuOpen }
+                color="inherit"
+            >
+                { userName }&nbsp;
+                <AccountCircle />
+            </IconButton>
+        );
+    } else {
+        return (
+            <Box sx={ { marginTop: "11px" } }>
+                <Link style={ landingLinkStyles } to={ SIGNIN_PATH }>
+                    { SIGNIN_TEXT }
+                </Link>{ " " }
+                /
+                <Link style={ landingLinkStyles } to={ SIGNUP_PATH }>
+                    { SIGNUP_TEXT }
+                </Link>
+            </Box>
+        );
+    }
 };
 
 export default IsUserOptionsMenuOpen;

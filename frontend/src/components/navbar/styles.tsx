@@ -6,21 +6,21 @@ const displayConfig = {
     mdFlex: { md: "flex" },
 };
 
-export const linkToLanding = {
+export const landingLinkStyles = {
     color: "white",
     textDecoration: "none",
 }
-export const linkStyles = {
+export const linkDisplayStyles = {
     ...displayConfig.xsNone,
     ...displayConfig.smBlock,
 };
 
-export const cartAndUserMenuStyles = {
+export const cartAndUserMenuDisplayStyles = {
     ...displayConfig.xsNone,
     ...displayConfig.mdFlex,
 };
 
-export const mobileMenuStyles = {
+export const mobileMenuDisplayStyles = {
     ...displayConfig.xsFlex,
     ...displayConfig.mdNone,
 };
