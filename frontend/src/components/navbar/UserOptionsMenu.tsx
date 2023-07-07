@@ -1,34 +1,48 @@
-import { Menu, MenuItem } from '@mui/material';
-import { useContext } from 'react';
-import { ShoppingCartContext } from '../../contexts/shopping-cart-context/shoppingCartContext';
-import { useNavigate } from 'react-router-dom';
+import { useContext } from "react";
+import { useNavigate } from "react-router-dom";
 
+import { Menu, MenuItem } from "@mui/material";
+
+import { ShoppingCartContext } from "../../contexts/shopping-cart-context/shoppingCartContext";
+import { MY_ORDERS_TEXT, ORDERS_HISTORY_PATH, PROFILE_TEXT, SIGNOUT_TEXT, UPDATE_USER_PATH } from "../constants";
 
 const UserOptionsMenu = () => {
-    const navigate = useNavigate()
+
+    const navigate = useNavigate();
     const shoppingCartContext = useContext(ShoppingCartContext);
-    const { userOptionsOpen, isMenuOpen, handleMenuClose, getMenuClickHandler, handleSignOut } = shoppingCartContext;
+    const {
+        userOptionsOpen,
+        isMenuOpen,
+        handleMenuClose,
+        getMenuClickHandler,
+        handleSignOut,
+    } = shoppingCartContext;
+
     const menuId = "primary-search-account-menu";
 
     return (
         <Menu
             anchorEl={ userOptionsOpen }
             anchorOrigin={ {
-                vertical: 'top',
-                horizontal: 'right',
+                vertical: "top",
+                horizontal: "right",
             } }
             id={ menuId }
             keepMounted
             transformOrigin={ {
-                vertical: 'top',
-                horizontal: 'right',
+                vertical: "top",
+                horizontal: "right",
             } }
             open={ isMenuOpen }
             onClose={ handleMenuClose }
         >
-            <MenuItem onClick={ getMenuClickHandler("/user/update", navigate) }>Profile</MenuItem>
-            <MenuItem onClick={ getMenuClickHandler('/ordershistory', navigate) }>My Orders</MenuItem>
-            <MenuItem onClick={ () => handleSignOut(navigate) }>Sign out</MenuItem>
+            <MenuItem onClick={ getMenuClickHandler(UPDATE_USER_PATH, navigate) }>
+                { PROFILE_TEXT }
+            </MenuItem>
+            <MenuItem onClick={ getMenuClickHandler(ORDERS_HISTORY_PATH, navigate) }>
+                { MY_ORDERS_TEXT }
+            </MenuItem>
+            <MenuItem onClick={ () => handleSignOut(navigate) }>{ SIGNOUT_TEXT }</MenuItem>
         </Menu>
     );
 };

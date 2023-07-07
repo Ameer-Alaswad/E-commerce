@@ -1,31 +1,40 @@
-import React, { useContext } from 'react';
-import Menu from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
-import IconButton from '@mui/material/IconButton';
-import ShoppingCart from './ShoppingCart';
-import AccountCircle from '@mui/icons-material/AccountCircle';
-import ViewListIcon from '@mui/icons-material/ViewList';
-import { ShoppingCartContext } from '../../contexts/shopping-cart-context/shoppingCartContext';
-import { useNavigate } from 'react-router-dom';
+import { useContext } from "react";
+import { useNavigate } from "react-router-dom";
 
+import Menu from "@mui/material/Menu";
+import MenuItem from "@mui/material/MenuItem";
+import IconButton from "@mui/material/IconButton";
+import AccountCircle from "@mui/icons-material/AccountCircle";
+import ViewListIcon from "@mui/icons-material/ViewList";
+
+import { ShoppingCartContext } from "../../contexts/shopping-cart-context/shoppingCartContext";
+import { MY_ORDERS_TEXT, ORDERS_HISTORY_PATH, PROFILE_TEXT, UPDATE_USER_PATH } from "../constants";
+import ShoppingCart from "./ShoppingCart";
 
 const UserOptionsMobileMenu = () => {
-    const navigate = useNavigate()
+    const navigate = useNavigate();
 
     const shoppingCartContext = useContext(ShoppingCartContext);
-    const { isMobileMenuOpen, handleMobileMenuClose, getMenuClickHandler, userOptionsOpenMobile, handleProfileMenuOpen } = shoppingCartContext;
+    const {
+        isMobileMenuOpen,
+        handleMobileMenuClose,
+        getMenuClickHandler,
+        userOptionsOpenMobile,
+        handleProfileMenuOpen,
+    } = shoppingCartContext;
+
     return (
         <Menu
             anchorEl={ userOptionsOpenMobile }
             anchorOrigin={ {
-                vertical: 'top',
-                horizontal: 'right',
+                vertical: "top",
+                horizontal: "right",
             } }
             id="primary-search-account-menu-mobile"
             keepMounted
             transformOrigin={ {
-                vertical: 'top',
-                horizontal: 'right',
+                vertical: "top",
+                horizontal: "right",
             } }
             open={ isMobileMenuOpen }
             onClose={ handleMobileMenuClose }
@@ -33,7 +42,7 @@ const UserOptionsMobileMenu = () => {
             <MenuItem>
                 <ShoppingCart />
             </MenuItem>
-            <MenuItem onClick={ getMenuClickHandler('/user/update', navigate) }>
+            <MenuItem onClick={ getMenuClickHandler(UPDATE_USER_PATH, navigate) }>
                 <IconButton
                     size="large"
                     aria-label="account of current user"
@@ -44,9 +53,9 @@ const UserOptionsMobileMenu = () => {
                 >
                     <AccountCircle />
                 </IconButton>
-                <p>Profile</p>
+                <p>{ PROFILE_TEXT }</p>
             </MenuItem>
-            <MenuItem onClick={ getMenuClickHandler('/ordershistory', navigate) }>
+            <MenuItem onClick={ getMenuClickHandler(ORDERS_HISTORY_PATH, navigate) }>
                 <IconButton
                     size="large"
                     aria-label="shopping cart"
@@ -56,7 +65,7 @@ const UserOptionsMobileMenu = () => {
                 >
                     <ViewListIcon />
                 </IconButton>
-                <p>My Orders</p>
+                <p>{ MY_ORDERS_TEXT }</p>
             </MenuItem>
         </Menu>
     );

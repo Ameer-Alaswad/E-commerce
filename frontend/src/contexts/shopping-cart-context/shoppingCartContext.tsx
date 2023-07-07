@@ -1,6 +1,6 @@
-// react
+// This Component requires refactoring.
 import { createContext, useState } from "react";
-// types
+
 import { NavigateFunction } from "react-router-dom";
 import {
     Product,
