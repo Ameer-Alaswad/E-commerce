@@ -8,7 +8,7 @@ import { landingLinkStyles } from "./styles";
 import { ShoppingCartContext } from "../../contexts/shopping-cart-context/shoppingCartContext";
 import { SIGNIN_PATH, SIGNIN_TEXT, SIGNUP_PATH, SIGNUP_TEXT } from "../constants";
 
-const IsUserOptionsMenuOpen = (
+const UserOptionsButton = (
 ) => {
 
     const shoppingCartContext = useContext(ShoppingCartContext);
@@ -44,4 +44,4 @@ const IsUserOptionsMenuOpen = (
     }
 };
 
-export default IsUserOptionsMenuOpen;
+export default UserOptionsButton;

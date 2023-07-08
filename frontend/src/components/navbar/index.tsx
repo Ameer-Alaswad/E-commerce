@@ -12,9 +12,9 @@ import ShoppingCart from "./ShoppingCart";
 import UserOptionsMobileMenu from "./UserOptionsMobileMenu";
 import UserOptionsMenu from "./UserOptionsMenu";
 import ProductSearch from "./ProductSearch";
-import IsUserOptionsMenuOpen from "./IsUserOptionsMenuOpen";
-import IsUserOptionsMobileMenuOpen from "./IsUserOptionsMobileMenuOpen";
 import { HOME_PATH } from "../constants";
+import UserOptionsButton from "./ UserOptionsButton";
+import UserOptionsMobileButton from "./UserOptionsMobileButton";
 
 const Navbar = () => (
     <div id="navbar-container">
@@ -34,11 +34,11 @@ const Navbar = () => (
                 <Box sx={ { flexGrow: 1 } } />
                 <Box sx={ { display: { ...cartAndUserMenuDisplayStyles } } }>
                     <ShoppingCart />
-                    <IsUserOptionsMenuOpen />
+                    < UserOptionsButton />
                     <UserOptionsMenu />
                 </Box>
                 <Box sx={ { display: { ...mobileMenuDisplayStyles } } }>
-                    <IsUserOptionsMobileMenuOpen />
+                    <UserOptionsMobileButton />
                     <UserOptionsMobileMenu />
                 </Box>
             </Toolbar>
