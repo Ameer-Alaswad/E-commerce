@@ -7,7 +7,7 @@ import { Card, CardContent, Typography } from "@mui/material";
 import { cartCardStyle } from "./cartStyles";
 import ItemsList from "../checkout/place-order/order-itmes/ItemsList";
 import EmptyCartMessage from "./EmptyCartMessage";
-import { HOME_PATH } from "../constants";
+import { HOME_PATH } from "../constants/path";
 
 
 const CartItemsSection = () => {

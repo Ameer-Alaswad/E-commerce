@@ -1,3 +1,4 @@
+// This component requires refactoring 
 import { useContext, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -16,8 +17,9 @@ import {
     buttonContainerStyle,
     buttonStyle,
 } from "./cartStyles";
-import { CURRENCY_DOLLAR, SHIPPING_PATH, SIGNIN_PATH } from "../constants";
+import { SHIPPING_PATH, SIGNIN_PATH } from "../constants/path";
 import { calculateCartTotalPrices } from "../checkout/utils";
+import { CURRENCY_DOLLAR } from "../constants/text";
 
 const CartSummarySection = () => {
     const navigate = useNavigate();

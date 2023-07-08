@@ -8,7 +8,8 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 
 import { ShoppingCartContext } from '../../contexts/shopping-cart-context/shoppingCartContext';
 import { Typography } from "@mui/material";
-import { CART_TEXT, SHOPPING_CART_PATH } from "../constants";
+import { SHOPPING_CART_PATH } from "../constants/path";
+import { CART_TEXT } from "../constants/text";
 
 const ShoppingCart = () => {
     const navigate = useCustomNavigate();

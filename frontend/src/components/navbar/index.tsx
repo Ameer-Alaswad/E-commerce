@@ -12,7 +12,7 @@ import ShoppingCart from "./ShoppingCart";
 import UserOptionsMobileMenu from "./UserOptionsMobileMenu";
 import UserOptionsMenu from "./UserOptionsMenu";
 import ProductSearch from "./ProductSearch";
-import { HOME_PATH } from "../constants";
+import { HOME_PATH } from "../constants/path";
 import UserOptionsButton from "./ UserOptionsButton";
 import UserOptionsMobileButton from "./UserOptionsMobileButton";
 

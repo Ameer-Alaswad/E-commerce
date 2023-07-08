@@ -6,7 +6,8 @@ import AccountCircle from "@mui/icons-material/AccountCircle";
 import { landingLinkStyles } from "./styles";
 
 import { ShoppingCartContext } from "../../contexts/shopping-cart-context/shoppingCartContext";
-import { SIGNIN_PATH, SIGNIN_TEXT, SIGNUP_PATH, SIGNUP_TEXT } from "../constants";
+import { SIGNIN_PATH, SIGNUP_PATH } from "../constants/path";
+import { SIGNIN_TEXT, SIGNUP_TEXT } from "../constants/text";
 
 const UserOptionsButton = (
 ) => {

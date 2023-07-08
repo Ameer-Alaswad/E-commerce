@@ -4,7 +4,8 @@ import useCustomNavigate from "../../hooks/useCustomNavigate";
 import { Menu, MenuItem } from "@mui/material";
 
 import { ShoppingCartContext } from "../../contexts/shopping-cart-context/shoppingCartContext";
-import { MY_ORDERS_TEXT, ORDERS_HISTORY_PATH, PROFILE_TEXT, SIGNOUT_TEXT, UPDATE_USER_PATH } from "../constants";
+import { ORDERS_HISTORY_PATH, UPDATE_USER_PATH } from "../constants/path";
+import { MY_ORDERS_TEXT, PROFILE_TEXT, SIGNOUT_TEXT } from "../constants/text";
 
 const UserOptionsMenu = () => {
 

@@ -2,7 +2,7 @@ import useCustomLocation from '../../hooks/useCustomLocation';
 import SearchIcon from "@mui/icons-material/Search";
 
 import { SearchContainer, SearchIconWrapper, SearchInput } from "./MuiComponents";
-import { HOME_PATH } from '../constants';
+import { HOME_PATH } from '../constants/path';
 
 const ProductSearch = () => {
 
