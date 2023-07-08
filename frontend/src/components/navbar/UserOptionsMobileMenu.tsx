@@ -8,7 +8,7 @@ import AccountCircle from "@mui/icons-material/AccountCircle";
 import ViewListIcon from "@mui/icons-material/ViewList";
 
 import { ShoppingCartContext } from "../../contexts/shopping-cart-context/shoppingCartContext";
-import { MY_ORDERS_TEXT, ORDERS_HISTORY_PATH, PROFILE_TEXT, UPDATE_USER_PATH } from "../constants";
+import { MY_ORDERS_TEXT, ORDERS_HISTORY_PATH, PROFILE_TEXT, SIGNOUT_TEXT, UPDATE_USER_PATH } from "../constants";
 import ShoppingCart from "./ShoppingCart";
 
 const UserOptionsMobileMenu = () => {
@@ -21,6 +21,7 @@ const UserOptionsMobileMenu = () => {
         getMenuClickHandler,
         userOptionsOpenMobile,
         handleProfileMenuOpen,
+        handleSignOut
     } = shoppingCartContext;
 
     return (
@@ -67,6 +68,8 @@ const UserOptionsMobileMenu = () => {
                 </IconButton>
                 <p>{ MY_ORDERS_TEXT }</p>
             </MenuItem>
+            <MenuItem onClick={ () => handleSignOut(navigate) }>{ SIGNOUT_TEXT }</MenuItem>
+
         </Menu>
     );
 };
