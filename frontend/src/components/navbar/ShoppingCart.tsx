@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { useNavigate } from "react-router";
+import useCustomNavigate from "../../hooks/useCustomNavigate";
 
 import IconButton from '@mui/material/IconButton';
 import Badge from '@mui/material/Badge';
@@ -11,7 +11,7 @@ import { Typography } from "@mui/material";
 import { CART_TEXT, SHOPPING_CART_PATH } from "../constants";
 
 const ShoppingCart = () => {
-    const navigate = useNavigate();
+    const navigate = useCustomNavigate();
     const matchesTabletSize = useMediaQuery('(max-width:900px)');
 
     const shoppingCartContext = useContext(ShoppingCartContext)

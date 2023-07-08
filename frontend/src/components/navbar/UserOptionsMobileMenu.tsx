@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { useNavigate } from "react-router-dom";
+import useCustomNavigate from "../../hooks/useCustomNavigate";
 
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
@@ -12,7 +12,7 @@ import { MY_ORDERS_TEXT, ORDERS_HISTORY_PATH, PROFILE_TEXT, UPDATE_USER_PATH } f
 import ShoppingCart from "./ShoppingCart";
 
 const UserOptionsMobileMenu = () => {
-    const navigate = useNavigate();
+    const navigate = useCustomNavigate()
 
     const shoppingCartContext = useContext(ShoppingCartContext);
     const {
