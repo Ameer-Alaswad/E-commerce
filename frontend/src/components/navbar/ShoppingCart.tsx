@@ -1,15 +1,13 @@
 import { useContext } from "react";
-import useCustomNavigate from "../../hooks/useCustomNavigate";
 
 import IconButton from '@mui/material/IconButton';
 import Badge from '@mui/material/Badge';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-
+import useNavigation from "../../hooks/useNavigation"
 import { ShoppingCartContext } from '../../contexts/shopping-cart-context/shoppingCartContext';
-import { SHOPPING_CART_PATH } from "../constants/path";
 
 const ShoppingCart = () => {
-    const navigate = useCustomNavigate();
+    const { navigateShoppingCart } = useNavigation();
 
     const shoppingCartContext = useContext(ShoppingCartContext)
     const { cartItems } = shoppingCartContext;
@@ -17,7 +15,7 @@ const ShoppingCart = () => {
     return (
         <>
             <IconButton
-                onClick={ () => navigate(SHOPPING_CART_PATH) }
+                onClick={ navigateShoppingCart }
                 size="large"
                 aria-label="shopping cart"
                 color="inherit"

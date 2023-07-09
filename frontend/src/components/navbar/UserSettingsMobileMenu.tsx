@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import useCustomNavigate from "../../hooks/useCustomNavigate";
+import useNavigation from "../../hooks/useNavigation";
 
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
@@ -9,7 +9,6 @@ import ViewListIcon from "@mui/icons-material/ViewList";
 import LogoutIcon from '@mui/icons-material/Logout';
 
 import { ShoppingCartContext } from "../../contexts/shopping-cart-context/shoppingCartContext";
-import { ORDERS_HISTORY_PATH, UPDATE_USER_PATH } from "../constants/path";
 import { MY_ORDERS_TEXT, PROFILE_TEXT, SIGNOUT_TEXT } from "../constants/text";
 import { Typography } from "@mui/material";
 
@@ -19,11 +18,11 @@ type UserSettingsMobileMenuProps = {
 }
 
 const UserSettingsMobileMenu: React.FC<UserSettingsMobileMenuProps> = ({ isMobileMenuOpen }) => {
-    const navigate = useCustomNavigate()
+    const { navigateUpdateUser, navigateOrdersHistory, navigateUserSignIn } = useNavigation()
 
     const {
         handleMobileMenuClose,
-        getMenuClickHandler,
+        handleNavigation,
         userOptionsOpenMobile,
         handleProfileMenuOpen,
         handleSignOut
@@ -45,7 +44,7 @@ const UserSettingsMobileMenu: React.FC<UserSettingsMobileMenuProps> = ({ isMobil
             open={ isMobileMenuOpen }
             onClose={ handleMobileMenuClose }
         >
-            <MenuItem onClick={ getMenuClickHandler(UPDATE_USER_PATH, navigate) }>
+            <MenuItem onClick={ () => handleNavigation(navigateUpdateUser) }>
                 <IconButton
                     size="large"
                     aria-label="account of current user"
@@ -58,7 +57,7 @@ const UserSettingsMobileMenu: React.FC<UserSettingsMobileMenuProps> = ({ isMobil
                 </IconButton>
                 <Typography>{ PROFILE_TEXT }</Typography>
             </MenuItem>
-            <MenuItem onClick={ getMenuClickHandler(ORDERS_HISTORY_PATH, navigate) }>
+            <MenuItem onClick={ () => handleNavigation(navigateOrdersHistory) }>
                 <IconButton
                     size="large"
                     aria-label="shopping cart"
@@ -70,7 +69,7 @@ const UserSettingsMobileMenu: React.FC<UserSettingsMobileMenuProps> = ({ isMobil
                 </IconButton>
                 <Typography>{ MY_ORDERS_TEXT }</Typography>
             </MenuItem>
-            <MenuItem onClick={ () => handleSignOut(navigate) }>
+            <MenuItem onClick={ () => handleSignOut(navigateUserSignIn) }>
                 <IconButton
                     size="large"
                     aria-label="shopping cart"
