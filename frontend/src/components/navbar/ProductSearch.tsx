@@ -2,12 +2,11 @@ import useCustomLocation from '../../hooks/useCustomLocation';
 import SearchIcon from "@mui/icons-material/Search";
 
 import { SearchContainer, SearchIconWrapper, SearchInput } from "./MuiComponents";
-import { HOME_PATH } from '../constants/path';
 
 const ProductSearch = () => {
 
-    const location = useCustomLocation();
-    const isHomePage = location.pathname === HOME_PATH;
+    const { isHomePage } = useCustomLocation();
+
 
     return isHomePage ? (
         <SearchContainer>
