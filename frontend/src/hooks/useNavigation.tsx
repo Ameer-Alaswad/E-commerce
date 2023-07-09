@@ -16,7 +16,6 @@ const useCustomNavigate = () => {
     return {
         navigateShoppingCart,
         navigateUserSignIn,
-        navigate,
         navigateUpdateUser,
         navigateOrdersHistory,
     };
