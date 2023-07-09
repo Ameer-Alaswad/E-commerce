@@ -76,8 +76,8 @@ export const ShoppingCartProvider = ({ children }: shoppingCartChildren) => {
         setUserOptionsOpenMobile(event.currentTarget);
 
 
-    const handleNavigation = (navigationDestiny: () => void) => {
-        navigationDestiny()
+    const handleNavigation = (navigationPath: () => void) => {
+        navigationPath()
         handleMenuClose();
     };
 
