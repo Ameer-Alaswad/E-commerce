@@ -6,7 +6,7 @@ import {
     UPDATE_USER_PATH,
 } from "../components/constants/path";
 
-const useCustomNavigate = () => {
+const useNavigation = () => {
     const navigate = useNavigate();
     const navigateShoppingCart = () => navigate(SHOPPING_CART_PATH);
     const navigateUserSignIn = () => navigate(SIGNIN_PATH);
@@ -21,4 +21,4 @@ const useCustomNavigate = () => {
     };
 };
 
-export default useCustomNavigate;
+export default useNavigation;
