@@ -11,6 +11,7 @@ import {
     OrderData,
     UserData,
 } from "./shoppingCartContextTypes";
+import { SIGNIN_PATH } from "../../components/constants/path";
 const addressDataInStorage = JSON.parse(
     localStorage.getItem("shippingCardAddress") || "{}"
 );
@@ -100,7 +101,7 @@ export const ShoppingCartProvider = ({ children }: shoppingCartChildren) => {
         setPaymentMethod('');
         setUserOptionsOpen(null);
         handleMobileMenuClose();
-        navigate('/user/signin');
+        navigate(SIGNIN_PATH);
     };
     return (
         <ShoppingCartContext.Provider
