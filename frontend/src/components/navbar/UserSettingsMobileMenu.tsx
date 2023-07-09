@@ -11,6 +11,7 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import { ShoppingCartContext } from "../../contexts/shopping-cart-context/shoppingCartContext";
 import { ORDERS_HISTORY_PATH, UPDATE_USER_PATH } from "../constants/path";
 import { MY_ORDERS_TEXT, PROFILE_TEXT, SIGNOUT_TEXT } from "../constants/text";
+import { Typography } from "@mui/material";
 
 
 type UserSettingsMobileMenuProps = {
@@ -20,15 +21,22 @@ type UserSettingsMobileMenuProps = {
 const UserSettingsMobileMenu: React.FC<UserSettingsMobileMenuProps> = ({ isMobileMenuOpen }) => {
     const navigate = useCustomNavigate()
 
-    const shoppingCartContext = useContext(ShoppingCartContext);
+    // const shoppingCartContext = useContext(ShoppingCartContext);
+    // const {
+    //     handleMobileMenuClose,
+    //     getMenuClickHandler,
+    //     userOptionsOpenMobile,
+    //     handleProfileMenuOpen,
+    //     handleSignOut
+    // } = shoppingCartContext;
+
     const {
         handleMobileMenuClose,
         getMenuClickHandler,
         userOptionsOpenMobile,
         handleProfileMenuOpen,
         handleSignOut
-    } = shoppingCartContext;
-
+    } = useContext(ShoppingCartContext);
     return (
         <Menu
             anchorEl={ userOptionsOpenMobile }
@@ -56,7 +64,7 @@ const UserSettingsMobileMenu: React.FC<UserSettingsMobileMenuProps> = ({ isMobil
                 >
                     <AccountCircle />
                 </IconButton>
-                <p>{ PROFILE_TEXT }</p>
+                <Typography>{ PROFILE_TEXT }</Typography>
             </MenuItem>
             <MenuItem onClick={ getMenuClickHandler(ORDERS_HISTORY_PATH, navigate) }>
                 <IconButton
@@ -68,7 +76,7 @@ const UserSettingsMobileMenu: React.FC<UserSettingsMobileMenuProps> = ({ isMobil
                 >
                     <ViewListIcon />
                 </IconButton>
-                <p>{ MY_ORDERS_TEXT }</p>
+                <Typography>{ MY_ORDERS_TEXT }</Typography>
             </MenuItem>
             <MenuItem onClick={ () => handleSignOut(navigate) }>
                 <IconButton
@@ -80,10 +88,10 @@ const UserSettingsMobileMenu: React.FC<UserSettingsMobileMenuProps> = ({ isMobil
                 >
                     <LogoutIcon />
                 </IconButton>
-                <p>{ SIGNOUT_TEXT }</p>
+                <Typography >{ SIGNOUT_TEXT }</Typography>
             </MenuItem>
 
-        </Menu>
+        </Menu >
     );
 };
 
