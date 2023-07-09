@@ -21,15 +21,6 @@ type UserSettingsMobileMenuProps = {
 const UserSettingsMobileMenu: React.FC<UserSettingsMobileMenuProps> = ({ isMobileMenuOpen }) => {
     const navigate = useCustomNavigate()
 
-    // const shoppingCartContext = useContext(ShoppingCartContext);
-    // const {
-    //     handleMobileMenuClose,
-    //     getMenuClickHandler,
-    //     userOptionsOpenMobile,
-    //     handleProfileMenuOpen,
-    //     handleSignOut
-    // } = shoppingCartContext;
-
     const {
         handleMobileMenuClose,
         getMenuClickHandler,
@@ -37,6 +28,7 @@ const UserSettingsMobileMenu: React.FC<UserSettingsMobileMenuProps> = ({ isMobil
         handleProfileMenuOpen,
         handleSignOut
     } = useContext(ShoppingCartContext);
+
     return (
         <Menu
             anchorEl={ userOptionsOpenMobile }
@@ -90,7 +82,6 @@ const UserSettingsMobileMenu: React.FC<UserSettingsMobileMenuProps> = ({ isMobil
                 </IconButton>
                 <Typography >{ SIGNOUT_TEXT }</Typography>
             </MenuItem>
-
         </Menu >
     );
 };

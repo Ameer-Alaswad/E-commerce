@@ -10,8 +10,7 @@ interface UserSettingMenuProps {
 
 const UserSettingMenu: React.FC<UserSettingMenuProps> = ({ userName }) => {
 
-    const shoppingCartContext = useContext(ShoppingCartContext);
-    const { handleProfileMenuOpen } = shoppingCartContext;
+    const { handleProfileMenuOpen } = useContext(ShoppingCartContext);
 
     return (
         <IconButton

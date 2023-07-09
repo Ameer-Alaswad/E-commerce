@@ -11,13 +11,12 @@ type UserSettingsMenuProps = {
 }
 const UserSettingsMenu: React.FC<UserSettingsMenuProps> = ({ isMenuOpen }) => {
     const navigate = useCustomNavigate();
-    const shoppingCartContext = useContext(ShoppingCartContext);
     const {
         userOptionsOpen,
         handleMenuClose,
         getMenuClickHandler,
         handleSignOut,
-    } = shoppingCartContext;
+    } = useContext(ShoppingCartContext);
 
     const menuId = "primary-search-account-menu";
 

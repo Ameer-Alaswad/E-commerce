@@ -6,8 +6,7 @@ import MoreIcon from "@mui/icons-material/MoreVert";
 
 const UserSettingsMobileButton = () => {
 
-    const shoppingCartContext = useContext(ShoppingCartContext);
-    const { handleMobileMenuOpen } = shoppingCartContext;
+    const { handleMobileMenuOpen } = useContext(ShoppingCartContext);
 
     return (
         <>

@@ -9,8 +9,7 @@ import { useContext } from "react";
 import { ShoppingCartContext } from "../../contexts/shopping-cart-context/shoppingCartContext";
 
 const Navbar = () => {
-    const shoppingCartContext = useContext(ShoppingCartContext);
-    const { userSignin } = shoppingCartContext;
+    const { userSignin } = useContext(ShoppingCartContext);
 
     if (!userSignin) {
         return null;

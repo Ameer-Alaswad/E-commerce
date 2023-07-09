@@ -13,12 +13,11 @@ interface UserSettingsProps {
 
 const UserSettings: React.FC<UserSettingsProps> = ({ userName }) => {
 
-    const shoppingCartContext = useContext(ShoppingCartContext);
-
     const {
         isMenuOpen,
         isMobileMenuOpen
-    } = shoppingCartContext;
+    } = useContext(ShoppingCartContext);
+
 
     return (
         <>
