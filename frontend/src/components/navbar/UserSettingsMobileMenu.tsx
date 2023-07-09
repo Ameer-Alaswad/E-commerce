@@ -44,9 +44,6 @@ const UserSettingsMobileMenu: React.FC<UserSettingsMobileMenuProps> = ({ isMobil
             open={ isMobileMenuOpen }
             onClose={ handleMobileMenuClose }
         >
-            <MenuItem>
-                <ShoppingCart />
-            </MenuItem>
             <MenuItem onClick={ getMenuClickHandler(UPDATE_USER_PATH, navigate) }>
                 <IconButton
                     size="large"

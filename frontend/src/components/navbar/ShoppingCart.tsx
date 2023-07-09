@@ -13,7 +13,6 @@ import { CART_TEXT } from "../constants/text";
 
 const ShoppingCart = () => {
     const navigate = useCustomNavigate();
-    const matchesTabletSize = useMediaQuery('(max-width:900px)');
 
     const shoppingCartContext = useContext(ShoppingCartContext)
     const { cartItems } = shoppingCartContext;
@@ -30,7 +29,6 @@ const ShoppingCart = () => {
                     <ShoppingCartIcon />
                 </Badge>
             </IconButton>
-            { matchesTabletSize && <Typography>{ CART_TEXT }</Typography> }
         </>
     )
 }
