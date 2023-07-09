@@ -9,6 +9,7 @@ interface UserOptionsButtonProps {
 }
 
 const UserOptionsButton: React.FC<UserOptionsButtonProps> = ({ userName }) => {
+
     const shoppingCartContext = useContext(ShoppingCartContext);
     const { handleProfileMenuOpen } = shoppingCartContext;
 

@@ -17,23 +17,24 @@ import { ShoppingCartContext } from "../../contexts/shopping-cart-context/shoppi
 import UserAuthenticationLinks from "./UserAuthenticationLinks";
 
 const Navbar = () => {
-
     const shoppingCartContext = useContext(ShoppingCartContext);
     const { userSignin } = shoppingCartContext;
 
-    function renderUserNavigationWithOptions() {
-        if (userSignin) {
-            const { name: userName } = userSignin
-            return (
-                <>
-                    <UserOptionsButton userName={ userName } />
-                    <UserOptionsMenu />
-                </>
-            );
-        } else {
-            return <UserAuthenticationLinks />;
-        }
+    if (!userSignin) {
+        return null;
     }
+
+    const { name: userName } = userSignin;
+
+    const renderUserNavigationWithOptions = () =>
+        userName ? (
+            <>
+                <UserOptionsButton userName={ userName } />
+                <UserOptionsMenu />
+            </>
+        ) : (
+            <UserAuthenticationLinks />
+        );
 
     return (
         <div id="navbar-container">
@@ -53,7 +54,6 @@ const Navbar = () => {
                 </Toolbar>
             </AppBar>
         </div>
-
     );
 };
 
