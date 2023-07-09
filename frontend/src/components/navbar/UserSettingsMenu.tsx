@@ -18,7 +18,6 @@ const UserSettingsMenu: React.FC<UserSettingsMenuProps> = ({ isMenuOpen }) => {
         handleSignOut,
     } = useContext(ShoppingCartContext);
 
-    const menuId = "primary-search-account-menu";
 
     // When isMenuOpen state is true this function return a dropdown menu that show some navigation options
     // to the user such as my Orders, Orders History etc...
@@ -29,7 +28,7 @@ const UserSettingsMenu: React.FC<UserSettingsMenuProps> = ({ isMenuOpen }) => {
                 vertical: "top",
                 horizontal: "right",
             } }
-            id={ menuId }
+            id="primary-search-account-menu"
             keepMounted
             transformOrigin={ {
                 vertical: "top",

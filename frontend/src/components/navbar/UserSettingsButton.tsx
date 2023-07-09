@@ -5,7 +5,7 @@ import AccountCircle from "@mui/icons-material/AccountCircle";
 import { ShoppingCartContext } from "../../contexts/shopping-cart-context/shoppingCartContext";
 
 interface UserSettingMenuProps {
-    userName?: string;
+    userName: string;
 }
 
 const UserSettingMenu: React.FC<UserSettingMenuProps> = ({ userName }) => {
