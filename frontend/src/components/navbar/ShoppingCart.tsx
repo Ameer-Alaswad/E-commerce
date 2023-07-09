@@ -3,19 +3,20 @@ import { useContext } from "react";
 import IconButton from '@mui/material/IconButton';
 import Badge from '@mui/material/Badge';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import useNavigation from "../../hooks/useNavigation"
+
 import { ShoppingCartContext } from '../../contexts/shopping-cart-context/shoppingCartContext';
+import { SHOPPING_CART_PATH } from "../constants/path";
+import { useNavigate } from "react-router-dom";
 
 const ShoppingCart = () => {
-    const { navigateShoppingCart } = useNavigation();
+    const navigate = useNavigate();
 
-    const shoppingCartContext = useContext(ShoppingCartContext)
-    const { cartItems } = shoppingCartContext;
+    const { cartItems } = useContext(ShoppingCartContext)
 
     return (
         <>
             <IconButton
-                onClick={ navigateShoppingCart }
+                onClick={ () => navigate(SHOPPING_CART_PATH) }
                 size="large"
                 aria-label="shopping cart"
                 color="inherit"

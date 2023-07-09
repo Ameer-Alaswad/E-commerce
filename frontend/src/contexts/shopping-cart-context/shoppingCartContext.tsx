@@ -76,12 +76,16 @@ export const ShoppingCartProvider = ({ children }: shoppingCartChildren) => {
         setUserOptionsOpenMobile(event.currentTarget);
 
 
-    const handleNavigation = (navigationPath: () => void) => {
-        navigationPath()
+    const handleNavigation = (text: string, navigate: NavigateFunction) => {
+        navigate(text);
         handleMenuClose();
     };
 
-    const handleSignOut = (navigateUserSignIn: () => void) => {
+    const getMenuClickHandler = (path: string, navigate: NavigateFunction) => {
+        return () => handleNavigation(path, navigate);
+    };
+
+    const handleSignOut = (navigate: NavigateFunction) => {
         localStorage.removeItem('userData');
         localStorage.removeItem('shippingCardAddress');
         setShippingAddressData({
@@ -96,7 +100,7 @@ export const ShoppingCartProvider = ({ children }: shoppingCartChildren) => {
         setPaymentMethod('');
         setUserOptionsOpen(null);
         handleMobileMenuClose();
-        navigateUserSignIn();
+        navigate('/user/signin');
     };
     return (
         <ShoppingCartContext.Provider
@@ -123,6 +127,7 @@ export const ShoppingCartProvider = ({ children }: shoppingCartChildren) => {
                 handleMenuClose,
                 handleMobileMenuOpen,
                 handleNavigation,
+                getMenuClickHandler,
                 handleProfileMenuOpen,
                 handleSignOut
             } }

@@ -1,22 +1,21 @@
 import { useContext } from "react";
-import useNavigation from "../../hooks/useNavigation";
 import { Menu, MenuItem } from "@mui/material";
 import { ShoppingCartContext } from "../../contexts/shopping-cart-context/shoppingCartContext";
+import { ORDERS_HISTORY_PATH, UPDATE_USER_PATH } from "../constants/path";
 import { MY_ORDERS_TEXT, PROFILE_TEXT, SIGNOUT_TEXT } from "../constants/text";
+import { useNavigate } from "react-router-dom";
 
 type UserSettingsMenuProps = {
     isMenuOpen: boolean
 
 }
-
 const UserSettingsMenu: React.FC<UserSettingsMenuProps> = ({ isMenuOpen }) => {
-    const { navigateUserSignIn, navigateUpdateUser, navigateOrdersHistory } = useNavigation();
+    const navigate = useNavigate();
     const {
         userOptionsOpen,
         handleMenuClose,
-        // getMenuClickHandler,
+        getMenuClickHandler,
         handleSignOut,
-        handleNavigation
     } = useContext(ShoppingCartContext);
 
 
@@ -38,13 +37,13 @@ const UserSettingsMenu: React.FC<UserSettingsMenuProps> = ({ isMenuOpen }) => {
             open={ isMenuOpen }
             onClose={ handleMenuClose }
         >
-            <MenuItem onClick={ () => handleNavigation(navigateUpdateUser) }>
+            <MenuItem onClick={ getMenuClickHandler(UPDATE_USER_PATH, navigate) }>
                 { PROFILE_TEXT }
             </MenuItem>
-            <MenuItem onClick={ () => handleNavigation(navigateOrdersHistory) }>
+            <MenuItem onClick={ getMenuClickHandler(ORDERS_HISTORY_PATH, navigate) }>
                 { MY_ORDERS_TEXT }
             </MenuItem>
-            <MenuItem onClick={ () => handleSignOut(navigateUserSignIn) }>
+            <MenuItem onClick={ () => handleSignOut(navigate) }>
                 { SIGNOUT_TEXT }
             </MenuItem>
         </Menu>

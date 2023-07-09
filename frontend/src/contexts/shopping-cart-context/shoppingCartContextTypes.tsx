@@ -75,9 +75,10 @@ export type ShoppingCart = {
     handleMobileMenuClose: () => void;
     handleMenuClose: () => void;
     handleMobileMenuOpen: (event: React.MouseEvent<HTMLElement>) => void;
-    handleNavigation: (navigationPath: () => void) => void;
+    handleNavigation: (text: string, navigate: NavigateFunction) => void;
+    getMenuClickHandler: (path: string, navigate: NavigateFunction) => () => void;
     handleProfileMenuOpen: (event: React.MouseEvent<HTMLElement>) => void
-    handleSignOut: (navigate: () => void) => void;
+    handleSignOut: (navigate: NavigateFunction) => void;
 }
 export type UserData = {
     _id: string;
