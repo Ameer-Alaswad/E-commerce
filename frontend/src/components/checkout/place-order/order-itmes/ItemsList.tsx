@@ -10,6 +10,7 @@ import { useShoppingCartHandlers } from "./handlers";
 import { Product } from "../../../../contexts/shopping-cart-context/shoppingCartContextTypes";
 import { orderItemsListStyles } from "../../styles";
 import { CURRENCY_DOLLAR } from "../../../constants/text";
+import useCustomLocation from "../../../../hooks/useCustomLocation";
 
 const { cardContainer, itemImage, deleteButton } = orderItemsListStyles;
 
@@ -21,7 +22,7 @@ export default function ItemsList() {
         handleQuantityDecrement,
     } = useShoppingCartHandlers();
 
-    const isCartPage = window.location.pathname === "/cart";
+    const { isCartPage } = useCustomLocation()
 
     return (
         <>
