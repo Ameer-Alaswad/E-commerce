@@ -6,11 +6,12 @@ import MenuItem from "@mui/material/MenuItem";
 import IconButton from "@mui/material/IconButton";
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import ViewListIcon from "@mui/icons-material/ViewList";
+import LogoutIcon from '@mui/icons-material/Logout';
 
 import { ShoppingCartContext } from "../../contexts/shopping-cart-context/shoppingCartContext";
 import { ORDERS_HISTORY_PATH, UPDATE_USER_PATH } from "../constants/path";
 import { MY_ORDERS_TEXT, PROFILE_TEXT, SIGNOUT_TEXT } from "../constants/text";
-import ShoppingCart from "./ShoppingCart";
+
 
 type UserSettingsMobileMenuProps = {
     isMobileMenuOpen: boolean
@@ -69,7 +70,18 @@ const UserSettingsMobileMenu: React.FC<UserSettingsMobileMenuProps> = ({ isMobil
                 </IconButton>
                 <p>{ MY_ORDERS_TEXT }</p>
             </MenuItem>
-            <MenuItem onClick={ () => handleSignOut(navigate) }>{ SIGNOUT_TEXT }</MenuItem>
+            <MenuItem onClick={ () => handleSignOut(navigate) }>
+                <IconButton
+                    size="large"
+                    aria-label="shopping cart"
+                    aria-controls="primary-search-account-menu"
+                    aria-haspopup="true"
+                    color="inherit"
+                >
+                    <LogoutIcon />
+                </IconButton>
+                <p>{ SIGNOUT_TEXT }</p>
+            </MenuItem>
 
         </Menu>
     );
