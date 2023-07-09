@@ -1,3 +1,5 @@
+import { useContext } from "react";
+import { ShoppingCartContext } from "../../contexts/shopping-cart-context/shoppingCartContext";
 import { Box } from "@mui/material";
 import UserSettingsMobileButton from "./UserSettingsMobileButton";
 import UserSettingsMobileMenu from "./UserSettingsMobileMenu";
@@ -10,16 +12,23 @@ interface UserSettingsProps {
 }
 
 const UserSettings: React.FC<UserSettingsProps> = ({ userName }) => {
-    // Material UI will decide using it's styles to decide what settings to be displayed
+
+    const shoppingCartContext = useContext(ShoppingCartContext);
+
+    const {
+        isMenuOpen,
+        isMobileMenuOpen
+    } = shoppingCartContext;
+
     return (
         <>
             <Box sx={ { display: { ...cartAndUserMenuDisplayStyles } } }>
                 <UserSettingsButton userName={ userName } />
-                <UserSettingsMenu />
+                <UserSettingsMenu isMenuOpen={ isMenuOpen } />
             </Box >
             <Box sx={ { display: { ...mobileMenuDisplayStyles } } }>
                 <UserSettingsMobileButton />
-                <UserSettingsMobileMenu />
+                <UserSettingsMobileMenu isMobileMenuOpen={ isMobileMenuOpen } />
             </Box>
         </>
     );

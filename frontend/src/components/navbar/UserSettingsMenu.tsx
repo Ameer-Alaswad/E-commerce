@@ -5,12 +5,15 @@ import { ShoppingCartContext } from "../../contexts/shopping-cart-context/shoppi
 import { ORDERS_HISTORY_PATH, UPDATE_USER_PATH } from "../constants/path";
 import { MY_ORDERS_TEXT, PROFILE_TEXT, SIGNOUT_TEXT } from "../constants/text";
 
-const UserSettingsMenu = () => {
+type UserSettingsMenuProps = {
+    isMenuOpen: boolean
+
+}
+const UserSettingsMenu: React.FC<UserSettingsMenuProps> = ({ isMenuOpen }) => {
     const navigate = useCustomNavigate();
     const shoppingCartContext = useContext(ShoppingCartContext);
     const {
         userOptionsOpen,
-        isMenuOpen,
         handleMenuClose,
         getMenuClickHandler,
         handleSignOut,

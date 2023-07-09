@@ -12,12 +12,15 @@ import { ORDERS_HISTORY_PATH, UPDATE_USER_PATH } from "../constants/path";
 import { MY_ORDERS_TEXT, PROFILE_TEXT, SIGNOUT_TEXT } from "../constants/text";
 import ShoppingCart from "./ShoppingCart";
 
-const UserSettingsMobileMenu = () => {
+type UserSettingsMobileMenuProps = {
+    isMobileMenuOpen: boolean
+}
+
+const UserSettingsMobileMenu: React.FC<UserSettingsMobileMenuProps> = ({ isMobileMenuOpen }) => {
     const navigate = useCustomNavigate()
 
     const shoppingCartContext = useContext(ShoppingCartContext);
     const {
-        isMobileMenuOpen,
         handleMobileMenuClose,
         getMenuClickHandler,
         userOptionsOpenMobile,
