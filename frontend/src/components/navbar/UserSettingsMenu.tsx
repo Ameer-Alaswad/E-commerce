@@ -5,7 +5,7 @@ import { ShoppingCartContext } from "../../contexts/shopping-cart-context/shoppi
 import { ORDERS_HISTORY_PATH, UPDATE_USER_PATH } from "../constants/path";
 import { MY_ORDERS_TEXT, PROFILE_TEXT, SIGNOUT_TEXT } from "../constants/text";
 
-const UserOptionsMenu = () => {
+const UserSettingsMenu = () => {
     const navigate = useCustomNavigate();
     const shoppingCartContext = useContext(ShoppingCartContext);
     const {
@@ -49,4 +49,4 @@ const UserOptionsMenu = () => {
     );
 };
 
-export default UserOptionsMenu;
+export default UserSettingsMenu;

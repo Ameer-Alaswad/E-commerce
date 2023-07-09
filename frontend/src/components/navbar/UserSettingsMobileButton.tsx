@@ -4,7 +4,7 @@ import { ShoppingCartContext } from '../../contexts/shopping-cart-context/shoppi
 import { IconButton } from '@mui/material'
 import MoreIcon from "@mui/icons-material/MoreVert";
 
-const UserOptionsMobileButton = () => {
+const UserSettingsMobileButton = () => {
 
     const shoppingCartContext = useContext(ShoppingCartContext);
     const { handleMobileMenuOpen } = shoppingCartContext;
@@ -24,4 +24,4 @@ const UserOptionsMobileButton = () => {
     )
 }
 
-export default UserOptionsMobileButton
+export default UserSettingsMobileButton

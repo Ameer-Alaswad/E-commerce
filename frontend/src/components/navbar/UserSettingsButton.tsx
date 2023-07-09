@@ -4,11 +4,11 @@ import AccountCircle from "@mui/icons-material/AccountCircle";
 
 import { ShoppingCartContext } from "../../contexts/shopping-cart-context/shoppingCartContext";
 
-interface UserOptionsButtonProps {
+interface UserSettingMenuProps {
     userName?: string;
 }
 
-const UserOptionsButton: React.FC<UserOptionsButtonProps> = ({ userName }) => {
+const UserSettingMenu: React.FC<UserSettingMenuProps> = ({ userName }) => {
 
     const shoppingCartContext = useContext(ShoppingCartContext);
     const { handleProfileMenuOpen } = shoppingCartContext;
@@ -27,4 +27,4 @@ const UserOptionsButton: React.FC<UserOptionsButtonProps> = ({ userName }) => {
         </IconButton>
     );
 }
-export default UserOptionsButton;
+export default UserSettingMenu;
