@@ -8,7 +8,7 @@ import { HOME_PATH } from "../constants/path";
 import useAppContext from "../../hooks/useAppContext";
 
 
-const shoppingCartItemsSection = () => {
+const CartItemsSection = () => {
     const navigate = useNavigate();
     const { shoppingCartItems } = useAppContext()
 
@@ -45,4 +45,4 @@ const shoppingCartItemsSection = () => {
     )
 };
 
-export default shoppingCartItemsSection;
+export default CartItemsSection;
