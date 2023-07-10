@@ -10,7 +10,7 @@ import useAppContext from "../hooks/useAppContext";
 
 
 const AddToCartButton = () => {
-    const { cartItems, setCartItems } = useAppContext();
+    const { shoppingCartItems, setShoppingCartItems } = useAppContext();
 
     const addToCartHandler = (event: React.MouseEvent<HTMLButtonElement>) => {
         event.stopPropagation();
@@ -23,8 +23,8 @@ const AddToCartButton = () => {
                 (product: productsType[]) => {
                     addToShoppingCartLogic({
                         productName,
-                        cartItems,
-                        setCartItems,
+                        shoppingCartItems,
+                        setShoppingCartItems,
                         product,
                     });
                 }
