@@ -1,4 +1,4 @@
-import { Product } from "../../contexts/shopping-cart-context/shoppingCartContextTypes";
+import { Product } from "../../contexts/app-context/AppContextTypes";
 
 type PaymentRedirectProps = {
     progressStepNumber: number;

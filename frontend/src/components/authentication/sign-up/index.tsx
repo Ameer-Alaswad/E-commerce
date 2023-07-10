@@ -2,15 +2,14 @@
 import * as React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
-
-
 import { postUser } from "../../../fetchers/fetchUser";
 import { useContext } from "react";
-import { ShoppingCartContext } from "../../../contexts/shopping-cart-context/shoppingCartContext";
+
 import { captureRedirectionRoute, checkUserLoggedIn } from "../../../utils/utils";
 import { toast } from "react-toastify";
 import { getFormData } from "../utils";
 import SignUpForm from "./SignUpForm";
+import useAppContext from "../../../hooks/useAppContext";
 
 export default function SignUp() {
     const navigate = useNavigate();
@@ -19,8 +18,7 @@ export default function SignUp() {
     const { search } = useLocation();
     const redirect = captureRedirectionRoute(search)
 
-    const shoppingCartContext = useContext(ShoppingCartContext);
-    const { userSignin, setUserSignin } = shoppingCartContext;
+    const { userSignin, setUserSignin } = useAppContext()
 
     const userSigned = checkUserLoggedIn(userSignin);
 

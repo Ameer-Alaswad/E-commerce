@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { userSignin } from "../../contexts/shopping-cart-context/shoppingCartContextTypes";
+import { userSignin } from "../../contexts/app-context/AppContextTypes";
 
 type PaymentRedirectProps = {
     userSignin: userSignin | null;

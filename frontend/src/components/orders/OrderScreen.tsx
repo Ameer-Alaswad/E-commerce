@@ -1,18 +1,17 @@
 import { Card, CardContent, Divider, Typography } from "@mui/material";
 import { Box } from "@mui/system";
-import { useContext, useEffect } from "react";
+import { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
-import { ShoppingCartContext } from "../../contexts/shopping-cart-context/shoppingCartContext";
 import { fetchOrder } from "../../fetchers/fetchOrder";
 import { PayPalButtons, usePayPalScriptReducer } from "@paypal/react-paypal-js";
 import axios from "axios";
+import useAppContext from "../../hooks/useAppContext";
 // import Items from './items'
 
 const OrderScreen = () => {
     const navigate = useNavigate();
-    const shoppingCartContext = useContext(ShoppingCartContext);
-    const { userSignin, setOrderData, orderData } = shoppingCartContext;
+    const { userSignin, setOrderData, orderData } = useAppContext()
 
     const user: any = localStorage.getItem("userData");
     const parsedUser = JSON.parse(user);

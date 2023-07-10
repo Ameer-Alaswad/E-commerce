@@ -1,21 +1,20 @@
 // This component requires refactoring
 import { Button, Card, Typography } from "@mui/material";
-import { useContext } from "react";
-import { ShoppingCartContext } from "../../../../contexts/shopping-cart-context/shoppingCartContext";
 import DeleteIcon from "@mui/icons-material/Delete";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 
 import { useShoppingCartHandlers } from "./handlers";
-import { Product } from "../../../../contexts/shopping-cart-context/shoppingCartContextTypes";
+import { Product } from "../../../../contexts/app-context/AppContextTypes";
 import { orderItemsListStyles } from "../../styles";
 import { CURRENCY_DOLLAR } from "../../../constants/text";
 import useCustomLocation from "../../../../hooks/useCustomLocation";
+import useAppContext from "../../../../hooks/useAppContext";
 
 const { cardContainer, itemImage, deleteButton } = orderItemsListStyles;
 
 export default function ItemsList() {
-    const { cartItems } = useContext(ShoppingCartContext);
+    const { cartItems } = useAppContext()
     const {
         handleProductDelete,
         handleQuantityIncrement,

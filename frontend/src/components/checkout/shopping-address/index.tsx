@@ -1,21 +1,20 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { ShoppingCartContext } from "../../../contexts/shopping-cart-context/shoppingCartContext";
-import { ShippingAddressDataType } from "../../../contexts/shopping-cart-context/shoppingCartContextTypes";
+import { ShippingAddressDataType } from "../../../contexts/app-context/AppContextTypes";
 import { toast } from "react-toastify";
 import ShoppingAdressForm from "./ShoppingAdressForm";
+import useAppContext from "../../../hooks/useAppContext";
 
 const ShippingAddressUi = () => {
 
   const navigate = useNavigate();
-  const shoppingCartContext = useContext(ShoppingCartContext);
   const {
     setShippingAddressData,
     shippingAddressData,
     userSignin,
     setProgressStep,
-  } = shoppingCartContext;
+  } = useAppContext()
 
   const [shippingAddress, setShippingAddress] =
     useState<ShippingAddressDataType>({

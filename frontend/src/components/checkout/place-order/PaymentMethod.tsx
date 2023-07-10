@@ -1,15 +1,14 @@
-import { useContext } from 'react';
 import { Card, CardActions, CardContent, Button, Typography } from '@mui/material';
 
 import { useNavigate } from 'react-router-dom';
-import { ShoppingCartContext } from '../../../contexts/shopping-cart-context/shoppingCartContext';
 import { placeOrderComponentsStyles } from '../styles';
+import useAppContext from '../../../hooks/useAppContext';
 
 const { container, title } = placeOrderComponentsStyles
 
 const PaymentMethod = () => {
-    const shoppingCartContext = useContext(ShoppingCartContext);
-    const { paymentMethod } = shoppingCartContext;
+
+    const { paymentMethod } = useAppContext()
     const navigate = useNavigate()
 
     const handleNavigate = () => navigate("/payment")

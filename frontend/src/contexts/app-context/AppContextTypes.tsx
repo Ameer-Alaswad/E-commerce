@@ -18,7 +18,7 @@ export type OrderItems = {
     product: string
 }
 
-export type shoppingCartChildren = {
+export type AppContextChildren = {
     children: React.ReactNode
 }
 export type ShippingAddressDataType = {
@@ -53,7 +53,7 @@ export type userSignin = {
     isAdmin: boolean
     token: string
 }
-export type ShoppingCart = {
+export type AppContextTypes = {
     cartItems: Product[]
     setCartItems: React.Dispatch<React.SetStateAction<Product[]>>
     userSignin: userSignin | null

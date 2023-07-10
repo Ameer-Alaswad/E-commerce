@@ -1,9 +1,8 @@
-import { useContext } from "react";
 import { Menu, MenuItem } from "@mui/material";
-import { ShoppingCartContext } from "../../contexts/shopping-cart-context/shoppingCartContext";
 import { ORDERS_HISTORY_PATH, UPDATE_USER_PATH } from "../constants/path";
 import { MY_ORDERS_TEXT, PROFILE_TEXT, SIGNOUT_TEXT } from "../constants/text";
 import { useNavigate } from "react-router-dom";
+import useAppContext from "../../hooks/useAppContext";
 
 type UserSettingsMenuProps = {
     isMenuOpen: boolean
@@ -16,7 +15,7 @@ const UserSettingsMenu: React.FC<UserSettingsMenuProps> = ({ isMenuOpen }) => {
         handleMenuClose,
         getMenuClickHandler,
         handleSignOut,
-    } = useContext(ShoppingCartContext);
+    } = useAppContext()
 
 
     // When isMenuOpen state is true this function return a dropdown menu that show some navigation options

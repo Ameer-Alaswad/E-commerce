@@ -4,7 +4,7 @@ import { NavigateFunction } from "react-router-dom";
 import {
     Product,
     ShippingAddressDataType,
-} from "../contexts/shopping-cart-context/shoppingCartContextTypes";
+} from "../contexts/app-context/AppContextTypes";
 import { toast } from "react-toastify";
 // types
 type OrderData = {

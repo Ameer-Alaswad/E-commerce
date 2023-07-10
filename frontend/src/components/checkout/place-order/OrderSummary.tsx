@@ -1,18 +1,18 @@
 import { Box, Button, CardContent, Divider, Typography } from "@mui/material";
-import { useContext } from "react";
-import { ShoppingCartContext } from "../../../contexts/shopping-cart-context/shoppingCartContext";
+
 import Card from "@mui/material/Card";
 import { postUser } from "../../../fetchers/postOrder";
 import { useNavigate } from "react-router-dom";
 import { orderSummaryStyles } from "../styles";
 import { calculateCartTotalPrices } from "../utils";
+import useAppContext from "../../../hooks/useAppContext";
 
 const { card, title, itemPrice, divider, bold, box, buttonBox, button } =
     orderSummaryStyles;
 
 export default function OrderSummary() {
     const navigate = useNavigate();
-    const shoppingCartContext = useContext(ShoppingCartContext);
+
 
     const {
         cartItems,
@@ -20,7 +20,7 @@ export default function OrderSummary() {
         paymentMethod,
         userSignin,
         setCartItems,
-    } = shoppingCartContext;
+    } = useAppContext()
 
     const {
         totalItemsPrice,

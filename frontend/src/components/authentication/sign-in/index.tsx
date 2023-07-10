@@ -1,8 +1,7 @@
-import { useContext, useEffect } from "react";
+import { useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
 import { postUser } from "../../../fetchers/fetchUser";
-import { ShoppingCartContext } from "../../../contexts/shopping-cart-context/shoppingCartContext";
 import {
     captureRedirectionRoute,
     checkUserLoggedIn,
@@ -10,6 +9,7 @@ import {
 
 import { getFormData } from "../utils";
 import SignInForm from "./SigninForm";
+import useAppContext from "../../../hooks/useAppContext";
 
 export default function SignIn() {
     const navigate = useNavigate();
@@ -17,8 +17,7 @@ export default function SignIn() {
     const { search } = useLocation();
     const redirect = captureRedirectionRoute(search);
 
-    const shoppingCartContext = useContext(ShoppingCartContext);
-    const { userSignin, setUserSignin } = shoppingCartContext;
+    const { userSignin, setUserSignin } = useAppContext();
 
     const userSigned = checkUserLoggedIn(userSignin);
 

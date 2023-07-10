@@ -5,11 +5,10 @@ import ProductSearch from "./ProductSearch";
 import DisplaySiteName from "./DisplaySiteName";
 import UserSettings from "./UserSettings";
 import UserAuthenticationLinks from "./UserAuthenticationLinks";
-import { useContext } from "react";
-import { ShoppingCartContext } from "../../contexts/shopping-cart-context/shoppingCartContext";
+import useAppContext from "../../hooks/useAppContext";
 
 const Navbar = () => {
-    const { userSignin } = useContext(ShoppingCartContext);
+    const { userSignin } = useAppContext()
 
     if (!userSignin) {
         return null;

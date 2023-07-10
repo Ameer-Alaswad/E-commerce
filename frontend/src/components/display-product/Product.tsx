@@ -1,12 +1,13 @@
-import React, { useContext } from "react";
+import React from "react";
 import Box from "@mui/material/Box";
 import { productsType } from "../display-products/displayProductsInterface";
 import { Button, Card, CardContent, Divider, Typography } from "@mui/material";
 import RatingComponent from "../display-products/Rating";
-import { ShoppingCartContext } from "../../contexts/shopping-cart-context/shoppingCartContext";
+
 import ProductQuantity from "../display-products/ProductQuantity";
 import { handleToCart } from "./handlers";
 import styles from "./styles";
+import useAppContext from "../../hooks/useAppContext";
 
 const {
     container,
@@ -32,8 +33,7 @@ type ProductProps = {
 
 const Product: React.FC<ProductProps> = ({ data }) => {
 
-    const shoppingCartContext = useContext(ShoppingCartContext);
-    const { cartItems, setCartItems } = shoppingCartContext;
+    const { cartItems, setCartItems } = useAppContext()
 
     const { name: productName, image, numReviews, rating, price, description, countInStock } = data?.[0] || {}
 

@@ -1,7 +1,7 @@
 // axios 
 import axios from "axios";
 import { NavigateFunction } from "react-router-dom";
-import { userSignin } from "../contexts/shopping-cart-context/shoppingCartContextTypes";
+import { userSignin } from "../contexts/app-context/AppContextTypes";
 import { toast } from "react-toastify"
 // types 
 type user = {

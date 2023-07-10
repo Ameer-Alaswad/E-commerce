@@ -7,26 +7,24 @@ import {
     Typography,
 } from "@mui/material";
 
-import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { ShoppingCartContext } from "../../contexts/shopping-cart-context/shoppingCartContext";
 import ProgressSteps from "./ProgressSteps";
 import { paymentStyles } from "./styles";
 import usePaymentRedirect from "./useRedirect";
 import { getPaymentRedirectProps } from "./utils";
+import useAppContext from "../../hooks/useAppContext";
 const { container, form, heading, button } = paymentStyles;
 
 const PaymentUi = () => {
     const navigate = useNavigate();
-    const shoppingCartContext = useContext(ShoppingCartContext);
     const {
         setProgressStep,
         userSignin,
         shippingAddressData,
         setPaymentMethod,
         paymentMethod,
-    } = shoppingCartContext;
+    } = useAppContext()
 
     const { progressStep, userNotSignedLink, userNotSignedMessage, redirectLink, redirectMessage } = getPaymentRedirectProps({
         progressStepNumber: 1,

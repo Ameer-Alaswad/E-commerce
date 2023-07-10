@@ -1,14 +1,15 @@
-import React, { useContext } from "react";
-import { ShoppingCartContext } from "../../contexts/shopping-cart-context/shoppingCartContext";
+import React from "react";
+
 import { Typography } from "@mui/material";
-import { Product } from "../../contexts/shopping-cart-context/shoppingCartContextTypes";
+import { Product } from "../../contexts/app-context/AppContextTypes";
+import useAppContext from "../../hooks/useAppContext";
 
 interface ProductQuantityProps {
     name: string | undefined;
 }
 
 const ProductQuantity: React.FC<ProductQuantityProps> = ({ name }) => {
-    const { cartItems } = useContext(ShoppingCartContext);
+    const { cartItems } = useAppContext()
 
     const quantityStyle = {
         marginTop: "7px",

@@ -1,8 +1,8 @@
 // This component requires refactoring 
-import { useContext, useMemo } from "react";
+import { useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { ShoppingCartContext } from "../../contexts/shopping-cart-context/shoppingCartContext";
+
 import {
     Box,
     Button,
@@ -20,10 +20,11 @@ import {
 import { SHIPPING_PATH, SIGNIN_PATH } from "../constants/path";
 import { calculateCartTotalPrices } from "../checkout/utils";
 import { CURRENCY_DOLLAR } from "../constants/text";
+import useAppContext from "../../hooks/useAppContext";
 
 const CartSummarySection = () => {
     const navigate = useNavigate();
-    const { cartItems, userSignin } = useContext(ShoppingCartContext);
+    const { cartItems, userSignin } = useAppContext()
 
     const handleProceedToCheckout = () => {
         userSignin

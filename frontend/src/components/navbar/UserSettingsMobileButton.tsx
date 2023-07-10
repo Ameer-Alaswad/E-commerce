@@ -1,12 +1,11 @@
-import { useContext } from 'react';
-import { ShoppingCartContext } from '../../contexts/shopping-cart-context/shoppingCartContext';
 
 import { IconButton } from '@mui/material'
 import MoreIcon from "@mui/icons-material/MoreVert";
+import useAppContext from '../../hooks/useAppContext';
 
 const UserSettingsMobileButton = () => {
 
-    const { handleMobileMenuOpen } = useContext(ShoppingCartContext);
+    const { handleMobileMenuOpen } = useAppContext()
 
     return (
         <>

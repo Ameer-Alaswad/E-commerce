@@ -4,13 +4,13 @@ import { createContext, useState } from "react";
 import { NavigateFunction } from "react-router-dom";
 import {
     Product,
-    ShoppingCart,
-    shoppingCartChildren,
+    AppContextTypes,
+    AppContextChildren,
     userSignin,
     ShippingAddressDataType,
     OrderData,
     UserData,
-} from "./shoppingCartContextTypes";
+} from "./AppContextTypes";
 import { SIGNIN_PATH } from "../../components/constants/path";
 const addressDataInStorage = JSON.parse(
     localStorage.getItem("shippingCardAddress") || "{}"
@@ -25,9 +25,9 @@ const userData: UserData | null = UserDataStorage
     ? JSON.parse(UserDataStorage)
     : null;
 
-export const ShoppingCartContext = createContext({} as ShoppingCart);
+export const AppContext = createContext({} as AppContextTypes);
 
-export const ShoppingCartProvider = ({ children }: shoppingCartChildren) => {
+export const AppContextProvider = ({ children }: AppContextChildren) => {
     const [cartItems, setCartItems] = useState<Product[]>([]);
     const [progressStep, setProgressStep] = useState<number>(0);
     const [orderData, setOrderData] = useState<OrderData | null>(null);
@@ -104,7 +104,7 @@ export const ShoppingCartProvider = ({ children }: shoppingCartChildren) => {
         navigate(SIGNIN_PATH);
     };
     return (
-        <ShoppingCartContext.Provider
+        <AppContext.Provider
             value={ {
                 cartItems,
                 setCartItems,
@@ -134,6 +134,6 @@ export const ShoppingCartProvider = ({ children }: shoppingCartChildren) => {
             } }
         >
             { children }
-        </ShoppingCartContext.Provider>
+        </AppContext.Provider>
     );
 };

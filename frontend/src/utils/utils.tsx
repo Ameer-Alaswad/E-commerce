@@ -3,7 +3,7 @@ import { productsType } from "../components/display-products/displayProductsInte
 import {
     Product,
     userSignin,
-} from "../contexts/shopping-cart-context/shoppingCartContextTypes";
+} from "../contexts/app-context/AppContextTypes";
 import { toast } from "react-toastify";
 
 export type AddToShoppingCartTypes = {

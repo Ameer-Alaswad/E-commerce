@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import { useState } from "react";
 import {
     Box,
     Button,
@@ -8,8 +8,8 @@ import {
     Typography,
 } from "@mui/material";
 import { toast } from "react-toastify";
-import { ShoppingCartContext } from "../contexts/shopping-cart-context/shoppingCartContext";
 import useProfileUpdate from "../hooks/useProfileUpdate";
+import useAppContext from "../hooks/useAppContext";
 interface UserData {
     _id: string;
     name: string;
@@ -38,7 +38,7 @@ const ProfileUpdate = () => {
     const userData: UserData | null = UserDataStorage
         ? JSON.parse(UserDataStorage)
         : null;
-    const { userSignin, setUserSignin } = useContext(ShoppingCartContext);
+    const { userSignin, setUserSignin } = useAppContext();
     const {
         name: userName,
         token: userToken,

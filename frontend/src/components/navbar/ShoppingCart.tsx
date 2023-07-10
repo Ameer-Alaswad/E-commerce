@@ -1,17 +1,15 @@
-import { useContext } from "react";
-
 import IconButton from '@mui/material/IconButton';
 import Badge from '@mui/material/Badge';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 
-import { ShoppingCartContext } from '../../contexts/shopping-cart-context/shoppingCartContext';
 import { SHOPPING_CART_PATH } from "../constants/path";
 import { useNavigate } from "react-router-dom";
+import useAppContext from "../../hooks/useAppContext";
 
 const ShoppingCart = () => {
     const navigate = useNavigate();
 
-    const { cartItems } = useContext(ShoppingCartContext)
+    const { cartItems } = useAppContext()
 
     return (
         <>
