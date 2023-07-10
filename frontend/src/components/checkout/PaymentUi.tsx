@@ -20,7 +20,7 @@ const PaymentUi = () => {
     const navigate = useNavigate();
     const {
         setProgressStep,
-        userSignin,
+        userSignedIn,
         shippingAddressData,
         setPaymentMethod,
         paymentMethod,
@@ -35,7 +35,7 @@ const PaymentUi = () => {
     });
 
     const paymentRedirectProps = {
-        userSignin,
+        userSignedIn,
         setProgressStep,
         progressStep,
         userNotSignedLink,

@@ -8,12 +8,10 @@ import UserAuthenticationLinks from "./UserAuthenticationLinks";
 import useAppContext from "../../hooks/useAppContext";
 
 const Navbar = () => {
-    const { userSignin } = useAppContext()
 
-    if (!userSignin) {
-        return null;
-    }
-    const { name: userName } = userSignin;
+    const { userSignedIn } = useAppContext()
+
+    const userName = userSignedIn?.name || ""
 
     return (
         <div id="navbar-container">
@@ -23,7 +21,7 @@ const Navbar = () => {
                     <ProductSearch />
                     <Box sx={ { flexGrow: 1 } } />
                     <ShoppingCart />
-                    { userSignin ? (
+                    { userSignedIn ? (
                         <UserSettings userName={ userName } />
                     ) : (
                         <UserAuthenticationLinks />

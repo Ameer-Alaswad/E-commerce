@@ -38,12 +38,12 @@ const ProfileUpdate = () => {
     const userData: UserData | null = UserDataStorage
         ? JSON.parse(UserDataStorage)
         : null;
-    const { userSignin, setUserSignin } = useAppContext();
+    const { userSignedIn, setUserSignedIn } = useAppContext();
     const {
         name: userName,
         token: userToken,
         email: userEmail,
-    } = userSignin || {};
+    } = userSignedIn || {};
 
     const [name, setName] = useState<string | undefined>(
         userName || userData?.name
@@ -66,7 +66,7 @@ const ProfileUpdate = () => {
         setIsLoading(true);
         try {
             const data = await handleProfileUpdate({ name, email, password, token });
-            setUserSignin(data);
+            setUserSignedIn(data);
             localStorage.setItem("userData", JSON.stringify(data));
         } catch (error) {
             toast.error("Failed to update profile. Please try again later.");

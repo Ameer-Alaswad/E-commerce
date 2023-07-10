@@ -7,7 +7,7 @@ import UserSettingsMenu from "./UserSettingsMenu";
 import useAppContext from "../../hooks/useAppContext";
 
 interface UserSettingsProps {
-    userName: string;
+    userName: string
 }
 
 const UserSettings: React.FC<UserSettingsProps> = ({ userName }) => {

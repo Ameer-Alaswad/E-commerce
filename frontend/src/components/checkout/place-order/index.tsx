@@ -15,7 +15,7 @@ const { mainContainer, orderDetailsContainer, PreviewOrder } = placeOrderStyles;
 const PlaceOrderUi = () => {
 
 
-    const { setProgressStep, userSignin, paymentMethod } = useAppContext()
+    const { setProgressStep, userSignedIn, paymentMethod } = useAppContext()
 
     const {
         progressStep,
@@ -33,7 +33,7 @@ const PlaceOrderUi = () => {
 
     useRedirect(
         {
-            userSignin,
+            userSignedIn,
             setProgressStep,
             progressStep,
             userNotSignedLink,

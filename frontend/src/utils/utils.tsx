@@ -2,7 +2,7 @@
 import { productsType } from "../components/display-products/displayProductsInterface";
 import {
     Product,
-    userSignin,
+    userSignedIn,
 } from "../contexts/app-context/AppContextTypes";
 import { toast } from "react-toastify";
 
@@ -82,11 +82,11 @@ export const addToShoppingCartLogic = ({
     return handleProductQuantityLimitations;
 };
 
-export const checkUserLoggedIn = (userSignin: userSignin | null) => {
+export const checkUserLoggedIn = (userSignedIn: userSignedIn | null) => {
     const user: any = localStorage.getItem("userData");
     const parsedUser = JSON.parse(user);
-    let userSigned = userSignin;
-    !userSignin ? (userSigned = parsedUser) : (userSigned = userSignin);
+    let userSigned = userSignedIn;
+    !userSignedIn ? (userSigned = parsedUser) : (userSigned = userSignedIn);
     return userSigned;
 };
 

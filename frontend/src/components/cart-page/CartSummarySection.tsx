@@ -24,10 +24,10 @@ import useAppContext from "../../hooks/useAppContext";
 
 const CartSummarySection = () => {
     const navigate = useNavigate();
-    const { cartItems, userSignin } = useAppContext()
+    const { cartItems, userSignedIn } = useAppContext()
 
     const handleProceedToCheckout = () => {
-        userSignin
+        userSignedIn
             ? navigate(SHIPPING_PATH)
             : navigate(`${SIGNIN_PATH}?redirect=${SHIPPING_PATH}`);
     };

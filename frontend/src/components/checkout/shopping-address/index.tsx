@@ -12,7 +12,7 @@ const ShippingAddressUi = () => {
   const {
     setShippingAddressData,
     shippingAddressData,
-    userSignin,
+    userSignedIn,
     setProgressStep,
   } = useAppContext()
 
@@ -44,13 +44,13 @@ const ShippingAddressUi = () => {
 
   useEffect(() => {
     setProgressStep(0);
-    if (!userSignin) {
+    if (!userSignedIn) {
       navigate("/user/signin?redirect=/shipping");
       setTimeout(() => {
         toast.error("Sign in first !");
       }, 100);
     }
-  }, [userSignin, navigate, setProgressStep]);
+  }, [userSignedIn, navigate, setProgressStep]);
 
   const ShoppingAddressFormProps = { handleChange, handleSubmit, shippingAddress }
 

@@ -18,9 +18,9 @@ export default function SignUp() {
     const { search } = useLocation();
     const redirect = captureRedirectionRoute(search)
 
-    const { userSignin, setUserSignin } = useAppContext()
+    const { userSignedIn, setUserSignedIn } = useAppContext()
 
-    const userSigned = checkUserLoggedIn(userSignin);
+    const userSigned = checkUserLoggedIn(userSignedIn);
 
     React.useEffect(() => {
         if (userSigned) navigate("/");
@@ -36,7 +36,7 @@ export default function SignUp() {
         postUser(
             "/api/users/signup",
             getFormData(event.currentTarget),
-            setUserSignin,
+            setUserSignedIn,
             navigate,
             redirect
         );

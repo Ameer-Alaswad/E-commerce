@@ -5,8 +5,8 @@ const useAppContext = () => {
     const {
         cartItems,
         setCartItems,
-        userSignin,
-        setUserSignin,
+        userSignedIn,
+        setUserSignedIn,
         shippingAddressData,
         setShippingAddressData,
         progressStep,
@@ -32,8 +32,8 @@ const useAppContext = () => {
     return {
         cartItems,
         setCartItems,
-        userSignin,
-        setUserSignin,
+        userSignedIn,
+        setUserSignedIn,
         shippingAddressData,
         setShippingAddressData,
         progressStep,

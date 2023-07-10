@@ -20,7 +20,7 @@ const orderHistoryContainer = {
 
 const OrdersHistory = () => {
 
-    const { userSignin } = useAppContext()
+    const { userSignedIn } = useAppContext()
     const navigate = useNavigate();
     const [orderHistory, setOrderHistory] = useState<OrderHistory[]>([]);
     const [loading, setLoading] = useState<boolean>(false);
@@ -28,8 +28,8 @@ const OrdersHistory = () => {
 
     const user: any = localStorage.getItem("userData");
     const parsedUser = JSON.parse(user);
-    let userSigned = userSignin;
-    !userSignin ? (userSigned = parsedUser) : (userSigned = userSignin);
+    let userSigned = userSignedIn;
+    !userSignedIn ? (userSigned = parsedUser) : (userSigned = userSignedIn);
 
     useEffect(() => {
         if (!userSigned) {

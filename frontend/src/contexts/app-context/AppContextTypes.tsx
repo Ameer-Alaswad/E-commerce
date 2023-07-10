@@ -46,7 +46,7 @@ export type OrderData = {
 
 }
 
-export type userSignin = {
+export type userSignedIn = {
     _id: string
     name: string
     email: string
@@ -56,8 +56,8 @@ export type userSignin = {
 export type AppContextTypes = {
     cartItems: Product[]
     setCartItems: React.Dispatch<React.SetStateAction<Product[]>>
-    userSignin: userSignin | null
-    setUserSignin: React.Dispatch<React.SetStateAction<userSignin | null>>
+    userSignedIn: userSignedIn | null
+    setUserSignedIn: React.Dispatch<React.SetStateAction<userSignedIn | null>>
     shippingAddressData: ShippingAddressDataType
     setShippingAddressData: React.Dispatch<React.SetStateAction<ShippingAddressDataType>>
     progressStep: number

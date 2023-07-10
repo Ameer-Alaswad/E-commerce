@@ -11,11 +11,11 @@ import useAppContext from "../../hooks/useAppContext";
 
 const OrderScreen = () => {
     const navigate = useNavigate();
-    const { userSignin, setOrderData, orderData } = useAppContext()
+    const { userSignedIn, setOrderData, orderData } = useAppContext()
 
     const user: any = localStorage.getItem("userData");
     const parsedUser = JSON.parse(user);
-    let userSigned = userSignin || parsedUser;
+    let userSigned = userSignedIn || parsedUser;
     const { id: orderId } = useParams();
 
     const [{ isPending }, paypalDispatch] = usePayPalScriptReducer();

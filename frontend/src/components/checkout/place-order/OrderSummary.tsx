@@ -18,7 +18,7 @@ export default function OrderSummary() {
         cartItems,
         shippingAddressData,
         paymentMethod,
-        userSignin,
+        userSignedIn,
         setCartItems,
     } = useAppContext()
 
@@ -43,7 +43,7 @@ export default function OrderSummary() {
             "/api/orders",
             orderData,
             navigate,
-            userSignin?.token,
+            userSignedIn?.token,
             setCartItems
         );
     };

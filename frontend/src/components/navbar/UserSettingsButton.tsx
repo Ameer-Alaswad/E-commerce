@@ -5,7 +5,7 @@ import AccountCircle from "@mui/icons-material/AccountCircle";
 import useAppContext from "../../hooks/useAppContext";
 
 interface UserSettingMenuProps {
-    userName: string;
+    userName: string
 }
 
 const UserSettingMenu: React.FC<UserSettingMenuProps> = ({ userName }) => {

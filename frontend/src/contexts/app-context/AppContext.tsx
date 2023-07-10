@@ -6,12 +6,13 @@ import {
     Product,
     AppContextTypes,
     AppContextChildren,
-    userSignin,
+    userSignedIn,
     ShippingAddressDataType,
     OrderData,
     UserData,
 } from "./AppContextTypes";
 import { SIGNIN_PATH } from "../../components/constants/path";
+
 const addressDataInStorage = JSON.parse(
     localStorage.getItem("shippingCardAddress") || "{}"
 );
@@ -31,7 +32,7 @@ export const AppContextProvider = ({ children }: AppContextChildren) => {
     const [cartItems, setCartItems] = useState<Product[]>([]);
     const [progressStep, setProgressStep] = useState<number>(0);
     const [orderData, setOrderData] = useState<OrderData | null>(null);
-    const [userSignin, setUserSignin] = useState<userSignin | null>(userData);
+    const [userSignedIn, setUserSignedIn] = useState<userSignedIn | null>(userData);
 
     const [paymentMethod, setPaymentMethod] = useState<string>(
         paymentMethodInStorage || ""
@@ -97,7 +98,7 @@ export const AppContextProvider = ({ children }: AppContextChildren) => {
             country: ''
         });
         setCartItems([]);
-        setUserSignin(null);
+        setUserSignedIn(null);
         setPaymentMethod('');
         setUserOptionsOpen(null);
         handleMobileMenuClose();
@@ -108,8 +109,8 @@ export const AppContextProvider = ({ children }: AppContextChildren) => {
             value={ {
                 cartItems,
                 setCartItems,
-                userSignin,
-                setUserSignin,
+                userSignedIn,
+                setUserSignedIn,
                 shippingAddressData,
                 setShippingAddressData,
                 progressStep,
