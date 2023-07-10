@@ -1,3 +1,4 @@
+// This component requires refactoring
 import { Button, Card, Typography } from "@mui/material";
 import { useContext } from "react";
 import { ShoppingCartContext } from "../../../../contexts/shopping-cart-context/shoppingCartContext";
@@ -8,7 +9,8 @@ import RemoveIcon from "@mui/icons-material/Remove";
 import { useShoppingCartHandlers } from "./handlers";
 import { Product } from "../../../../contexts/shopping-cart-context/shoppingCartContextTypes";
 import { orderItemsListStyles } from "../../styles";
-import { CURRENCY_DOLLAR } from "../../../constants";
+import { CURRENCY_DOLLAR } from "../../../constants/text";
+import useCustomLocation from "../../../../hooks/useCustomLocation";
 
 const { cardContainer, itemImage, deleteButton } = orderItemsListStyles;
 
@@ -20,7 +22,7 @@ export default function ItemsList() {
         handleQuantityDecrement,
     } = useShoppingCartHandlers();
 
-    const isCartPage = window.location.pathname === "/cart";
+    const { isCartPage } = useCustomLocation()
 
     return (
         <>
