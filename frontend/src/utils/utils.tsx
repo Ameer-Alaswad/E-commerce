@@ -96,3 +96,8 @@ export const captureRedirectionRoute = (search: string) => {
     const redirect = redirectInUrl ? redirectInUrl : '/'
     return redirect
 }
+
+export const parseLocalStorage = (key: string, defaultValue: any): any => {
+    const value = localStorage.getItem(key);
+    return value ? JSON.parse(value) : defaultValue;
+};
