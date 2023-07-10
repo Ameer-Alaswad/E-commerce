@@ -1,3 +1,4 @@
+// This requires refactoring 
 // Types
 import { productsType } from "../components/display-products/displayProductsInterface";
 import {

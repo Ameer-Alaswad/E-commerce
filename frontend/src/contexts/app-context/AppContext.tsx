@@ -1,4 +1,3 @@
-// This Component requires refactoring.
 import { createContext, useState, MouseEvent } from "react";
 
 import { NavigateFunction } from "react-router-dom";
@@ -50,7 +49,8 @@ export const AppContextProvider = ({ children }: AppContextChildren) => {
         );
 
     const handleProfileMenuOpen = (event: MouseEvent<HTMLElement>) => {
-        setUserOptionsOpen(event.currentTarget);
+        const menuButtonElement = event.currentTarget;
+        setUserOptionsOpen(menuButtonElement);
     };
 
     const handleMobileMenuClose = () => {
@@ -63,8 +63,11 @@ export const AppContextProvider = ({ children }: AppContextChildren) => {
         setUserOptionsOpenMobile(null);
     };
 
-    const handleMobileMenuOpen = (event: MouseEvent<HTMLElement>) =>
-        setUserOptionsOpenMobile(event.currentTarget);
+    const handleMobileMenuOpen = (event: MouseEvent<HTMLElement>) => {
+        const menuButtonElement = event.currentTarget;
+        setUserOptionsOpenMobile(menuButtonElement);
+    }
+
 
     const handleNavigation = (text: string, navigate: NavigateFunction) => {
         navigate(text);
