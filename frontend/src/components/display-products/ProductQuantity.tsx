@@ -9,7 +9,7 @@ interface ProductQuantityProps {
 }
 
 const ProductQuantity: React.FC<ProductQuantityProps> = ({ name }) => {
-    const { cartItems } = useAppContext()
+    const { shoppingCartItems } = useAppContext()
 
     const quantityStyle = {
         marginTop: "7px",
@@ -18,7 +18,7 @@ const ProductQuantity: React.FC<ProductQuantityProps> = ({ name }) => {
 
     return (
         <div id="quantity">
-            { cartItems.map((item: Product) => {
+            { shoppingCartItems.map((item: Product) => {
                 const { productId, quantity } = item || {};
                 if (item?.productId === name) {
                     return (

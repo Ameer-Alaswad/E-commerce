@@ -14,7 +14,7 @@ import useAppContext from "../../../../hooks/useAppContext";
 const { cardContainer, itemImage, deleteButton } = orderItemsListStyles;
 
 export default function ItemsList() {
-    const { cartItems } = useAppContext()
+    const { shoppingCartItems } = useAppContext()
     const {
         handleProductDelete,
         handleQuantityIncrement,
@@ -25,7 +25,7 @@ export default function ItemsList() {
 
     return (
         <>
-            { cartItems?.map(
+            { shoppingCartItems?.map(
                 ({
                     productId,
                     image,

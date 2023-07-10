@@ -22,7 +22,7 @@ export const postUser = async (
     orderData: OrderData,
     navigate: NavigateFunction,
     userToken: string | undefined,
-    setCartItems: React.Dispatch<React.SetStateAction<Product[]>>
+    setShoppingCartItems: React.Dispatch<React.SetStateAction<Product[]>>
 ) => {
     try {
         const { data } = await axios.post(URL, orderData, {
@@ -30,7 +30,7 @@ export const postUser = async (
                 authorization: `Bearer ${userToken}`,
             },
         });
-        setCartItems([]);
+        setShoppingCartItems([]);
         navigate(`/order/${data.order._id}`);
     } catch (error: any) {
         toast.error(error?.message);

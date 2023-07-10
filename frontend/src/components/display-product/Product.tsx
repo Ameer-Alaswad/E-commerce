@@ -33,13 +33,13 @@ type ProductProps = {
 
 const Product: React.FC<ProductProps> = ({ data }) => {
 
-    const { cartItems, setCartItems } = useAppContext()
+    const { shoppingCartItems, setShoppingCartItems } = useAppContext()
 
     const { name: productName, image, numReviews, rating, price, description, countInStock } = data?.[0] || {}
 
     const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
         event.stopPropagation();
-        handleToCart({ event, data, cartItems, setCartItems });
+        handleToCart({ event, data, shoppingCartItems, setShoppingCartItems });
     };
 
     return (

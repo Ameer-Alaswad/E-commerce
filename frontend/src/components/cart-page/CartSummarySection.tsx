@@ -24,7 +24,7 @@ import useAppContext from "../../hooks/useAppContext";
 
 const CartSummarySection = () => {
     const navigate = useNavigate();
-    const { cartItems, userSignedIn } = useAppContext()
+    const { shoppingCartItems, userSignedIn } = useAppContext()
 
     const handleProceedToCheckout = () => {
         userSignedIn
@@ -33,17 +33,17 @@ const CartSummarySection = () => {
     };
 
     const { totalItemsPrice: calculateTotalItemsPrice } = useMemo(() => {
-        return calculateCartTotalPrices(cartItems);
-    }, [cartItems]);
+        return calculateCartTotalPrices(shoppingCartItems);
+    }, [shoppingCartItems]);
 
     const calculateTotalItems = useMemo(() => {
-        return cartItems.reduce((a, c) => a + c.quantity, 0);
-    }, [cartItems]);
+        return shoppingCartItems.reduce((a, c) => a + c.quantity, 0);
+    }, [shoppingCartItems]);
 
     const totalPriceAndItemsText = `Total (${calculateTotalItems} items) : ${CURRENCY_DOLLAR}${calculateTotalItemsPrice}`;
 
     const renderCartSummary = () => {
-        return cartItems?.length !== 0 ? (
+        return shoppingCartItems?.length !== 0 ? (
             <Card id="total-card" sx={ totalCardStyle }>
                 <CardContent>
                     <Typography

@@ -23,7 +23,7 @@ export const AppContext = createContext({} as AppContextTypes);
 
 export const AppContextProvider = ({ children }: AppContextChildren) => {
 
-    const [cartItems, setCartItems] = useState<Product[]>([]);
+    const [shoppingCartItems, setShoppingCartItems] = useState<Product[]>([]);
     const [progressStep, setProgressStep] = useState<number>(0);
     const [orderData, setOrderData] = useState<OrderData | null>(null);
     const [userSignedIn, setUserSignedIn] = useState<userSignedIn | null>(
@@ -82,7 +82,7 @@ export const AppContextProvider = ({ children }: AppContextChildren) => {
         localStorage.removeItem("userData");
         localStorage.removeItem("shippingCardAddress");
         setShippingAddressData(initialShippingAddressData);
-        setCartItems([]);
+        setShoppingCartItems([]);
         setUserSignedIn(null);
         setPaymentMethod("");
         setUserOptionsOpen(null);
@@ -93,8 +93,8 @@ export const AppContextProvider = ({ children }: AppContextChildren) => {
     return (
         <AppContext.Provider
             value={ {
-                cartItems,
-                setCartItems,
+                shoppingCartItems,
+                setShoppingCartItems,
                 userSignedIn,
                 setUserSignedIn,
                 shippingAddressData,

@@ -15,11 +15,11 @@ export default function OrderSummary() {
 
 
     const {
-        cartItems,
+        shoppingCartItems,
         shippingAddressData,
         paymentMethod,
         userSignedIn,
-        setCartItems,
+        setShoppingCartItems,
     } = useAppContext()
 
     const {
@@ -27,10 +27,10 @@ export default function OrderSummary() {
         shippingPrice,
         taxes,
         totalPrice,
-    } = calculateCartTotalPrices(cartItems)
+    } = calculateCartTotalPrices(shoppingCartItems)
 
     const orderData = {
-        orderItems: cartItems,
+        orderItems: shoppingCartItems,
         shippingAddress: shippingAddressData,
         paymentMethod: paymentMethod,
         totalItemsPrice,
@@ -44,7 +44,7 @@ export default function OrderSummary() {
             orderData,
             navigate,
             userSignedIn?.token,
-            setCartItems
+            setShoppingCartItems
         );
     };
 

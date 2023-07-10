@@ -54,8 +54,8 @@ export type userSignedIn = {
     token: string
 }
 export type AppContextTypes = {
-    cartItems: Product[]
-    setCartItems: React.Dispatch<React.SetStateAction<Product[]>>
+    shoppingCartItems: Product[]
+    setShoppingCartItems: React.Dispatch<React.SetStateAction<Product[]>>
     userSignedIn: userSignedIn | null
     setUserSignedIn: React.Dispatch<React.SetStateAction<userSignedIn | null>>
     shippingAddressData: ShippingAddressDataType

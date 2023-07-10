@@ -9,7 +9,7 @@ import useAppContext from "../../hooks/useAppContext";
 const ShoppingCart = () => {
     const navigate = useNavigate();
 
-    const { cartItems } = useAppContext()
+    const { shoppingCartItems } = useAppContext()
 
     return (
         <>
@@ -19,7 +19,7 @@ const ShoppingCart = () => {
                 aria-label="shopping cart"
                 color="inherit"
             >
-                <Badge badgeContent={ cartItems?.length } color="error">
+                <Badge badgeContent={ shoppingCartItems?.length } color="error">
                     <ShoppingCartIcon />
                 </Badge>
             </IconButton>

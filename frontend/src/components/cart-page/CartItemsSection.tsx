@@ -8,14 +8,14 @@ import { HOME_PATH } from "../constants/path";
 import useAppContext from "../../hooks/useAppContext";
 
 
-const CartItemsSection = () => {
+const shoppingCartItemsSection = () => {
     const navigate = useNavigate();
-    const { cartItems } = useAppContext()
+    const { shoppingCartItems } = useAppContext()
 
     const navigateHome = () => navigate(HOME_PATH);
 
     const renderCartContent = () => {
-        const isCartEmpty = cartItems?.length === 0;
+        const isCartEmpty = shoppingCartItems?.length === 0;
 
         return isCartEmpty ? (
             <EmptyCartMessage navigateHome={ navigateHome } />
@@ -45,4 +45,4 @@ const CartItemsSection = () => {
     )
 };
 
-export default CartItemsSection;
+export default shoppingCartItemsSection;

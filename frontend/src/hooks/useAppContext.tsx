@@ -3,8 +3,8 @@ import { AppContext } from '../contexts/app-context/AppContext'
 
 const useAppContext = () => {
     const {
-        cartItems,
-        setCartItems,
+        shoppingCartItems,
+        setShoppingCartItems,
         userSignedIn,
         setUserSignedIn,
         shippingAddressData,
@@ -30,8 +30,8 @@ const useAppContext = () => {
         handleSignOut
     } = useContext(AppContext)
     return {
-        cartItems,
-        setCartItems,
+        shoppingCartItems,
+        setShoppingCartItems,
         userSignedIn,
         setUserSignedIn,
         shippingAddressData,
