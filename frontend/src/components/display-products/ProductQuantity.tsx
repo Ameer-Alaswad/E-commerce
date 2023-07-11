@@ -1,8 +1,8 @@
 import React from "react";
 
 import { Typography } from "@mui/material";
-import { Product } from "../../contexts/app-context/AppContextTypes";
 import useShoppingCartContext from "../../hooks/useShoppingCartContext";
+import { Product } from "../../contexts/shopping-cart-context/Types";
 
 interface ProductQuantityProps {
     name: string | undefined;

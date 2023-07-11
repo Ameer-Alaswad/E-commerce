@@ -4,21 +4,11 @@ import { NavigateFunction } from "react-router-dom";
 import {
     AppContextTypes,
     AppContextChildren,
-    OrderData,
-} from "./AppContextTypes";
-
-
-
+} from "./Types";
 
 export const AppContext = createContext({} as AppContextTypes);
 
 export const AppContextProvider = ({ children }: AppContextChildren) => {
-
-
-    const [orderData, setOrderData] = useState<OrderData | null>(null);
-
-
-
 
     const [userOptionsOpen, setUserOptionsOpen] = useState<HTMLElement | null>(
         null
@@ -28,7 +18,6 @@ export const AppContextProvider = ({ children }: AppContextChildren) => {
 
     const isMenuOpen = Boolean(userOptionsOpen);
     const isMobileMenuOpen = Boolean(userOptionsOpenMobile);
-
 
     const handleProfileMenuOpen = (event: MouseEvent<HTMLElement>) => {
         const menuButtonElement = event.currentTarget;
@@ -48,8 +37,7 @@ export const AppContextProvider = ({ children }: AppContextChildren) => {
     const handleMobileMenuOpen = (event: MouseEvent<HTMLElement>) => {
         const menuButtonElement = event.currentTarget;
         setUserOptionsOpenMobile(menuButtonElement);
-    }
-
+    };
 
     const handleNavigation = (text: string, navigate: NavigateFunction) => {
         navigate(text);
@@ -60,12 +48,9 @@ export const AppContextProvider = ({ children }: AppContextChildren) => {
         return () => handleNavigation(path, navigate);
     };
 
-
     return (
         <AppContext.Provider
             value={ {
-                orderData,
-                setOrderData,
                 userOptionsOpen,
                 setUserOptionsOpen,
                 userOptionsOpenMobile,

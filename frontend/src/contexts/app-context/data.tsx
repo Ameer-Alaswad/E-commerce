@@ -1,6 +1,6 @@
 import { parseLocalStorage } from "../../utils/utils";
 import { ShippingAddressDataType } from "../checkout-context/Types";
-import { UserData } from "./AppContextTypes";
+import { UserData } from "./Types";
 
 export const initialShippingAddressData: ShippingAddressDataType = {
     fullName: "",

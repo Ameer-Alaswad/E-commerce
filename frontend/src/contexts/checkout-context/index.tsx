@@ -8,7 +8,7 @@ import {
     addressDataInStorage,
     initialShippingAddressData,
     paymentMethodInStorage,
-} from "../app-context/AppContextData";
+} from "../app-context/data";
 
 export const CheckoutContext = createContext({} as CheckoutContextTypes);
 

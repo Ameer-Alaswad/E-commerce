@@ -1,3 +1,4 @@
+// Requires rafactoring 
 import { Card, CardContent, Divider, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import { useEffect } from "react";
@@ -6,12 +7,12 @@ import { toast } from "react-toastify";
 import { fetchOrder } from "../../fetchers/fetchOrder";
 import { PayPalButtons, usePayPalScriptReducer } from "@paypal/react-paypal-js";
 import axios from "axios";
-import useAppContext from "../../hooks/useAppContext";
 import useUserAuthContext from "../../hooks/useUserAuthContext";
+import useOrdersContext from "../../hooks/useOrdersContext";
 
 const OrderScreen = () => {
     const navigate = useNavigate();
-    const { setOrderData, orderData } = useAppContext()
+    const { setOrderData, orderData } = useOrdersContext()
     const { userSignedIn } = useUserAuthContext()
 
     const user: any = localStorage.getItem("userData");

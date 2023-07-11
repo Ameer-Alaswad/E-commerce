@@ -3,7 +3,7 @@ import { UserAuth, UserAuthChildren, userSignedIn } from "./Types";
 import {
     initialShippingAddressData,
     userData,
-} from "../app-context/AppContextData";
+} from "../app-context/data";
 import { NavigateFunction } from "react-router-dom";
 import useAppContext from "../../hooks/useAppContext";
 import { SIGNIN_PATH } from "../../components/constants/path";

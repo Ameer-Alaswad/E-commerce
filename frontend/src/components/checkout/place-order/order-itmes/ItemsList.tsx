@@ -5,11 +5,11 @@ import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 
 import { useShoppingCartHandlers } from "./handlers";
-import { Product } from "../../../../contexts/app-context/AppContextTypes";
 import { orderItemsListStyles } from "../../styles";
 import { CURRENCY_DOLLAR } from "../../../constants/text";
 import useCustomLocation from "../../../../hooks/useCustomLocation";
 import useShoppingCartContext from "../../../../hooks/useShoppingCartContext";
+import { Product } from "../../../../contexts/shopping-cart-context/Types";
 
 const { cardContainer, itemImage, deleteButton } = orderItemsListStyles;
 

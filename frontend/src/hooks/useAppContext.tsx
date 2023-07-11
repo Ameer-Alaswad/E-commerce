@@ -1,11 +1,8 @@
 import { useContext } from 'react'
-import { AppContext } from '../contexts/app-context/AppContext'
+import { AppContext } from '../contexts/app-context'
 
 const useAppContext = () => {
     const {
-
-        orderData,
-        setOrderData,
         userOptionsOpen,
         setUserOptionsOpen,
         userOptionsOpenMobile,
@@ -20,9 +17,6 @@ const useAppContext = () => {
         handleProfileMenuOpen,
     } = useContext(AppContext)
     return {
-
-        orderData,
-        setOrderData,
         userOptionsOpen,
         setUserOptionsOpen,
         userOptionsOpenMobile,
