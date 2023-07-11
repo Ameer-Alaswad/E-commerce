@@ -42,6 +42,7 @@ export const AppContextProvider = ({ children }: AppContextChildren) => {
     const handleNavigation = (text: string, navigate: NavigateFunction) => {
         navigate(text);
         handleMenuClose();
+        handleMobileMenuClose()
     };
 
     const getMenuClickHandler = (path: string, navigate: NavigateFunction) => {
