@@ -13,8 +13,8 @@ import ProgressSteps from "./ProgressSteps";
 import { paymentStyles } from "./styles";
 import usePaymentRedirect from "./useRedirect";
 import { getPaymentRedirectProps } from "./utils";
-import useAppContext from "../../hooks/useAppContext";
 import useUserAuthContext from "../../hooks/useUserAuthContext";
+import useCheckoutContext from "../../hooks/useCheckoutContext";
 const { container, form, heading, button } = paymentStyles;
 
 const PaymentUi = () => {
@@ -24,7 +24,7 @@ const PaymentUi = () => {
         shippingAddressData,
         setPaymentMethod,
         paymentMethod,
-    } = useAppContext();
+    } = useCheckoutContext();
     const { userSignedIn } = useUserAuthContext();
 
     const {

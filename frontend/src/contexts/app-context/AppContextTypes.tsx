@@ -1,4 +1,5 @@
 import { NavigateFunction } from "react-router-dom";
+import { ShippingAddressDataType } from "../checkout-context/Types";
 
 export type Product = {
     productId: string
@@ -20,13 +21,6 @@ export type OrderItems = {
 
 export type AppContextChildren = {
     children: React.ReactNode
-}
-export type ShippingAddressDataType = {
-    fullName: string
-    address: string
-    city: string
-    postalCode: string
-    country: string
 }
 
 export type OrderData = {
@@ -54,12 +48,6 @@ export type userSignedIn = {
     token: string
 }
 export type AppContextTypes = {
-    shippingAddressData: ShippingAddressDataType
-    setShippingAddressData: React.Dispatch<React.SetStateAction<ShippingAddressDataType>>
-    progressStep: number
-    setProgressStep: React.Dispatch<React.SetStateAction<number>>
-    paymentMethod: string
-    setPaymentMethod: React.Dispatch<React.SetStateAction<string>>
     orderData: OrderData | null
     setOrderData: React.Dispatch<React.SetStateAction<OrderData | null>>
     userOptionsOpen: HTMLElement | null

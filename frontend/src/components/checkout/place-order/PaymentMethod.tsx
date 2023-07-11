@@ -2,13 +2,13 @@ import { Card, CardActions, CardContent, Button, Typography } from '@mui/materia
 
 import { useNavigate } from 'react-router-dom';
 import { placeOrderComponentsStyles } from '../styles';
-import useAppContext from '../../../hooks/useAppContext';
+import useCheckoutContext from '../../../hooks/useCheckoutContext';
 
 const { container, title } = placeOrderComponentsStyles
 
 const PaymentMethod = () => {
 
-    const { paymentMethod } = useAppContext()
+    const { paymentMethod } = useCheckoutContext()
     const navigate = useNavigate()
 
     const handleNavigate = () => navigate("/payment")

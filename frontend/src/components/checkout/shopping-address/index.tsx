@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { ShippingAddressDataType } from "../../../contexts/app-context/AppContextTypes";
 import { toast } from "react-toastify";
 import ShoppingAdressForm from "./ShoppingAdressForm";
-import useAppContext from "../../../hooks/useAppContext";
 import useUserAuthContext from "../../../hooks/useUserAuthContext";
+import useCheckoutContext from "../../../hooks/useCheckoutContext";
+import { ShippingAddressDataType } from "../../../contexts/checkout-context/Types";
 
 const ShippingAddressUi = () => {
 
@@ -14,7 +14,7 @@ const ShippingAddressUi = () => {
     setShippingAddressData,
     shippingAddressData,
     setProgressStep,
-  } = useAppContext()
+  } = useCheckoutContext()
   const {
     userSignedIn,
 

@@ -1,11 +1,10 @@
 // axios
 import axios from "axios";
 import { NavigateFunction } from "react-router-dom";
-import {
-    Product,
-    ShippingAddressDataType,
-} from "../contexts/app-context/AppContextTypes";
+
 import { toast } from "react-toastify";
+import { Product } from "../contexts/shopping-cart-context/Types";
+import { ShippingAddressDataType } from "../contexts/checkout-context/Types";
 // types
 type OrderData = {
     orderItems: Product[];

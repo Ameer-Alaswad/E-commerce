@@ -8,13 +8,13 @@ import {
 
 import { useNavigate } from "react-router-dom";
 import { placeOrderComponentsStyles } from "../styles";
-import useAppContext from "../../../hooks/useAppContext";
+import useCheckoutContext from "../../../hooks/useCheckoutContext";
 
 const { container, title } = placeOrderComponentsStyles;
 
 export default function Shipping() {
 
-    const { shippingAddressData } = useAppContext();
+    const { shippingAddressData } = useCheckoutContext();
     const { fullName, address } = shippingAddressData;
     const navigate = useNavigate();
 

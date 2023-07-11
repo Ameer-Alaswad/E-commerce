@@ -3,12 +3,7 @@ import { AppContext } from '../contexts/app-context/AppContext'
 
 const useAppContext = () => {
     const {
-        shippingAddressData,
-        setShippingAddressData,
-        progressStep,
-        setProgressStep,
-        setPaymentMethod,
-        paymentMethod,
+
         orderData,
         setOrderData,
         userOptionsOpen,
@@ -25,12 +20,7 @@ const useAppContext = () => {
         handleProfileMenuOpen,
     } = useContext(AppContext)
     return {
-        shippingAddressData,
-        setShippingAddressData,
-        progressStep,
-        setProgressStep,
-        setPaymentMethod,
-        paymentMethod,
+
         orderData,
         setOrderData,
         userOptionsOpen,

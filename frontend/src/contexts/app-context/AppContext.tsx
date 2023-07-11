@@ -4,29 +4,21 @@ import { NavigateFunction } from "react-router-dom";
 import {
     AppContextTypes,
     AppContextChildren,
-    ShippingAddressDataType,
     OrderData,
 } from "./AppContextTypes";
 
 
-import {
-    addressDataInStorage,
-    initialShippingAddressData,
-    paymentMethodInStorage,
-} from "./AppContextData";
+
 
 export const AppContext = createContext({} as AppContextTypes);
 
 export const AppContextProvider = ({ children }: AppContextChildren) => {
 
 
-    const [progressStep, setProgressStep] = useState<number>(0);
     const [orderData, setOrderData] = useState<OrderData | null>(null);
 
 
-    const [paymentMethod, setPaymentMethod] = useState<string>(
-        paymentMethodInStorage || ""
-    );
+
 
     const [userOptionsOpen, setUserOptionsOpen] = useState<HTMLElement | null>(
         null
@@ -37,10 +29,6 @@ export const AppContextProvider = ({ children }: AppContextChildren) => {
     const isMenuOpen = Boolean(userOptionsOpen);
     const isMobileMenuOpen = Boolean(userOptionsOpenMobile);
 
-    const [shippingAddressData, setShippingAddressData] =
-        useState<ShippingAddressDataType>(
-            addressDataInStorage || initialShippingAddressData
-        );
 
     const handleProfileMenuOpen = (event: MouseEvent<HTMLElement>) => {
         const menuButtonElement = event.currentTarget;
@@ -76,12 +64,6 @@ export const AppContextProvider = ({ children }: AppContextChildren) => {
     return (
         <AppContext.Provider
             value={ {
-                shippingAddressData,
-                setShippingAddressData,
-                progressStep,
-                setProgressStep,
-                setPaymentMethod,
-                paymentMethod,
                 orderData,
                 setOrderData,
                 userOptionsOpen,

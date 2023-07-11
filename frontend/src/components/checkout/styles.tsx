@@ -43,7 +43,7 @@ export const paymentStyles = {
 export const orderSummaryStyles = {
     card: {
         width: "300px",
-        height: "300px",
+        height: "400px",
     },
     title: {
         marginBottom: "10px",
@@ -65,9 +65,11 @@ export const orderSummaryStyles = {
     buttonBox: {
         display: "flex",
         justifyContent: "center",
+        height: "100%",
     },
     button: {
         width: "220px",
+        marginTop: "16px"
     },
 };
 export const placeOrderStyles = {

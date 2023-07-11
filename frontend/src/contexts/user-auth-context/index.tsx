@@ -8,16 +8,17 @@ import { NavigateFunction } from "react-router-dom";
 import useAppContext from "../../hooks/useAppContext";
 import { SIGNIN_PATH } from "../../components/constants/path";
 import useShoppingCartContext from "../../hooks/useShoppingCartContext";
+import useCheckoutContext from "../../hooks/useCheckoutContext";
 
 export const UserAuthContext = createContext({} as UserAuth);
 
 const UserAuthContextProvider = ({ children }: UserAuthChildren) => {
     const {
-        setShippingAddressData,
-        setPaymentMethod,
         setUserOptionsOpen,
         handleMobileMenuClose,
     } = useAppContext();
+    const { setShippingAddressData,
+        setPaymentMethod } = useCheckoutContext()
     const {
         setShoppingCartItems
     } = useShoppingCartContext();

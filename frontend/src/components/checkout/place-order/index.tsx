@@ -8,15 +8,15 @@ import Shipping from "./Shipping";
 import useRedirect from "../useRedirect";
 import { getPaymentRedirectProps } from "../utils";
 import { placeOrderStyles } from "../styles";
-import useAppContext from "../../../hooks/useAppContext";
 import useUserAuthContext from "../../../hooks/useUserAuthContext";
+import useCheckoutContext from "../../../hooks/useCheckoutContext";
 
 const { mainContainer, orderDetailsContainer, PreviewOrder } = placeOrderStyles;
 
 const PlaceOrderUi = () => {
 
 
-    const { setProgressStep, paymentMethod } = useAppContext()
+    const { setProgressStep, paymentMethod } = useCheckoutContext()
     const { userSignedIn } = useUserAuthContext()
 
     const {

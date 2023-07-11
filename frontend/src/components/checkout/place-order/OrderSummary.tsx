@@ -5,9 +5,9 @@ import { postUser } from "../../../fetchers/postOrder";
 import { useNavigate } from "react-router-dom";
 import { orderSummaryStyles } from "../styles";
 import { calculateCartTotalPrices } from "../utils";
-import useAppContext from "../../../hooks/useAppContext";
 import useShoppingCartContext from "../../../hooks/useShoppingCartContext";
 import useUserAuthContext from "../../../hooks/useUserAuthContext";
+import useCheckoutContext from "../../../hooks/useCheckoutContext";
 
 const { card, title, itemPrice, divider, bold, box, buttonBox, button } =
     orderSummaryStyles;
@@ -19,7 +19,7 @@ export default function OrderSummary() {
     const {
         shippingAddressData,
         paymentMethod,
-    } = useAppContext()
+    } = useCheckoutContext()
 
     const {
         userSignedIn
@@ -74,13 +74,14 @@ export default function OrderSummary() {
                         Total: ${ totalPrice }
                     </Typography>
                     <Divider sx={ divider } />
+                    <Box sx={ buttonBox }>
+                        <Button onClick={ handleOrder } sx={ button } variant="contained">
+                            Place Order
+                        </Button>
+                    </Box>
                 </Box>
             </CardContent>
-            <Box sx={ buttonBox }>
-                <Button onClick={ handleOrder } sx={ button } variant="contained">
-                    Place Order
-                </Button>
-            </Box>
+
         </Card>
     );
 }
