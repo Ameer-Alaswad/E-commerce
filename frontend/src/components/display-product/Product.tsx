@@ -7,7 +7,7 @@ import RatingComponent from "../display-products/Rating";
 import ProductQuantity from "../display-products/ProductQuantity";
 import { handleToCart } from "./handlers";
 import styles from "./styles";
-import useAppContext from "../../hooks/useAppContext";
+import useShoppingCartContext from "../../hooks/useShoppingCartContext";
 
 const {
     container,
@@ -33,7 +33,7 @@ type ProductProps = {
 
 const Product: React.FC<ProductProps> = ({ data }) => {
 
-    const { shoppingCartItems, setShoppingCartItems } = useAppContext()
+    const { shoppingCartItems, setShoppingCartItems } = useShoppingCartContext()
 
     const { name: productName, image, numReviews, rating, price, description, countInStock } = data?.[0] || {}
 

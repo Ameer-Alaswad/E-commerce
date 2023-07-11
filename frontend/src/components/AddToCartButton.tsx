@@ -6,11 +6,11 @@ import { addToShoppingCartLogic } from "../utils/utils";
 import { productsType } from "./display-products/displayProductsInterface";
 // Material UI
 import Button from "@mui/material/Button";
-import useAppContext from "../hooks/useAppContext";
+import useShoppingCartContext from "../hooks/useShoppingCartContext";
 
 
 const AddToCartButton = () => {
-    const { shoppingCartItems, setShoppingCartItems } = useAppContext();
+    const { shoppingCartItems, setShoppingCartItems } = useShoppingCartContext();
 
     const addToCartHandler = (event: React.MouseEvent<HTMLButtonElement>) => {
         event.stopPropagation();

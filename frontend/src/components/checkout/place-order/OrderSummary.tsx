@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { orderSummaryStyles } from "../styles";
 import { calculateCartTotalPrices } from "../utils";
 import useAppContext from "../../../hooks/useAppContext";
+import useShoppingCartContext from "../../../hooks/useShoppingCartContext";
 
 const { card, title, itemPrice, divider, bold, box, buttonBox, button } =
     orderSummaryStyles;
@@ -15,12 +16,15 @@ export default function OrderSummary() {
 
 
     const {
-        shoppingCartItems,
         shippingAddressData,
         paymentMethod,
         userSignedIn,
-        setShoppingCartItems,
     } = useAppContext()
+    const {
+        shoppingCartItems,
+
+        setShoppingCartItems,
+    } = useShoppingCartContext()
 
     const {
         totalItemsPrice,

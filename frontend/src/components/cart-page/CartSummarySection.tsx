@@ -21,10 +21,12 @@ import { SHIPPING_PATH, SIGNIN_PATH } from "../constants/path";
 import { calculateCartTotalPrices } from "../checkout/utils";
 import { CURRENCY_DOLLAR } from "../constants/text";
 import useAppContext from "../../hooks/useAppContext";
+import useShoppingCartContext from "../../hooks/useShoppingCartContext";
 
 const CartSummarySection = () => {
     const navigate = useNavigate();
-    const { shoppingCartItems, userSignedIn } = useAppContext()
+    const { shoppingCartItems } = useShoppingCartContext()
+    const { userSignedIn } = useAppContext()
 
     const handleProceedToCheckout = () => {
         userSignedIn

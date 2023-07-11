@@ -4,12 +4,12 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 
 import { SHOPPING_CART_PATH } from "../constants/path";
 import { useNavigate } from "react-router-dom";
-import useAppContext from "../../hooks/useAppContext";
+import useShoppingCartContext from '../../hooks/useShoppingCartContext';
 
 const ShoppingCart = () => {
     const navigate = useNavigate();
 
-    const { shoppingCartItems } = useAppContext()
+    const { shoppingCartItems } = useShoppingCartContext()
 
     return (
         <>

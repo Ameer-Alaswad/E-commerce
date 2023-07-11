@@ -23,6 +23,7 @@ export const AppContext = createContext({} as AppContextTypes);
 
 export const AppContextProvider = ({ children }: AppContextChildren) => {
 
+
     const [shoppingCartItems, setShoppingCartItems] = useState<Product[]>([]);
     const [progressStep, setProgressStep] = useState<number>(0);
     const [orderData, setOrderData] = useState<OrderData | null>(null);

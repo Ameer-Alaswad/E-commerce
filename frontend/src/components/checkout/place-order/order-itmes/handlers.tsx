@@ -1,10 +1,10 @@
 
 import { toast } from "react-toastify";
 
-import useAppContext from "../../../../hooks/useAppContext";
+import useShoppingCartContext from "../../../../hooks/useShoppingCartContext";
 
 export const useShoppingCartHandlers = () => {
-    const { shoppingCartItems, setShoppingCartItems } = useAppContext()
+    const { shoppingCartItems, setShoppingCartItems } = useShoppingCartContext()
 
     const handleProductDelete = (productName: string) => () => {
         const filterProductsInCart = shoppingCartItems.filter(

@@ -5,12 +5,12 @@ import { cartCardStyle } from "./cartStyles";
 import ItemsList from "../checkout/place-order/order-itmes/ItemsList";
 import EmptyCartMessage from "./EmptyCartMessage";
 import { HOME_PATH } from "../constants/path";
-import useAppContext from "../../hooks/useAppContext";
+import useShoppingCartContext from "../../hooks/useShoppingCartContext";
 
 
 const CartItemsSection = () => {
     const navigate = useNavigate();
-    const { shoppingCartItems } = useAppContext()
+    const { shoppingCartItems } = useShoppingCartContext()
 
     const navigateHome = () => navigate(HOME_PATH);
 

@@ -2,14 +2,14 @@ import React from "react";
 
 import { Typography } from "@mui/material";
 import { Product } from "../../contexts/app-context/AppContextTypes";
-import useAppContext from "../../hooks/useAppContext";
+import useShoppingCartContext from "../../hooks/useShoppingCartContext";
 
 interface ProductQuantityProps {
     name: string | undefined;
 }
 
 const ProductQuantity: React.FC<ProductQuantityProps> = ({ name }) => {
-    const { shoppingCartItems } = useAppContext()
+    const { shoppingCartItems } = useShoppingCartContext()
 
     const quantityStyle = {
         marginTop: "7px",

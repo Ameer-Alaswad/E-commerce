@@ -9,12 +9,12 @@ import { Product } from "../../../../contexts/app-context/AppContextTypes";
 import { orderItemsListStyles } from "../../styles";
 import { CURRENCY_DOLLAR } from "../../../constants/text";
 import useCustomLocation from "../../../../hooks/useCustomLocation";
-import useAppContext from "../../../../hooks/useAppContext";
+import useShoppingCartContext from "../../../../hooks/useShoppingCartContext";
 
 const { cardContainer, itemImage, deleteButton } = orderItemsListStyles;
 
 export default function ItemsList() {
-    const { shoppingCartItems } = useAppContext()
+    const { shoppingCartItems } = useShoppingCartContext()
     const {
         handleProductDelete,
         handleQuantityIncrement,
