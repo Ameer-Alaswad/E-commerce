@@ -3,8 +3,6 @@ import { AppContext } from '../contexts/app-context/AppContext'
 
 const useAppContext = () => {
     const {
-        userSignedIn,
-        setUserSignedIn,
         shippingAddressData,
         setShippingAddressData,
         progressStep,
@@ -25,11 +23,8 @@ const useAppContext = () => {
         handleNavigation,
         getMenuClickHandler,
         handleProfileMenuOpen,
-        handleSignOut
     } = useContext(AppContext)
     return {
-        userSignedIn,
-        setUserSignedIn,
         shippingAddressData,
         setShippingAddressData,
         progressStep,
@@ -50,7 +45,6 @@ const useAppContext = () => {
         handleNavigation,
         getMenuClickHandler,
         handleProfileMenuOpen,
-        handleSignOut
     }
 }
 

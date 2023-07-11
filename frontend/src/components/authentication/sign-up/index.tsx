@@ -9,7 +9,7 @@ import { captureRedirectionRoute, checkUserLoggedIn } from "../../../utils/utils
 import { toast } from "react-toastify";
 import { getFormData } from "../utils";
 import SignUpForm from "./SignUpForm";
-import useAppContext from "../../../hooks/useAppContext";
+import useUserAuthContext from "../../../hooks/useUserAuthContext";
 
 export default function SignUp() {
     const navigate = useNavigate();
@@ -18,7 +18,7 @@ export default function SignUp() {
     const { search } = useLocation();
     const redirect = captureRedirectionRoute(search)
 
-    const { userSignedIn, setUserSignedIn } = useAppContext()
+    const { userSignedIn, setUserSignedIn } = useUserAuthContext()
 
     const userSigned = checkUserLoggedIn(userSignedIn);
 

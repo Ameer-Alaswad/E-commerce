@@ -14,24 +14,31 @@ import { paymentStyles } from "./styles";
 import usePaymentRedirect from "./useRedirect";
 import { getPaymentRedirectProps } from "./utils";
 import useAppContext from "../../hooks/useAppContext";
+import useUserAuthContext from "../../hooks/useUserAuthContext";
 const { container, form, heading, button } = paymentStyles;
 
 const PaymentUi = () => {
     const navigate = useNavigate();
     const {
         setProgressStep,
-        userSignedIn,
         shippingAddressData,
         setPaymentMethod,
         paymentMethod,
-    } = useAppContext()
+    } = useAppContext();
+    const { userSignedIn } = useUserAuthContext();
 
-    const { progressStep, userNotSignedLink, userNotSignedMessage, redirectLink, redirectMessage } = getPaymentRedirectProps({
+    const {
+        progressStep,
+        userNotSignedLink,
+        userNotSignedMessage,
+        redirectLink,
+        redirectMessage,
+    } = getPaymentRedirectProps({
         progressStepNumber: 1,
         pageName: "payment",
         errorMessage: "Add your Address first!",
         stepName: "payment",
-        redirectName: "shipping"
+        redirectName: "shipping",
     });
 
     const paymentRedirectProps = {

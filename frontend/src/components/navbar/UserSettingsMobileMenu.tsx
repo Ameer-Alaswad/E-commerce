@@ -11,6 +11,7 @@ import { MY_ORDERS_TEXT, PROFILE_TEXT, SIGNOUT_TEXT } from "../constants/text";
 import { Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import useAppContext from "../../hooks/useAppContext";
+import useUserAuthContext from "../../hooks/useUserAuthContext";
 
 
 type UserSettingsMobileMenuProps = {
@@ -25,8 +26,9 @@ const UserSettingsMobileMenu: React.FC<UserSettingsMobileMenuProps> = ({ isMobil
         getMenuClickHandler,
         userOptionsOpenMobile,
         handleProfileMenuOpen,
-        handleSignOut
     } = useAppContext()
+
+    const { handleSignOut } = useUserAuthContext()
 
     return (
         <Menu

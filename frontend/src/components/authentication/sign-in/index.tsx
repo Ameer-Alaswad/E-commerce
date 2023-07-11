@@ -9,7 +9,7 @@ import {
 
 import { getFormData } from "../utils";
 import SignInForm from "./SigninForm";
-import useAppContext from "../../../hooks/useAppContext";
+import useUserAuthContext from "../../../hooks/useUserAuthContext";
 
 export default function SignIn() {
     const navigate = useNavigate();
@@ -17,7 +17,7 @@ export default function SignIn() {
     const { search } = useLocation();
     const redirect = captureRedirectionRoute(search);
 
-    const { userSignedIn, setUserSignedIn } = useAppContext();
+    const { userSignedIn, setUserSignedIn } = useUserAuthContext();
 
     const userSigned = checkUserLoggedIn(userSignedIn);
 

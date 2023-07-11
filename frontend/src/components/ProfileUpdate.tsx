@@ -9,7 +9,7 @@ import {
 } from "@mui/material";
 import { toast } from "react-toastify";
 import useProfileUpdate from "../hooks/useProfileUpdate";
-import useAppContext from "../hooks/useAppContext";
+import useUserAuthContext from "../hooks/useUserAuthContext";
 interface UserData {
     _id: string;
     name: string;
@@ -38,7 +38,7 @@ const ProfileUpdate = () => {
     const userData: UserData | null = UserDataStorage
         ? JSON.parse(UserDataStorage)
         : null;
-    const { userSignedIn, setUserSignedIn } = useAppContext();
+    const { userSignedIn, setUserSignedIn } = useUserAuthContext();
     const {
         name: userName,
         token: userToken,

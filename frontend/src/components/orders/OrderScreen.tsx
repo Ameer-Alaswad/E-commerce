@@ -7,11 +7,12 @@ import { fetchOrder } from "../../fetchers/fetchOrder";
 import { PayPalButtons, usePayPalScriptReducer } from "@paypal/react-paypal-js";
 import axios from "axios";
 import useAppContext from "../../hooks/useAppContext";
-// import Items from './items'
+import useUserAuthContext from "../../hooks/useUserAuthContext";
 
 const OrderScreen = () => {
     const navigate = useNavigate();
-    const { userSignedIn, setOrderData, orderData } = useAppContext()
+    const { setOrderData, orderData } = useAppContext()
+    const { userSignedIn } = useUserAuthContext()
 
     const user: any = localStorage.getItem("userData");
     const parsedUser = JSON.parse(user);

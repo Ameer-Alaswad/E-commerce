@@ -7,6 +7,7 @@ import { orderSummaryStyles } from "../styles";
 import { calculateCartTotalPrices } from "../utils";
 import useAppContext from "../../../hooks/useAppContext";
 import useShoppingCartContext from "../../../hooks/useShoppingCartContext";
+import useUserAuthContext from "../../../hooks/useUserAuthContext";
 
 const { card, title, itemPrice, divider, bold, box, buttonBox, button } =
     orderSummaryStyles;
@@ -18,8 +19,12 @@ export default function OrderSummary() {
     const {
         shippingAddressData,
         paymentMethod,
-        userSignedIn,
     } = useAppContext()
+
+    const {
+        userSignedIn
+    } = useUserAuthContext()
+
     const {
         shoppingCartItems,
 

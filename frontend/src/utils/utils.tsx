@@ -1,10 +1,10 @@
 // This requires refactoring 
 // Types
 import { productsType } from "../components/display-products/displayProductsInterface";
+import { Product } from "../contexts/shopping-cart-context/Types";
 import {
-    Product,
     userSignedIn,
-} from "../contexts/app-context/AppContextTypes";
+} from "../contexts/user-auth-context/Types";
 import { toast } from "react-toastify";
 
 export type AddToShoppingCartTypes = {

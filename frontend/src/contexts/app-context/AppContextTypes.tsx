@@ -54,10 +54,6 @@ export type userSignedIn = {
     token: string
 }
 export type AppContextTypes = {
-    shoppingCartItems: Product[]
-    setShoppingCartItems: React.Dispatch<React.SetStateAction<Product[]>>
-    userSignedIn: userSignedIn | null
-    setUserSignedIn: React.Dispatch<React.SetStateAction<userSignedIn | null>>
     shippingAddressData: ShippingAddressDataType
     setShippingAddressData: React.Dispatch<React.SetStateAction<ShippingAddressDataType>>
     progressStep: number
@@ -78,7 +74,6 @@ export type AppContextTypes = {
     handleNavigation: (text: string, navigate: NavigateFunction) => void;
     getMenuClickHandler: (path: string, navigate: NavigateFunction) => () => void;
     handleProfileMenuOpen: (event: React.MouseEvent<HTMLElement>) => void
-    handleSignOut: (navigate: NavigateFunction) => void;
 }
 export type UserData = {
     _id: string;

@@ -2,21 +2,17 @@ import { createContext, useState, MouseEvent } from "react";
 
 import { NavigateFunction } from "react-router-dom";
 import {
-    Product,
     AppContextTypes,
     AppContextChildren,
-    userSignedIn,
     ShippingAddressDataType,
     OrderData,
 } from "./AppContextTypes";
 
-import { SIGNIN_PATH } from "../../components/constants/path";
 
 import {
     addressDataInStorage,
     initialShippingAddressData,
     paymentMethodInStorage,
-    userData,
 } from "./AppContextData";
 
 export const AppContext = createContext({} as AppContextTypes);
@@ -24,12 +20,9 @@ export const AppContext = createContext({} as AppContextTypes);
 export const AppContextProvider = ({ children }: AppContextChildren) => {
 
 
-    const [shoppingCartItems, setShoppingCartItems] = useState<Product[]>([]);
     const [progressStep, setProgressStep] = useState<number>(0);
     const [orderData, setOrderData] = useState<OrderData | null>(null);
-    const [userSignedIn, setUserSignedIn] = useState<userSignedIn | null>(
-        userData
-    );
+
 
     const [paymentMethod, setPaymentMethod] = useState<string>(
         paymentMethodInStorage || ""
@@ -79,25 +72,10 @@ export const AppContextProvider = ({ children }: AppContextChildren) => {
         return () => handleNavigation(path, navigate);
     };
 
-    const handleSignOut = (navigate: NavigateFunction) => {
-        localStorage.removeItem("userData");
-        localStorage.removeItem("shippingCardAddress");
-        setShippingAddressData(initialShippingAddressData);
-        setShoppingCartItems([]);
-        setUserSignedIn(null);
-        setPaymentMethod("");
-        setUserOptionsOpen(null);
-        handleMobileMenuClose();
-        navigate(SIGNIN_PATH);
-    };
 
     return (
         <AppContext.Provider
             value={ {
-                shoppingCartItems,
-                setShoppingCartItems,
-                userSignedIn,
-                setUserSignedIn,
                 shippingAddressData,
                 setShippingAddressData,
                 progressStep,
@@ -118,7 +96,6 @@ export const AppContextProvider = ({ children }: AppContextChildren) => {
                 handleNavigation,
                 getMenuClickHandler,
                 handleProfileMenuOpen,
-                handleSignOut,
             } }
         >
             { children }

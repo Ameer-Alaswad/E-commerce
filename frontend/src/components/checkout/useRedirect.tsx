@@ -2,7 +2,7 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { userSignedIn } from "../../contexts/app-context/AppContextTypes";
+import { userSignedIn } from "../../contexts/user-auth-context/Types";
 
 type PaymentRedirectProps = {
     userSignedIn: userSignedIn | null;

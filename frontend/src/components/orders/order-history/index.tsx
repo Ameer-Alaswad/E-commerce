@@ -9,7 +9,7 @@ import OrdersTable from "./orders-table";
 import { OrderHistory } from "./OrdersTypes";
 import { fetchOrderHistory } from "../../../fetchers/fetchOrdersHistory";
 import { useNavigate } from "react-router-dom";
-import useAppContext from "../../../hooks/useAppContext";
+import useUserAuthContext from "../../../hooks/useUserAuthContext";
 
 const orderHistoryContainer = {
     height: "100vh",
@@ -20,7 +20,7 @@ const orderHistoryContainer = {
 
 const OrdersHistory = () => {
 
-    const { userSignedIn } = useAppContext()
+    const { userSignedIn } = useUserAuthContext()
     const navigate = useNavigate();
     const [orderHistory, setOrderHistory] = useState<OrderHistory[]>([]);
     const [loading, setLoading] = useState<boolean>(false);

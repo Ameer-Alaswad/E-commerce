@@ -5,11 +5,11 @@ import ProductSearch from "./ProductSearch";
 import DisplaySiteName from "./DisplaySiteName";
 import UserSettings from "./UserSettings";
 import UserAuthenticationLinks from "./UserAuthenticationLinks";
-import useAppContext from "../../hooks/useAppContext";
+import useUserAuthContext from "../../hooks/useUserAuthContext";
 
 const Navbar = () => {
 
-    const { userSignedIn } = useAppContext()
+    const { userSignedIn } = useUserAuthContext()
 
     return (
         <div id="navbar-container">

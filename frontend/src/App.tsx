@@ -19,6 +19,7 @@ import Footer from './components/footer/Footer';
 import 'react-toastify/dist/ReactToastify.css';
 import { AppContextProvider } from './contexts/app-context/AppContext';
 import ShoppingCartContextProvider from './contexts/shopping-cart-context';
+import UserAuthContextProvider from './contexts/user-auth-context';
 
 const reactQueryClient = new QueryClient()
 
@@ -27,26 +28,28 @@ function App() {
     <div id="app container" style={ { position: 'relative' } } >
       <AppContextProvider>
         <ShoppingCartContextProvider>
-          <QueryClientProvider client={ reactQueryClient }>
-            <BrowserRouter>
-              <ToastContainer position="bottom-center" limit={ 1 } />
-              <PrimarySearchAppBar />
-              <Routes>
-                <Route path="/" element={ <DisplayProducts /> } />
-                <Route path="/product/label/:label" element={ <DisplayProduct /> } />
-                <Route path="/cart" element={ <CartPage /> } />
-                <Route path="/user/signin" element={ <SignIn /> } />
-                <Route path="/user/signup" element={ <SignUp /> } />
-                <Route path="/user/update" element={ <ProfileUpdate /> } />
-                <Route path="/shipping" element={ <ShippingAddressUi /> } />
-                <Route path="/payment" element={ <PaymentUi /> } />
-                <Route path="/placeOrder" element={ <PlaceOrderUi /> } />
-                <Route path="/order/:id" element={ <OrderScreen /> } />
-                <Route path="/ordershistory" element={ <OrdersHistory /> } />
-              </Routes>
-              <Footer />
-            </BrowserRouter>
-          </QueryClientProvider>
+          <UserAuthContextProvider>
+            <QueryClientProvider client={ reactQueryClient }>
+              <BrowserRouter>
+                <ToastContainer position="bottom-center" limit={ 1 } />
+                <PrimarySearchAppBar />
+                <Routes>
+                  <Route path="/" element={ <DisplayProducts /> } />
+                  <Route path="/product/label/:label" element={ <DisplayProduct /> } />
+                  <Route path="/cart" element={ <CartPage /> } />
+                  <Route path="/user/signin" element={ <SignIn /> } />
+                  <Route path="/user/signup" element={ <SignUp /> } />
+                  <Route path="/user/update" element={ <ProfileUpdate /> } />
+                  <Route path="/shipping" element={ <ShippingAddressUi /> } />
+                  <Route path="/payment" element={ <PaymentUi /> } />
+                  <Route path="/placeOrder" element={ <PlaceOrderUi /> } />
+                  <Route path="/order/:id" element={ <OrderScreen /> } />
+                  <Route path="/ordershistory" element={ <OrdersHistory /> } />
+                </Routes>
+                <Footer />
+              </BrowserRouter>
+            </QueryClientProvider>
+          </UserAuthContextProvider>
         </ShoppingCartContextProvider>
       </AppContextProvider>
     </div>

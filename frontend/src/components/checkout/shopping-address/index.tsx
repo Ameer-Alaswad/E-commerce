@@ -5,6 +5,7 @@ import { ShippingAddressDataType } from "../../../contexts/app-context/AppContex
 import { toast } from "react-toastify";
 import ShoppingAdressForm from "./ShoppingAdressForm";
 import useAppContext from "../../../hooks/useAppContext";
+import useUserAuthContext from "../../../hooks/useUserAuthContext";
 
 const ShippingAddressUi = () => {
 
@@ -12,9 +13,12 @@ const ShippingAddressUi = () => {
   const {
     setShippingAddressData,
     shippingAddressData,
-    userSignedIn,
     setProgressStep,
   } = useAppContext()
+  const {
+    userSignedIn,
+
+  } = useUserAuthContext()
 
   const [shippingAddress, setShippingAddress] =
     useState<ShippingAddressDataType>({

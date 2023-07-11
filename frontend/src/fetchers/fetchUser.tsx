@@ -1,7 +1,7 @@
 // axios 
 import axios from "axios";
 import { NavigateFunction } from "react-router-dom";
-import { userSignedIn } from "../contexts/app-context/AppContextTypes";
+import { userSignedIn } from "../contexts/user-auth-context/Types";
 import { toast } from "react-toastify"
 // types 
 type user = {
