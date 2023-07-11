@@ -11,8 +11,6 @@ const Navbar = () => {
 
     const { userSignedIn } = useAppContext()
 
-    const userName = userSignedIn?.name || ""
-
     return (
         <div id="navbar-container">
             <AppBar position="fixed">
@@ -22,7 +20,7 @@ const Navbar = () => {
                     <Box sx={ { flexGrow: 1 } } />
                     <ShoppingCart />
                     { userSignedIn ? (
-                        <UserSettings userName={ userName } />
+                        <UserSettings userName={ userSignedIn?.name } />
                     ) : (
                         <UserAuthenticationLinks />
                     ) }
