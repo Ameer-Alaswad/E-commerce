@@ -3,6 +3,7 @@ import { IconButton } from "@mui/material";
 import AccountCircle from "@mui/icons-material/AccountCircle";
 
 import useAppContext from "../../hooks/useAppContext";
+import useMenuSettingsContext from "../../hooks/useMenuSettingsContext";
 
 interface UserSettingMenuProps {
     userName: string
@@ -10,7 +11,7 @@ interface UserSettingMenuProps {
 
 const UserSettingMenu: React.FC<UserSettingMenuProps> = ({ userName }) => {
 
-    const { handleProfileMenuOpen } = useAppContext()
+    const { handleProfileMenuOpen } = useMenuSettingsContext()
 
     return (
         <IconButton

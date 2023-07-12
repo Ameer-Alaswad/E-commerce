@@ -14,6 +14,7 @@ const MenuSettingsMobileContextProvider = ({
         useState<HTMLElement | null>(null);
 
     const isMobileMenuOpen = Boolean(userOptionsOpenMobile);
+
     const handleMobileMenuClose = () => {
         setUserOptionsOpenMobile(null);
     };

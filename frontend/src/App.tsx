@@ -22,42 +22,48 @@ import ShoppingCartContextProvider from './contexts/shopping-cart-context';
 import UserAuthContextProvider from './contexts/user-auth-context';
 import CheckoutContextProvider from './contexts/checkout-context';
 import OrdersContextProvider from './contexts/orders-context';
+import MenuSettingsContextProvider from './contexts/menu-settings-context';
+import MenuSettingsMobileContextProvider from './contexts/menu-settings-mobile-context';
 
 const reactQueryClient = new QueryClient()
 
 function App() {
   return (
     <div id="app container" style={ { position: 'relative' } } >
-      <AppContextProvider>
-        <ShoppingCartContextProvider>
-          <CheckoutContextProvider>
-            <UserAuthContextProvider>
-              <OrdersContextProvider>
-                <QueryClientProvider client={ reactQueryClient }>
-                  <BrowserRouter>
-                    <ToastContainer position="bottom-center" limit={ 1 } />
-                    <PrimarySearchAppBar />
-                    <Routes>
-                      <Route path="/" element={ <DisplayProducts /> } />
-                      <Route path="/product/label/:label" element={ <DisplayProduct /> } />
-                      <Route path="/cart" element={ <CartPage /> } />
-                      <Route path="/user/signin" element={ <SignIn /> } />
-                      <Route path="/user/signup" element={ <SignUp /> } />
-                      <Route path="/user/update" element={ <ProfileUpdate /> } />
-                      <Route path="/shipping" element={ <ShippingAddressUi /> } />
-                      <Route path="/payment" element={ <PaymentUi /> } />
-                      <Route path="/placeOrder" element={ <PlaceOrderUi /> } />
-                      <Route path="/order/:id" element={ <OrderScreen /> } />
-                      <Route path="/ordershistory" element={ <OrdersHistory /> } />
-                    </Routes>
-                    <Footer />
-                  </BrowserRouter>
-                </QueryClientProvider>
-              </OrdersContextProvider>
-            </UserAuthContextProvider>
-          </CheckoutContextProvider>
-        </ShoppingCartContextProvider>
-      </AppContextProvider>
+      <MenuSettingsContextProvider>
+        <MenuSettingsMobileContextProvider>
+          <AppContextProvider>
+            <ShoppingCartContextProvider>
+              <CheckoutContextProvider>
+                <UserAuthContextProvider>
+                  <OrdersContextProvider>
+                    <QueryClientProvider client={ reactQueryClient }>
+                      <BrowserRouter>
+                        <ToastContainer position="bottom-center" limit={ 1 } />
+                        <PrimarySearchAppBar />
+                        <Routes>
+                          <Route path="/" element={ <DisplayProducts /> } />
+                          <Route path="/product/label/:label" element={ <DisplayProduct /> } />
+                          <Route path="/cart" element={ <CartPage /> } />
+                          <Route path="/user/signin" element={ <SignIn /> } />
+                          <Route path="/user/signup" element={ <SignUp /> } />
+                          <Route path="/user/update" element={ <ProfileUpdate /> } />
+                          <Route path="/shipping" element={ <ShippingAddressUi /> } />
+                          <Route path="/payment" element={ <PaymentUi /> } />
+                          <Route path="/placeOrder" element={ <PlaceOrderUi /> } />
+                          <Route path="/order/:id" element={ <OrderScreen /> } />
+                          <Route path="/ordershistory" element={ <OrdersHistory /> } />
+                        </Routes>
+                        <Footer />
+                      </BrowserRouter>
+                    </QueryClientProvider>
+                  </OrdersContextProvider>
+                </UserAuthContextProvider>
+              </CheckoutContextProvider>
+            </ShoppingCartContextProvider>
+          </AppContextProvider>
+        </MenuSettingsMobileContextProvider>
+      </MenuSettingsContextProvider>
     </div>
   );
 }

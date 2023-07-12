@@ -12,6 +12,8 @@ import { Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import useAppContext from "../../hooks/useAppContext";
 import useUserAuthContext from "../../hooks/useUserAuthContext";
+import useMenuSettingsMobileContext from "../../hooks/useMenuSettingsMobileContext";
+import useMenuSettingsContext from "../../hooks/useMenuSettingsContext";
 
 
 type UserSettingsMobileMenuProps = {
@@ -22,13 +24,14 @@ const UserSettingsMobileMenu: React.FC<UserSettingsMobileMenuProps> = ({ isMobil
     const navigate = useNavigate()
 
     const {
-        handleMobileMenuClose,
+        // handleMobileMenuClose,
         getMenuClickHandler,
-        userOptionsOpenMobile,
-        handleProfileMenuOpen,
-    } = useAppContext()
 
+    } = useAppContext()
+    const { handleMobileMenuClose, userOptionsOpenMobile,
+    } = useMenuSettingsMobileContext()
     const { handleSignOut } = useUserAuthContext()
+    const { handleProfileMenuOpen } = useMenuSettingsContext()
 
     return (
         <Menu

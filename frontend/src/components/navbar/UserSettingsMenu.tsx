@@ -4,16 +4,18 @@ import { MY_ORDERS_TEXT, PROFILE_TEXT, SIGNOUT_TEXT } from "../constants/text";
 import { useNavigate } from "react-router-dom";
 import useAppContext from "../../hooks/useAppContext";
 import useUserAuthContext from "../../hooks/useUserAuthContext";
+import useMenuSettingsContext from "../../hooks/useMenuSettingsContext";
 
 type UserSettingsMenuProps = {
     isMenuOpen: boolean;
 };
 const UserSettingsMenu: React.FC<UserSettingsMenuProps> = ({ isMenuOpen }) => {
     const navigate = useNavigate();
-    const { userOptionsOpen, handleMenuClose, getMenuClickHandler } =
+    const { getMenuClickHandler } =
         useAppContext();
+    const { userOptionsOpen } = useMenuSettingsContext()
     const { handleSignOut } = useUserAuthContext();
-
+    const { handleMenuClose } = useMenuSettingsContext()
     // When isMenuOpen state is true this function return a dropdown menu that show some navigation options
     // to the user such as my Orders, Orders History etc...
     return (
