@@ -1,15 +1,12 @@
 import { MouseEvent, createContext, useState } from "react";
-import { MenuSettingsMobileChildren, MenuSettingsMobileTypes } from "./Types";
+import { MenuSettingsMobileTypes } from "./Types";
+import { ContextChildren } from "../app-context/Types";
 
 export const MenuSettingsMobileContext = createContext(
     {} as MenuSettingsMobileTypes
 );
 
-const MenuSettingsMobileContextProvider = ({
-    children,
-}: MenuSettingsMobileChildren) => {
-
-
+const MenuSettingsMobileContextProvider = ({ children }: ContextChildren) => {
     const [userOptionsOpenMobile, setUserOptionsOpenMobile] =
         useState<HTMLElement | null>(null);
 

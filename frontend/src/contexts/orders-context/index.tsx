@@ -1,13 +1,13 @@
 import { createContext, useState } from "react";
 import {
-    CheckoutContextChildren,
     OrderData,
     OrdersContextTypes,
 } from "./Types";
+import { ContextChildren } from "../app-context/Types";
 
 export const OrdersContext = createContext({} as OrdersContextTypes);
 
-const OrdersContextProvider = ({ children }: CheckoutContextChildren) => {
+const OrdersContextProvider = ({ children }: ContextChildren) => {
 
     const [orderData, setOrderData] = useState<OrderData | null>(null);
 

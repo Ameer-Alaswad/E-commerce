@@ -13,7 +13,3 @@ export type UserAuth = {
     handleSignOut: (navigate: NavigateFunction) => void;
 
 }
-
-export type UserAuthChildren = {
-    children: React.ReactNode
-}

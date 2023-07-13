@@ -1,9 +1,10 @@
 import { MouseEvent, createContext, useState } from "react";
-import { MenuSettingsChildren, MenuSettingsTypes } from "./Types";
+import { MenuSettingsTypes } from "./Types";
+import { ContextChildren } from "../app-context/Types";
 
 export const MenuSettingsContext = createContext({} as MenuSettingsTypes);
 
-const MenuSettingsContextProvider = ({ children }: MenuSettingsChildren) => {
+const MenuSettingsContextProvider = ({ children }: ContextChildren) => {
 
     const [userOptionsOpen, setUserOptionsOpen] = useState<HTMLElement | null>(
         null

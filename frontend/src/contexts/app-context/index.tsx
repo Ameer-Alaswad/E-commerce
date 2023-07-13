@@ -1,46 +1,19 @@
-import { createContext, useState, MouseEvent } from "react";
+import { createContext } from "react";
 
 import { NavigateFunction } from "react-router-dom";
 import {
     AppContextTypes,
-    AppContextChildren,
+    ContextChildren,
 } from "./Types";
 import useMenuSettingsContext from "../../hooks/useMenuSettingsContext";
 import useMenuSettingsMobileContext from "../../hooks/useMenuSettingsMobileContext";
 
 export const AppContext = createContext({} as AppContextTypes);
 
-export const AppContextProvider = ({ children }: AppContextChildren) => {
+export const AppContextProvider = ({ children }: ContextChildren) => {
+
     const { handleMenuClose } = useMenuSettingsContext()
     const { handleMobileMenuClose } = useMenuSettingsMobileContext()
-    // const [userOptionsOpen, setUserOptionsOpen] = useState<HTMLElement | null>(
-    //     null
-    // );
-    // const [userOptionsOpenMobile, setUserOptionsOpenMobile] =
-    //     useState<HTMLElement | null>(null);
-
-    // const isMenuOpen = Boolean(userOptionsOpen);
-    // const isMobileMenuOpen = Boolean(userOptionsOpenMobile);
-
-    // const handleProfileMenuOpen = (event: MouseEvent<HTMLElement>) => {
-    //     const menuButtonElement = event.currentTarget;
-    //     setUserOptionsOpen(menuButtonElement);
-    // };
-
-    // const handleMobileMenuClose = () => {
-    //     setUserOptionsOpen(null);
-    //     setUserOptionsOpenMobile(null);
-    // };
-
-    // const handleMenuClose = () => {
-    //     setUserOptionsOpen(null);
-    //     setUserOptionsOpenMobile(null);
-    // };
-
-    // const handleMobileMenuOpen = (event: MouseEvent<HTMLElement>) => {
-    //     const menuButtonElement = event.currentTarget;
-    //     setUserOptionsOpenMobile(menuButtonElement);
-    // };
 
     const handleNavigation = (text: string, navigate: NavigateFunction) => {
         navigate(text);
@@ -55,18 +28,8 @@ export const AppContextProvider = ({ children }: AppContextChildren) => {
     return (
         <AppContext.Provider
             value={ {
-                // userOptionsOpen,
-                // setUserOptionsOpen,
-                // userOptionsOpenMobile,
-                // setUserOptionsOpenMobile,
-                // isMenuOpen,
-                // isMobileMenuOpen,
-                // handleMobileMenuClose,
-                // handleMenuClose,
-                // handleMobileMenuOpen,
                 handleNavigation,
                 getMenuClickHandler,
-                // handleProfileMenuOpen,
             } }
         >
             { children }

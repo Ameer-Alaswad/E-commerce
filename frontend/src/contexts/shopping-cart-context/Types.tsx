@@ -12,6 +12,3 @@ export type ShoppingCart = {
     shoppingCartItems: Product[]
     setShoppingCartItems: React.Dispatch<React.SetStateAction<Product[]>>
 }
-export type ShoppingCartChildren = {
-    children: React.ReactNode
-}

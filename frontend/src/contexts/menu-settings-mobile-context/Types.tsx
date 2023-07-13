@@ -1,8 +1,3 @@
-
-export type MenuSettingsMobileChildren = {
-    children: React.ReactNode
-}
-
 export type MenuSettingsMobileTypes = {
     userOptionsOpenMobile: HTMLElement | null
     setUserOptionsOpenMobile: React.Dispatch<React.SetStateAction<HTMLElement | null>>

@@ -1,6 +1,5 @@
 import { createContext, useState } from "react";
 import {
-    CheckoutContextChildren,
     CheckoutContextTypes,
     ShippingAddressDataType,
 } from "./Types";
@@ -9,10 +8,11 @@ import {
     initialShippingAddressData,
     paymentMethodInStorage,
 } from "../app-context/data";
+import { ContextChildren } from "../app-context/Types";
 
 export const CheckoutContext = createContext({} as CheckoutContextTypes);
 
-const CheckoutContextProvider = ({ children }: CheckoutContextChildren) => {
+const CheckoutContextProvider = ({ children }: ContextChildren) => {
     const [shippingAddressData, setShippingAddressData] =
         useState<ShippingAddressDataType>(
             addressDataInStorage || initialShippingAddressData

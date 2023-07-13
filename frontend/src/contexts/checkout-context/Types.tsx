@@ -24,6 +24,3 @@ export type CheckoutContextTypes = {
     paymentMethod: string
     setPaymentMethod: React.Dispatch<React.SetStateAction<string>>
 }
-export type CheckoutContextChildren = {
-    children: React.ReactNode
-}

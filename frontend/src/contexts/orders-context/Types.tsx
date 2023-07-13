@@ -23,10 +23,6 @@ export type OrderData = {
     _id: string
 }
 
-export type CheckoutContextChildren = {
-    children: React.ReactNode
-}
-
 export type OrdersContextTypes = {
     orderData: OrderData | null
     setOrderData: React.Dispatch<React.SetStateAction<OrderData | null>>
