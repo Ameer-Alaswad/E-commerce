@@ -1,10 +1,11 @@
+// Requires Refactoring 
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { userSignin } from "../../contexts/shopping-cart-context/shoppingCartContextTypes";
+import { userSignedIn } from "../../contexts/user-auth-context/Types";
 
 type PaymentRedirectProps = {
-    userSignin: userSignin | null;
+    userSignedIn: userSignedIn | null;
     setProgressStep: (step: number) => void;
     progressStep: number;
     userNotSignedLink: string;
@@ -16,7 +17,7 @@ type ShippingAddressData = string
 
 const useRedirect = (
     {
-        userSignin,
+        userSignedIn,
         setProgressStep,
         progressStep,
         userNotSignedLink,
@@ -30,14 +31,14 @@ const useRedirect = (
 
     useEffect(() => {
         setProgressStep(progressStep);
-        if (!userSignin) {
+        if (!userSignedIn) {
             navigate(userNotSignedLink);
             setTimeout(() => {
                 toast.error(userNotSignedMessage);
                 return;
             }, 100);
         }
-        if (userSignin) {
+        if (userSignedIn) {
             if (!shippingAddressData) {
                 navigate(redirectLink);
                 setTimeout(() => {
@@ -46,7 +47,7 @@ const useRedirect = (
             }
         }
     }, [
-        userSignin,
+        userSignedIn,
         navigate,
         setProgressStep,
         shippingAddressData,

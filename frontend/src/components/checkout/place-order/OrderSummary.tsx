@@ -1,36 +1,47 @@
+// requires refactoring 
+
 import { Box, Button, CardContent, Divider, Typography } from "@mui/material";
-import { useContext } from "react";
-import { ShoppingCartContext } from "../../../contexts/shopping-cart-context/shoppingCartContext";
+
 import Card from "@mui/material/Card";
 import { postUser } from "../../../fetchers/postOrder";
 import { useNavigate } from "react-router-dom";
 import { orderSummaryStyles } from "../styles";
 import { calculateCartTotalPrices } from "../utils";
+import useShoppingCartContext from "../../../hooks/context/useShoppingCartContext";
+import useUserAuthContext from "../../../hooks/context/useUserAuthContext";
+import useCheckoutContext from "../../../hooks/context/useCheckoutContext";
 
 const { card, title, itemPrice, divider, bold, box, buttonBox, button } =
     orderSummaryStyles;
 
 export default function OrderSummary() {
     const navigate = useNavigate();
-    const shoppingCartContext = useContext(ShoppingCartContext);
+
 
     const {
-        cartItems,
         shippingAddressData,
         paymentMethod,
-        userSignin,
-        setCartItems,
-    } = shoppingCartContext;
+    } = useCheckoutContext()
+
+    const {
+        userSignedIn
+    } = useUserAuthContext()
+
+    const {
+        shoppingCartItems,
+
+        setShoppingCartItems,
+    } = useShoppingCartContext()
 
     const {
         totalItemsPrice,
         shippingPrice,
         taxes,
         totalPrice,
-    } = calculateCartTotalPrices(cartItems)
+    } = calculateCartTotalPrices(shoppingCartItems)
 
     const orderData = {
-        orderItems: cartItems,
+        orderItems: shoppingCartItems,
         shippingAddress: shippingAddressData,
         paymentMethod: paymentMethod,
         totalItemsPrice,
@@ -43,8 +54,8 @@ export default function OrderSummary() {
             "/api/orders",
             orderData,
             navigate,
-            userSignin?.token,
-            setCartItems
+            userSignedIn?.token,
+            setShoppingCartItems
         );
     };
 
@@ -65,13 +76,14 @@ export default function OrderSummary() {
                         Total: ${ totalPrice }
                     </Typography>
                     <Divider sx={ divider } />
+                    <Box sx={ buttonBox }>
+                        <Button onClick={ handleOrder } sx={ button } variant="contained">
+                            Place Order
+                        </Button>
+                    </Box>
                 </Box>
             </CardContent>
-            <Box sx={ buttonBox }>
-                <Button onClick={ handleOrder } sx={ button } variant="contained">
-                    Place Order
-                </Button>
-            </Box>
+
         </Card>
     );
 }

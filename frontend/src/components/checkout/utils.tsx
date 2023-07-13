@@ -1,4 +1,4 @@
-import { Product } from "../../contexts/shopping-cart-context/shoppingCartContextTypes";
+import { Product } from "../../contexts/shopping-cart-context/Types";
 
 type PaymentRedirectProps = {
     progressStepNumber: number;
@@ -36,12 +36,12 @@ export const getPaymentRedirectProps = ({
     };
 };
 
-export const calculateCartTotalPrices = (cartItems: Product[]): CartTotals => {
+export const calculateCartTotalPrices = (shoppingCartItems: Product[]): CartTotals => {
 
     const convertToTwoDecimal = (num: number) =>
         Math.round(num * 100 + Number.EPSILON) / 100;
     const totalItemsPrice = convertToTwoDecimal(
-        cartItems.reduce((a, c) => a + c.quantity * c.price, 0)
+        shoppingCartItems.reduce((a, c) => a + c.quantity * c.price, 0)
     );
 
     const shippingPrice =

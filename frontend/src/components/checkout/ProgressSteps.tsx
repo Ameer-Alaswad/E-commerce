@@ -1,8 +1,6 @@
-import { useContext } from "react";
-
 import { Box, Stepper, Step, StepLabel } from "@mui/material";
 
-import { ShoppingCartContext } from "../../contexts/shopping-cart-context/shoppingCartContext";
+import useCheckoutContext from "../../hooks/context/useCheckoutContext";
 
 const steps = ["Shipping Address", "Payment", "Place Order"];
 
@@ -11,8 +9,7 @@ const progressStepsContainer = {
 }
 
 export default function ProgressSteps() {
-    const shoppingCartContext = useContext(ShoppingCartContext);
-    const { progressStep } = shoppingCartContext;
+    const { progressStep } = useCheckoutContext()
 
     return (
         <Box sx={ progressStepsContainer }>

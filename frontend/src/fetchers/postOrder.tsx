@@ -1,11 +1,10 @@
 // axios
 import axios from "axios";
 import { NavigateFunction } from "react-router-dom";
-import {
-    Product,
-    ShippingAddressDataType,
-} from "../contexts/shopping-cart-context/shoppingCartContextTypes";
+
 import { toast } from "react-toastify";
+import { Product } from "../contexts/shopping-cart-context/Types";
+import { ShippingAddressDataType } from "../contexts/checkout-context/Types";
 // types
 type OrderData = {
     orderItems: Product[];
@@ -22,7 +21,7 @@ export const postUser = async (
     orderData: OrderData,
     navigate: NavigateFunction,
     userToken: string | undefined,
-    setCartItems: React.Dispatch<React.SetStateAction<Product[]>>
+    setShoppingCartItems: React.Dispatch<React.SetStateAction<Product[]>>
 ) => {
     try {
         const { data } = await axios.post(URL, orderData, {
@@ -30,7 +29,7 @@ export const postUser = async (
                 authorization: `Bearer ${userToken}`,
             },
         });
-        setCartItems([]);
+        setShoppingCartItems([]);
         navigate(`/order/${data.order._id}`);
     } catch (error: any) {
         toast.error(error?.message);

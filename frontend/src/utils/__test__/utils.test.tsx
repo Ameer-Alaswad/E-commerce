@@ -1,7 +1,7 @@
 import { addToShoppingCartLogic, checkUserLoggedIn } from "../utils";
 
 // describe("addToShoppingCartLogic", () => {
-//     const cartItems = [
+//     const shoppingCartItems = [
 //         {
 //             productId: "Adidas Fit Pant",
 //             quantity: 1,
@@ -24,20 +24,20 @@ import { addToShoppingCartLogic, checkUserLoggedIn } from "../utils";
 //         },
 //     ];
 
-//     const mockSetCartItems = jest.fn();
+//     const mocksetShoppingCartItems = jest.fn();
 
 //     test("productIsNotInShoppingCart", () => {
 //         const alert = jest.fn();
 //         const props = {
 //             productName: "Adidas",
-//             cartItems,
-//             setCartItems: mockSetCartItems,
+//             shoppingCartItems,
+//             setShoppingCartItems: mocksetShoppingCartItems,
 //             product,
 //         };
 
 //         addToShoppingCartLogic(props);
 
-//         expect(mockSetCartItems).toHaveBeenCalledWith([
+//         expect(mocksetShoppingCartItems).toHaveBeenCalledWith([
 //             {
 //                 productId: "Adidas Fit Pant",
 //                 quantity: 1,
@@ -48,7 +48,7 @@ import { addToShoppingCartLogic, checkUserLoggedIn } from "../utils";
 //     });
 
 //     test("reachedProductLimitForUser", () => {
-//         const cartItems = [
+//         const shoppingCartItems = [
 //             {
 //                 productId: "Adidas Fit Pant",
 //                 quantity: 1,
@@ -60,8 +60,8 @@ import { addToShoppingCartLogic, checkUserLoggedIn } from "../utils";
 //         global.alert = jest.fn().mockImplementation(() => "product per purchase limit")
 //         const props = {
 //             productName: "Adidas Fit Pant",
-//             cartItems,
-//             setCartItems: mockSetCartItems,
+//             shoppingCartItems,
+//             setShoppingCartItems: mocksetShoppingCartItems,
 //             product,
 //         };
 //         addToShoppingCartLogic(props)
@@ -85,7 +85,7 @@ import { addToShoppingCartLogic, checkUserLoggedIn } from "../utils";
 //                 description: "high quality shirt",
 //             },
 //         ];
-//         const cartItems = [
+//         const shoppingCartItems = [
 //             {
 //                 productId: "Adidas Fit Pant",
 //                 quantity: 5,
@@ -97,8 +97,8 @@ import { addToShoppingCartLogic, checkUserLoggedIn } from "../utils";
 //         global.alert = jest.fn().mockImplementation(() => "error")
 //         const props = {
 //             productName: "Adidas Fit Pant",
-//             cartItems,
-//             setCartItems: mockSetCartItems,
+//             shoppingCartItems,
+//             setShoppingCartItems: mocksetShoppingCartItems,
 //             product,
 //         };
 //         // expect(addToShoppingCartLogic(props)).toBe()
@@ -110,13 +110,13 @@ import { addToShoppingCartLogic, checkUserLoggedIn } from "../utils";
 //     test("productInStock", () => {
 //         const props = {
 //             productName: "Adidas Fit Pant",
-//             cartItems,
-//             setCartItems: mockSetCartItems,
+//             shoppingCartItems,
+//             setShoppingCartItems: mocksetShoppingCartItems,
 //             product,
 //         };
 //         addToShoppingCartLogic(props);
 
-//         expect(mockSetCartItems).toHaveBeenCalledWith([
+//         expect(mocksetShoppingCartItems).toHaveBeenCalledWith([
 //             { productId: "Adidas Fit Pant", quantity: 2, productLimit: 5 },
 //         ]);
 //     });

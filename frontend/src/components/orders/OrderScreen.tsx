@@ -1,22 +1,23 @@
+// Requires rafactoring 
 import { Card, CardContent, Divider, Typography } from "@mui/material";
 import { Box } from "@mui/system";
-import { useContext, useEffect } from "react";
+import { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
-import { ShoppingCartContext } from "../../contexts/shopping-cart-context/shoppingCartContext";
 import { fetchOrder } from "../../fetchers/fetchOrder";
 import { PayPalButtons, usePayPalScriptReducer } from "@paypal/react-paypal-js";
 import axios from "axios";
-// import Items from './items'
+import useUserAuthContext from "../../hooks/context/useUserAuthContext";
+import useOrdersContext from "../../hooks/context/useOrdersContext";
 
 const OrderScreen = () => {
     const navigate = useNavigate();
-    const shoppingCartContext = useContext(ShoppingCartContext);
-    const { userSignin, setOrderData, orderData } = shoppingCartContext;
+    const { setOrderData, orderData } = useOrdersContext()
+    const { userSignedIn } = useUserAuthContext()
 
     const user: any = localStorage.getItem("userData");
     const parsedUser = JSON.parse(user);
-    let userSigned = userSignin || parsedUser;
+    let userSigned = userSignedIn || parsedUser;
     const { id: orderId } = useParams();
 
     const [{ isPending }, paypalDispatch] = usePayPalScriptReducer();

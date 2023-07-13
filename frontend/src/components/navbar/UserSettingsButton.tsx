@@ -1,16 +1,16 @@
-import React, { useContext } from "react";
+import React from "react";
 import { IconButton } from "@mui/material";
 import AccountCircle from "@mui/icons-material/AccountCircle";
+import useMenuSettingsContext from "../../hooks/context/useMenuSettingsContext";
 
-import { ShoppingCartContext } from "../../contexts/shopping-cart-context/shoppingCartContext";
 
 interface UserSettingMenuProps {
-    userName: string;
+    userName: string
 }
 
 const UserSettingMenu: React.FC<UserSettingMenuProps> = ({ userName }) => {
 
-    const { handleProfileMenuOpen } = useContext(ShoppingCartContext);
+    const { handleProfileMenuOpen } = useMenuSettingsContext()
 
     return (
         <IconButton

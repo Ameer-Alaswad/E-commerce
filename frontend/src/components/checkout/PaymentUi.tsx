@@ -7,37 +7,42 @@ import {
     Typography,
 } from "@mui/material";
 
-import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { ShoppingCartContext } from "../../contexts/shopping-cart-context/shoppingCartContext";
 import ProgressSteps from "./ProgressSteps";
 import { paymentStyles } from "./styles";
 import usePaymentRedirect from "./useRedirect";
 import { getPaymentRedirectProps } from "./utils";
+import useUserAuthContext from "../../hooks/context/useUserAuthContext";
+import useCheckoutContext from "../../hooks/context/useCheckoutContext";
 const { container, form, heading, button } = paymentStyles;
 
 const PaymentUi = () => {
     const navigate = useNavigate();
-    const shoppingCartContext = useContext(ShoppingCartContext);
     const {
         setProgressStep,
-        userSignin,
         shippingAddressData,
         setPaymentMethod,
         paymentMethod,
-    } = shoppingCartContext;
+    } = useCheckoutContext();
+    const { userSignedIn } = useUserAuthContext();
 
-    const { progressStep, userNotSignedLink, userNotSignedMessage, redirectLink, redirectMessage } = getPaymentRedirectProps({
+    const {
+        progressStep,
+        userNotSignedLink,
+        userNotSignedMessage,
+        redirectLink,
+        redirectMessage,
+    } = getPaymentRedirectProps({
         progressStepNumber: 1,
         pageName: "payment",
         errorMessage: "Add your Address first!",
         stepName: "payment",
-        redirectName: "shipping"
+        redirectName: "shipping",
     });
 
     const paymentRedirectProps = {
-        userSignin,
+        userSignedIn,
         setProgressStep,
         progressStep,
         userNotSignedLink,

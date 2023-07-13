@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { toast } from 'react-toastify';
-import { UserData } from '../contexts/shopping-cart-context/shoppingCartContextTypes';
+import { UserData } from '../contexts/app-context/Types';
 
 interface ProfileUpdateData {
     name: string | undefined;

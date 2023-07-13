@@ -5,11 +5,11 @@ import { productsType } from "../display-products/displayProductsInterface";
 interface HandleToCart {
     event: React.MouseEvent<HTMLButtonElement>
     data: productsType[] | undefined;
-    cartItems: any[];
-    setCartItems: React.Dispatch<React.SetStateAction<any[]>>;
+    shoppingCartItems: any[];
+    setShoppingCartItems: React.Dispatch<React.SetStateAction<any[]>>;
 }
 
-export const handleToCart = ({ event, data, cartItems, setCartItems }: HandleToCart) => {
+export const handleToCart = ({ event, data, shoppingCartItems, setShoppingCartItems }: HandleToCart) => {
     event.stopPropagation();
     if (data) {
         const productName = data[0]?.name
@@ -19,8 +19,8 @@ export const handleToCart = ({ event, data, cartItems, setCartItems }: HandleToC
                 (product: productsType[]) => {
                     addToShoppingCartLogic({
                         productName,
-                        cartItems,
-                        setCartItems,
+                        shoppingCartItems,
+                        setShoppingCartItems,
                         product,
                     });
                 }

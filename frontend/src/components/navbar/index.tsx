@@ -5,16 +5,11 @@ import ProductSearch from "./ProductSearch";
 import DisplaySiteName from "./DisplaySiteName";
 import UserSettings from "./UserSettings";
 import UserAuthenticationLinks from "./UserAuthenticationLinks";
-import { useContext } from "react";
-import { ShoppingCartContext } from "../../contexts/shopping-cart-context/shoppingCartContext";
+import useUserAuthContext from "../../hooks/context/useUserAuthContext";
 
 const Navbar = () => {
-    const { userSignin } = useContext(ShoppingCartContext);
 
-    if (!userSignin) {
-        return null;
-    }
-    const { name: userName } = userSignin;
+    const { userSignedIn } = useUserAuthContext()
 
     return (
         <div id="navbar-container">
@@ -24,8 +19,8 @@ const Navbar = () => {
                     <ProductSearch />
                     <Box sx={ { flexGrow: 1 } } />
                     <ShoppingCart />
-                    { userSignin ? (
-                        <UserSettings userName={ userName } />
+                    { userSignedIn ? (
+                        <UserSettings userName={ userSignedIn?.name } />
                     ) : (
                         <UserAuthenticationLinks />
                     ) }

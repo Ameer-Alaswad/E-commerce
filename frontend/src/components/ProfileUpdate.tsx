@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import { useState } from "react";
 import {
     Box,
     Button,
@@ -8,8 +8,8 @@ import {
     Typography,
 } from "@mui/material";
 import { toast } from "react-toastify";
-import { ShoppingCartContext } from "../contexts/shopping-cart-context/shoppingCartContext";
 import useProfileUpdate from "../hooks/useProfileUpdate";
+import useUserAuthContext from "../hooks/context/useUserAuthContext";
 interface UserData {
     _id: string;
     name: string;
@@ -38,12 +38,12 @@ const ProfileUpdate = () => {
     const userData: UserData | null = UserDataStorage
         ? JSON.parse(UserDataStorage)
         : null;
-    const { userSignin, setUserSignin } = useContext(ShoppingCartContext);
+    const { userSignedIn, setUserSignedIn } = useUserAuthContext();
     const {
         name: userName,
         token: userToken,
         email: userEmail,
-    } = userSignin || {};
+    } = userSignedIn || {};
 
     const [name, setName] = useState<string | undefined>(
         userName || userData?.name
@@ -66,7 +66,7 @@ const ProfileUpdate = () => {
         setIsLoading(true);
         try {
             const data = await handleProfileUpdate({ name, email, password, token });
-            setUserSignin(data);
+            setUserSignedIn(data);
             localStorage.setItem("userData", JSON.stringify(data));
         } catch (error) {
             toast.error("Failed to update profile. Please try again later.");

@@ -2,15 +2,13 @@
 import * as React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
-
-
 import { postUser } from "../../../fetchers/fetchUser";
-import { useContext } from "react";
-import { ShoppingCartContext } from "../../../contexts/shopping-cart-context/shoppingCartContext";
+
 import { captureRedirectionRoute, checkUserLoggedIn } from "../../../utils/utils";
 import { toast } from "react-toastify";
 import { getFormData } from "../utils";
 import SignUpForm from "./SignUpForm";
+import useUserAuthContext from "../../../hooks/context/useUserAuthContext";
 
 export default function SignUp() {
     const navigate = useNavigate();
@@ -19,10 +17,9 @@ export default function SignUp() {
     const { search } = useLocation();
     const redirect = captureRedirectionRoute(search)
 
-    const shoppingCartContext = useContext(ShoppingCartContext);
-    const { userSignin, setUserSignin } = shoppingCartContext;
+    const { userSignedIn, setUserSignedIn } = useUserAuthContext()
 
-    const userSigned = checkUserLoggedIn(userSignin);
+    const userSigned = checkUserLoggedIn(userSignedIn);
 
     React.useEffect(() => {
         if (userSigned) navigate("/");
@@ -38,7 +35,7 @@ export default function SignUp() {
         postUser(
             "/api/users/signup",
             getFormData(event.currentTarget),
-            setUserSignin,
+            setUserSignedIn,
             navigate,
             redirect
         );

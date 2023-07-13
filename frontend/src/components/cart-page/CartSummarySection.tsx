@@ -1,8 +1,8 @@
 // This component requires refactoring 
-import { useContext, useMemo } from "react";
+import { useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { ShoppingCartContext } from "../../contexts/shopping-cart-context/shoppingCartContext";
+
 import {
     Box,
     Button,
@@ -20,29 +20,32 @@ import {
 import { SHIPPING_PATH, SIGNIN_PATH } from "../constants/path";
 import { calculateCartTotalPrices } from "../checkout/utils";
 import { CURRENCY_DOLLAR } from "../constants/text";
+import useShoppingCartContext from "../../hooks/context/useShoppingCartContext";
+import useUserAuthContext from "../../hooks/context/useUserAuthContext";
 
 const CartSummarySection = () => {
     const navigate = useNavigate();
-    const { cartItems, userSignin } = useContext(ShoppingCartContext);
+    const { shoppingCartItems } = useShoppingCartContext()
+    const { userSignedIn } = useUserAuthContext()
 
     const handleProceedToCheckout = () => {
-        userSignin
+        userSignedIn
             ? navigate(SHIPPING_PATH)
             : navigate(`${SIGNIN_PATH}?redirect=${SHIPPING_PATH}`);
     };
 
     const { totalItemsPrice: calculateTotalItemsPrice } = useMemo(() => {
-        return calculateCartTotalPrices(cartItems);
-    }, [cartItems]);
+        return calculateCartTotalPrices(shoppingCartItems);
+    }, [shoppingCartItems]);
 
     const calculateTotalItems = useMemo(() => {
-        return cartItems.reduce((a, c) => a + c.quantity, 0);
-    }, [cartItems]);
+        return shoppingCartItems.reduce((a, c) => a + c.quantity, 0);
+    }, [shoppingCartItems]);
 
     const totalPriceAndItemsText = `Total (${calculateTotalItems} items) : ${CURRENCY_DOLLAR}${calculateTotalItemsPrice}`;
 
     const renderCartSummary = () => {
-        return cartItems?.length !== 0 ? (
+        return shoppingCartItems?.length !== 0 ? (
             <Card id="total-card" sx={ totalCardStyle }>
                 <CardContent>
                     <Typography

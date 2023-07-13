@@ -1,6 +1,3 @@
-// Context
-import { useContext } from "react";
-import { ShoppingCartContext } from "../contexts/shopping-cart-context/shoppingCartContext";
 // fetch
 import { fetchProducts } from "../fetchers/fetchProducts";
 // utils
@@ -9,11 +6,11 @@ import { addToShoppingCartLogic } from "../utils/utils";
 import { productsType } from "./display-products/displayProductsInterface";
 // Material UI
 import Button from "@mui/material/Button";
+import useShoppingCartContext from "../hooks/context/useShoppingCartContext";
 
 
 const AddToCartButton = () => {
-    const shoppingCartContext = useContext(ShoppingCartContext);
-    const { cartItems, setCartItems } = shoppingCartContext;
+    const { shoppingCartItems, setShoppingCartItems } = useShoppingCartContext();
 
     const addToCartHandler = (event: React.MouseEvent<HTMLButtonElement>) => {
         event.stopPropagation();
@@ -26,8 +23,8 @@ const AddToCartButton = () => {
                 (product: productsType[]) => {
                     addToShoppingCartLogic({
                         productName,
-                        cartItems,
-                        setCartItems,
+                        shoppingCartItems,
+                        setShoppingCartItems,
                         product,
                     });
                 }

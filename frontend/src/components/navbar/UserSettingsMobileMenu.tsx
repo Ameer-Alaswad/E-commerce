@@ -1,33 +1,33 @@
-import { useContext } from "react";
-
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import IconButton from "@mui/material/IconButton";
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import ViewListIcon from "@mui/icons-material/ViewList";
-import LogoutIcon from '@mui/icons-material/Logout';
+import LogoutIcon from "@mui/icons-material/Logout";
 
-import { ShoppingCartContext } from "../../contexts/shopping-cart-context/shoppingCartContext";
 import { ORDERS_HISTORY_PATH, UPDATE_USER_PATH } from "../constants/path";
 import { MY_ORDERS_TEXT, PROFILE_TEXT, SIGNOUT_TEXT } from "../constants/text";
 import { Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-
+import useAppContext from "../../hooks/context/useAppContext";
+import useUserAuthContext from "../../hooks/context/useUserAuthContext";
+import useMenuSettingsMobileContext from "../../hooks/context/useMenuSettingsMobileContext";
+import useMenuSettingsContext from "../../hooks/context/useMenuSettingsContext";
 
 type UserSettingsMobileMenuProps = {
-    isMobileMenuOpen: boolean
-}
+    isMobileMenuOpen: boolean;
+};
 
-const UserSettingsMobileMenu: React.FC<UserSettingsMobileMenuProps> = ({ isMobileMenuOpen }) => {
-    const navigate = useNavigate()
+const UserSettingsMobileMenu: React.FC<UserSettingsMobileMenuProps> = ({
+    isMobileMenuOpen,
+}) => {
+    const navigate = useNavigate();
 
-    const {
-        handleMobileMenuClose,
-        getMenuClickHandler,
-        userOptionsOpenMobile,
-        handleProfileMenuOpen,
-        handleSignOut
-    } = useContext(ShoppingCartContext);
+    const { getMenuClickHandler } = useAppContext();
+    const { handleMobileMenuClose, userOptionsOpenMobile } =
+        useMenuSettingsMobileContext();
+    const { handleSignOut } = useUserAuthContext();
+    const { handleProfileMenuOpen } = useMenuSettingsContext();
 
     return (
         <Menu
@@ -80,9 +80,9 @@ const UserSettingsMobileMenu: React.FC<UserSettingsMobileMenuProps> = ({ isMobil
                 >
                     <LogoutIcon />
                 </IconButton>
-                <Typography >{ SIGNOUT_TEXT }</Typography>
+                <Typography>{ SIGNOUT_TEXT }</Typography>
             </MenuItem>
-        </Menu >
+        </Menu>
     );
 };
 

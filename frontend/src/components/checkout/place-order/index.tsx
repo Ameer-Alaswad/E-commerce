@@ -1,7 +1,5 @@
 import { Typography } from "@mui/material";
 import { Box } from "@mui/system";
-import { useContext } from "react";
-import { ShoppingCartContext } from "../../../contexts/shopping-cart-context/shoppingCartContext";
 import ProgressSteps from "../ProgressSteps";
 import Items from "./order-itmes";
 import OrderSummary from "./OrderSummary";
@@ -10,13 +8,16 @@ import Shipping from "./Shipping";
 import useRedirect from "../useRedirect";
 import { getPaymentRedirectProps } from "../utils";
 import { placeOrderStyles } from "../styles";
+import useUserAuthContext from "../../../hooks/context/useUserAuthContext";
+import useCheckoutContext from "../../../hooks/context/useCheckoutContext";
 
 const { mainContainer, orderDetailsContainer, PreviewOrder } = placeOrderStyles;
 
 const PlaceOrderUi = () => {
 
-    const shoppingCartContext = useContext(ShoppingCartContext);
-    const { setProgressStep, userSignin, paymentMethod } = shoppingCartContext;
+
+    const { setProgressStep, paymentMethod } = useCheckoutContext()
+    const { userSignedIn } = useUserAuthContext()
 
     const {
         progressStep,
@@ -34,7 +35,7 @@ const PlaceOrderUi = () => {
 
     useRedirect(
         {
-            userSignin,
+            userSignedIn,
             setProgressStep,
             progressStep,
             userNotSignedLink,

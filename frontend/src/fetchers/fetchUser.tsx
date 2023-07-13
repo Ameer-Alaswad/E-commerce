@@ -1,7 +1,7 @@
 // axios 
 import axios from "axios";
 import { NavigateFunction } from "react-router-dom";
-import { userSignin } from "../contexts/shopping-cart-context/shoppingCartContextTypes";
+import { userSignedIn } from "../contexts/user-auth-context/Types";
 import { toast } from "react-toastify"
 // types 
 type user = {
@@ -14,11 +14,11 @@ type user = {
 }
 
 export const postUser = async (URL: string, userData: user,
-    setUserSignin: React.Dispatch<React.SetStateAction<userSignin | null>>, navigate: NavigateFunction, redirect: string) => {
+    setUserSignedIn: React.Dispatch<React.SetStateAction<userSignedIn | null>>, navigate: NavigateFunction, redirect: string) => {
 
     try {
         const { data } = await axios.post(URL, userData);
-        setUserSignin(data)
+        setUserSignedIn(data)
         localStorage.setItem('userData', JSON.stringify(data))
         navigate(redirect || "/")
     } catch (error: any) {

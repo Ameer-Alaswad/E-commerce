@@ -1,8 +1,7 @@
-import { useContext, useEffect } from "react";
+import { useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
 import { postUser } from "../../../fetchers/fetchUser";
-import { ShoppingCartContext } from "../../../contexts/shopping-cart-context/shoppingCartContext";
 import {
     captureRedirectionRoute,
     checkUserLoggedIn,
@@ -10,6 +9,7 @@ import {
 
 import { getFormData } from "../utils";
 import SignInForm from "./SigninForm";
+import useUserAuthContext from "../../../hooks/context/useUserAuthContext";
 
 export default function SignIn() {
     const navigate = useNavigate();
@@ -17,10 +17,9 @@ export default function SignIn() {
     const { search } = useLocation();
     const redirect = captureRedirectionRoute(search);
 
-    const shoppingCartContext = useContext(ShoppingCartContext);
-    const { userSignin, setUserSignin } = shoppingCartContext;
+    const { userSignedIn, setUserSignedIn } = useUserAuthContext();
 
-    const userSigned = checkUserLoggedIn(userSignin);
+    const userSigned = checkUserLoggedIn(userSignedIn);
 
     useEffect(() => {
         if (userSigned) navigate(redirect);
@@ -31,7 +30,7 @@ export default function SignIn() {
         postUser(
             "/api/users/signin",
             getFormData(event.currentTarget),
-            setUserSignin,
+            setUserSignedIn,
             navigate,
             redirect
         );

@@ -1,6 +1,6 @@
 import { Box, Button, TextField, Typography } from "@mui/material";
 import ProgressSteps from "../ProgressSteps";
-import { ShippingAddressDataType } from "../../../contexts/shopping-cart-context/shoppingCartContextTypes";
+import { ShippingAddressDataType } from "../../../contexts/checkout-context/Types";
 import { shoppingAddressStyles } from "../styles";
 
 const { mainContainer, formContainer, formTitle, formButton } = shoppingAddressStyles

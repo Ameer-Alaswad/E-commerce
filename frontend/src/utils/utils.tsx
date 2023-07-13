@@ -1,34 +1,35 @@
+// This requires refactoring 
 // Types
 import { productsType } from "../components/display-products/displayProductsInterface";
+import { Product } from "../contexts/shopping-cart-context/Types";
 import {
-    Product,
-    userSignin,
-} from "../contexts/shopping-cart-context/shoppingCartContextTypes";
+    userSignedIn,
+} from "../contexts/user-auth-context/Types";
 import { toast } from "react-toastify";
 
 export type AddToShoppingCartTypes = {
     productName: string;
-    cartItems: Product[];
-    setCartItems: (value: Product[]) => void;
+    shoppingCartItems: Product[];
+    setShoppingCartItems: (value: Product[]) => void;
     product: productsType[];
 };
 
 export const addToShoppingCartLogic = ({
     productName,
-    cartItems,
-    setCartItems,
+    shoppingCartItems,
+    setShoppingCartItems,
     product,
 }: AddToShoppingCartTypes) => {
     console.log({ product });
 
-    const productIsNotInShoppingCart = cartItems.every(
+    const productIsNotInShoppingCart = shoppingCartItems.every(
         (item) => productName !== item.productId
     );
     if (productIsNotInShoppingCart) {
 
 
-        return setCartItems([
-            ...cartItems,
+        return setShoppingCartItems([
+            ...shoppingCartItems,
             {
                 productId: String(productName),
                 quantity: 1,
@@ -41,7 +42,7 @@ export const addToShoppingCartLogic = ({
 
         ]);
     }
-    const handleProductQuantityLimitations = cartItems.forEach((item) => {
+    const handleProductQuantityLimitations = shoppingCartItems.forEach((item) => {
         const reachedProductLimitForUser =
             item?.productId === productName && item?.productLimit <= 1;
         if (reachedProductLimitForUser) {
@@ -51,7 +52,7 @@ export const addToShoppingCartLogic = ({
         const productInStock =
             item?.productId === productName && product[0]?.countInStock >= item?.quantity;
         if (productInStock) {
-            const changeProductQuantity = cartItems.filter((item) => {
+            const changeProductQuantity = shoppingCartItems.filter((item) => {
 
                 if (item?.productId === productName) {
                     if (item?.quantity >= product[0]?.countInStock) {
@@ -66,7 +67,7 @@ export const addToShoppingCartLogic = ({
                 }
                 return item;
             });
-            return setCartItems([...changeProductQuantity]);
+            return setShoppingCartItems([...changeProductQuantity]);
         }
 
         if (
@@ -82,11 +83,11 @@ export const addToShoppingCartLogic = ({
     return handleProductQuantityLimitations;
 };
 
-export const checkUserLoggedIn = (userSignin: userSignin | null) => {
+export const checkUserLoggedIn = (userSignedIn: userSignedIn | null) => {
     const user: any = localStorage.getItem("userData");
     const parsedUser = JSON.parse(user);
-    let userSigned = userSignin;
-    !userSignin ? (userSigned = parsedUser) : (userSigned = userSignin);
+    let userSigned = userSignedIn;
+    !userSignedIn ? (userSigned = parsedUser) : (userSigned = userSignedIn);
     return userSigned;
 };
 
@@ -96,3 +97,8 @@ export const captureRedirectionRoute = (search: string) => {
     const redirect = redirectInUrl ? redirectInUrl : '/'
     return redirect
 }
+
+export const parseLocalStorage = (key: string, defaultValue: any): any => {
+    const value = localStorage.getItem(key);
+    return value ? JSON.parse(value) : defaultValue;
+};

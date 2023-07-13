@@ -1,14 +1,15 @@
-import React, { useContext } from "react";
-import { ShoppingCartContext } from "../../contexts/shopping-cart-context/shoppingCartContext";
+import React from "react";
+
 import { Typography } from "@mui/material";
-import { Product } from "../../contexts/shopping-cart-context/shoppingCartContextTypes";
+import useShoppingCartContext from "../../hooks/context/useShoppingCartContext";
+import { Product } from "../../contexts/shopping-cart-context/Types";
 
 interface ProductQuantityProps {
     name: string | undefined;
 }
 
 const ProductQuantity: React.FC<ProductQuantityProps> = ({ name }) => {
-    const { cartItems } = useContext(ShoppingCartContext);
+    const { shoppingCartItems } = useShoppingCartContext()
 
     const quantityStyle = {
         marginTop: "7px",
@@ -17,7 +18,7 @@ const ProductQuantity: React.FC<ProductQuantityProps> = ({ name }) => {
 
     return (
         <div id="quantity">
-            { cartItems.map((item: Product) => {
+            { shoppingCartItems.map((item: Product) => {
                 const { productId, quantity } = item || {};
                 if (item?.productId === name) {
                     return (

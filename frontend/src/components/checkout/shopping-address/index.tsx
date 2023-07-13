@@ -1,21 +1,24 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { ShoppingCartContext } from "../../../contexts/shopping-cart-context/shoppingCartContext";
-import { ShippingAddressDataType } from "../../../contexts/shopping-cart-context/shoppingCartContextTypes";
 import { toast } from "react-toastify";
 import ShoppingAdressForm from "./ShoppingAdressForm";
+import useUserAuthContext from "../../../hooks/context/useUserAuthContext";
+import useCheckoutContext from "../../../hooks/context/useCheckoutContext";
+import { ShippingAddressDataType } from "../../../contexts/checkout-context/Types";
 
 const ShippingAddressUi = () => {
 
   const navigate = useNavigate();
-  const shoppingCartContext = useContext(ShoppingCartContext);
   const {
     setShippingAddressData,
     shippingAddressData,
-    userSignin,
     setProgressStep,
-  } = shoppingCartContext;
+  } = useCheckoutContext()
+  const {
+    userSignedIn,
+
+  } = useUserAuthContext()
 
   const [shippingAddress, setShippingAddress] =
     useState<ShippingAddressDataType>({
@@ -45,13 +48,13 @@ const ShippingAddressUi = () => {
 
   useEffect(() => {
     setProgressStep(0);
-    if (!userSignin) {
+    if (!userSignedIn) {
       navigate("/user/signin?redirect=/shipping");
       setTimeout(() => {
         toast.error("Sign in first !");
       }, 100);
     }
-  }, [userSignin, navigate, setProgressStep]);
+  }, [userSignedIn, navigate, setProgressStep]);
 
   const ShoppingAddressFormProps = { handleChange, handleSubmit, shippingAddress }
 
