@@ -2,7 +2,6 @@ import React from "react";
 import { IconButton } from "@mui/material";
 import AccountCircle from "@mui/icons-material/AccountCircle";
 
-import useAppContext from "../../hooks/useAppContext";
 import useMenuSettingsContext from "../../hooks/useMenuSettingsContext";
 
 interface UserSettingMenuProps {

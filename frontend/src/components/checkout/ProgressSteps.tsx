@@ -1,6 +1,5 @@
 import { Box, Stepper, Step, StepLabel } from "@mui/material";
 
-import useAppContext from "../../hooks/useAppContext";
 import useCheckoutContext from "../../hooks/useCheckoutContext";
 
 const steps = ["Shipping Address", "Payment", "Place Order"];
