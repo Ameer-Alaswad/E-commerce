@@ -7,7 +7,7 @@ import RatingComponent from "../display-products/Rating";
 import ProductQuantity from "../display-products/ProductQuantity";
 import { handleToCart } from "./handlers";
 import styles from "./styles";
-import useShoppingCartContext from "../../hooks/useShoppingCartContext";
+import useShoppingCartContext from "../../hooks/context/useShoppingCartContext";
 
 const {
     container,

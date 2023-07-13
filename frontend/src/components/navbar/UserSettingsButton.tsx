@@ -1,8 +1,8 @@
 import React from "react";
 import { IconButton } from "@mui/material";
 import AccountCircle from "@mui/icons-material/AccountCircle";
+import useMenuSettingsContext from "../../hooks/context/useMenuSettingsContext";
 
-import useMenuSettingsContext from "../../hooks/useMenuSettingsContext";
 
 interface UserSettingMenuProps {
     userName: string

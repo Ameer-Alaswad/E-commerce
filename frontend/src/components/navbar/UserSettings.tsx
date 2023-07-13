@@ -7,8 +7,9 @@ import {
 } from "./styles";
 import UserSettingsButton from "./UserSettingsButton";
 import UserSettingsMenu from "./UserSettingsMenu";
-import useMenuSettingsContext from "../../hooks/useMenuSettingsContext";
-import useMenuSettingsMobileContext from "../../hooks/useMenuSettingsMobileContext";
+import useMenuSettingsContext from "../../hooks/context/useMenuSettingsContext";
+import useMenuSettingsMobileContext from "../../hooks/context/useMenuSettingsMobileContext";
+
 
 interface UserSettingsProps {
     userName: string;

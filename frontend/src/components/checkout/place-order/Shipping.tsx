@@ -8,7 +8,7 @@ import {
 
 import { useNavigate } from "react-router-dom";
 import { placeOrderComponentsStyles } from "../styles";
-import useCheckoutContext from "../../../hooks/useCheckoutContext";
+import useCheckoutContext from "../../../hooks/context/useCheckoutContext";
 
 const { container, title } = placeOrderComponentsStyles;
 

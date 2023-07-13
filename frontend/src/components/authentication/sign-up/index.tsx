@@ -3,13 +3,12 @@ import * as React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
 import { postUser } from "../../../fetchers/fetchUser";
-import { useContext } from "react";
 
 import { captureRedirectionRoute, checkUserLoggedIn } from "../../../utils/utils";
 import { toast } from "react-toastify";
 import { getFormData } from "../utils";
 import SignUpForm from "./SignUpForm";
-import useUserAuthContext from "../../../hooks/useUserAuthContext";
+import useUserAuthContext from "../../../hooks/context/useUserAuthContext";
 
 export default function SignUp() {
     const navigate = useNavigate();

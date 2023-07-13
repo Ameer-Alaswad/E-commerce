@@ -9,7 +9,7 @@ import {
 } from "@mui/material";
 import { toast } from "react-toastify";
 import useProfileUpdate from "../hooks/useProfileUpdate";
-import useUserAuthContext from "../hooks/useUserAuthContext";
+import useUserAuthContext from "../hooks/context/useUserAuthContext";
 interface UserData {
     _id: string;
     name: string;

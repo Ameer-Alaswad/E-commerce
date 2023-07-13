@@ -8,7 +8,7 @@ import { useShoppingCartHandlers } from "./handlers";
 import { orderItemsListStyles } from "../../styles";
 import { CURRENCY_DOLLAR } from "../../../constants/text";
 import useCustomLocation from "../../../../hooks/useCustomLocation";
-import useShoppingCartContext from "../../../../hooks/useShoppingCartContext";
+import useShoppingCartContext from "../../../../hooks/context/useShoppingCartContext";
 import { Product } from "../../../../contexts/shopping-cart-context/Types";
 
 const { cardContainer, itemImage, deleteButton } = orderItemsListStyles;

@@ -1,7 +1,7 @@
 
 import { toast } from "react-toastify";
 
-import useShoppingCartContext from "../../../../hooks/useShoppingCartContext";
+import useShoppingCartContext from "../../../../hooks/context/useShoppingCartContext";
 
 export const useShoppingCartHandlers = () => {
     const { shoppingCartItems, setShoppingCartItems } = useShoppingCartContext()

@@ -7,8 +7,8 @@ import { toast } from "react-toastify";
 import { fetchOrder } from "../../fetchers/fetchOrder";
 import { PayPalButtons, usePayPalScriptReducer } from "@paypal/react-paypal-js";
 import axios from "axios";
-import useUserAuthContext from "../../hooks/useUserAuthContext";
-import useOrdersContext from "../../hooks/useOrdersContext";
+import useUserAuthContext from "../../hooks/context/useUserAuthContext";
+import useOrdersContext from "../../hooks/context/useOrdersContext";
 
 const OrderScreen = () => {
     const navigate = useNavigate();

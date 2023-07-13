@@ -4,7 +4,7 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 
 import { SHOPPING_CART_PATH } from "../constants/path";
 import { useNavigate } from "react-router-dom";
-import useShoppingCartContext from '../../hooks/useShoppingCartContext';
+import useShoppingCartContext from '../../hooks/context/useShoppingCartContext';
 
 const ShoppingCart = () => {
     const navigate = useNavigate();

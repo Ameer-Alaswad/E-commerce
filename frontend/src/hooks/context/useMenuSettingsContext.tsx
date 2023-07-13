@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { MenuSettingsContext } from "../contexts/menu-settings-context";
+import { MenuSettingsContext } from "../../contexts/menu-settings-context";
 
 const useMenuSettingsContext = () => {
     const {

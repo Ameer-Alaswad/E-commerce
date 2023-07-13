@@ -1,7 +1,7 @@
 import React from "react";
 
 import { Typography } from "@mui/material";
-import useShoppingCartContext from "../../hooks/useShoppingCartContext";
+import useShoppingCartContext from "../../hooks/context/useShoppingCartContext";
 import { Product } from "../../contexts/shopping-cart-context/Types";
 
 interface ProductQuantityProps {

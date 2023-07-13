@@ -1,5 +1,5 @@
 import { useContext } from 'react'
-import { MenuSettingsMobileContext } from '../contexts/menu-settings-mobile-context'
+import { MenuSettingsMobileContext } from '../../contexts/menu-settings-mobile-context'
 
 const useMenuSettingsMobileContext = () => {
     const {

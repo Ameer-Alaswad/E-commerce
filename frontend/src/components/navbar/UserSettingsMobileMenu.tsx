@@ -10,10 +10,10 @@ import { ORDERS_HISTORY_PATH, UPDATE_USER_PATH } from "../constants/path";
 import { MY_ORDERS_TEXT, PROFILE_TEXT, SIGNOUT_TEXT } from "../constants/text";
 import { Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import useAppContext from "../../hooks/useAppContext";
-import useUserAuthContext from "../../hooks/useUserAuthContext";
-import useMenuSettingsMobileContext from "../../hooks/useMenuSettingsMobileContext";
-import useMenuSettingsContext from "../../hooks/useMenuSettingsContext";
+import useAppContext from "../../hooks/context/useAppContext";
+import useUserAuthContext from "../../hooks/context/useUserAuthContext";
+import useMenuSettingsMobileContext from "../../hooks/context/useMenuSettingsMobileContext";
+import useMenuSettingsContext from "../../hooks/context/useMenuSettingsContext";
 
 
 type UserSettingsMobileMenuProps = {

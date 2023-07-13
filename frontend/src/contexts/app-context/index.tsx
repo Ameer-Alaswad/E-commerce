@@ -5,8 +5,9 @@ import {
     AppContextTypes,
     ContextChildren,
 } from "./Types";
-import useMenuSettingsContext from "../../hooks/useMenuSettingsContext";
-import useMenuSettingsMobileContext from "../../hooks/useMenuSettingsMobileContext";
+import useMenuSettingsContext from "../../hooks/context/useMenuSettingsContext";
+import useMenuSettingsMobileContext from "../../hooks/context/useMenuSettingsMobileContext";
+
 
 export const AppContext = createContext({} as AppContextTypes);
 

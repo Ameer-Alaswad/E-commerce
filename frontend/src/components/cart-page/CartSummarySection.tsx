@@ -20,8 +20,8 @@ import {
 import { SHIPPING_PATH, SIGNIN_PATH } from "../constants/path";
 import { calculateCartTotalPrices } from "../checkout/utils";
 import { CURRENCY_DOLLAR } from "../constants/text";
-import useShoppingCartContext from "../../hooks/useShoppingCartContext";
-import useUserAuthContext from "../../hooks/useUserAuthContext";
+import useShoppingCartContext from "../../hooks/context/useShoppingCartContext";
+import useUserAuthContext from "../../hooks/context/useUserAuthContext";
 
 const CartSummarySection = () => {
     const navigate = useNavigate();

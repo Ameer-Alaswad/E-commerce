@@ -9,7 +9,7 @@ import OrdersTable from "./orders-table";
 import { OrderHistory } from "./OrdersTypes";
 import { fetchOrderHistory } from "../../../fetchers/fetchOrdersHistory";
 import { useNavigate } from "react-router-dom";
-import useUserAuthContext from "../../../hooks/useUserAuthContext";
+import useUserAuthContext from "../../../hooks/context/useUserAuthContext";
 
 const orderHistoryContainer = {
     height: "100vh",

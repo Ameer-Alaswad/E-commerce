@@ -5,7 +5,7 @@ import ProductSearch from "./ProductSearch";
 import DisplaySiteName from "./DisplaySiteName";
 import UserSettings from "./UserSettings";
 import UserAuthenticationLinks from "./UserAuthenticationLinks";
-import useUserAuthContext from "../../hooks/useUserAuthContext";
+import useUserAuthContext from "../../hooks/context/useUserAuthContext";
 
 const Navbar = () => {
 

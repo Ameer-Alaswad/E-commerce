@@ -7,9 +7,9 @@ import { postUser } from "../../../fetchers/postOrder";
 import { useNavigate } from "react-router-dom";
 import { orderSummaryStyles } from "../styles";
 import { calculateCartTotalPrices } from "../utils";
-import useShoppingCartContext from "../../../hooks/useShoppingCartContext";
-import useUserAuthContext from "../../../hooks/useUserAuthContext";
-import useCheckoutContext from "../../../hooks/useCheckoutContext";
+import useShoppingCartContext from "../../../hooks/context/useShoppingCartContext";
+import useUserAuthContext from "../../../hooks/context/useUserAuthContext";
+import useCheckoutContext from "../../../hooks/context/useCheckoutContext";
 
 const { card, title, itemPrice, divider, bold, box, buttonBox, button } =
     orderSummaryStyles;

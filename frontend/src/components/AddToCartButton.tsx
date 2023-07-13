@@ -6,7 +6,7 @@ import { addToShoppingCartLogic } from "../utils/utils";
 import { productsType } from "./display-products/displayProductsInterface";
 // Material UI
 import Button from "@mui/material/Button";
-import useShoppingCartContext from "../hooks/useShoppingCartContext";
+import useShoppingCartContext from "../hooks/context/useShoppingCartContext";
 
 
 const AddToCartButton = () => {

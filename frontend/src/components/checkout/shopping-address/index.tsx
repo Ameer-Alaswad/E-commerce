@@ -3,8 +3,8 @@ import { useNavigate } from "react-router-dom";
 
 import { toast } from "react-toastify";
 import ShoppingAdressForm from "./ShoppingAdressForm";
-import useUserAuthContext from "../../../hooks/useUserAuthContext";
-import useCheckoutContext from "../../../hooks/useCheckoutContext";
+import useUserAuthContext from "../../../hooks/context/useUserAuthContext";
+import useCheckoutContext from "../../../hooks/context/useCheckoutContext";
 import { ShippingAddressDataType } from "../../../contexts/checkout-context/Types";
 
 const ShippingAddressUi = () => {

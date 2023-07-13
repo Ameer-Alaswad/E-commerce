@@ -8,8 +8,8 @@ import Shipping from "./Shipping";
 import useRedirect from "../useRedirect";
 import { getPaymentRedirectProps } from "../utils";
 import { placeOrderStyles } from "../styles";
-import useUserAuthContext from "../../../hooks/useUserAuthContext";
-import useCheckoutContext from "../../../hooks/useCheckoutContext";
+import useUserAuthContext from "../../../hooks/context/useUserAuthContext";
+import useCheckoutContext from "../../../hooks/context/useCheckoutContext";
 
 const { mainContainer, orderDetailsContainer, PreviewOrder } = placeOrderStyles;
 
