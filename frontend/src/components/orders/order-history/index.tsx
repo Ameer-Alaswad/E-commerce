@@ -2,7 +2,6 @@
 import { useEffect, useRef, useState } from "react";
 import { toast } from "react-toastify";
 // Internal component
-import Loading from "../../Loading";
 import { Box } from "@mui/material";
 // Component
 import OrdersTable from "./orders-table";
@@ -10,6 +9,7 @@ import { OrderHistory } from "./OrdersTypes";
 import { fetchOrderHistory } from "../../../fetchers/fetchOrdersHistory";
 import { useNavigate } from "react-router-dom";
 import useUserAuthContext from "../../../hooks/context/useUserAuthContext";
+import AnimatedLoadingIcon from "../../AnimatedLoadingIcon";
 
 const orderHistoryContainer = {
     height: "100vh",
@@ -54,7 +54,7 @@ const OrdersHistory = () => {
 
     return (
         <Box sx={ orderHistoryContainer }>
-            { loading ? <Loading /> : <OrdersTable orderHistory={ orderHistory } /> }
+            { loading ? <AnimatedLoadingIcon /> : <OrdersTable orderHistory={ orderHistory } /> }
         </Box>
     );
 };

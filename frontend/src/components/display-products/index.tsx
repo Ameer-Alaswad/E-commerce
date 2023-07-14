@@ -1,19 +1,22 @@
-// Hooks 
 import useProducts from "../../hooks/useProducts";
-// Components 
 import Products from "./Products";
-import Loading from "../Loading"
-import Error from "../Error"
+import Error from "../Error";
+import AnimatedLoadingIcon from "../AnimatedLoadingIcon";
 
 const DisplayProducts = () => {
+    const { isError, isLoading, data } = useProducts("/api/product");
 
-    const { isError, isLoading, data } = useProducts("/api/product")
-
-    if (isLoading) return <h1 style={ { marginTop: "200px" } }><Loading /></h1>;
-    if (isError) return <Error />;
-
-    return <Products data={ data } />
-
+    return (
+        <>
+            { isLoading ? (
+                <AnimatedLoadingIcon />
+            ) : isError ? (
+                <Error />
+            ) : (
+                <Products data={ data } />
+            ) }
+        </>
+    );
 };
 
 export default DisplayProducts;
