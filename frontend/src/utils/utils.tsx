@@ -1,6 +1,6 @@
 // This requires refactoring 
 // Types
-import { productsType } from "../components/display-products/displayProductsInterface";
+import { productsType } from "../components/display-products/Types";
 import { Product } from "../contexts/shopping-cart-context/Types";
 import {
     userSignedIn,

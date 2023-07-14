@@ -1,8 +1,8 @@
 // React
-import React, { useContext } from "react";
+import React from "react";
 import { useNavigate } from "react-router";
 // Types
-import { productProps } from "./displayProductsInterface";
+import { productProps } from "./Types";
 // Material Ui
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
@@ -14,44 +14,28 @@ import Box from "@mui/material/Box";
 import RatingComponent from "./Rating";
 import AddToCartButton from "../AddToCartButton";
 import ProductQuantity from "./ProductQuantity";
-
-const styles = {
-    title: { textAlign: "center", marginTop: "90px" },
-    container: {
-        display: "flex",
-        flexWrap: "wrap",
-        justifyContent: "space-around",
-        maxWidth: "1250px",
-        margin: "0 auto",
-        marginTop: "50px",
-    },
-    card: {
-        maxWidth: 500,
-        marginBottom: "60px",
-        width: "400px",
-    },
-    cardMedia: {
-        height: "390px",
-        width: "100%",
-        objectFit: "contain",
-    },
-    price: {
-        marginBottom: 0,
-    },
-    description: {
-        marginBottom: "16px",
-    },
-};
+import {
+    productDescriptionStyles,
+    productCardContainerStyles,
+    productContainerStyles,
+    productImageStyles,
+    productPriceStyles,
+    productTitleStyles,
+} from "./styles";
 
 const Products: React.FC<productProps> = ({ data }) => {
     const navigate = useNavigate();
-    const { container, card, cardMedia, price, description, title } = styles;
     return (
         <Box id="products-container">
-            <Typography sx={ title } gutterBottom variant="h4" component="div">
+            <Typography
+                sx={ productTitleStyles }
+                gutterBottom
+                variant="h4"
+                component="div"
+            >
                 Featured Products
             </Typography>
-            <Box sx={ container }>
+            <Box sx={ productContainerStyles }>
                 { data
                     ? data?.map((product) => {
                         const {
@@ -68,12 +52,12 @@ const Products: React.FC<productProps> = ({ data }) => {
                             <Card
                                 onClick={ () => navigate(`/product/label/${label}`) }
                                 key={ label }
-                                sx={ card }
+                                sx={ productCardContainerStyles }
                             >
                                 <CardActionArea>
                                     <CardMedia
                                         component="img"
-                                        sx={ cardMedia }
+                                        sx={ productImageStyles }
                                         image={ image }
                                         alt="green iguana"
                                     />
@@ -91,7 +75,7 @@ const Products: React.FC<productProps> = ({ data }) => {
                                             gutterBottom
                                             variant="h5"
                                             component="div"
-                                            sx={ price }
+                                            sx={ productPriceStyles }
                                         >
                                             { productPrice }$
                                         </Typography>
@@ -102,7 +86,7 @@ const Products: React.FC<productProps> = ({ data }) => {
                                         <Typography
                                             variant="body2"
                                             color="text.secondary"
-                                            sx={ description }
+                                            sx={ productDescriptionStyles }
                                         >
                                             { productDescription }
                                         </Typography>

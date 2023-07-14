@@ -1,6 +1,6 @@
 import axios from "axios";
 
-import { productsType } from "../components/display-products/displayProductsInterface";
+import { productsType } from "../components/display-products/Types";
 
 export const fetchProducts = async (URL: string): Promise<productsType[]> => {
     try {

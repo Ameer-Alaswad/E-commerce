@@ -1,6 +1,6 @@
 import React from "react";
 import Box from "@mui/material/Box";
-import { productsType } from "../display-products/displayProductsInterface";
+import { productsType } from "../display-products/Types";
 import { Button, Card, CardContent, Divider, Typography } from "@mui/material";
 import RatingComponent from "../display-products/Rating";
 
