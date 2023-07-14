@@ -1,17 +1,18 @@
-import useProducts from "../../hooks/useProducts";
+import useProductsFetch from "../../hooks/useProductsFetch";
 import Products from "./Products";
-import Error from "../Error";
 import AnimatedLoadingIcon from "../AnimatedLoadingIcon";
+import ProductsNotFoundAlert from "../Error";
 
 const DisplayProducts = () => {
-    const { isError, isLoading, data } = useProducts("/api/product");
+
+    const { isError, isLoading, data } = useProductsFetch("/api/product");
 
     return (
         <>
             { isLoading ? (
                 <AnimatedLoadingIcon />
             ) : isError ? (
-                <Error />
+                <ProductsNotFoundAlert />
             ) : (
                 <Products data={ data } />
             ) }

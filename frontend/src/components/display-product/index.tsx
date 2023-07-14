@@ -1,7 +1,7 @@
 // react router 
 import { useParams } from "react-router-dom";
 // hooks 
-import useProducts from "../../hooks/useProducts";
+import useProducts from "../../hooks/useProductsFetch";
 // components 
 import Product from "./Product";
 import Error from "../Error"
