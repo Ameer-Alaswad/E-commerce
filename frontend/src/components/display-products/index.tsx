@@ -1,5 +1,5 @@
 import useProductsFetch from "../../hooks/useProductsFetch";
-import Products from "./Products";
+import ProductsList from "./ProductsList";
 import AnimatedLoadingIcon from "../AnimatedLoadingIcon";
 import ProductsNotFoundAlert from "../Error";
 
@@ -14,7 +14,7 @@ const DisplayProducts = () => {
             ) : isError ? (
                 <ProductsNotFoundAlert />
             ) : (
-                <Products data={ data } />
+                <ProductsList data={ data } />
             ) }
         </>
     );
