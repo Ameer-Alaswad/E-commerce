@@ -6,21 +6,13 @@ import { PRODUCTS_PATH } from "../constants/path";
 
 const DisplayProducts = () => {
     const { isError, isLoading, data } = useProductsFetch(PRODUCTS_PATH);
-
-
-    if (isLoading) {
-        return <AnimatedLoadingIcon />;
-    }
-
-    if (isError) {
-        return <ProductsNotFoundAlert />;
-    }
-
-    if (data) {
-        return <DisplayProductsList data={ data } />;
-    }
-
-    return null;
+    return (
+        <>
+            { isLoading && <AnimatedLoadingIcon /> }
+            { isError && <ProductsNotFoundAlert /> }
+            { data && <DisplayProductsList data={ data } /> }
+        </>
+    );
 };
 
 export default DisplayProducts;
