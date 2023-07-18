@@ -1,33 +1,30 @@
-import React from "react";
+import { FC } from "react";
 
 import { Typography } from "@mui/material";
 import useShoppingCartContext from "../../hooks/context/useShoppingCartContext";
 import { Product } from "../../contexts/shopping-cart-context/Types";
 
+import { quantityStyle } from "./styles";
+import { QUANTITY_MESSAGE } from "../constants/text";
+
 interface ProductQuantityProps {
     name: string | undefined;
 }
 
-const ProductQuantity: React.FC<ProductQuantityProps> = ({ name }) => {
+const ProductQuantity: FC<ProductQuantityProps> = ({ name }) => {
+
     const { shoppingCartItems } = useShoppingCartContext()
 
-    const quantityStyle = {
-        marginTop: "7px",
-        fontWeight: "bold",
-    };
-
     return (
-        <div id="quantity">
-            { shoppingCartItems.map((item: Product) => {
-                const { productId, quantity } = item || {};
-                if (item?.productId === name) {
-                    return (
-                        <Typography sx={ quantityStyle } key={ productId }>
-                            { quantity } of this product in cart
-                        </Typography>
-                    );
-                }
-                return null;
+        <div id="product-quantity">
+            { shoppingCartItems?.map((item: Product) => {
+                const { productId, quantity } = item
+                const isMatchingProductId = productId === name;
+                return isMatchingProductId && (
+                    <Typography sx={ quantityStyle } key={ productId }>
+                        { QUANTITY_MESSAGE }: { quantity }
+                    </Typography>
+                );
             }) }
         </div>
     );

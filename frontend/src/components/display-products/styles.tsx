@@ -23,3 +23,8 @@ export const productPriceStyles = {
 export const productDescriptionStyles = {
     marginBottom: "16px",
 };
+
+export const quantityStyle = {
+    marginTop: "7px",
+    fontWeight: "bold",
+};
