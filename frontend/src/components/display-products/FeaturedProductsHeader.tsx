@@ -1,5 +1,6 @@
 import { Typography } from '@mui/material'
 import { productTitleStyles } from './styles'
+import { FEATURED_PRODUCTS_TEXT } from '../constants/text'
 
 const FeaturedProductsHeader = () => {
     return (
@@ -9,7 +10,7 @@ const FeaturedProductsHeader = () => {
             variant="h4"
             component="div"
         >
-            Featured Products
+            { FEATURED_PRODUCTS_TEXT }
         </Typography>)
 }
 

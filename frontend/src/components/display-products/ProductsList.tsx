@@ -1,11 +1,11 @@
-import React from "react";
+import { FC } from "react";
 import Box from "@mui/material/Box";
 import FeaturedProductsHeader from "./FeaturedProductsHeader";
 import ProductCard from "./ProductCard";
 import { productContainerStyles } from "./styles";
 import { productProps } from "./Types";
 
-const ProductsList: React.FC<productProps> = ({ data }) => {
+const ProductsList: FC<productProps> = ({ data }) => {
 
     return (
         <Box id="products-container">

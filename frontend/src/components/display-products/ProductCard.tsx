@@ -1,10 +1,13 @@
-import React from "react";
+import { FC } from "react";
 import { useNavigate } from "react-router";
-import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
-import Typography from "@mui/material/Typography";
-import { CardActionArea } from "@mui/material";
+import {
+    Card,
+    CardContent,
+    CardMedia,
+    Typography,
+    CardActionArea,
+} from "@mui/material";
+
 import RatingComponent from "./Rating";
 import AddToCartButton from "../AddToCartButton";
 import ProductQuantity from "./ProductQuantity";
@@ -14,16 +17,13 @@ import {
     productPriceStyles,
     productDescriptionStyles,
 } from "./styles";
+
 import { productsType } from "./Types";
+import { CURRENCY_DOLLAR } from "../constants/text";
 
 
-interface ProductCardProps {
-    product: productsType;
-}
-
-const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
-    const navigate = useNavigate();
-    const {
+const ProductCard: FC<{ product: productsType }> = ({
+    product: {
         name,
         image,
         price: productPrice,
@@ -31,9 +31,13 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
         label,
         numReviews,
         rating,
-    } = product;
+    },
+}) => {
+    const navigate = useNavigate();
+
 
     return (
+
         <Card
             onClick={ () => navigate(`/product/label/${label}`) }
             key={ label }
@@ -44,15 +48,10 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
                     component="img"
                     sx={ productImageStyles }
                     image={ image }
-                    alt="green iguana"
+                    alt={ `${name} product image` }
                 />
                 <CardContent>
-                    <Typography
-                        color="blue"
-                        gutterBottom
-                        variant="h6"
-                        component="div"
-                    >
+                    <Typography color="primary" gutterBottom variant="h6" component="div">
                         { name }
                     </Typography>
                     <Typography
@@ -61,7 +60,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
                         component="div"
                         sx={ productPriceStyles }
                     >
-                        { productPrice }$
+                        { productPrice }{ CURRENCY_DOLLAR }
                     </Typography>
                     <RatingComponent numReviews={ numReviews } rating={ rating } />
                     <Typography
