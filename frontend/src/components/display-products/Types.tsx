@@ -20,7 +20,7 @@ export type RatingProps = {
     rating: number | undefined
 }
 
-export type productProps = {
+export type ProductProps = {
     data: productsType[] | undefined
 }
 

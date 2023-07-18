@@ -3,9 +3,9 @@ import Box from "@mui/material/Box";
 import FeaturedProductsHeader from "./FeaturedProductsHeader";
 import ProductCard from "./ProductCard";
 import { productContainerStyles } from "./styles";
-import { productProps } from "./Types";
+import { ProductProps } from "./Types";
 
-const DisplayProductsList: FC<productProps> = ({ data }) => {
+const DisplayProductsList: FC<ProductProps> = ({ data }) => {
 
     return (
         <Box id="products-container">
