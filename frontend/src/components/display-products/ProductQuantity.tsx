@@ -8,17 +8,17 @@ import { quantityStyle } from "./styles";
 import { ProductQuantityProps } from "./Types";
 import { QUANTITY_TEXT } from "../constants/text";
 
-const ProductQuantity: FC<ProductQuantityProps> = ({ name }) => {
+const ProductQuantity: FC<ProductQuantityProps> = ({ productName }) => {
 
     const { shoppingCartItems } = useShoppingCartContext()
 
     return (
         <div id="product-quantity">
             { shoppingCartItems?.map((item: Product) => {
-                const { productId, quantity } = item
-                const isMatchingProductId = productId === name;
-                return isMatchingProductId && (
-                    <Typography sx={ quantityStyle } key={ productId }>
+                const { productId: productNameInCart, quantity } = item
+                const isMatchingProductNameInCart = productNameInCart === productName;
+                return isMatchingProductNameInCart && (
+                    <Typography sx={ quantityStyle } key={ productNameInCart }>
                         { QUANTITY_TEXT } : { quantity }
                     </Typography>
                 );

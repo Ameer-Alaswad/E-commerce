@@ -24,7 +24,7 @@ import { CURRENCY_DOLLAR } from "../constants/text";
 
 const ProductCard: FC<{ product: productsType }> = ({
     product: {
-        name,
+        name: productName,
         image,
         price: productPrice,
         description: productDescription,
@@ -50,11 +50,11 @@ const ProductCard: FC<{ product: productsType }> = ({
                     component="img"
                     sx={ productImageStyles }
                     image={ image }
-                    alt={ `${name} product image` }
+                    alt={ `${productName} product image` }
                 />
                 <CardContent>
                     <Typography color="primary" gutterBottom variant="h6" component="div">
-                        { name }
+                        { productName }
                     </Typography>
                     <Typography
                         gutterBottom
@@ -73,7 +73,7 @@ const ProductCard: FC<{ product: productsType }> = ({
                         { productDescription }
                     </Typography>
                     <AddToCartButton />
-                    <ProductQuantity name={ name } />
+                    <ProductQuantity productName={ productName } />
                 </CardContent>
             </CardActionArea>
         </Card>

@@ -1,3 +1,4 @@
+// This requires refactoring 
 import React from "react";
 import Box from "@mui/material/Box";
 import { productsType } from "../display-products/Types";
@@ -53,7 +54,7 @@ const Product: React.FC<ProductProps> = ({ data }) => {
                             src={ image }
                             alt="product-img"
                         />
-                        <ProductQuantity name={ productName } />
+                        <ProductQuantity productName={ productName } />
                     </div>
                     <Box sx={ productInfoContainer }>
                         <Typography

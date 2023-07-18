@@ -25,5 +25,5 @@ export type ProductProps = {
 }
 
 export interface ProductQuantityProps {
-    name: string | undefined
+    productName: string | undefined
 }
