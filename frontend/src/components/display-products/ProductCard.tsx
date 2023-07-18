@@ -29,15 +29,17 @@ const ProductCard: FC<{ product: productsType }> = ({
         price: productPrice,
         description: productDescription,
         label,
-        numReviews,
+        numReviews: totalReviews,
         rating,
     },
 }) => {
     const navigate = useNavigate();
-
+    const reviewProps = {
+        totalReviews,
+        rating,
+    };
 
     return (
-
         <Card
             onClick={ () => navigate(`/product/label/${label}`) }
             key={ label }
@@ -62,7 +64,7 @@ const ProductCard: FC<{ product: productsType }> = ({
                     >
                         { productPrice }{ CURRENCY_DOLLAR }
                     </Typography>
-                    <RatingComponent numReviews={ numReviews } rating={ rating } />
+                    <RatingComponent { ...reviewProps } />
                     <Typography
                         variant="body2"
                         color="text.secondary"

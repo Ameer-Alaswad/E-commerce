@@ -1,4 +1,4 @@
-// Material ui
+// Requires styling 
 import CircularProgress from "@mui/material/CircularProgress";
 import Box from "@mui/material/Box";
 

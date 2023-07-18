@@ -1,6 +1,4 @@
-// useQuery 
 import { useQuery } from "react-query";
-// fetch 
 import { fetchProducts } from "../fetchers/fetchProducts";
 
 const useProductsFetch = (URL: string) => {

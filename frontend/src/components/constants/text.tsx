@@ -8,4 +8,5 @@ export const CURRENCY_DOLLAR = "$";
 export const FEATURED_PRODUCTS_TEXT = 'Featured Products';
 export const PRODUCTS_NOT_FOUND_MESSAGE = "Sorry, the requested products could not be found.";
 export const ERROR_TITLE = "Error!"
-export const QUANTITY_MESSAGE = "Quantity in cart:";
+export const QUANTITY_TEXT = "Quantity in cart";
+export const TOTAL_REVIEWS = "Reviews";

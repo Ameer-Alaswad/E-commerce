@@ -35,7 +35,7 @@ const Product: React.FC<ProductProps> = ({ data }) => {
 
     const { shoppingCartItems, setShoppingCartItems } = useShoppingCartContext()
 
-    const { name: productName, image, numReviews, rating, price, description, countInStock } = data?.[0] || {}
+    const { name: productName, image, numReviews: totalReviews, rating, price, description, countInStock } = data?.[0] || {}
 
     const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
         event.stopPropagation();
@@ -65,7 +65,7 @@ const Product: React.FC<ProductProps> = ({ data }) => {
                         <Divider />
                         <Box sx={ ratingContainer }>
                             <RatingComponent
-                                numReviews={ numReviews }
+                                totalReviews={ totalReviews }
                                 rating={ rating }
                             />
                         </Box>

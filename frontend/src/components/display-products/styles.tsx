@@ -28,3 +28,10 @@ export const quantityStyle = {
     marginTop: "7px",
     fontWeight: "bold",
 };
+
+export const ratingContainerStyles = {
+    display: "flex",
+    justifyContent: "space-between",
+    flexDirection: "row",
+    alignItems: "center",
+}
