@@ -20,6 +20,7 @@ import {
 
 import { productsType } from "./Types";
 import { CURRENCY_DOLLAR } from "../constants/text";
+import { PRODUCT_LABEL_URL } from "../constants/path";
 
 
 const ProductCard: FC<{ product: productsType }> = ({
@@ -41,7 +42,7 @@ const ProductCard: FC<{ product: productsType }> = ({
 
     return (
         <Card
-            onClick={ () => navigate(`/product/label/${label}`) }
+            onClick={ () => navigate(`${PRODUCT_LABEL_URL}${label}`) }
             key={ label }
             sx={ productCardContainerStyles }
         >

@@ -6,3 +6,4 @@ export const UPDATE_USER_PATH = "/user/update";
 export const ORDERS_HISTORY_PATH = "/ordershistory";
 export const SHIPPING_PATH = "/shipping";
 export const PRODUCTS_PATH = "/api/product"
+export const PRODUCT_LABEL_URL = "/product/label/";
