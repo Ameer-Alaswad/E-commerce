@@ -1,16 +1,24 @@
-// This component needs styling 
-// Material UI 
-import Alert from '@mui/material/Alert';
-import AlertTitle from '@mui/material/AlertTitle';
-import Stack from '@mui/material/Stack';
+// This Component requires some changes and styling
+import Alert from "@mui/material/Alert";
+import AlertTitle from "@mui/material/AlertTitle";
+import Stack from "@mui/material/Stack";
+import { ERROR_TITLE, PRODUCTS_NOT_FOUND_MESSAGE } from "./constants/text";
 
-export default function DescriptionAlerts() {
+const ProductsNotFoundAlert = () => {
+
+    const alertContainerStyles = {
+        width: "100%",
+        marginTop: "200px",
+    };
+
     return (
-        <Stack style={ { marginTop: "200px" } } sx={ { width: '100%' } } spacing={ 2 }>
+        <Stack sx={ alertContainerStyles } spacing={ 2 }>
             <Alert severity="error">
-                <AlertTitle>Error</AlertTitle>
-                Product was not found— <strong>check it out!</strong>
+                <AlertTitle>{ ERROR_TITLE }</AlertTitle>
+                { PRODUCTS_NOT_FOUND_MESSAGE }
             </Alert>
         </Stack>
     );
-}
+};
+
+export default ProductsNotFoundAlert;

@@ -1,6 +1,7 @@
+// This requires refactoring 
 import React from "react";
 import Box from "@mui/material/Box";
-import { productsType } from "../display-products/displayProductsInterface";
+import { productsType } from "../display-products/Types";
 import { Button, Card, CardContent, Divider, Typography } from "@mui/material";
 import RatingComponent from "../display-products/Rating";
 
@@ -35,7 +36,7 @@ const Product: React.FC<ProductProps> = ({ data }) => {
 
     const { shoppingCartItems, setShoppingCartItems } = useShoppingCartContext()
 
-    const { name: productName, image, numReviews, rating, price, description, countInStock } = data?.[0] || {}
+    const { name: productName, image, numReviews: totalReviews, rating, price, description, countInStock } = data?.[0] || {}
 
     const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
         event.stopPropagation();
@@ -53,7 +54,7 @@ const Product: React.FC<ProductProps> = ({ data }) => {
                             src={ image }
                             alt="product-img"
                         />
-                        <ProductQuantity name={ productName } />
+                        <ProductQuantity productName={ productName } />
                     </div>
                     <Box sx={ productInfoContainer }>
                         <Typography
@@ -65,7 +66,7 @@ const Product: React.FC<ProductProps> = ({ data }) => {
                         <Divider />
                         <Box sx={ ratingContainer }>
                             <RatingComponent
-                                numReviews={ numReviews }
+                                totalReviews={ totalReviews }
                                 rating={ rating }
                             />
                         </Box>
