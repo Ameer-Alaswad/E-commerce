@@ -23,13 +23,13 @@ const SignIn = () => {
 
     const handleUserSubmit = async (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        postUser(
-            "/api/users/signin",
-            getFormData(event.currentTarget),
-            setUserSignedIn,
-            navigate,
-            redirect
-        );
+        // postUser(
+        //     "/api/users/signin",
+        //     getFormData(event.currentTarget),
+        //     setUserSignedIn,
+        //     navigate,
+        //     redirect
+        // );
     };
     const handleNavigate = () => navigate(`/user/signup?redirect=${redirect}`);
 
