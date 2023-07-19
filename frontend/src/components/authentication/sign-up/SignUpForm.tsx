@@ -19,7 +19,7 @@ import {
 import Copyright from "../Copyright";
 import { SignInFormProps } from "../sign-in/SigninForm";
 
-const SignUpForm = ({ handleSubmit, handleNavigate }: SignInFormProps) => {
+const SignUpForm = ({ handleUserSubmit, handleNavigate }: SignInFormProps) => {
 
     return (
 
@@ -32,7 +32,7 @@ const SignUpForm = ({ handleSubmit, handleNavigate }: SignInFormProps) => {
                 <Typography component="h1" variant="h5">
                     Sign up
                 </Typography>
-                <Box component="form" onSubmit={ handleSubmit } sx={ { mt: 1 } }>
+                <Box component="form" onSubmit={ handleUserSubmit } sx={ { mt: 1 } }>
                     <TextField
                         margin="normal"
                         required

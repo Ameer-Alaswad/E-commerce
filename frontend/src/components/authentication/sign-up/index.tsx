@@ -25,7 +25,7 @@ export default function SignUp() {
         if (userSigned) navigate("/");
     }, [userSigned, navigate]);
 
-    const handleSubmit = async (event: React.FormEvent<HTMLFormElement>): Promise<void> => {
+    const handleUserSubmit = async (event: React.FormEvent<HTMLFormElement>): Promise<void> => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
         if (data.get("password") !== data.get("confirmPassword")) {
@@ -45,7 +45,7 @@ export default function SignUp() {
 
 
     const signUpProps = {
-        handleSubmit,
+        handleUserSubmit,
         handleNavigate,
     };
     return <SignUpForm { ...signUpProps } />
