@@ -1,5 +1,6 @@
 export const HOME_PATH = "/";
 export const SIGNUP_PATH = "/user/signup";
+export const BACKEND_SIGNUP_PATH = "/api/users/signup";
 export const SIGNIN_PATH = "/user/signin";
 export const SHOPPING_CART_PATH = "/cart";
 export const UPDATE_USER_PATH = "/user/update";

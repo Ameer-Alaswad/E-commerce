@@ -12,6 +12,8 @@ import { toast } from "react-toastify";
 import { getFormData } from "../utils";
 import SignUpForm from "./SignUpForm";
 import useUserAuthContext from "../../../hooks/context/useUserAuthContext";
+import useMutateUser from "../../../hooks/usePostUser";
+import { BACKEND_SIGNUP_PATH, HOME_PATH } from "../../constants/path";
 
 export default function SignUp() {
     const navigate = useNavigate();
@@ -22,10 +24,11 @@ export default function SignUp() {
 
     const { userSignedIn, setUserSignedIn } = useUserAuthContext();
 
-    const userSigned = checkUserLoggedIn(userSignedIn);
+    const { mutate: postUser } = useMutateUser({ URL: BACKEND_SIGNUP_PATH, setUserSignedIn, navigate, redirect });
 
+    const userSigned = checkUserLoggedIn(userSignedIn);
     React.useEffect(() => {
-        if (userSigned) navigate("/");
+        userSigned && navigate(HOME_PATH);
     }, [userSigned, navigate]);
 
     const handleUserSubmit = async (
@@ -35,16 +38,12 @@ export default function SignUp() {
         const data = new FormData(event.currentTarget);
         const password = data.get("password");
         const confirmedPassword = data.get("confirmPassword");
+        const userData = getFormData(event.currentTarget)
+
 
         password !== confirmedPassword
             ? toast.error("passwords do not match!")
-            : postUser({
-                URL: "/api/users/signup",
-                userData: getFormData(event.currentTarget),
-                setUserSignedIn,
-                navigate,
-                redirect,
-            });
+            : postUser(userData)
     };
 
     const handleNavigate = () => navigate(`/user/signup?redirect=${redirect}`);
