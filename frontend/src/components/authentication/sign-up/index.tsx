@@ -2,18 +2,14 @@
 import * as React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
-import { postUser } from "../../../fetchers/fetchUser";
-
-import {
-    captureRedirectionRoute,
-    checkUserLoggedIn,
-} from "../../../utils/utils";
+import { captureRedirectionRoute } from "../../../utils/utils";
 import { toast } from "react-toastify";
 import { getFormData } from "../utils";
 import SignUpForm from "./SignUpForm";
 import useUserAuthContext from "../../../hooks/context/useUserAuthContext";
-import useMutateUser from "../../../hooks/usePostUser";
-import { BACKEND_SIGNUP_PATH, HOME_PATH } from "../../constants/path";
+import { BACKEND_SIGNUP_PATH } from "../../constants/path";
+import useRedirection from "../../../hooks/useRedirection";
+import usePostSignUpUser from "../../../hooks/usePostSignUpUser";
 
 export default function SignUp() {
     const navigate = useNavigate();
@@ -22,28 +18,33 @@ export default function SignUp() {
     const { search } = useLocation();
     const redirect = captureRedirectionRoute(search);
 
-    const { userSignedIn, setUserSignedIn } = useUserAuthContext();
+    const { setUserSignedIn } = useUserAuthContext();
 
-    const { mutate: postUser } = useMutateUser({ URL: BACKEND_SIGNUP_PATH, setUserSignedIn, navigate, redirect });
+    const { mutate: postUser } = usePostSignUpUser({
+        URL: BACKEND_SIGNUP_PATH,
+        setUserSignedIn,
+        navigate,
+        redirect,
+    });
 
-    const userSigned = checkUserLoggedIn(userSignedIn);
-    React.useEffect(() => {
-        userSigned && navigate(HOME_PATH);
-    }, [userSigned, navigate]);
+    useRedirection();
 
     const handleUserSubmit = async (
         event: React.FormEvent<HTMLFormElement>
     ): Promise<void> => {
         event.preventDefault();
-        const data = new FormData(event.currentTarget);
-        const password = data.get("password");
-        const confirmedPassword = data.get("confirmPassword");
-        const userData = getFormData(event.currentTarget)
 
+        const {
+            name,
+            email,
+            password,
+            confirmPassword,
+        } = getFormData(event.currentTarget);
+        const postUserSignUpData = { name, email, password };
 
-        password !== confirmedPassword
+        password !== confirmPassword
             ? toast.error("passwords do not match!")
-            : postUser(userData)
+            : postUser(postUserSignUpData);
     };
 
     const handleNavigate = () => navigate(`/user/signup?redirect=${redirect}`);
