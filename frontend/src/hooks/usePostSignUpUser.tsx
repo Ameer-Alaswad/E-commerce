@@ -1,22 +1,9 @@
 import axios from "axios";
 import { useMutation, UseMutationResult } from "react-query";
 import { userSignedIn } from "../contexts/app-context/Types";
-import { NavigateFunction } from "react-router-dom";
 import { HOME_PATH } from "../components/constants/path";
-import { toast } from "react-toastify";
-
-interface User {
-    name: string;
-    email: string;
-    password: string;
-}
-
-interface UseMutateUserArgs {
-    URL: string;
-    setUserSignedIn: React.Dispatch<React.SetStateAction<userSignedIn | null>>;
-    navigate: NavigateFunction;
-    redirect: string;
-}
+import { UseMutateUserArgs, User } from "../components/authentication/types";
+import { handleAxiosErrorMessages } from "../components/authentication/utils";
 
 const usePostSignUpUser = ({
     URL,
@@ -24,7 +11,6 @@ const usePostSignUpUser = ({
     navigate,
     redirect,
 }: UseMutateUserArgs): UseMutationResult<userSignedIn, unknown, User> => {
-
     const mutateUser = useMutation<userSignedIn, unknown, User>(
         async (postUserSignUpData: User) => {
             const { data } = await axios.post<userSignedIn>(URL, postUserSignUpData);
@@ -37,23 +23,10 @@ const usePostSignUpUser = ({
                 navigate(redirect || HOME_PATH);
             },
             onError: (error: unknown) => {
-                if (axios.isAxiosError(error)) {
-                    if (error.response) {
-                        toast.error("Sign-up failed: " + error.response.data.message);
-                    } else if (error.request) {
-                        toast.error("Network error: " + error.message);
-                    } else {
-                        toast.error("Error: " + error.message);
-                    }
-                } else {
-                    const errorMessage = (error as Error).message || "Unknown error";
-                    toast.error("Error occurred: " + errorMessage);
-                }
+                handleAxiosErrorMessages(error, "signup")
             },
         }
     );
-
     return mutateUser;
 };
-
 export default usePostSignUpUser;

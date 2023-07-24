@@ -1,5 +1,5 @@
 // React
-import React, { useContext } from "react";
+import React from "react";
 import { useNavigate } from "react-router";
 // Types
 import { productProps } from "./displayProductsInterface";
