@@ -15,7 +15,7 @@ const SignIn = () => {
   const navigate = useNavigate();
   // this tracks the clicked URL before getting redirected to signin page if existed
   const { search } = useCustomLocation();
-  const redirect = captureRedirectionRoute(search);
+  const redirectionRoute = captureRedirectionRoute(search);
   const { setUserSignedIn } = useUserAuthContext();
 
   useRedirection();
@@ -24,7 +24,7 @@ const SignIn = () => {
     URL: BACKEND_SIGNIN_PATH,
     setUserSignedIn,
     navigate,
-    redirect,
+    redirectionRoute,
   });
 
   const handleUserSubmit = async (event: FormEvent<HTMLFormElement>) => {
@@ -32,7 +32,7 @@ const SignIn = () => {
     const userData = getFormData(event.currentTarget);
     // postUser(userData);
   };
-  const handleNavigate = () => navigate(`/user/signup?redirect=${redirect}`);
+  const handleNavigate = () => navigate(`/user/signup?redirect=${redirectionRoute}`);
 
   const signInProps = {
     handleUserSubmit,

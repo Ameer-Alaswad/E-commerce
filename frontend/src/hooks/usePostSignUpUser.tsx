@@ -9,8 +9,9 @@ const usePostSignUpUser = ({
     URL,
     setUserSignedIn,
     navigate,
-    redirect,
+    redirectionRoute,
 }: UseMutateUserArgs): UseMutationResult<userSignedIn, unknown, User> => {
+
     const mutateUser = useMutation<userSignedIn, unknown, User>(
         async (postUserSignUpData: User) => {
             const { data } = await axios.post<userSignedIn>(URL, postUserSignUpData);
@@ -20,7 +21,7 @@ const usePostSignUpUser = ({
             onSuccess: (data) => {
                 setUserSignedIn(data);
                 localStorage.setItem("userData", JSON.stringify(data));
-                navigate(redirect || HOME_PATH);
+                navigate(redirectionRoute || HOME_PATH);
             },
             onError: (error: unknown) => {
                 handleAxiosErrorMessages(error, "signup")

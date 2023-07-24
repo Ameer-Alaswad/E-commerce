@@ -11,5 +11,5 @@ export interface UseMutateUserArgs {
     URL: string;
     setUserSignedIn: React.Dispatch<React.SetStateAction<userSignedIn | null>>;
     navigate: NavigateFunction;
-    redirect: string;
+    redirectionRoute: string;
 }

@@ -10,13 +10,14 @@ import useUserAuthContext from "../../../hooks/context/useUserAuthContext";
 import { BACKEND_SIGNUP_PATH } from "../../constants/path";
 import useRedirection from "../../../hooks/useRedirection";
 import usePostSignUpUser from "../../../hooks/usePostSignUpUser";
+import { PASSWORDS_DO_NOT_MATCH_ERROR } from "../../constants/errorMessages";
 
-export default function SignUp() {
+const SignUpUser = () => {
     const navigate = useNavigate();
 
     // this tracks the clicked URL before getting redirected to signin page if existed
     const { search } = useLocation();
-    const redirect = captureRedirectionRoute(search);
+    const redirectionRoute = captureRedirectionRoute(search);
 
     const { setUserSignedIn } = useUserAuthContext();
 
@@ -24,7 +25,7 @@ export default function SignUp() {
         URL: BACKEND_SIGNUP_PATH,
         setUserSignedIn,
         navigate,
-        redirect,
+        redirectionRoute,
     });
 
     useRedirection();
@@ -43,11 +44,11 @@ export default function SignUp() {
         const postUserSignUpData = { name, email, password };
 
         password !== confirmPassword
-            ? toast.error("passwords do not match!")
+            ? toast.error(PASSWORDS_DO_NOT_MATCH_ERROR)
             : postUser(postUserSignUpData);
     };
 
-    const handleNavigate = () => navigate(`/user/signup?redirect=${redirect}`);
+    const handleNavigate = () => navigate(`/user/signup?redirect=${redirectionRoute}`);
 
     const signUpProps = {
         handleUserSubmit,
@@ -55,3 +56,4 @@ export default function SignUp() {
     };
     return <SignUpForm { ...signUpProps } />;
 }
+export default SignUpUser
