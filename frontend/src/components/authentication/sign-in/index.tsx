@@ -27,7 +27,7 @@ const SignIn = () => {
     redirectionRoute,
   });
 
-  const handleUserSubmit = async (event: FormEvent<HTMLFormElement>) => {
+  const handleUserSigninSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const userData = getFormData(event.currentTarget);
     // postUser(userData);
@@ -35,7 +35,7 @@ const SignIn = () => {
   const handleNavigate = () => navigate(`/user/signup?redirect=${redirectionRoute}`);
 
   const signInProps = {
-    handleUserSubmit,
+    handleUserSigninSubmit,
     handleNavigate,
   };
 

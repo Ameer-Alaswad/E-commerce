@@ -13,3 +13,7 @@ export interface UseMutateUserArgs {
     navigate: NavigateFunction;
     redirectionRoute: string;
 }
+export type SignUpFormProps = {
+    handleUserSignUpSubmit: (event: React.FormEvent<HTMLFormElement>) => Promise<void>;
+    handleNavigate: () => void;
+};

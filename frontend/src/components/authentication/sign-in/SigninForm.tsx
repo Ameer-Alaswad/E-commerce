@@ -21,11 +21,11 @@ import {
 import Copyright from "../Copyright";
 
 export type SignInFormProps = {
-    handleUserSubmit: (event: React.FormEvent<HTMLFormElement>) => Promise<void>;
     handleNavigate: () => void;
+    handleUserSigninSubmit: (event: React.FormEvent<HTMLFormElement>) => Promise<void>;
 };
 
-const SignInForm = ({ handleUserSubmit, handleNavigate }: SignInFormProps) => {
+const SignInForm = ({ handleNavigate, handleUserSigninSubmit }: SignInFormProps) => {
 
     return (
 
@@ -38,7 +38,7 @@ const SignInForm = ({ handleUserSubmit, handleNavigate }: SignInFormProps) => {
                 <Typography component="h1" variant="h5">
                     Sign in
                 </Typography>
-                <Box component="form" onSubmit={ handleUserSubmit } sx={ { mt: 1 } }>
+                <Box component="form" onSubmit={ handleUserSigninSubmit } sx={ { mt: 1 } }>
                     <TextField
                         margin="normal"
                         required

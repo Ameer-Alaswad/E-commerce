@@ -1,16 +1,22 @@
 // This component requires refactoring
-import * as React from "react";
+import { FormEvent } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import { Container, CssBaseline, Box } from "@mui/material";
 
 import { captureRedirectionRoute } from "../../../utils/utils";
 import { toast } from "react-toastify";
 import { getFormData } from "../utils";
-import SignUpForm from "./SignUpForm";
 import useUserAuthContext from "../../../hooks/context/useUserAuthContext";
 import { BACKEND_SIGNUP_PATH } from "../../constants/path";
 import useRedirection from "../../../hooks/useRedirection";
 import usePostSignUpUser from "../../../hooks/usePostSignUpUser";
 import { PASSWORDS_DO_NOT_MATCH_ERROR } from "../../constants/errorMessages";
+import { copyrightStyle, mainContainer, signupContainer } from "../styles";
+import SignUpFormTitle from "./SignUpFormTitle";
+import { SignUpFormInputs } from "./SignUpFormInputs";
+import Copyright from "../Copyright";
+import SubmitButton from "./SubmitButton";
+import AlreadyHaveAccountSignInLink from "./SignInLink";
 
 const SignUpUser = () => {
     const navigate = useNavigate();
@@ -30,17 +36,12 @@ const SignUpUser = () => {
 
     useRedirection();
 
-    const handleUserSubmit = async (
-        event: React.FormEvent<HTMLFormElement>
+    const handleUserSignUpSubmit = async (
+        event: FormEvent<HTMLFormElement>
     ): Promise<void> => {
         event.preventDefault();
-
-        const {
-            name,
-            email,
-            password,
-            confirmPassword,
-        } = getFormData(event.currentTarget);
+        const formElement = event.currentTarget;
+        const { name, email, password, confirmPassword } = getFormData(formElement);
         const postUserSignUpData = { name, email, password };
 
         password !== confirmPassword
@@ -48,12 +49,19 @@ const SignUpUser = () => {
             : postUser(postUserSignUpData);
     };
 
-    const handleNavigate = () => navigate(`/user/signup?redirect=${redirectionRoute}`);
-
-    const signUpProps = {
-        handleUserSubmit,
-        handleNavigate,
-    };
-    return <SignUpForm { ...signUpProps } />;
-}
-export default SignUpUser
+    return (
+        <Container sx={ mainContainer } component="main" maxWidth="xs">
+            <CssBaseline />
+            <Box sx={ signupContainer }>
+                <SignUpFormTitle />
+                <Box component="form" onSubmit={ handleUserSignUpSubmit } sx={ { mt: 1 } }>
+                    <SignUpFormInputs />
+                    <SubmitButton />
+                    <AlreadyHaveAccountSignInLink />
+                </Box>
+            </Box>
+            <Copyright sx={ copyrightStyle } />
+        </Container>
+    );
+};
+export default SignUpUser;
