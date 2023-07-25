@@ -1,5 +1,6 @@
 import { Button } from "@mui/material"
 import { submitButtonStyle } from "../styles"
+import { SIGNUP_TEXT } from "../../constants/text"
 
 const SubmitButton = () => {
 
@@ -10,7 +11,7 @@ const SubmitButton = () => {
             variant="contained"
             sx={ submitButtonStyle }
         >
-            Sign up
+            { SIGNUP_TEXT }
         </Button>
 
     )

@@ -1,16 +1,17 @@
-import { Grid } from '@mui/material'
-import Link from "@mui/material/Link";
-import { useLocation, useNavigate } from 'react-router-dom';
-import { captureRedirectionRoute } from '../../../utils/utils';
+import { Grid, Link } from '@mui/material'
+import { useNavigate } from 'react-router-dom';
+import { SIGNIN_REDIRECTION_LINK } from '../../constants/text';
+import { SIGNUP_PATH_REDIRECTION_PATH } from '../../constants/path';
+import useRedirectionRoute from '../../../hooks/useRedirectionRoute';
 
 
 const AlreadyHaveAccountSignInLink = () => {
-    const navigate = useNavigate();
 
-    const { search } = useLocation();
-    const redirectionRoute = captureRedirectionRoute(search);
+    const navigate = useNavigate();
+    const redirectionRoute = useRedirectionRoute()
+
     const handleNavigate = () =>
-        navigate(`/user/signup?redirect=${redirectionRoute}`);
+        navigate(`${SIGNUP_PATH_REDIRECTION_PATH}${redirectionRoute}`);
 
     return (
         <Grid container>
@@ -20,7 +21,7 @@ const AlreadyHaveAccountSignInLink = () => {
                     onClick={ handleNavigate }
                     variant="body2"
                 >
-                    { "Already have an account? Sign In" }
+                    { SIGNIN_REDIRECTION_LINK }
                 </Link>
             </Grid>
         </Grid>

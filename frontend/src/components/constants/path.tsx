@@ -7,3 +7,5 @@ export const SHOPPING_CART_PATH = "/cart";
 export const UPDATE_USER_PATH = "/user/update";
 export const ORDERS_HISTORY_PATH = "/ordershistory";
 export const SHIPPING_PATH = "/shipping";
+export const SIGNUP_PATH_REDIRECTION_PATH = "/user/signup?redirect=";
+
