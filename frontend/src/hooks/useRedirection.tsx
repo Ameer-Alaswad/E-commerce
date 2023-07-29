@@ -5,7 +5,7 @@ import { captureRedirectionRoute } from "../utils/utils";
 import useUserAuthContext from "../hooks/context/useUserAuthContext";
 import useCustomLocation from "../hooks/useCustomLocation";
 
-const useRedirection = () => {
+const useRedirectIfSignedIn = () => {
     const navigate = useNavigate();
     const { userSignedIn } = useUserAuthContext();
     const { search } = useCustomLocation();
@@ -17,4 +17,4 @@ const useRedirection = () => {
 
 };
 
-export default useRedirection
+export default useRedirectIfSignedIn

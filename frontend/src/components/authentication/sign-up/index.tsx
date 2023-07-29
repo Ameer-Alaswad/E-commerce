@@ -6,26 +6,28 @@ import { Container, CssBaseline, Box } from "@mui/material";
 
 import useUserAuthContext from "../../../hooks/context/useUserAuthContext";
 import { getFormData } from "../utils";
-import useRedirection from "../../../hooks/useRedirection";
 import usePostSignUpUser from "../../../hooks/usePostSignUpUser";
-import SignUpFormTitle from "./SignUpFormTitle";
+import useRedirectionRoute from "../../../hooks/useRedirectionRoute";
+import useRedirectIfSignedIn from "../../../hooks/useRedirection";
+
+import AuthFormTitle from "../AuthFormTitle";
 import { SignUpFormInputs } from "./SignUpFormInputs";
 import Copyright from "../Copyright";
-import SubmitButton from "./SubmitButton";
-import AlreadyHaveAccountSignInLink from "./SignInLink";
+import SubmitButton from "../SubmitButton";
+import RedirectAuthLink from "../RedirectAuthLink";
 
 import { BACKEND_SIGNUP_PATH } from "../../constants/path";
 import { PASSWORDS_DO_NOT_MATCH_ERROR } from "../../constants/errorMessages";
+import { copyrightStyles, mainContainerSignUpStyles, signupContainerStyles } from "../styles";
 
-import { copyrightStyle, mainContainer, signupContainer } from "../styles";
-import useRedirectionRoute from "../../../hooks/useRedirectionRoute";
+
 
 const SignUpUser = () => {
     const navigate = useNavigate();
 
     const { setUserSignedIn } = useUserAuthContext();
     // to redirect the user to the desired page after he finishes signing up
-    const redirectionRoute = useRedirectionRoute()
+    const redirectionRoute = useRedirectionRoute();
 
     const { mutate: postUser } = usePostSignUpUser({
         URL: BACKEND_SIGNUP_PATH,
@@ -34,7 +36,7 @@ const SignUpUser = () => {
         redirectionRoute,
     });
 
-    useRedirection();
+    useRedirectIfSignedIn();
 
     const handleUserSignUpSubmit = async (
         event: FormEvent<HTMLFormElement>
@@ -43,24 +45,25 @@ const SignUpUser = () => {
         const formElement = event.currentTarget;
         const { name, email, password, confirmPassword } = getFormData(formElement);
         const postUserSignUpData = { name, email, password };
+        const passwordsDoNotMatch = password !== confirmPassword;
 
-        password !== confirmPassword
+        passwordsDoNotMatch
             ? toast.error(PASSWORDS_DO_NOT_MATCH_ERROR)
             : postUser(postUserSignUpData);
     };
 
     return (
-        <Container sx={ mainContainer } component="main" maxWidth="xs">
+        <Container sx={ mainContainerSignUpStyles } component="main" maxWidth="xs">
             <CssBaseline />
-            <Box sx={ signupContainer }>
-                <SignUpFormTitle />
+            <Box sx={ signupContainerStyles }>
+                <AuthFormTitle />
                 <Box component="form" onSubmit={ handleUserSignUpSubmit } sx={ { mt: 1 } }>
                     <SignUpFormInputs />
                     <SubmitButton />
-                    <AlreadyHaveAccountSignInLink />
+                    <RedirectAuthLink />
                 </Box>
             </Box>
-            <Copyright sx={ copyrightStyle } />
+            <Copyright sx={ copyrightStyles } />
         </Container>
     );
 };

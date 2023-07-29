@@ -1,11 +1,12 @@
 export const HOME_PATH = "/";
 export const SIGNUP_PATH = "/user/signup";
+export const SIGNIN_PATH = "/user/signin";
 export const BACKEND_SIGNUP_PATH = "/api/users/signup";
 export const BACKEND_SIGNIN_PATH = "/api/users/signin";
-export const SIGNIN_PATH = "/user/signin";
 export const SHOPPING_CART_PATH = "/cart";
 export const UPDATE_USER_PATH = "/user/update";
 export const ORDERS_HISTORY_PATH = "/ordershistory";
 export const SHIPPING_PATH = "/shipping";
-export const SIGNUP_PATH_REDIRECTION_PATH = "/user/signup?redirect=";
+export const SIGNUP_REDIRECTION_PATH = "/user/signup?redirect=";
+export const SIGNIN_REDIRECTION_PATH = "/user/signin?redirect=";
 
