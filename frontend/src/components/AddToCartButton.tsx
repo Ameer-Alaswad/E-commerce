@@ -3,7 +3,7 @@ import { fetchProducts } from "../fetchers/fetchProducts";
 // utils
 import { addToShoppingCartLogic } from "../utils/utils";
 // type
-import { productsType } from "./display-products/Types";
+import { productsType } from "./display-products/displayProductsInterface";
 // Material UI
 import Button from "@mui/material/Button";
 import useShoppingCartContext from "../hooks/context/useShoppingCartContext";

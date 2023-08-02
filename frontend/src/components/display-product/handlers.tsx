@@ -1,6 +1,6 @@
 import { fetchProducts } from "../../fetchers/fetchProducts";
 import { addToShoppingCartLogic } from "../../utils/utils";
-import { productsType } from "../display-products/Types";
+import { productsType } from "../display-products/displayProductsInterface";
 
 interface HandleToCart {
     event: React.MouseEvent<HTMLButtonElement>

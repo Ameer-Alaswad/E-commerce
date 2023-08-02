@@ -1,7 +1,9 @@
+// useQuery 
 import { useQuery } from "react-query";
+// fetch 
 import { fetchProducts } from "../fetchers/fetchProducts";
 
-const useProductsFetch = (URL: string) => {
+const useProducts = (URL: string) => {
 
     const { isError, isLoading, data } = useQuery(["products"], () =>
         fetchProducts(URL)
@@ -9,7 +11,7 @@ const useProductsFetch = (URL: string) => {
     return { isError, isLoading, data }
 
 }
-export default useProductsFetch
+export default useProducts
 
 
 
