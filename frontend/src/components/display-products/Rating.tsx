@@ -1,19 +1,11 @@
-// React
-import React from "react";
-// Material UI
-import Stack from "@mui/material/Stack";
-import Rating from "@mui/material/Rating";
-import Box from "@mui/material/Box";
-import { RatingProps } from "./displayProductsInterface";
+import { FC } from "react";
+import { Stack, Rating, Box } from "@mui/material";
+import { RatingProps } from "./Types";
+import { ratingContainerStyles } from "./styles";
+import { TOTAL_REVIEWS } from "../constants/text";
 
-const ratingContainerStyles = {
-    display: "flex",
-    justifyContent: "space-between",
-    flexDirection: "row",
-    alignItems: "center",
-}
+const RatingComponent: FC<RatingProps> = ({ totalReviews, rating }) => {
 
-const RatingComponent: React.FC<RatingProps> = ({ numReviews, rating }) => {
     return (
         <Stack
             sx={ ratingContainerStyles }
@@ -26,7 +18,7 @@ const RatingComponent: React.FC<RatingProps> = ({ numReviews, rating }) => {
                 precision={ 0.5 }
                 readOnly
             />
-            <Box component="span">{ numReviews } Reviews</Box>
+            <Box component="span">{ totalReviews } { TOTAL_REVIEWS }</Box>
         </Stack>
     );
 };

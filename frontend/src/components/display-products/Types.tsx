@@ -16,10 +16,14 @@ export type productsType = {
 }
 
 export type RatingProps = {
-    numReviews: number | undefined
+    totalReviews: number | undefined
     rating: number | undefined
 }
 
-export type productProps = {
+export type ProductProps = {
     data: productsType[] | undefined
+}
+
+export interface ProductQuantityProps {
+    productName: string | undefined
 }

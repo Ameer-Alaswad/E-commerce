@@ -1,19 +1,18 @@
-// Hooks 
-import useProducts from "../../hooks/useProducts";
-// Components 
-import Products from "./Products";
-import Loading from "../Loading"
-import Error from "../Error"
+import useProductsFetch from "../../hooks/useProductsFetch";
+import DisplayProductsList from "./DisplayProductsList";
+import AnimatedLoadingIcon from "../AnimatedLoadingIcon";
+import ProductsNotFoundAlert from "../Error";
+import { PRODUCTS_PATH } from "../constants/path";
 
 const DisplayProducts = () => {
-
-    const { isError, isLoading, data } = useProducts("/api/product")
-
-    if (isLoading) return <h1 style={ { marginTop: "200px" } }><Loading /></h1>;
-    if (isError) return <Error />;
-
-    return <Products data={ data } />
-
+    const { isError, isLoading, data } = useProductsFetch(PRODUCTS_PATH);
+    return (
+        <>
+            { isLoading && <AnimatedLoadingIcon /> }
+            { isError && <ProductsNotFoundAlert /> }
+            { data && <DisplayProductsList data={ data } /> }
+        </>
+    );
 };
 
 export default DisplayProducts;

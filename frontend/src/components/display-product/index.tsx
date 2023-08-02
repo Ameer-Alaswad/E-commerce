@@ -1,11 +1,11 @@
 // react router 
 import { useParams } from "react-router-dom";
 // hooks 
-import useProducts from "../../hooks/useProducts";
+import useProducts from "../../hooks/useProductsFetch";
 // components 
 import Product from "./Product";
-import Loading from "../Loading"
 import Error from "../Error"
+import AnimatedLoadingIcon from "../AnimatedLoadingIcon";
 
 const DisplayProduct = () => {
 
@@ -14,7 +14,7 @@ const DisplayProduct = () => {
     const { isError, isLoading, data } = useProducts(`/api/product/label/${label}`)
 
     if (isError) return <Error />;
-    if (isLoading) return <div style={ { marginTop: "200px" } }><Loading /></div>
+    if (isLoading) return <div style={ { marginTop: "200px" } }><AnimatedLoadingIcon /></div>
 
     return (
         <>
