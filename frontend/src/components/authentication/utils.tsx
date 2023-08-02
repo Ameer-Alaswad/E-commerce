@@ -1,15 +1,16 @@
 import axios from "axios";
 import { toast } from "react-toastify";
 import {
+    ERROR_OCCURRED_TEXT,
+    ERROR_TEXT,
+    NETWORK_ERROR_TEXT,
     SIGNIN_FAILED_MESSAGE,
     SIGNUP_FAILED_MESSAGE,
+    UNKNOWN_ERROR_TEXT,
 } from "../constants/errorMessages";
-type UserData = {
-    name: string;
-    email: string;
-    password: string;
-    confirmPassword: string;
-};
+import { UserData } from "./types";
+
+
 
 export const getFormData = (form: EventTarget & HTMLFormElement): UserData => {
     const formData = new FormData(form);
@@ -28,12 +29,12 @@ export const handleAxiosErrorMessages = (error: unknown, postType: string) => {
                     : SIGNIN_FAILED_MESSAGE) + error.response.data.message
             );
         } else if (error.request) {
-            toast.error("Network error: " + error.message);
+            toast.error(NETWORK_ERROR_TEXT + error.message);
         } else {
-            toast.error("Error: " + error.message);
+            toast.error(ERROR_TEXT + error.message);
         }
     } else {
-        const errorMessage = (error as Error).message || "Unknown error";
-        toast.error("Error occurred: " + errorMessage);
+        const errorMessage = (error as Error).message || UNKNOWN_ERROR_TEXT;
+        toast.error(ERROR_OCCURRED_TEXT + errorMessage);
     }
 };

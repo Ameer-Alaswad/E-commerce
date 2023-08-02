@@ -7,3 +7,5 @@ export const CART_TEXT = "Cart";
 export const CURRENCY_DOLLAR = "$";
 export const SIGNIN_REDIRECTION_LINK_TEXT = "Already have an account? Sign In"
 export const SIGNUP_REDIRECTION_LINK_TEXT = "You don't have an account? Sign Up"
+export const WEBSITE_TITLE = "FashionHub"
+export const COPYRIGHT = "Copyright © "
