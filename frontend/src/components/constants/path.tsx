@@ -9,6 +9,5 @@ export const ORDERS_HISTORY_PATH = "/ordershistory";
 export const SHIPPING_PATH = "/shipping";
 export const SIGNUP_REDIRECTION_PATH = "/user/signup?redirect=";
 export const SIGNIN_REDIRECTION_PATH = "/user/signin?redirect=";
-
 export const PRODUCTS_PATH = "/api/product"
 export const PRODUCT_LABEL_URL = "/product/label/";
