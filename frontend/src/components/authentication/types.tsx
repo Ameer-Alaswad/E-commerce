@@ -12,9 +12,20 @@ export type SignUpFormProps = {
     handleNavigate: () => void;
 };
 
-export type UserData = {
-    name?: string;
+export type UserRegistrationFormData = {
+    name: string;
     email: string;
     password: string;
-    confirmPassword?: string;
+    confirmPassword: string;
+};
+
+export type UserSignUpData = {
+    name: string;
+    email: string;
+    password: string;
+};
+
+export type UserSignInData = {
+    email: string;
+    password: string;
 };

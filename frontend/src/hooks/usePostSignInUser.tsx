@@ -2,7 +2,7 @@ import axios from "axios";
 import { useMutation, UseMutationResult } from "react-query";
 import { userSignedIn } from "../contexts/app-context/Types";
 import { HOME_PATH } from "../components/constants/path";
-import { UseMutateUserArgs, UserData } from "../components/authentication/types";
+import { UseMutateUserArgs, UserSignInData } from "../components/authentication/types";
 import { handleAxiosErrorMessages } from "../components/authentication/utils";
 
 const usePostSignInUser = ({
@@ -10,10 +10,10 @@ const usePostSignInUser = ({
     setUserSignedIn,
     navigate,
     redirectionRoute,
-}: UseMutateUserArgs): UseMutationResult<userSignedIn, unknown, UserData> => {
+}: UseMutateUserArgs): UseMutationResult<userSignedIn, unknown, UserSignInData> => {
 
-    const mutateUser = useMutation<userSignedIn, unknown, UserData>(
-        async (postUserSignUpData: UserData) => {
+    const mutateUser = useMutation<userSignedIn, unknown, UserSignInData>(
+        async (postUserSignUpData: UserSignInData) => {
             const { data } = await axios.post<userSignedIn>(URL, postUserSignUpData);
             return data;
         },

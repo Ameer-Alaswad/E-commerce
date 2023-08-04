@@ -19,6 +19,7 @@ import RedirectAuthLink from "../RedirectAuthLink";
 import { BACKEND_SIGNUP_PATH } from "../../constants/path";
 import { PASSWORDS_DO_NOT_MATCH_ERROR } from "../../constants/errorMessages";
 import { copyrightStyles, mainContainerSignUpStyles, signupContainerStyles } from "../styles";
+import { UserSignUpData } from "../types";
 
 
 
@@ -44,7 +45,7 @@ const SignUpUser = () => {
         event.preventDefault();
         const formElement = event.currentTarget;
         const { name, email, password, confirmPassword } = getFormData(formElement);
-        const postUserSignUpData = { name, email, password };
+        const postUserSignUpData: UserSignUpData = { name, email, password };
         const passwordsDoNotMatch = password !== confirmPassword;
 
         passwordsDoNotMatch

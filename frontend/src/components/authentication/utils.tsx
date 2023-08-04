@@ -8,21 +8,21 @@ import {
     SIGNUP_FAILED_MESSAGE,
     UNKNOWN_ERROR_TEXT,
 } from "../constants/errorMessages";
-import { UserData } from "./types";
+import { UserRegistrationFormData } from "./types";
 
-
-
-export const getFormData = (form: EventTarget & HTMLFormElement): UserData => {
+export const getFormData = (
+    form: EventTarget & HTMLFormElement
+): UserRegistrationFormData => {
     const formData = new FormData(form);
     const { name, email, password, confirmPassword } = Object.fromEntries(
         formData.entries()
-    ) as UserData;
+    ) as UserRegistrationFormData;
     return { name, email, password, confirmPassword };
 };
 
 export const handleAxiosErrorMessages = (error: unknown, postType: string) => {
     if (axios.isAxiosError(error)) {
-        const { message: errorMessage, response, request } = error
+        const { message: errorMessage, response, request } = error;
         if (response) {
             toast.error(
                 (postType === "signup"
