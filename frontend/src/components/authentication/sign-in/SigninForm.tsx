@@ -11,34 +11,29 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 
-import {
-    avatarStyle,
-    copyrightStyle,
-    mainContainer,
-    signinContainer,
-    submitButtonStyle,
-} from "../styles";
+
 import Copyright from "../Copyright";
+import { avatarStyles, copyrightStyles, signinContainerStyles, submitButtonStyles } from "../styles";
 
 export type SignInFormProps = {
-    handleSubmit: (event: React.FormEvent<HTMLFormElement>) => Promise<void>;
     handleNavigate: () => void;
+    handleUserSigninSubmit: (event: React.FormEvent<HTMLFormElement>) => Promise<void>;
 };
 
-const SignInForm = ({ handleSubmit, handleNavigate }: SignInFormProps) => {
+const SignInForm = ({ handleNavigate, handleUserSigninSubmit }: SignInFormProps) => {
 
     return (
 
-        <Container sx={ mainContainer } component="main" maxWidth="xs">
+        <Container component="main" maxWidth="xs">
             <CssBaseline />
-            <Box sx={ signinContainer }>
-                <Avatar sx={ avatarStyle }>
+            <Box sx={ signinContainerStyles }>
+                <Avatar sx={ avatarStyles }>
                     <LockOutlinedIcon />
                 </Avatar>
                 <Typography component="h1" variant="h5">
                     Sign in
                 </Typography>
-                <Box component="form" onSubmit={ handleSubmit } sx={ { mt: 1 } }>
+                <Box component="form" onSubmit={ handleUserSigninSubmit } sx={ { mt: 1 } }>
                     <TextField
                         margin="normal"
                         required
@@ -67,7 +62,7 @@ const SignInForm = ({ handleSubmit, handleNavigate }: SignInFormProps) => {
                         type="submit"
                         fullWidth
                         variant="contained"
-                        sx={ submitButtonStyle }
+                        sx={ submitButtonStyles }
                     >
                         Sign In
                     </Button>
@@ -89,7 +84,7 @@ const SignInForm = ({ handleSubmit, handleNavigate }: SignInFormProps) => {
                     </Grid>
                 </Box>
             </Box>
-            <Copyright sx={ copyrightStyle } />
+            <Copyright sx={ copyrightStyles } />
         </Container>
     );
 };
