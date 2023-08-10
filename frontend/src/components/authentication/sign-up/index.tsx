@@ -1,70 +1,52 @@
 // This component requires refactoring
-import { FormEvent } from "react";
-import { useNavigate } from "react-router-dom";
+import * as React from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+
+import { postUser } from "../../../fetchers/fetchUser";
+
+import { captureRedirectionRoute, checkUserLoggedIn } from "../../../utils/utils";
 import { toast } from "react-toastify";
-import { Container, CssBaseline, Box } from "@mui/material";
-
-import useUserAuthContext from "../../../hooks/context/useUserAuthContext";
 import { getFormData } from "../utils";
-import usePostSignUpUser from "../../../hooks/usePostSignUpUser";
-import useRedirectionRoute from "../../../hooks/useRedirectionRoute";
-import useRedirectIfSignedIn from "../../../hooks/useRedirection";
+import SignUpForm from "./SignUpForm";
+import useUserAuthContext from "../../../hooks/context/useUserAuthContext";
 
-import AuthFormTitle from "../AuthFormTitle";
-import { SignUpFormInputs } from "./SignUpFormInputs";
-import Copyright from "../Copyright";
-import SubmitButton from "../SubmitButton";
-import RedirectAuthLink from "../RedirectAuthLink";
-
-import { BACKEND_SIGNUP_PATH } from "../../constants/path";
-import { PASSWORDS_DO_NOT_MATCH_ERROR } from "../../constants/errorMessages";
-import { copyrightStyles, mainContainerSignUpStyles, signupContainerStyles } from "../styles";
-
-
-
-const SignUpUser = () => {
+export default function SignUp() {
     const navigate = useNavigate();
 
-    const { setUserSignedIn } = useUserAuthContext();
-    // to redirect the user to the desired page after he finishes signing up
-    const redirectionRoute = useRedirectionRoute();
+    // this tracks the clicked URL before getting redirected to signin page if existed
+    const { search } = useLocation();
+    const redirect = captureRedirectionRoute(search)
 
-    const { mutate: postUser } = usePostSignUpUser({
-        URL: BACKEND_SIGNUP_PATH,
-        setUserSignedIn,
-        navigate,
-        redirectionRoute,
-    });
+    const { userSignedIn, setUserSignedIn } = useUserAuthContext()
 
-    useRedirectIfSignedIn();
+    const userSigned = checkUserLoggedIn(userSignedIn);
 
-    const handleUserSignUpSubmit = async (
-        event: FormEvent<HTMLFormElement>
-    ): Promise<void> => {
+    React.useEffect(() => {
+        if (userSigned) navigate("/");
+    }, [userSigned, navigate]);
+
+    const handleSubmit = async (event: React.FormEvent<HTMLFormElement>): Promise<void> => {
         event.preventDefault();
-        const formElement = event.currentTarget;
-        const { name, email, password, confirmPassword } = getFormData(formElement);
-        const postUserSignUpData = { name, email, password };
-        const passwordsDoNotMatch = password !== confirmPassword;
-
-        passwordsDoNotMatch
-            ? toast.error(PASSWORDS_DO_NOT_MATCH_ERROR)
-            : postUser(postUserSignUpData);
+        const data = new FormData(event.currentTarget);
+        if (data.get("password") !== data.get("confirmPassword")) {
+            toast.error("passwords do not match!");
+            return
+        }
+        postUser(
+            "/api/users/signup",
+            getFormData(event.currentTarget),
+            setUserSignedIn,
+            navigate,
+            redirect
+        );
     };
 
-    return (
-        <Container sx={ mainContainerSignUpStyles } component="main" maxWidth="xs">
-            <CssBaseline />
-            <Box sx={ signupContainerStyles }>
-                <AuthFormTitle />
-                <Box component="form" onSubmit={ handleUserSignUpSubmit } sx={ { mt: 1 } }>
-                    <SignUpFormInputs />
-                    <SubmitButton />
-                    <RedirectAuthLink />
-                </Box>
-            </Box>
-            <Copyright sx={ copyrightStyles } />
-        </Container>
-    );
-};
-export default SignUpUser;
+    const handleNavigate = () => navigate(`/user/signup?redirect=${redirect}`);
+
+
+    const signUpProps = {
+        handleSubmit,
+        handleNavigate,
+    };
+    return <SignUpForm { ...signUpProps } />
+}

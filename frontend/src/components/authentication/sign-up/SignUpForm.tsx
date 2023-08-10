@@ -2,8 +2,6 @@ import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Checkbox from "@mui/material/Checkbox";
 import Link from "@mui/material/Link";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
@@ -19,13 +17,9 @@ import {
     submitButtonStyle,
 } from "../styles";
 import Copyright from "../Copyright";
+import { SignInFormProps } from "../sign-in/SigninForm";
 
-export type SignInFormProps = {
-    handleSubmit: (event: React.FormEvent<HTMLFormElement>) => Promise<void>;
-    handleNavigate: () => void;
-};
-
-const SignInForm = ({ handleSubmit, handleNavigate }: SignInFormProps) => {
+const SignUpForm = ({ handleSubmit, handleNavigate }: SignInFormProps) => {
 
     return (
 
@@ -36,9 +30,19 @@ const SignInForm = ({ handleSubmit, handleNavigate }: SignInFormProps) => {
                     <LockOutlinedIcon />
                 </Avatar>
                 <Typography component="h1" variant="h5">
-                    Sign in
+                    Sign up
                 </Typography>
                 <Box component="form" onSubmit={ handleSubmit } sx={ { mt: 1 } }>
+                    <TextField
+                        margin="normal"
+                        required
+                        fullWidth
+                        id="name"
+                        label="Name"
+                        name="name"
+                        autoComplete="name"
+                        autoFocus
+                    />
                     <TextField
                         margin="normal"
                         required
@@ -47,7 +51,6 @@ const SignInForm = ({ handleSubmit, handleNavigate }: SignInFormProps) => {
                         label="Email Address"
                         name="email"
                         autoComplete="email"
-                        autoFocus
                     />
                     <TextField
                         margin="normal"
@@ -59,31 +62,33 @@ const SignInForm = ({ handleSubmit, handleNavigate }: SignInFormProps) => {
                         id="password"
                         autoComplete="current-password"
                     />
-                    <FormControlLabel
-                        control={ <Checkbox value="remember" color="primary" /> }
-                        label="Remember me"
+                    <TextField
+                        margin="normal"
+                        required
+                        fullWidth
+                        name="confirmPassword"
+                        label="Confirm Password"
+                        type="password"
+                        id="confirmPassword"
+                        autoComplete="current-password"
                     />
+
                     <Button
                         type="submit"
                         fullWidth
                         variant="contained"
                         sx={ submitButtonStyle }
                     >
-                        Sign In
+                        Sign up
                     </Button>
                     <Grid container>
-                        <Grid item xs>
-                            <Link href="#" variant="body2">
-                                Forgot password?
-                            </Link>
-                        </Grid>
                         <Grid item>
                             <Link
                                 style={ { cursor: "pointer" } }
                                 onClick={ handleNavigate }
                                 variant="body2"
                             >
-                                { "Don't have an account? Sign Up" }
+                                { "Already have an account? Sign In" }
                             </Link>
                         </Grid>
                     </Grid>
@@ -94,4 +99,4 @@ const SignInForm = ({ handleSubmit, handleNavigate }: SignInFormProps) => {
     );
 };
 
-export default SignInForm;
+export default SignUpForm;
