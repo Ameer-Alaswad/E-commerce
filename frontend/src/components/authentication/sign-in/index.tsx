@@ -1,13 +1,13 @@
 import { FormEvent } from "react";
+import { Container, Box } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
-import { getFormData } from "../utils";
 import useUserAuthContext from "../../../hooks/context/useUserAuthContext";
 import useRedirectIfSignedIn from "../../../hooks/useRedirection";
-import { BACKEND_SIGNIN_PATH } from "../../constants/path";
 import useRedirectionRoute from "../../../hooks/useRedirectionRoute";
 import usePostSignInUser from "../../../hooks/usePostSignInUser";
-import { Box, Container } from "@mui/material";
+import { getFormData } from "../utils";
+import { BACKEND_SIGNIN_PATH } from "../../constants/path";
 import { mainContainerSignInStyles, signinContainerStyles } from "../styles";
 import AuthFormTitle from "../AuthFormTitle";
 import SubmitButton from "../SubmitButton";
@@ -33,8 +33,8 @@ const SignIn = () => {
   const handleUserSignInSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const formElement = event.currentTarget;
-    const { name, email, password } = getFormData(formElement);
-    const postUserSignInData = { name, email, password };
+    const { email, password } = getFormData(formElement);
+    const postUserSignInData = { email, password };
     signInUser(postUserSignInData);
   };
 

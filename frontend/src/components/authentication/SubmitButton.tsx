@@ -1,11 +1,11 @@
 import { Button } from "@mui/material"
 import { SIGNIN_TEXT, SIGNUP_TEXT } from "../constants/text"
 import { submitButtonStyles } from "./styles"
-import { useLocation } from "react-router-dom";
 import { SIGNIN_PATH } from "../constants/path";
+import useCustomLocation from "../../hooks/useCustomLocation";
 
 const SubmitButton = () => {
-    const location = useLocation();
+    const { location } = useCustomLocation();
 
     const buttonText = location.pathname === SIGNIN_PATH ? SIGNIN_TEXT : SIGNUP_TEXT;
 

@@ -1,5 +1,5 @@
 import { Grid, Link } from "@mui/material";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import {
     SIGNIN_REDIRECTION_LINK_TEXT,
     SIGNUP_REDIRECTION_LINK_TEXT,
@@ -10,9 +10,10 @@ import {
     SIGNUP_REDIRECTION_PATH,
 } from "../constants/path";
 import useRedirectionRoute from "../../hooks/useRedirectionRoute";
+import useCustomLocation from "../../hooks/useCustomLocation";
 
 const RedirectAuthLink = () => {
-    const location = useLocation();
+    const { location } = useCustomLocation()
     const navigate = useNavigate();
     const redirectionRoute = useRedirectionRoute();
     const locationIsSignUp = location.pathname === SIGNUP_PATH
