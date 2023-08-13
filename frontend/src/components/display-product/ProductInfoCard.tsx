@@ -1,10 +1,10 @@
-import React from "react";
+import React, { FC } from "react";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Divider from "@mui/material/Divider";
 import RatingComponent from "../display-products/Rating";
 import {
-    productDataContainer,
+    productInfoContainer,
     productNameStyles,
     ratingContainer,
     pricesStyles,
@@ -24,7 +24,7 @@ type ProductDataProps = {
     description: string;
 };
 
-const ProductInfoCard: React.FC<ProductDataProps> = ({
+const ProductInfoCard: FC<ProductDataProps> = ({
     productName,
     totalReviews,
     rating,
@@ -32,7 +32,7 @@ const ProductInfoCard: React.FC<ProductDataProps> = ({
     description,
 }) => {
     return (
-        <Box sx={ productDataContainer }>
+        <Box id="product-info-container" sx={ productInfoContainer }>
             <Typography sx={ productNameStyles } variant="h4">
                 { productName }
             </Typography>

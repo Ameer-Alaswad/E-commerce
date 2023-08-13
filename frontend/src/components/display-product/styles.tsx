@@ -3,14 +3,14 @@ const baseStyles = {
     paddingBottom: "10px",
 };
 
-export const container = {
+export const productContainer = {
     marginTop: "80px",
     height: "100vh",
     width: "100%",
     display: "flex",
     justifyContent: "center",
 };
-export const productContainer = {
+export const productCardsContainer = {
     display: "flex",
     justifyContent: "space-around",
     alignItems: "flex-start",
@@ -26,7 +26,7 @@ export const productQuantityImageContainer = {
     paddingTop: "20px",
 };
 
-export const productDataContainer = {
+export const productInfoContainer = {
     ...baseStyles,
     marginLeft: "10px",
 };

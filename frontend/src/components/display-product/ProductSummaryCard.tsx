@@ -31,9 +31,15 @@ const ProductSummaryCard: FC<ProductSummaryCardProps> = ({
     handleAddToCart,
 }) => {
     return (
-        <Card id="product-summary-card-container" sx={ productSummaryCardContainerStyles }>
+        <Card
+            id="product-summary-card-container"
+            sx={ productSummaryCardContainerStyles }
+        >
             <CardContent>
-                <Box id="product-summary-card-content-container" sx={ productSummaryCardContentContainerStyles }>
+                <Box
+                    id="product-summary-card-content-container"
+                    sx={ productSummaryCardContentContainerStyles }
+                >
                     <Typography sx={ productSummaryCardPriceStyles }>
                         { PRICE_TEXT }: { CURRENCY_DOLLAR }
                         { price }

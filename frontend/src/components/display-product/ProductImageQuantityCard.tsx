@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FC } from "react";
 import Box from "@mui/material/Box";
 import { CardMedia } from "@mui/material";
 import ProductQuantity from "../display-products/ProductQuantity";
@@ -9,12 +9,12 @@ type ProductImageQuantityProps = {
     image: string;
 };
 
-const ProductImageQuantityCard: React.FC<ProductImageQuantityProps> = ({
+const ProductImageQuantityCard: FC<ProductImageQuantityProps> = ({
     productName,
     image,
 }) => {
     return (
-        <Box sx={ productQuantityImageContainer }>
+        <Box id="product-quantity-image-container" sx={ productQuantityImageContainer }>
             <CardMedia
                 sx={ imageContainer }
                 component="img"

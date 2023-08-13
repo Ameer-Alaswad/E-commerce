@@ -1,9 +1,9 @@
-import { MouseEvent } from "react";
+import { FC, MouseEvent } from "react";
 import Box from "@mui/material/Box";
 import { productsType } from "../display-products/Types";
 import {
-    container,
     productContainer,
+    productCardsContainer,
 
 } from "./styles";
 import useShoppingCartContext from "../../hooks/context/useShoppingCartContext";
@@ -17,7 +17,7 @@ type ProductProps = {
     data: productsType[];
 };
 
-const Product: React.FC<ProductProps> = ({ data }) => {
+const Product: FC<ProductProps> = ({ data }) => {
     const { shoppingCartItems, setShoppingCartItems } = useShoppingCartContext();
     const productData = data?.[0]
     const {
@@ -43,9 +43,9 @@ const Product: React.FC<ProductProps> = ({ data }) => {
     const ProductSummaryCardProps = { price, countInStock, handleAddToCart }
 
     return (
-        <Box id="container" sx={ container }>
+        <Box id="product-container" sx={ productContainer }>
             { isProductData && (
-                <Box id="productContainer" sx={ productContainer }>
+                <Box id="product-cards-container" sx={ productCardsContainer }>
                     <ProductImageQuantityCard { ...ProductImageQuantityProps } />
                     <ProductInfoCard { ...productDataProps } />
                     <ProductSummaryCard { ...ProductSummaryCardProps } />
