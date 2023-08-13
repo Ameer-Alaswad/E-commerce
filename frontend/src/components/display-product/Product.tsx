@@ -1,30 +1,21 @@
 import { MouseEvent } from "react";
 import Box from "@mui/material/Box";
 import { productsType } from "../display-products/Types";
-import { Button, Card, CardContent, CardMedia, Divider, Typography } from "@mui/material";
-import RatingComponent from "../display-products/Rating";
-
-import ProductQuantity from "../display-products/ProductQuantity";
+import { Button, Card, CardContent, Divider, Typography } from "@mui/material";
 import { handleToCart } from "./handlers";
 import {
     container,
     productContainer,
-    imageContainer,
-    productQuantityImageContainer,
-    productInfoContainer,
-    ratingContainer,
-    priceContainer,
-    descriptionContainer,
     cardContainer,
     cardContentContainer,
     cardPriceContainer,
     cardStatusContainer,
     buttonContainer,
     addToCartButton,
-    productNameStyles,
 } from "./styles";
 import useShoppingCartContext from "../../hooks/context/useShoppingCartContext";
 import ProductImageQuantity from "./ProductImageQuantity";
+import ProductData from "./ProductData";
 
 
 type ProductProps = {
@@ -49,27 +40,13 @@ const Product: React.FC<ProductProps> = ({ data }) => {
         handleToCart({ event, data, shoppingCartItems, setShoppingCartItems });
     };
     const ProductImageQuantityProps = { productName, image }
+    const productDataProps = { productName, totalReviews, rating, price, description }
     return (
         <Box id="container" sx={ container }>
             { data?.length && (
                 <Box id="productContainer" sx={ productContainer }>
                     <ProductImageQuantity { ...ProductImageQuantityProps } />
-                    <Box sx={ productInfoContainer }>
-                        <Typography sx={ productNameStyles } variant="h4">
-                            { productName }
-                        </Typography>
-                        <Divider />
-                        <Box sx={ ratingContainer }>
-                            <RatingComponent totalReviews={ totalReviews } rating={ rating } />
-                        </Box>
-                        <Divider />
-                        <Typography sx={ priceContainer }>Price ${ price }</Typography>
-                        <Divider />
-                        <Typography sx={ descriptionContainer }>
-                            Description: { description }
-                        </Typography>
-                        <Divider />
-                    </Box>
+                    <ProductData { ...productDataProps } />
                     <Card sx={ cardContainer }>
                         <CardContent>
                             <Box sx={ cardContentContainer }>

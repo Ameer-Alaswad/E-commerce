@@ -26,7 +26,7 @@ export const productQuantityImageContainer = {
     paddingTop: "20px",
 };
 
-export const productInfoContainer = {
+export const productDataContainer = {
     ...baseStyles,
     marginLeft: "10px",
 };
@@ -37,11 +37,11 @@ export const productNameStyles = {
 export const ratingContainer = {
     ...baseStyles,
 };
-export const priceContainer = {
+export const pricesStyles = {
     ...baseStyles,
 };
 
-export const descriptionContainer = {
+export const descriptionStyles = {
     ...baseStyles,
 };
 export const cardContainer = {

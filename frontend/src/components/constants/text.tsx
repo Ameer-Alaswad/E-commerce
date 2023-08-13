@@ -14,3 +14,5 @@ export const PRODUCTS_NOT_FOUND_MESSAGE = "Sorry, the requested products could n
 export const ERROR_TITLE = "Error!"
 export const QUANTITY_TEXT = "Quantity in cart";
 export const TOTAL_REVIEWS = "Reviews";
+export const PRICE_TEXT = "Price";
+export const DESCRIPTION_TEXT = "Description"
