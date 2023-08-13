@@ -16,3 +16,7 @@ export const QUANTITY_TEXT = "Quantity in cart";
 export const TOTAL_REVIEWS = "Reviews";
 export const PRICE_TEXT = "Price";
 export const DESCRIPTION_TEXT = "Description"
+export const IN_STOCK_TEXT = "In Stock"
+export const NOT_IN_STOCK_TEXT = "Not In Stock"
+export const ADD_TO_CART_TEXT = "Add to Cart"
+export const STATUS = "Status"

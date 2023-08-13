@@ -44,23 +44,23 @@ export const pricesStyles = {
 export const descriptionStyles = {
     ...baseStyles,
 };
-export const cardContainer = {
+export const productSummaryCardContainerStyles = {
     width: "250px",
     height: "180px",
 };
-export const cardContentContainer = {
+export const productSummaryCardContentContainerStyles = {
     marginLeft: "10px",
 };
-export const cardPriceContainer = {
+export const productSummaryCardPriceStyles = {
     ...baseStyles,
 };
-export const cardStatusContainer = {
+export const productSummaryCardStatusStyles = {
     ...baseStyles,
 };
-export const buttonContainer = {
+export const addToCartButtonContainerStyles = {
     display: "flex",
     justifyContent: "center",
 };
-export const addToCartButton = {
+export const addToCartButtonStyles = {
     width: "220px",
 };
