@@ -11,3 +11,5 @@ export const SIGNUP_REDIRECTION_PATH = "/user/signup?redirect=";
 export const SIGNIN_REDIRECTION_PATH = "/user/signin?redirect=";
 export const PRODUCTS_PATH = "/api/product"
 export const PRODUCT_LABEL_URL = "/product/label/";
+export const PRODUCT_API_LABEL_URL = "/api/product/label/";
+export const PRODUCT_API_NAME = "/api/product/name/";

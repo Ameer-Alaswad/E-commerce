@@ -3,60 +3,64 @@ const baseStyles = {
     paddingBottom: "10px",
 };
 
-const styles = {
-    container: {
-        marginTop: "80px",
-        height: "100vh",
-    },
-    contentContainer: {
-        display: "flex",
-        justifyContent: "space-around",
-        alignItems: "flex-start",
-        width: "1200px",
-    },
-    imageContainer: {
-        width: "500px",
-    },
-    productQuantityContainer: {
-        ...baseStyles,
-        paddingTop: "20px",
-    },
-    productInfoContainer: {
-        ...baseStyles,
-        marginLeft: "10px",
-    },
-    productNameStyles: {
-        ...baseStyles,
-    },
-    ratingContainer: {
-        ...baseStyles,
-    },
-    priceContainer: {
-        ...baseStyles,
-    },
-    descriptionContainer: {
-        ...baseStyles,
-    },
-    cardContainer: {
-        width: "250px",
-        height: "180px",
-    },
-    cardContentContainer: {
-        marginLeft: "10px",
-    },
-    cardPriceContainer: {
-        ...baseStyles,
-    },
-    cardStatusContainer: {
-        ...baseStyles,
-    },
-    buttonContainer: {
-        display: "flex",
-        justifyContent: "center",
-    },
-    addToCartButton: {
-        width: "220px",
-    },
+export const productContainer = {
+    marginTop: "80px",
+    height: "100vh",
+    width: "100%",
+    display: "flex",
+    justifyContent: "center",
+};
+export const productCardsContainer = {
+    display: "flex",
+    justifyContent: "space-around",
+    alignItems: "flex-start",
+    width: "1200px",
 };
 
-export default styles;
+export const imageContainer = {
+    width: "500px",
+};
+
+export const productQuantityImageContainer = {
+    ...baseStyles,
+    paddingTop: "20px",
+};
+
+export const productInfoContainer = {
+    ...baseStyles,
+    marginLeft: "10px",
+};
+export const productNameStyles = {
+    ...baseStyles,
+};
+
+export const ratingContainer = {
+    ...baseStyles,
+};
+export const pricesStyles = {
+    ...baseStyles,
+};
+
+export const descriptionStyles = {
+    ...baseStyles,
+};
+export const productSummaryCardContainerStyles = {
+    width: "250px",
+    height: "180px",
+};
+export const productSummaryCardContentContainerStyles = {
+    marginLeft: "10px",
+};
+export const productSummaryCardPriceStyles = {
+    ...baseStyles,
+};
+export const productSummaryCardStatusStyles = {
+    ...baseStyles,
+};
+export const addToCartButtonContainerStyles = {
+    display: "flex",
+    justifyContent: "center",
+};
+export const addToCartButtonStyles = {
+    width: "220px",
+};

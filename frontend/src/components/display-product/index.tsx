@@ -1,27 +1,25 @@
-// react router 
 import { useParams } from "react-router-dom";
-// hooks 
-import useProducts from "../../hooks/useProductsFetch";
-// components 
+
 import Product from "./Product";
-import Error from "../Error"
+import Error from "../Error";
 import AnimatedLoadingIcon from "../AnimatedLoadingIcon";
+import { PRODUCT_API_LABEL_URL } from "../constants/path";
+import useProductsFetch from "../../hooks/useProductsFetch";
 
 const DisplayProduct = () => {
-
     const params = useParams();
-    const { label } = params;
-    const { isError, isLoading, data } = useProducts(`/api/product/label/${label}`)
-
-    if (isError) return <Error />;
-    if (isLoading) return <div style={ { marginTop: "200px" } }><AnimatedLoadingIcon /></div>
+    const { label: productLabel } = params;
+    const { isError, isLoading, data } = useProductsFetch(
+        `${PRODUCT_API_LABEL_URL}${productLabel}`
+    );
 
     return (
         <>
-            <Product data={ data } />
+            { isError && <Error /> }
+            { isLoading && <AnimatedLoadingIcon /> }
+            { data && <Product data={ data } /> }
         </>
     );
 };
-
 
 export default DisplayProduct;

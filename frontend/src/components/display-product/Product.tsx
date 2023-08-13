@@ -1,114 +1,54 @@
-// This requires refactoring 
-import React from "react";
+import { FC, MouseEvent } from "react";
 import Box from "@mui/material/Box";
 import { productsType } from "../display-products/Types";
-import { Button, Card, CardContent, Divider, Typography } from "@mui/material";
-import RatingComponent from "../display-products/Rating";
+import {
+    productContainer,
+    productCardsContainer,
 
-import ProductQuantity from "../display-products/ProductQuantity";
-import { handleToCart } from "./handlers";
-import styles from "./styles";
+} from "./styles";
 import useShoppingCartContext from "../../hooks/context/useShoppingCartContext";
+import ProductSummaryCard from "./ProductSummaryCard";
+import ProductImageQuantityCard from "./ProductImageQuantityCard";
+import ProductInfoCard from "./ProductInfoCard";
+import { addToCart } from "./handlers";
 
-const {
-    container,
-    contentContainer,
-    imageContainer,
-    productQuantityContainer,
-    productInfoContainer,
-    ratingContainer,
-    priceContainer,
-    descriptionContainer,
-    cardContainer,
-    cardContentContainer,
-    cardPriceContainer,
-    cardStatusContainer,
-    buttonContainer,
-    addToCartButton,
-    productNameStyles
-} = styles;
 
 type ProductProps = {
-    data: productsType[] | undefined;
+    data: productsType[];
 };
 
-const Product: React.FC<ProductProps> = ({ data }) => {
+const Product: FC<ProductProps> = ({ data }) => {
+    const { shoppingCartItems, setShoppingCartItems } = useShoppingCartContext();
+    const productData = data?.[0]
+    const {
+        name: productName,
+        image,
+        numReviews: totalReviews,
+        rating,
+        price,
+        description,
+        countInStock,
+    } = productData || {};
 
-    const { shoppingCartItems, setShoppingCartItems } = useShoppingCartContext()
-
-    const { name: productName, image, numReviews: totalReviews, rating, price, description, countInStock } = data?.[0] || {}
-
-    const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    // Handles adding the selected product to the shopping cart 
+    const handleAddToCart = (event: MouseEvent<HTMLButtonElement>) => {
         event.stopPropagation();
-        handleToCart({ event, data, shoppingCartItems, setShoppingCartItems });
+        addToCart({ event, data, shoppingCartItems, setShoppingCartItems });
     };
 
+    const isProductData = data?.length > 0
+
+    const ProductImageQuantityProps = { productName, image }
+    const productDataProps = { productName, totalReviews, rating, price, description }
+    const ProductSummaryCardProps = { price, countInStock, handleAddToCart }
+
     return (
-        <Box style={ container }>
-            { data && data?.length !== 0 && (
-
-                <Box sx={ contentContainer }>
-                    <div style={ productQuantityContainer }>
-                        <img
-                            style={ imageContainer }
-                            src={ image }
-                            alt="product-img"
-                        />
-                        <ProductQuantity productName={ productName } />
-                    </div>
-                    <Box sx={ productInfoContainer }>
-                        <Typography
-                            sx={ productNameStyles }
-                            variant="h4"
-                        >
-                            { productName }
-                        </Typography>
-                        <Divider />
-                        <Box sx={ ratingContainer }>
-                            <RatingComponent
-                                totalReviews={ totalReviews }
-                                rating={ rating }
-                            />
-                        </Box>
-                        <Divider />
-                        <Typography sx={ priceContainer }>
-                            Price ${ price }
-                        </Typography>
-                        <Divider />
-                        <Typography sx={ descriptionContainer }>
-                            Description: { description }
-                        </Typography>
-                        <Divider />
-                    </Box>
-                    <Card
-                        sx={ cardContainer }
-                    >
-                        <CardContent>
-                            <Box sx={ cardContentContainer }>
-                                <Typography sx={ cardPriceContainer }>
-                                    Price: ${ price }
-                                </Typography>
-
-                                <Divider />
-                                <Typography sx={ cardStatusContainer }>
-                                    Status:{ " " }
-                                    { countInStock === 0 ? "Not in Stock" : "In Stock" }
-                                </Typography>
-                                <Divider />
-                            </Box>
-                        </CardContent>
-                        <Box
-                            sx={ buttonContainer }
-                        >
-                            <Button
-                                onClick={ handleClick }
-                                sx={ addToCartButton }
-                                variant="contained"
-                            >
-                                Add to Cart
-                            </Button>
-                        </Box>
-                    </Card>
+        <Box id="product-container" sx={ productContainer }>
+            { isProductData && (
+                <Box id="product-cards-container" sx={ productCardsContainer }>
+                    <ProductImageQuantityCard { ...ProductImageQuantityProps } />
+                    <ProductInfoCard { ...productDataProps } />
+                    <ProductSummaryCard { ...ProductSummaryCardProps } />
                 </Box>
             ) }
         </Box>
