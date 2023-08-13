@@ -24,7 +24,7 @@ type ProductDataProps = {
     description: string;
 };
 
-const ProductData: React.FC<ProductDataProps> = ({
+const ProductInfoCard: React.FC<ProductDataProps> = ({
     productName,
     totalReviews,
     rating,
@@ -54,4 +54,4 @@ const ProductData: React.FC<ProductDataProps> = ({
     );
 };
 
-export default ProductData;
+export default ProductInfoCard;

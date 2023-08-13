@@ -9,7 +9,7 @@ type ProductImageQuantityProps = {
     image: string;
 };
 
-const ProductImageQuantity: React.FC<ProductImageQuantityProps> = ({
+const ProductImageQuantityCard: React.FC<ProductImageQuantityProps> = ({
     productName,
     image,
 }) => {
@@ -26,4 +26,4 @@ const ProductImageQuantity: React.FC<ProductImageQuantityProps> = ({
     );
 };
 
-export default ProductImageQuantity;
+export default ProductImageQuantityCard;

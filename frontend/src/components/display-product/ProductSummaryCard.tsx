@@ -1,4 +1,4 @@
-import React from "react";
+import { FC, MouseEvent } from "react";
 import Box from "@mui/material/Box";
 import { Card, CardContent, Divider, Typography } from "@mui/material";
 import {
@@ -22,18 +22,18 @@ import {
 type ProductSummaryCardProps = {
     price: number;
     countInStock: number;
-    handleAddToCart: (event: React.MouseEvent<HTMLButtonElement>) => void;
+    handleAddToCart: (event: MouseEvent<HTMLButtonElement>) => void;
 };
 
-const ProductSummaryCard: React.FC<ProductSummaryCardProps> = ({
+const ProductSummaryCard: FC<ProductSummaryCardProps> = ({
     price,
     countInStock,
     handleAddToCart,
 }) => {
     return (
-        <Card sx={ productSummaryCardContainerStyles }>
+        <Card id="product-summary-card-container" sx={ productSummaryCardContainerStyles }>
             <CardContent>
-                <Box sx={ productSummaryCardContentContainerStyles }>
+                <Box id="product-summary-card-content-container" sx={ productSummaryCardContentContainerStyles }>
                     <Typography sx={ productSummaryCardPriceStyles }>
                         { PRICE_TEXT }: { CURRENCY_DOLLAR }
                         { price }

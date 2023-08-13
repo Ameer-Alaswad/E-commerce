@@ -1,16 +1,16 @@
 import { MouseEvent } from "react";
 import Box from "@mui/material/Box";
 import { productsType } from "../display-products/Types";
-import { handleToCart } from "./handlers";
 import {
     container,
     productContainer,
 
 } from "./styles";
 import useShoppingCartContext from "../../hooks/context/useShoppingCartContext";
-import ProductImageQuantity from "./ProductImageQuantity";
-import ProductData from "./ProductData";
 import ProductSummaryCard from "./ProductSummaryCard";
+import ProductImageQuantityCard from "./ProductImageQuantityCard";
+import ProductInfoCard from "./ProductInfoCard";
+import { addToCart } from "./handlers";
 
 
 type ProductProps = {
@@ -30,11 +30,14 @@ const Product: React.FC<ProductProps> = ({ data }) => {
         countInStock,
     } = productData || {};
 
+    // Handles adding the selected product to the shopping cart 
     const handleAddToCart = (event: MouseEvent<HTMLButtonElement>) => {
         event.stopPropagation();
-        handleToCart({ event, data, shoppingCartItems, setShoppingCartItems });
+        addToCart({ event, data, shoppingCartItems, setShoppingCartItems });
     };
-    const isProductData = data?.length
+
+    const isProductData = data?.length > 0
+
     const ProductImageQuantityProps = { productName, image }
     const productDataProps = { productName, totalReviews, rating, price, description }
     const ProductSummaryCardProps = { price, countInStock, handleAddToCart }
@@ -43,8 +46,8 @@ const Product: React.FC<ProductProps> = ({ data }) => {
         <Box id="container" sx={ container }>
             { isProductData && (
                 <Box id="productContainer" sx={ productContainer }>
-                    <ProductImageQuantity { ...ProductImageQuantityProps } />
-                    <ProductData { ...productDataProps } />
+                    <ProductImageQuantityCard { ...ProductImageQuantityProps } />
+                    <ProductInfoCard { ...productDataProps } />
                     <ProductSummaryCard { ...ProductSummaryCardProps } />
                 </Box>
             ) }
