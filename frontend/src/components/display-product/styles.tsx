@@ -8,10 +8,9 @@ export const container = {
     height: "100vh",
     width: "100%",
     display: "flex",
-    justifyContext: "center",
+    justifyContent: "center",
 };
-
-export const contentContainer = {
+export const productContainer = {
     display: "flex",
     justifyContent: "space-around",
     alignItems: "flex-start",
@@ -22,7 +21,7 @@ export const imageContainer = {
     width: "500px",
 };
 
-export const productQuantityContainer = {
+export const productQuantityImageContainer = {
     ...baseStyles,
     paddingTop: "20px",
 };

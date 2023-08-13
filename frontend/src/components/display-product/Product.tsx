@@ -1,16 +1,16 @@
 import { MouseEvent } from "react";
 import Box from "@mui/material/Box";
 import { productsType } from "../display-products/Types";
-import { Button, Card, CardContent, Divider, Typography } from "@mui/material";
+import { Button, Card, CardContent, CardMedia, Divider, Typography } from "@mui/material";
 import RatingComponent from "../display-products/Rating";
 
 import ProductQuantity from "../display-products/ProductQuantity";
 import { handleToCart } from "./handlers";
 import {
     container,
-    contentContainer,
+    productContainer,
     imageContainer,
-    productQuantityContainer,
+    productQuantityImageContainer,
     productInfoContainer,
     ratingContainer,
     priceContainer,
@@ -24,15 +24,16 @@ import {
     productNameStyles,
 } from "./styles";
 import useShoppingCartContext from "../../hooks/context/useShoppingCartContext";
+import ProductImageQuantity from "./ProductImageQuantity";
 
 
 type ProductProps = {
-    data: productsType[] | undefined;
+    data: productsType[];
 };
 
 const Product: React.FC<ProductProps> = ({ data }) => {
     const { shoppingCartItems, setShoppingCartItems } = useShoppingCartContext();
-
+    const productData = data?.[0]
     const {
         name: productName,
         image,
@@ -41,21 +42,18 @@ const Product: React.FC<ProductProps> = ({ data }) => {
         price,
         description,
         countInStock,
-    } = data?.[0] || {};
+    } = productData || {};
 
     const handleClick = (event: MouseEvent<HTMLButtonElement>) => {
         event.stopPropagation();
         handleToCart({ event, data, shoppingCartItems, setShoppingCartItems });
     };
-
+    const ProductImageQuantityProps = { productName, image }
     return (
-        <Box id="container" style={ container }>
-            { data && data?.length !== 0 && (
-                <Box id="contentContainer" sx={ contentContainer }>
-                    <div style={ productQuantityContainer }>
-                        <img style={ imageContainer } src={ image } alt="product-img" />
-                        <ProductQuantity productName={ productName } />
-                    </div>
+        <Box id="container" sx={ container }>
+            { data?.length && (
+                <Box id="productContainer" sx={ productContainer }>
+                    <ProductImageQuantity { ...ProductImageQuantityProps } />
                     <Box sx={ productInfoContainer }>
                         <Typography sx={ productNameStyles } variant="h4">
                             { productName }
