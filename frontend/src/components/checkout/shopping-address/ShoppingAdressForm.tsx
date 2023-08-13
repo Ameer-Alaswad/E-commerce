@@ -8,10 +8,10 @@ const { mainContainer, formContainer, formTitle, formButton } = shoppingAddressS
 type ShoppingAddressFormType = {
     handleSubmit: (event: React.FormEvent<HTMLFormElement>) => void
     handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void
-    shippingAddress: ShippingAddressDataType
+    shippingAddressData: ShippingAddressDataType
 }
 
-const ShoppingAdressForm = ({ handleChange, handleSubmit, shippingAddress }: ShoppingAddressFormType) => {
+const ShoppingAdressForm = ({ handleChange, handleSubmit, shippingAddressData }: ShoppingAddressFormType) => {
 
     return (
         <>
@@ -32,7 +32,7 @@ const ShoppingAdressForm = ({ handleChange, handleSubmit, shippingAddress }: Sho
                         margin="normal"
                         required
                         fullWidth
-                        value={ shippingAddress?.fullName }
+                        value={ shippingAddressData?.fullName }
                         id="fullName"
                         label="FullName"
                         name="fullName"
@@ -44,7 +44,7 @@ const ShoppingAdressForm = ({ handleChange, handleSubmit, shippingAddress }: Sho
                         margin="normal"
                         required
                         fullWidth
-                        value={ shippingAddress?.address }
+                        value={ shippingAddressData?.address }
                         name="address"
                         label="Address"
                         id="address"
@@ -55,7 +55,7 @@ const ShoppingAdressForm = ({ handleChange, handleSubmit, shippingAddress }: Sho
                         margin="normal"
                         required
                         fullWidth
-                        value={ shippingAddress?.city }
+                        value={ shippingAddressData?.city }
                         name="city"
                         label="City"
                         id="city"
@@ -66,7 +66,7 @@ const ShoppingAdressForm = ({ handleChange, handleSubmit, shippingAddress }: Sho
                         margin="normal"
                         required
                         fullWidth
-                        value={ shippingAddress?.postalCode }
+                        value={ shippingAddressData?.postalCode }
                         name="postalCode"
                         label="Postal code"
                         id="postalCode"
@@ -77,7 +77,7 @@ const ShoppingAdressForm = ({ handleChange, handleSubmit, shippingAddress }: Sho
                         margin="normal"
                         required
                         fullWidth
-                        value={ shippingAddress?.country }
+                        value={ shippingAddressData?.country }
                         name="country"
                         label="Country"
                         id="country"

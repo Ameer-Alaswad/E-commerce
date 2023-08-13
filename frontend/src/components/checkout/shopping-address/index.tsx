@@ -1,47 +1,30 @@
-import { useEffect, useState } from "react";
+import { FormEvent, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { toast } from "react-toastify";
 import ShoppingAdressForm from "./ShoppingAdressForm";
 import useUserAuthContext from "../../../hooks/context/useUserAuthContext";
 import useCheckoutContext from "../../../hooks/context/useCheckoutContext";
-import { ShippingAddressDataType } from "../../../contexts/checkout-context/Types";
 
 const ShippingAddressUi = () => {
-
   const navigate = useNavigate();
-  const {
-    setShippingAddressData,
-    shippingAddressData,
-    setProgressStep,
-  } = useCheckoutContext()
-  const {
-    userSignedIn,
+  const { setShippingAddressData, shippingAddressData, setProgressStep } =
+    useCheckoutContext();
+  const { userSignedIn } = useUserAuthContext();
 
-  } = useUserAuthContext()
-
-  const [shippingAddress, setShippingAddress] =
-    useState<ShippingAddressDataType>({
-      fullName: shippingAddressData?.fullName || "",
-      address: shippingAddressData?.address || "",
-      city: shippingAddressData?.city || "",
-      postalCode: shippingAddressData?.postalCode || "",
-      country: shippingAddressData?.country || "",
-    });
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    setShippingAddressData(shippingAddress);
+    setShippingAddressData(shippingAddressData);
     localStorage.setItem(
       "shippingCardAddress",
-      JSON.stringify(shippingAddress)
+      JSON.stringify(shippingAddressData)
     );
     navigate("/payment");
-
   };
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setShippingAddress({
-      ...shippingAddress,
+    setShippingAddressData({
+      ...shippingAddressData,
       [event.target.name]: event.target.value,
     });
   };
@@ -56,9 +39,13 @@ const ShippingAddressUi = () => {
     }
   }, [userSignedIn, navigate, setProgressStep]);
 
-  const ShoppingAddressFormProps = { handleChange, handleSubmit, shippingAddress }
+  const ShoppingAddressFormProps = {
+    handleChange,
+    handleSubmit,
+    shippingAddressData,
+  };
 
-  return <ShoppingAdressForm { ...ShoppingAddressFormProps } />
+  return <ShoppingAdressForm { ...ShoppingAddressFormProps } />;
 };
 
 export default ShippingAddressUi;
