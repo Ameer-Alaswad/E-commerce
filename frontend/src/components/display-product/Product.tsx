@@ -8,9 +8,9 @@ import {
 } from "./styles";
 import useShoppingCartContext from "../../hooks/context/useShoppingCartContext";
 import ProductSummaryCard from "./ProductSummaryCard";
+import { addToCart } from "./handlers";
 import ProductImageQuantityCard from "./ProductImageQuantityCard";
 import ProductInfoCard from "./ProductInfoCard";
-import { addToCart } from "./handlers";
 
 
 type ProductProps = {
