@@ -12,14 +12,27 @@ export const shoppingAddressStyles = {
         width: '600px',
         marginTop: '170px',
     },
-    formTitle: {
-        textAlign: 'center',
-    },
-    formButton: {
-        mt: 3,
-        mb: 2,
-    },
+
+
 };
+export const formButton = {
+    mt: 3,
+    mb: 2,
+}
+export const formTitle = {
+    textAlign: 'center',
+}
+export const mainContainer = {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    height: '100vh',
+}
+export const formContainer = {
+    width: '600px',
+    marginTop: '170px',
+}
 export const paymentStyles = {
     container: {
         display: "flex",

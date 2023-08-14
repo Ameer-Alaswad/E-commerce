@@ -14,6 +14,8 @@ type CartTotals = {
     taxes: number;
     totalPrice: number;
 };
+
+
 export const getPaymentRedirectProps = ({
     progressStepNumber,
     pageName,
@@ -35,6 +37,7 @@ export const getPaymentRedirectProps = ({
         redirectMessage,
     };
 };
+
 
 export const calculateCartTotalPrices = (shoppingCartItems: Product[]): CartTotals => {
 

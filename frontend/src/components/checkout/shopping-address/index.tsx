@@ -1,51 +1,61 @@
-import { FormEvent, useEffect } from "react";
+import { ChangeEvent, FormEvent } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { toast } from "react-toastify";
-import ShoppingAdressForm from "./ShoppingAdressForm";
-import useUserAuthContext from "../../../hooks/context/useUserAuthContext";
 import useCheckoutContext from "../../../hooks/context/useCheckoutContext";
+import { PAYMENT_PATH, SHIPPING_PATH } from "../../constants/path";
+import ProgressSteps from "../ProgressSteps";
+import { Box, Typography } from "@mui/material";
+import { formContainer, formTitle, mainContainer } from "../styles";
+import ShoppingAddressForm from "./ShoppingAdressForm";
+import ContinueButton from "./ContinueButton";
+import useSignInCheck from "../../../hooks/useSignInCheck";
 
 const ShippingAddressUi = () => {
   const navigate = useNavigate();
-  const { setShippingAddressData, shippingAddressData, setProgressStep } =
-    useCheckoutContext();
-  const { userSignedIn } = useUserAuthContext();
+  const { setShippingAddressData, shippingAddressData } = useCheckoutContext();
 
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const handleSubmitShippingAddress = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setShippingAddressData(shippingAddressData);
     localStorage.setItem(
       "shippingCardAddress",
       JSON.stringify(shippingAddressData)
     );
-    navigate("/payment");
+    navigate(PAYMENT_PATH);
   };
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     setShippingAddressData({
       ...shippingAddressData,
       [event.target.name]: event.target.value,
     });
   };
-
-  useEffect(() => {
-    setProgressStep(0);
-    if (!userSignedIn) {
-      navigate("/user/signin?redirect=/shipping");
-      setTimeout(() => {
-        toast.error("Sign in first !");
-      }, 100);
-    }
-  }, [userSignedIn, navigate, setProgressStep]);
+  // this will handle setting the progressStep and redirecting the user if not signed in
+  useSignInCheck(0, SHIPPING_PATH);
 
   const ShoppingAddressFormProps = {
     handleChange,
-    handleSubmit,
     shippingAddressData,
   };
 
-  return <ShoppingAdressForm { ...ShoppingAddressFormProps } />;
+  return (
+    <>
+      <ProgressSteps />
+      <Box sx={ mainContainer }>
+        <Box
+          sx={ formContainer }
+          component="form"
+          onSubmit={ handleSubmitShippingAddress }
+        >
+          <Typography sx={ formTitle } variant="h3">
+            Shipping Address
+          </Typography>
+          <ShoppingAddressForm { ...ShoppingAddressFormProps } />
+          <ContinueButton />
+        </Box>
+      </Box>
+    </>
+  );
 };
 
 export default ShippingAddressUi;
