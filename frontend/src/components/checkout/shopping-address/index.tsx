@@ -9,6 +9,7 @@ import { formContainer, formTitle, mainContainer } from "../styles";
 import ShoppingAddressForm from "./ShoppingAdressForm";
 import ContinueButton from "./ContinueButton";
 import useSignInCheck from "../../../hooks/useSignInCheck";
+import { SHIPPING_ADDRESS } from "../../constants/text";
 
 const ShippingAddressUi = () => {
   const navigate = useNavigate();
@@ -48,7 +49,7 @@ const ShippingAddressUi = () => {
           onSubmit={ handleSubmitShippingAddress }
         >
           <Typography sx={ formTitle } variant="h3">
-            Shipping Address
+            { SHIPPING_ADDRESS }
           </Typography>
           <ShoppingAddressForm { ...ShoppingAddressFormProps } />
           <ContinueButton />

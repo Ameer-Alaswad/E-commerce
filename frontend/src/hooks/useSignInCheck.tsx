@@ -1,11 +1,12 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+
 import useUserAuthContext from "./context/useUserAuthContext";
 import useCheckoutContext from "./context/useCheckoutContext";
 
-const SIGNIN_REDIRECTION_PATH = "/user/signin?redirect=/shipping";
-const SIGN_IN_ERROR = "Sign in first!";
+import { SIGNIN_REDIRECTION_PATH } from "../components/constants/path";
+import { SIGN_IN_ERROR } from "../components/constants/text";
 
 const useSignInCheck = (progressStepNum: number, redirectionPath: string) => {
     const navigate = useNavigate();
