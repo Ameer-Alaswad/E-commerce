@@ -7,7 +7,7 @@ import DisplayProducts from './components/display-products';
 import DisplayProduct from './components/display-product';
 import CartPage from './components/cart-page';
 import SignIn from './components/authentication/sign-in';
-import ShippingAddressUi from './components/checkout/shopping-address';
+import ShippingAddressUi from './components/checkout/shipping-address';
 import SignUpUser from './components/authentication/sign-up/index';
 import PaymentUi from './components/checkout/payment-ui';
 import PlaceOrderUi from './components/checkout/place-order';

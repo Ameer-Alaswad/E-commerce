@@ -10,7 +10,9 @@ export const ORDERS_HISTORY_PATH = "/ordershistory";
 export const SHIPPING_PATH = "/shipping";
 export const SIGNUP_REDIRECTION_PATH = "/user/signup?redirect=";
 export const SIGNIN_REDIRECTION_PATH = "/user/signin?redirect=";
+export const SHIPPING_ADDRESS_REDIRECTION_PATH = "/shipping?redirect=/"
 export const PRODUCTS_PATH = "/api/product"
 export const PRODUCT_LABEL_URL = "/product/label/";
 export const PRODUCT_API_LABEL_URL = "/api/product/label/";
 export const PRODUCT_API_NAME = "/api/product/name/";
+export const PLACE_ORDER = "/placeOrder"

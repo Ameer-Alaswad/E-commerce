@@ -6,7 +6,7 @@ import OrderSummary from "./OrderSummary";
 import PaymentMethod from "./PaymentMethod";
 import Shipping from "./Shipping";
 import useRedirect from "../useRedirect";
-import { getPaymentRedirectProps } from "../utils";
+// import { getPaymentRedirectProps } from "../utils";
 import { placeOrderStyles } from "../styles";
 import useUserAuthContext from "../../../hooks/context/useUserAuthContext";
 import useCheckoutContext from "../../../hooks/context/useCheckoutContext";
@@ -19,32 +19,32 @@ const PlaceOrderUi = () => {
     const { setProgressStep, paymentMethod } = useCheckoutContext()
     const { userSignedIn } = useUserAuthContext()
 
-    const {
-        progressStep,
-        userNotSignedLink,
-        userNotSignedMessage,
-        redirectLink,
-        redirectMessage,
-    } = getPaymentRedirectProps({
-        progressStepNumber: 2,
-        pageName: "shipping",
-        errorMessage: "Choose a payment Method first !",
-        stepName: "payment",
-        redirectName: "shipping",
-    });
+    // const {
+    //     progressStep,
+    //     userNotSignedLink,
+    //     userNotSignedMessage,
+    //     redirectLink,
+    //     redirectMessage,
+    // } = getPaymentRedirectProps({
+    //     progressStepNumber: 2,
+    //     pageName: "shipping",
+    //     errorMessage: "Choose a payment Method first !",
+    //     stepName: "payment",
+    //     redirectName: "shipping",
+    // });
 
-    useRedirect(
-        {
-            userSignedIn,
-            setProgressStep,
-            progressStep,
-            userNotSignedLink,
-            userNotSignedMessage,
-            redirectLink,
-            redirectMessage,
-        },
-        paymentMethod
-    );
+    // useRedirect(
+    //     {
+    //         userSignedIn,
+    //         setProgressStep,
+    //         progressStep,
+    //         userNotSignedLink,
+    //         userNotSignedMessage,
+    //         redirectLink,
+    //         redirectMessage,
+    //     },
+    //     paymentMethod
+    // );
 
     return (
         <div style={ mainContainer }>

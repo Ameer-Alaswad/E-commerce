@@ -39,6 +39,7 @@ const useRedirect = (
             }, 100);
         }
         if (userSignedIn) {
+
             if (!shippingAddressData) {
                 navigate(redirectLink);
                 setTimeout(() => {
