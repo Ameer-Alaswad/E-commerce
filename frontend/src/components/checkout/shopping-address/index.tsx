@@ -2,14 +2,17 @@ import { ChangeEvent, FormEvent } from "react";
 import { useNavigate } from "react-router-dom";
 
 import useCheckoutContext from "../../../hooks/context/useCheckoutContext";
+import useSignInCheck from "../../../hooks/useSignInCheck";
+
 import { PAYMENT_PATH, SHIPPING_PATH } from "../../constants/path";
+import { SHIPPING_ADDRESS } from "../../constants/text";
+
 import ProgressSteps from "../ProgressSteps";
 import { Box, Typography } from "@mui/material";
 import { formContainer, formTitle, mainContainer } from "../styles";
+
 import ShoppingAddressForm from "./ShoppingAdressForm";
 import ContinueButton from "./ContinueButton";
-import useSignInCheck from "../../../hooks/useSignInCheck";
-import { SHIPPING_ADDRESS } from "../../constants/text";
 
 const ShippingAddressUi = () => {
   const navigate = useNavigate();
@@ -25,7 +28,7 @@ const ShippingAddressUi = () => {
     navigate(PAYMENT_PATH);
   };
 
-  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+  const handleShippingAddressDataChange = (event: ChangeEvent<HTMLInputElement>) => {
     setShippingAddressData({
       ...shippingAddressData,
       [event.target.name]: event.target.value,
@@ -35,7 +38,7 @@ const ShippingAddressUi = () => {
   useSignInCheck(0, SHIPPING_PATH);
 
   const ShoppingAddressFormProps = {
-    handleChange,
+    handleShippingAddressDataChange,
     shippingAddressData,
   };
 

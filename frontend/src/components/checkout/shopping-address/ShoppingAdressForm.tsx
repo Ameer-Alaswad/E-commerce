@@ -1,19 +1,20 @@
 import { TextField } from "@mui/material";
 import { ShippingAddressDataType } from "../../../contexts/checkout-context/Types";
+import { ChangeEvent } from "react";
 
 type ShoppingAddressFormType = {
-    handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+    handleShippingAddressDataChange: (event: ChangeEvent<HTMLInputElement>) => void;
     shippingAddressData: ShippingAddressDataType;
 };
 
 const ShoppingAddressForm = ({
-    handleChange,
+    handleShippingAddressDataChange,
     shippingAddressData,
 }: ShoppingAddressFormType) => {
     return (
         <>
             <TextField
-                onChange={ handleChange }
+                onChange={ handleShippingAddressDataChange }
                 margin="normal"
                 required
                 fullWidth
@@ -25,7 +26,7 @@ const ShoppingAddressForm = ({
                 autoFocus
             />
             <TextField
-                onChange={ handleChange }
+                onChange={ handleShippingAddressDataChange }
                 margin="normal"
                 required
                 fullWidth
@@ -36,7 +37,7 @@ const ShoppingAddressForm = ({
                 autoComplete="address"
             />
             <TextField
-                onChange={ handleChange }
+                onChange={ handleShippingAddressDataChange }
                 margin="normal"
                 required
                 fullWidth
@@ -47,7 +48,7 @@ const ShoppingAddressForm = ({
                 autoComplete="city"
             />
             <TextField
-                onChange={ handleChange }
+                onChange={ handleShippingAddressDataChange }
                 margin="normal"
                 required
                 fullWidth
@@ -58,7 +59,7 @@ const ShoppingAddressForm = ({
                 autoComplete="postalCode"
             />
             <TextField
-                onChange={ handleChange }
+                onChange={ handleShippingAddressDataChange }
                 margin="normal"
                 required
                 fullWidth
