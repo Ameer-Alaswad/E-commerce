@@ -9,7 +9,7 @@ import CartPage from './components/cart-page';
 import SignIn from './components/authentication/sign-in';
 import ShippingAddressUi from './components/checkout/shopping-address';
 import SignUpUser from './components/authentication/sign-up/index';
-import PaymentUi from './components/checkout/PaymentUi';
+import PaymentUi from './components/checkout/payment-ui';
 import PlaceOrderUi from './components/checkout/place-order';
 import OrderScreen from './components/orders/OrderScreen';
 import OrdersHistory from './components/orders/order-history';

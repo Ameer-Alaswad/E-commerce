@@ -9,12 +9,14 @@ import {
 
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import ProgressSteps from "./ProgressSteps";
-import { paymentStyles } from "./styles";
-import usePaymentRedirect from "./useRedirect";
-import { getPaymentRedirectProps } from "./utils";
-import useUserAuthContext from "../../hooks/context/useUserAuthContext";
-import useCheckoutContext from "../../hooks/context/useCheckoutContext";
+import ProgressSteps from "../ProgressSteps";
+import { paymentStyles } from "../styles";
+import usePaymentRedirect from "../useRedirect";
+import { getPaymentRedirectProps } from "../utils";
+import useUserAuthContext from "../../../hooks/context/useUserAuthContext";
+import useCheckoutContext from "../../../hooks/context/useCheckoutContext";
+import Title from "./Title";
+import SubmitMethodButton from "./SubmitMethodButton";
 const { container, form, heading, button } = paymentStyles;
 
 const PaymentUi = () => {
@@ -72,9 +74,7 @@ const PaymentUi = () => {
             <ProgressSteps />
             <Box sx={ container }>
                 <Box sx={ form } component="form" onSubmit={ handleSubmit }>
-                    <Typography sx={ heading } variant="h4">
-                        Payment Method
-                    </Typography>
+                    <Title />
                     <RadioGroup
                         aria-labelledby="demo-controlled-radio-buttons-group"
                         name="controlled-radio-buttons-group"
@@ -92,9 +92,7 @@ const PaymentUi = () => {
                             label="stripe"
                         />
                     </RadioGroup>
-                    <Button type="submit" fullWidth variant="contained" sx={ button }>
-                        Continue
-                    </Button>
+                    <SubmitMethodButton />
                 </Box>
             </Box>
         </>

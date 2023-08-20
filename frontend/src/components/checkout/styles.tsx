@@ -53,8 +53,13 @@ export const paymentStyles = {
         mb: 2,
     },
 };
-
-
+export const heading = {
+    textAlign: "center",
+}
+export const submitMethodButtonStyles = {
+    mt: 3,
+    mb: 2,
+}
 export const orderSummaryStyles = {
     card: {
         width: "300px",
