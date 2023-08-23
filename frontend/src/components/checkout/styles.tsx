@@ -103,10 +103,10 @@ export const placeOrderStyles = {
         marginTop: "60px",
         width: "1000px",
     },
-    PreviewOrder: {
-        marginBottom: "15px",
-    },
 };
+export const previewOrderTitleStyles = {
+    marginBottom: "15px",
+}
 export const placeOrderComponentsStyles = {
     container: {
         minWidth: 275,

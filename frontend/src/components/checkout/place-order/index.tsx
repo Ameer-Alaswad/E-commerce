@@ -10,8 +10,9 @@ import useRedirect from "../useRedirect";
 import { placeOrderStyles } from "../styles";
 import useUserAuthContext from "../../../hooks/context/useUserAuthContext";
 import useCheckoutContext from "../../../hooks/context/useCheckoutContext";
+import PlaceOrderTitle from "./PlaceOrderTitle";
 
-const { mainContainer, orderDetailsContainer, PreviewOrder } = placeOrderStyles;
+const { mainContainer, orderDetailsContainer } = placeOrderStyles;
 
 const PlaceOrderUi = () => {
 
@@ -51,9 +52,7 @@ const PlaceOrderUi = () => {
             <ProgressSteps />
             <Box sx={ orderDetailsContainer }>
                 <Box>
-                    <Typography sx={ PreviewOrder } variant="h3">
-                        Preview Order
-                    </Typography>
+                    <PlaceOrderTitle />
                     <Shipping />
                     <PaymentMethod />
                     <Items />
