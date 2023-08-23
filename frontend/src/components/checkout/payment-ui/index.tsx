@@ -22,20 +22,23 @@ import {
 } from "../../constants/text";
 import { PLACE_ORDER } from "../../constants/path";
 
-
 const PaymentUi = () => {
     const navigate = useNavigate();
     const { paymentMethod } = useCheckoutContext();
+
+    const setPaymentMethodInLocalStorage = () => {
+        localStorage.setItem(
+            PAYMENT_METHOD_TEXT,
+            JSON.stringify(paymentMethod)
+        );
+    };
 
     const handlePaymentMethodSubmit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 
         !paymentMethod
             ? toast.error(CHOOSE_PAYMENT_METHOD_ERROR)
-            : localStorage.setItem(
-                PAYMENT_METHOD_TEXT,
-                JSON.stringify(paymentMethod)
-            );
+            : setPaymentMethodInLocalStorage()
         navigate(PLACE_ORDER);
     };
 
@@ -45,7 +48,11 @@ const PaymentUi = () => {
         <>
             <ProgressSteps />
             <Box sx={ paymentUiContainerStyles }>
-                <Box sx={ paymentUiFormStyles } component="form" onSubmit={ handlePaymentMethodSubmit }>
+                <Box
+                    sx={ paymentUiFormStyles }
+                    component="form"
+                    onSubmit={ handlePaymentMethodSubmit }
+                >
                     <Title />
                     <PaymentMethodSelector />
                     <SubmitMethodButton />

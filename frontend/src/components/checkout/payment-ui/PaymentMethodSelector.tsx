@@ -1,5 +1,7 @@
-import { FormControlLabel, Radio, RadioGroup } from "@mui/material";
 import { ChangeEvent } from "react";
+
+import { FormControlLabel, Radio, RadioGroup } from "@mui/material";
+
 import useCheckoutContext from "../../../hooks/context/useCheckoutContext";
 import {
     PAYMENT_METHOD_PAYBAL,

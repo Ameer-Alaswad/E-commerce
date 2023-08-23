@@ -28,7 +28,9 @@ const ShippingAddressUi = () => {
     navigate(PAYMENT_PATH);
   };
 
-  const handleShippingAddressDataChange = (event: ChangeEvent<HTMLInputElement>) => {
+  const handleShippingAddressDataChange = (
+    event: ChangeEvent<HTMLInputElement>
+  ) => {
     setShippingAddressData({
       ...shippingAddressData,
       [event.target.name]: event.target.value,
@@ -54,7 +56,9 @@ const ShippingAddressUi = () => {
           <Typography sx={ formTitle } variant="h3">
             { SHIPPING_ADDRESS }
           </Typography>
-          <ShoppingAddressForm { ...ShoppingAddressFormProps } />
+          { shippingAddressData && (
+            <ShoppingAddressForm { ...ShoppingAddressFormProps } />
+          ) }
           <ContinueButton />
         </Box>
       </Box>

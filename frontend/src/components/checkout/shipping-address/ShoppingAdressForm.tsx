@@ -11,6 +11,8 @@ const ShoppingAddressForm = ({
     handleShippingAddressDataChange,
     shippingAddressData,
 }: ShoppingAddressFormType) => {
+    const { fullName, address, city, postalCode, country } = shippingAddressData;
+
     return (
         <>
             <TextField
@@ -18,7 +20,7 @@ const ShoppingAddressForm = ({
                 margin="normal"
                 required
                 fullWidth
-                value={ shippingAddressData?.fullName }
+                value={ fullName }
                 id="fullName"
                 label="FullName"
                 name="fullName"
@@ -30,7 +32,7 @@ const ShoppingAddressForm = ({
                 margin="normal"
                 required
                 fullWidth
-                value={ shippingAddressData?.address }
+                value={ address }
                 name="address"
                 label="Address"
                 id="address"
@@ -41,7 +43,7 @@ const ShoppingAddressForm = ({
                 margin="normal"
                 required
                 fullWidth
-                value={ shippingAddressData?.city }
+                value={ city }
                 name="city"
                 label="City"
                 id="city"
@@ -52,7 +54,7 @@ const ShoppingAddressForm = ({
                 margin="normal"
                 required
                 fullWidth
-                value={ shippingAddressData?.postalCode }
+                value={ postalCode }
                 name="postalCode"
                 label="Postal code"
                 id="postalCode"
@@ -63,7 +65,7 @@ const ShoppingAddressForm = ({
                 margin="normal"
                 required
                 fullWidth
-                value={ shippingAddressData?.country }
+                value={ country }
                 name="country"
                 label="Country"
                 id="country"
