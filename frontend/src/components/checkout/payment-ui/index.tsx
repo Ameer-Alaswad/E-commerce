@@ -15,14 +15,13 @@ import PaymentMethodSelector from "./PaymentMethodSelector";
 import useCheckoutContext from "../../../hooks/context/useCheckoutContext";
 import usePaymentValidationAndRedirect from "../../../hooks/usePaymentValidationAndRedirect";
 
-import { paymentStyles } from "../styles";
+import { paymentUiContainerStyles, paymentUiFormStyles } from "../styles";
 import {
     CHOOSE_PAYMENT_METHOD_ERROR,
     PAYMENT_METHOD_TEXT,
 } from "../../constants/text";
 import { PLACE_ORDER } from "../../constants/path";
 
-const { container, form } = paymentStyles;
 
 const PaymentUi = () => {
     const navigate = useNavigate();
@@ -45,8 +44,8 @@ const PaymentUi = () => {
     return (
         <>
             <ProgressSteps />
-            <Box sx={ container }>
-                <Box sx={ form } component="form" onSubmit={ handlePaymentMethodSubmit }>
+            <Box sx={ paymentUiContainerStyles }>
+                <Box sx={ paymentUiFormStyles } component="form" onSubmit={ handlePaymentMethodSubmit }>
                     <Title />
                     <PaymentMethodSelector />
                     <SubmitMethodButton />

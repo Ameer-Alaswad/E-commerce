@@ -8,4 +8,6 @@ export const ERROR_OCCURRED_TEXT = "Error occurred: "
 export const ITEMS_IN_CART_FIRST_ERROR = "Put items in Cart First!"
 export const CHOOSE_PAYMENT_METHOD_ERROR = "Choose a Payment Method first!"
 export const SHIPPING_ADDRESS_ERROR_MESSAGE = "Add your Address first!"
-
+export const OUT_OF_STOCK = "This product is out of stock";
+export const LIMIT_REACHED_MESSAGE = "You have reached the limit for this product"
+export const CANNOT_ADD_MORE_MESSAGE = "You cannot add more than";
