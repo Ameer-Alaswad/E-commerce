@@ -1,44 +1,45 @@
-// requires refactoring 
-
 import { Box, Button, CardContent, Divider, Typography } from "@mui/material";
-
 import Card from "@mui/material/Card";
 import { postUser } from "../../../fetchers/postOrder";
 import { useNavigate } from "react-router-dom";
-import { orderSummaryStyles } from "../styles";
+import {
+    divider,
+    itemsPriceStyles,
+    orderSummaryContainerStyles,
+    orderSummaryTitleStyles,
+    placeOrderButtonStyles,
+    pricesContainerStyles,
+    shippingInfoStyles,
+    taxStyles,
+    totalPriceStyles,
+} from "../styles";
 import { calculateCartTotalPrices } from "../utils";
 import useShoppingCartContext from "../../../hooks/context/useShoppingCartContext";
 import useUserAuthContext from "../../../hooks/context/useUserAuthContext";
 import useCheckoutContext from "../../../hooks/context/useCheckoutContext";
-
-const { card, title, itemPrice, divider, bold, box, buttonBox, button } =
-    orderSummaryStyles;
+import {
+    CURRENCY_DOLLAR,
+    ITEMS_TEXT,
+    ORDER_SUMMARY_TITLE,
+    PLACE_ORDER_TEXT,
+    SHIPPING_TITLE,
+    TAX_TEXT,
+    TOTAL_TEXT,
+} from "../../constants/text";
+import { API_PLACE_ORDER } from "../../constants/path";
 
 export default function OrderSummary() {
     const navigate = useNavigate();
-
-
-    const {
-        shippingAddressData,
-        paymentMethod,
-    } = useCheckoutContext()
-
-    const {
-        userSignedIn
-    } = useUserAuthContext()
-
+    const { shippingAddressData, paymentMethod } = useCheckoutContext();
+    const { userSignedIn } = useUserAuthContext();
     const {
         shoppingCartItems,
 
         setShoppingCartItems,
-    } = useShoppingCartContext()
+    } = useShoppingCartContext();
 
-    const {
-        totalItemsPrice,
-        shippingPrice,
-        taxes,
-        totalPrice,
-    } = calculateCartTotalPrices(shoppingCartItems)
+    const { totalItemsPrice, shippingPrice, taxes, totalPrice } =
+        calculateCartTotalPrices(shoppingCartItems);
 
     const orderData = {
         orderItems: shoppingCartItems,
@@ -49,41 +50,60 @@ export default function OrderSummary() {
         taxes,
         totalPrice,
     };
-    const handleOrder = () => {
-        postUser(
-            "/api/orders",
+    const token = userSignedIn?.token;
+
+    const handlePlacingOrder = () => {
+        postUser({
+            URL: API_PLACE_ORDER,
             orderData,
             navigate,
-            userSignedIn?.token,
-            setShoppingCartItems
-        );
+            userToken: token,
+            setShoppingCartItems,
+        });
     };
 
     return (
-        <Card sx={ card }>
+        <Card sx={ orderSummaryContainerStyles }>
             <CardContent>
-                <Typography sx={ { ...title, ...bold } } variant="h5">
-                    Order Summary
+                <Typography
+                    sx={ orderSummaryTitleStyles }
+                    variant="h5"
+                    fontWeight="fontWeightBold"
+                >
+                    { ORDER_SUMMARY_TITLE }
                 </Typography>
-                <Box sx={ box }>
-                    <Typography sx={ itemPrice }>Items: ${ totalItemsPrice }</Typography>
-                    <Divider sx={ divider } />
-                    <Typography sx={ itemPrice }>Shipping: ${ shippingPrice }</Typography>
-                    <Divider sx={ divider } />
-                    <Typography sx={ itemPrice }>Tax: ${ taxes }</Typography>
-                    <Divider sx={ divider } />
-                    <Typography sx={ { ...itemPrice, ...bold } }>
-                        Total: ${ totalPrice }
+                <Box sx={ pricesContainerStyles }>
+                    <Typography sx={ itemsPriceStyles }>
+                        { ITEMS_TEXT } : { CURRENCY_DOLLAR }
+                        { totalItemsPrice }
                     </Typography>
                     <Divider sx={ divider } />
-                    <Box sx={ buttonBox }>
-                        <Button onClick={ handleOrder } sx={ button } variant="contained">
-                            Place Order
+                    <Typography sx={ shippingInfoStyles }>
+                        { SHIPPING_TITLE } : { CURRENCY_DOLLAR }
+                        { shippingPrice }
+                    </Typography>
+                    <Divider sx={ divider } />
+                    <Typography sx={ taxStyles }>
+                        { TAX_TEXT } : { CURRENCY_DOLLAR }
+                        { taxes }
+                    </Typography>
+                    <Divider sx={ divider } />
+                    <Typography sx={ totalPriceStyles } fontWeight="fontWeightBold">
+                        { TOTAL_TEXT }: { CURRENCY_DOLLAR }
+                        { totalPrice }
+                    </Typography>
+                    <Divider sx={ divider } />
+                    <Box sx={ placeOrderButtonStyles }>
+                        <Button
+                            onClick={ handlePlacingOrder }
+                            sx={ placeOrderButtonStyles }
+                            variant="contained"
+                        >
+                            { PLACE_ORDER_TEXT }
                         </Button>
                     </Box>
                 </Box>
             </CardContent>
-
         </Card>
     );
 }

@@ -1,16 +1,14 @@
-import { Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import ProgressSteps from "../ProgressSteps";
 import Items from "./order-itmes";
 import OrderSummary from "./OrderSummary";
 import PaymentMethod from "./PaymentMethod";
-import Shipping from "./Shipping";
-import useRedirect from "../useRedirect";
 // import { getPaymentRedirectProps } from "../utils";
 import { placeOrderStyles } from "../styles";
 import useUserAuthContext from "../../../hooks/context/useUserAuthContext";
 import useCheckoutContext from "../../../hooks/context/useCheckoutContext";
 import PlaceOrderTitle from "./PlaceOrderTitle";
+import ShippingInfo from "./ShippingInfo";
 
 const { mainContainer, orderDetailsContainer } = placeOrderStyles;
 
@@ -53,7 +51,7 @@ const PlaceOrderUi = () => {
             <Box sx={ orderDetailsContainer }>
                 <Box>
                     <PlaceOrderTitle />
-                    <Shipping />
+                    <ShippingInfo />
                     <PaymentMethod />
                     <Items />
                 </Box>

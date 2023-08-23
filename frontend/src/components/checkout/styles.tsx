@@ -1,20 +1,4 @@
 
-// requires refactoring 
-export const shoppingAddressStyles = {
-    mainContainer: {
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'flex-start',
-        alignItems: 'center',
-        height: '100vh',
-    },
-    formContainer: {
-        width: '600px',
-        marginTop: '170px',
-    },
-
-
-};
 export const formButton = {
     mt: 3,
     mb: 2,
@@ -60,38 +44,54 @@ export const submitMethodButtonStyles = {
     mt: 3,
     mb: 2,
 }
-export const orderSummaryStyles = {
-    card: {
-        width: "300px",
-        height: "400px",
-    },
-    title: {
-        marginBottom: "10px",
-    },
-    itemPrice: {
-        paddingTop: "10px",
-        paddingBottom: "10px",
-    },
-    divider: {
-        marginTop: "10px",
-        marginBottom: "10px",
-    },
-    bold: {
-        fontWeight: "fontWeightBold",
-    },
-    box: {
-        marginLeft: "10px",
-    },
-    buttonBox: {
-        display: "flex",
-        justifyContent: "center",
-        height: "100%",
-    },
-    button: {
-        width: "220px",
-        marginTop: "16px"
-    },
-};
+
+
+
+
+export const orderSummaryContainerStyles = {
+    width: "300px",
+    height: "400px",
+}
+export const orderSummaryTitleStyles = {
+    marginBottom: "10px",
+}
+export const pricesContainerStyles = {
+    marginLeft: "10px",
+}
+
+export const itemsPriceStyles = {
+    paddingTop: "10px",
+    paddingBottom: "10px",
+}
+export const shippingInfoStyles = {
+    ...itemsPriceStyles
+}
+
+export const taxStyles = {
+    ...itemsPriceStyles
+}
+
+export const totalPriceStyles = {
+    ...itemsPriceStyles
+}
+export const placeOrderButtonStyles = {
+    display: "flex",
+    justifyContent: "center",
+    height: "100%",
+}
+export const divider = {
+    marginTop: "10px",
+    marginBottom: "10px",
+}
+
+
+
+
+
+
+
+
+
 export const placeOrderStyles = {
     mainContainer: {
         height: "100vh",
@@ -107,18 +107,34 @@ export const placeOrderStyles = {
 export const previewOrderTitleStyles = {
     marginBottom: "15px",
 }
-export const placeOrderComponentsStyles = {
-    container: {
-        minWidth: 275,
-        width: "600px",
-        marginBottom: "15px"
-    },
-    title: {
-        marginBottom: "10px",
-        fontWeight: "bold"
-    }
+
+export const shippingInfoContainerStyles = {
+    minWidth: 275,
+    width: "600px",
+    marginBottom: "15px"
 }
 
+export const shippingInfoTitleStyles = {
+    marginBottom: "10px",
+}
+export const paymentMethodContainerStyles = {
+    minWidth: 275,
+    width: "600px",
+    marginBottom: "15px"
+}
+export const paymentMethodTitleStyles = {
+    marginBottom: "10px",
+    fontWeight: "bold"
+}
+export const orderItemsContainerStyles = {
+    minWidth: 275,
+    width: "600px",
+    marginBottom: "15px"
+}
+export const orderItemsTitleStyles = {
+    marginBottom: "10px",
+    fontWeight: "bold"
+}
 export const orderItemsListStyles = {
     cardContainer: {
         minWidth: 350,

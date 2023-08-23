@@ -1,32 +1,46 @@
-import { Card, CardActions, CardContent, Button, Typography } from '@mui/material';
+import {
+    Card,
+    CardActions,
+    CardContent,
+    Button,
+    Typography,
+} from "@mui/material";
 
-import { useNavigate } from 'react-router-dom';
-import { placeOrderComponentsStyles } from '../styles';
-import useCheckoutContext from '../../../hooks/context/useCheckoutContext';
-
-const { container, title } = placeOrderComponentsStyles
+import { useNavigate } from "react-router-dom";
+import {
+    paymentMethodContainerStyles,
+    paymentMethodTitleStyles,
+} from "../styles";
+import useCheckoutContext from "../../../hooks/context/useCheckoutContext";
+import { EDIT_TEXT, METHOD_TEXT } from "../../constants/text";
+import { PAYMENT_PATH } from "../../constants/path";
 
 const PaymentMethod = () => {
+    const { paymentMethod } = useCheckoutContext();
+    const navigate = useNavigate();
 
-    const { paymentMethod } = useCheckoutContext()
-    const navigate = useNavigate()
-
-    const handleNavigate = () => navigate("/payment")
+    const handleToPaymentNavigate = () => navigate(PAYMENT_PATH);
 
     return (
-        <Card sx={ container }>
+        <Card sx={ paymentMethodContainerStyles }>
             <CardContent>
-                <Typography variant='h5' sx={ title } fontWeight="fontWeightBold">
-                    Payment
+                <Typography
+                    variant="h5"
+                    sx={ paymentMethodTitleStyles }
+                    fontWeight="fontWeightBold"
+                >
+                    { METHOD_TEXT }
                 </Typography>
                 <Typography variant="body1">
-                    <strong>Method:</strong> { paymentMethod }
+                    <strong>{ METHOD_TEXT } :</strong> { paymentMethod }
                 </Typography>
             </CardContent>
             <CardActions>
-                <Button onClick={ handleNavigate } size="small">Edit</Button>
+                <Button onClick={ handleToPaymentNavigate } size="small">
+                    { EDIT_TEXT }
+                </Button>
             </CardActions>
         </Card>
     );
-}
-export default PaymentMethod
+};
+export default PaymentMethod;

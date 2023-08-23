@@ -16,3 +16,4 @@ export const PRODUCT_LABEL_URL = "/product/label/";
 export const PRODUCT_API_LABEL_URL = "/api/product/label/";
 export const PRODUCT_API_NAME = "/api/product/name/";
 export const PLACE_ORDER = "/placeOrder"
+export const API_PLACE_ORDER = "/api/orders"

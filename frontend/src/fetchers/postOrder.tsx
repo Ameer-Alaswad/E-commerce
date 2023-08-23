@@ -1,10 +1,9 @@
-// axios
 import axios from "axios";
 import { NavigateFunction } from "react-router-dom";
-
 import { toast } from "react-toastify";
 import { Product } from "../contexts/shopping-cart-context/Types";
 import { ShippingAddressDataType } from "../contexts/checkout-context/Types";
+
 // types
 type OrderData = {
     orderItems: Product[];
@@ -16,13 +15,21 @@ type OrderData = {
     totalPrice: number;
 };
 
-export const postUser = async (
-    URL: string,
-    orderData: OrderData,
-    navigate: NavigateFunction,
-    userToken: string | undefined,
-    setShoppingCartItems: React.Dispatch<React.SetStateAction<Product[]>>
-) => {
+type PostUserDataArgs = {
+    URL: string;
+    orderData: OrderData;
+    navigate: NavigateFunction;
+    userToken: string | undefined;
+    setShoppingCartItems: React.Dispatch<React.SetStateAction<Product[]>>;
+};
+
+export const postUser = async ({
+    URL,
+    orderData,
+    navigate,
+    userToken,
+    setShoppingCartItems,
+}: PostUserDataArgs) => {
     try {
         const { data } = await axios.post(URL, orderData, {
             headers: {

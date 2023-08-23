@@ -8,9 +8,8 @@ import {
 
 import { useNavigate } from 'react-router-dom';
 import ItemsList from './ItemsList';
-import { placeOrderComponentsStyles } from '../../styles';
+import { orderItemsContainerStyles, orderItemsTitleStyles } from '../../styles';
 
-const { container, title } = placeOrderComponentsStyles;
 
 export default function Items() {
 
@@ -19,9 +18,9 @@ export default function Items() {
     const handleNavigate = () => navigate("/cart");
 
     return (
-        <Card sx={ container }>
+        <Card sx={ orderItemsContainerStyles }>
             <CardContent>
-                <Typography sx={ title } fontWeight="fontWeightBold">
+                <Typography sx={ orderItemsTitleStyles } fontWeight="fontWeightBold">
                     Items
                 </Typography>
                 <ItemsList />
