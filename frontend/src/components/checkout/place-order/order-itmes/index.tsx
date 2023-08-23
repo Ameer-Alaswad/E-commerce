@@ -3,12 +3,12 @@ import {
     CardActions,
     CardContent,
     Button,
-    Typography,
 } from "@mui/material";
 
 import { useNavigate } from 'react-router-dom';
 import ItemsList from './ItemsList';
-import { orderItemsContainerStyles, orderItemsTitleStyles } from '../../styles';
+import { orderItemsContainerStyles } from '../../styles';
+import Title from "./Title";
 
 
 export default function Items() {
@@ -20,9 +20,7 @@ export default function Items() {
     return (
         <Card sx={ orderItemsContainerStyles }>
             <CardContent>
-                <Typography sx={ orderItemsTitleStyles } fontWeight="fontWeightBold">
-                    Items
-                </Typography>
+                <Title />
                 <ItemsList />
             </CardContent>
             <CardActions>

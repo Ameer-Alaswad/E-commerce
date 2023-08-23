@@ -7,7 +7,6 @@ import RemoveIcon from "@mui/icons-material/Remove";
 import { useShoppingCartHandlers } from "./handlers";
 import { orderItemsListStyles } from "../../styles";
 import { CURRENCY_DOLLAR } from "../../../constants/text";
-import useCustomLocation from "../../../../hooks/useCustomLocation";
 import useShoppingCartContext from "../../../../hooks/context/useShoppingCartContext";
 import { Product } from "../../../../contexts/shopping-cart-context/Types";
 
@@ -21,8 +20,6 @@ export default function ItemsList() {
         handleQuantityDecrement,
     } = useShoppingCartHandlers();
 
-    const { isCartPage } = useCustomLocation()
-
     return (
         <>
             { shoppingCartItems?.map(
@@ -35,9 +32,10 @@ export default function ItemsList() {
                     countInStock,
                 }: Product) => {
                     const isQuantityEqualToLimit = quantity === productLimit;
+                    const minimumProductQuantity = 1
                     // countInStock is what's left of that specific product in the store.
                     const isQuantityGreaterThanStock = quantity >= countInStock;
-                    const isDecrementButtonDisabled = quantity === 1;
+                    const isDecrementButtonDisabled = quantity === minimumProductQuantity;
                     const isIncrementButtonDisabled =
                         isQuantityEqualToLimit || isQuantityGreaterThanStock;
 
@@ -74,17 +72,15 @@ export default function ItemsList() {
                             >
                                 <AddIcon />
                             </Button>
-                            { isCartPage && (
-                                <Button
-                                    id="delete-button"
-                                    onClick={ handleProductDelete(productId) }
-                                    variant="contained"
-                                    startIcon={ <DeleteIcon /> }
-                                    sx={ deleteButton }
-                                >
-                                    DELETE
-                                </Button>
-                            ) }
+                            <Button
+                                id="delete-button"
+                                onClick={ handleProductDelete(productId) }
+                                variant="contained"
+                                startIcon={ <DeleteIcon /> }
+                                sx={ deleteButton }
+                            >
+                                DELETE
+                            </Button>
                         </Card>
                     );
                 }
