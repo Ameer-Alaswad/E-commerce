@@ -12,6 +12,7 @@ import usePlaceOrderValidationAndRedirect from "../../../hooks/usePlaceOrderVali
 const PlaceOrderUi = () => {
 
     usePlaceOrderValidationAndRedirect()
+
     return (
         <div style={ placeOrderContainerStyles }>
             <ProgressSteps />
