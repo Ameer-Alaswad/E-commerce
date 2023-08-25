@@ -9,15 +9,16 @@ import { PayPalButtons, usePayPalScriptReducer } from "@paypal/react-paypal-js";
 import axios from "axios";
 import useUserAuthContext from "../../hooks/context/useUserAuthContext";
 import useOrdersContext from "../../hooks/context/useOrdersContext";
+import { checkUserLoggedIn } from "../../utils/utils";
 
 const OrderScreen = () => {
     const navigate = useNavigate();
     const { setOrderData, orderData } = useOrdersContext()
     const { userSignedIn } = useUserAuthContext()
+    console.log("inpay", orderData);
 
-    const user: any = localStorage.getItem("userData");
-    const parsedUser = JSON.parse(user);
-    let userSigned = userSignedIn || parsedUser;
+    const userSigned = checkUserLoggedIn(userSignedIn)
+
     const { id: orderId } = useParams();
 
     const [{ isPending }, paypalDispatch] = usePayPalScriptReducer();

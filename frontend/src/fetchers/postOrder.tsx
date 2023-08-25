@@ -17,27 +17,35 @@ type OrderData = {
 
 type PostUserDataArgs = {
     URL: string;
-    orderData: OrderData;
+    orderInfo: OrderData;
     navigate: NavigateFunction;
     userToken: string | undefined;
     setShoppingCartItems: React.Dispatch<React.SetStateAction<Product[]>>;
+    setOrderData: any
 };
 
 export const postUser = async ({
     URL,
-    orderData,
+    orderInfo,
     navigate,
     userToken,
     setShoppingCartItems,
+    setOrderData
 }: PostUserDataArgs) => {
     try {
-        const { data } = await axios.post(URL, orderData, {
+        const { data } = await axios.post(URL, orderInfo, {
             headers: {
                 authorization: `Bearer ${userToken}`,
             },
         });
+
+        const newOrderId = data.order._id;
+
+        console.log("inPost", newOrderId);
+
         setShoppingCartItems([]);
-        navigate(`/order/${data.order._id}`);
+        setOrderData(orderInfo); // Set the _id in orderData
+        navigate(`/order/${newOrderId}`);
     } catch (error: any) {
         toast.error(error?.message);
     }

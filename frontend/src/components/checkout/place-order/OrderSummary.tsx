@@ -27,8 +27,11 @@ import {
     TOTAL_TEXT,
 } from "../../constants/text";
 import { API_PLACE_ORDER } from "../../constants/path";
+import useOrdersContext from "../../../hooks/context/useOrdersContext";
 
 export default function OrderSummary() {
+    const { setOrderData, orderData } = useOrdersContext()
+
     const navigate = useNavigate();
     const { shippingAddressData, paymentMethod } = useCheckoutContext();
     const { userSignedIn } = useUserAuthContext();
@@ -41,7 +44,7 @@ export default function OrderSummary() {
     const { totalItemsPrice, shippingPrice, taxes, totalPrice } =
         calculateCartTotalPrices(shoppingCartItems);
 
-    const orderData = {
+    const orderInfo = {
         orderItems: shoppingCartItems,
         shippingAddress: shippingAddressData,
         paymentMethod: paymentMethod,
@@ -55,10 +58,11 @@ export default function OrderSummary() {
     const handlePlacingOrder = () => {
         postUser({
             URL: API_PLACE_ORDER,
-            orderData,
+            orderInfo,
             navigate,
             userToken: token,
             setShoppingCartItems,
+            setOrderData
         });
     };
 
