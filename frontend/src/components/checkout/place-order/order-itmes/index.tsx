@@ -3,14 +3,13 @@ import {
     CardActions,
     CardContent,
     Button,
-    Typography,
 } from "@mui/material";
 
 import { useNavigate } from 'react-router-dom';
 import ItemsList from './ItemsList';
-import { placeOrderComponentsStyles } from '../../styles';
+import { orderItemsContainerStyles } from '../../styles';
+import Title from "./Title";
 
-const { container, title } = placeOrderComponentsStyles;
 
 export default function Items() {
 
@@ -19,11 +18,9 @@ export default function Items() {
     const handleNavigate = () => navigate("/cart");
 
     return (
-        <Card sx={ container }>
+        <Card sx={ orderItemsContainerStyles }>
             <CardContent>
-                <Typography sx={ title } fontWeight="fontWeightBold">
-                    Items
-                </Typography>
+                <Title />
                 <ItemsList />
             </CardContent>
             <CardActions>

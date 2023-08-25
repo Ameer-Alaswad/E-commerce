@@ -1,40 +1,13 @@
 import { Product } from "../../contexts/shopping-cart-context/Types";
 
-type PaymentRedirectProps = {
-    progressStepNumber: number;
-    pageName: string;
-    errorMessage: string;
-    stepName: string;
-    redirectName: string;
-};
-
 type CartTotals = {
     totalItemsPrice: number;
     shippingPrice: number;
     taxes: number;
     totalPrice: number;
 };
-export const getPaymentRedirectProps = ({
-    progressStepNumber,
-    pageName,
-    errorMessage,
-    stepName,
-    redirectName,
-}: PaymentRedirectProps) => {
-    const progressStep = progressStepNumber;
-    const userNotSignedLink = `/user/signin?redirect=/${pageName}`;
-    const userNotSignedMessage = "Sign in first!";
-    const redirectLink = `/${redirectName}?redirect=/${stepName}`;
-    const redirectMessage = errorMessage;
 
-    return {
-        progressStep,
-        userNotSignedLink,
-        userNotSignedMessage,
-        redirectLink,
-        redirectMessage,
-    };
-};
+
 
 export const calculateCartTotalPrices = (shoppingCartItems: Product[]): CartTotals => {
 

@@ -1,60 +1,25 @@
-import { Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import ProgressSteps from "../ProgressSteps";
 import Items from "./order-itmes";
 import OrderSummary from "./OrderSummary";
 import PaymentMethod from "./PaymentMethod";
-import Shipping from "./Shipping";
-import useRedirect from "../useRedirect";
-import { getPaymentRedirectProps } from "../utils";
-import { placeOrderStyles } from "../styles";
-import useUserAuthContext from "../../../hooks/context/useUserAuthContext";
-import useCheckoutContext from "../../../hooks/context/useCheckoutContext";
+import { ordersDetailsContainer, placeOrderContainerStyles } from "../styles";
+import PlaceOrderTitle from "./PlaceOrderTitle";
+import ShippingInfo from "./ShippingInfo";
+import usePlaceOrderValidationAndRedirect from "../../../hooks/usePlaceOrderValidationAndRedirect";
 
-const { mainContainer, orderDetailsContainer, PreviewOrder } = placeOrderStyles;
 
 const PlaceOrderUi = () => {
 
-
-    const { setProgressStep, paymentMethod } = useCheckoutContext()
-    const { userSignedIn } = useUserAuthContext()
-
-    const {
-        progressStep,
-        userNotSignedLink,
-        userNotSignedMessage,
-        redirectLink,
-        redirectMessage,
-    } = getPaymentRedirectProps({
-        progressStepNumber: 2,
-        pageName: "shipping",
-        errorMessage: "Choose a payment Method first !",
-        stepName: "payment",
-        redirectName: "shipping",
-    });
-
-    useRedirect(
-        {
-            userSignedIn,
-            setProgressStep,
-            progressStep,
-            userNotSignedLink,
-            userNotSignedMessage,
-            redirectLink,
-            redirectMessage,
-        },
-        paymentMethod
-    );
+    usePlaceOrderValidationAndRedirect()
 
     return (
-        <div style={ mainContainer }>
+        <div style={ placeOrderContainerStyles }>
             <ProgressSteps />
-            <Box sx={ orderDetailsContainer }>
+            <Box sx={ ordersDetailsContainer }>
                 <Box>
-                    <Typography sx={ PreviewOrder } variant="h3">
-                        Preview Order
-                    </Typography>
-                    <Shipping />
+                    <PlaceOrderTitle />
+                    <ShippingInfo />
                     <PaymentMethod />
                     <Items />
                 </Box>

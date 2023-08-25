@@ -28,6 +28,7 @@ const OrderScreen = () => {
                 purchase_units: [
                     {
                         amount: { value: orderData?.totalPrice },
+
                     },
                 ],
             })
@@ -52,7 +53,6 @@ const OrderScreen = () => {
             }
         });
     };
-
     const onError = (err: any) => {
         toast.error(err)
     }
@@ -64,10 +64,8 @@ const OrderScreen = () => {
                 toast.error("Sign in first !");
             }, 100);
         }
-        if (orderId) {
-            fetchOrder(`/api/orders/${orderId}`, userSigned).then((data) => {
-                return setOrderData(data);
-            });
+        if (!orderData?._id) {
+            fetchOrder(`/api/orders/${orderId}`, userSigned, setOrderData);
         } else {
             const loadPaypalScript = async () => {
                 const { data: clientId } = await axios.get("/api/keys/paypal", {
@@ -80,10 +78,10 @@ const OrderScreen = () => {
                         currency: "USD",
                     },
                 });
-                // paypalDispatch({
-                //     type: "setLoadingStatus",
-                //     value: "pending",
-                // });
+                paypalDispatch({
+                    type: "setLoadingStatus",
+                    value: "pending" as any,
+                });
             };
             loadPaypalScript();
         }
