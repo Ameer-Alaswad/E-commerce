@@ -25,7 +25,7 @@ const usePaymentValidationAndRedirect = () => {
         const isEmptyShippingAddressData = Object.keys(shippingAddressData).length === 0
         const isEmptyShoppingCart = shoppingCartItems.length === 0
 
-        setProgressStep(progressStep);
+        setProgressStep(1);
         if (!userSignedIn) {
             navigate(`${SIGNIN_REDIRECTION_PATH}${PAYMENT_PATH}`);
             toast.error(SIGN_IN_ERROR);

@@ -22,7 +22,7 @@ const usePlaceOrderValidationAndRedirect = () => {
     useEffect(() => {
         const isEmptyShoppingCart = shoppingCartItems.length === 0
 
-        setProgressStep(progressStep);
+        setProgressStep(2);
         if (!userSignedIn) {
             navigate(`${SIGNIN_REDIRECTION_PATH}${PLACE_ORDER}`);
             toast.error(SIGN_IN_ERROR);

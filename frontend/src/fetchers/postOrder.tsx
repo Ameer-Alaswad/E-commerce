@@ -38,13 +38,9 @@ export const postUser = async ({
                 authorization: `Bearer ${userToken}`,
             },
         });
-
-        const newOrderId = data.order._id;
-
-        console.log("inPost", newOrderId);
-
+        const newOrderId = data?.order._id;
         setShoppingCartItems([]);
-        setOrderData(orderInfo); // Set the _id in orderData
+        setOrderData(orderInfo);
         navigate(`/order/${newOrderId}`);
     } catch (error: any) {
         toast.error(error?.message);
