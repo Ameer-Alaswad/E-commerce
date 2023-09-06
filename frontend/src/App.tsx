@@ -11,7 +11,7 @@ import ShippingAddressUi from './components/checkout/shipping-address';
 import SignUpUser from './components/authentication/sign-up/index';
 import PaymentUi from './components/checkout/payment-ui';
 import PlaceOrderUi from './components/checkout/place-order';
-import OrderScreen from './components/orders/OrderScreen';
+import OrderScreen from './components/orders/order-preview';
 import OrdersHistory from './components/orders/order-history';
 import ProfileUpdate from './components/ProfileUpdate';
 import Footer from './components/footer/Footer';

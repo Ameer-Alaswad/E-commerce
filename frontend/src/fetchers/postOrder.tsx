@@ -4,7 +4,6 @@ import { toast } from "react-toastify";
 import { Product } from "../contexts/shopping-cart-context/Types";
 import { ShippingAddressDataType } from "../contexts/checkout-context/Types";
 
-// types
 type OrderData = {
     orderItems: Product[];
     shippingAddress: ShippingAddressDataType;
@@ -41,6 +40,7 @@ export const postUser = async ({
         const newOrderId = data?.order._id;
         setShoppingCartItems([]);
         setOrderData(orderInfo);
+        toast.success('Order was placed successfully')
         navigate(`/order/${newOrderId}`);
     } catch (error: any) {
         toast.error(error?.message);
