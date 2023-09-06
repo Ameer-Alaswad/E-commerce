@@ -4,7 +4,6 @@ import { toast } from "react-toastify";
 import { Product } from "../contexts/shopping-cart-context/Types";
 import { ShippingAddressDataType } from "../contexts/checkout-context/Types";
 
-// types
 type OrderData = {
     orderItems: Product[];
     shippingAddress: ShippingAddressDataType;
@@ -17,27 +16,32 @@ type OrderData = {
 
 type PostUserDataArgs = {
     URL: string;
-    orderData: OrderData;
+    orderInfo: OrderData;
     navigate: NavigateFunction;
     userToken: string | undefined;
     setShoppingCartItems: React.Dispatch<React.SetStateAction<Product[]>>;
+    setOrderData: any
 };
 
 export const postUser = async ({
     URL,
-    orderData,
+    orderInfo,
     navigate,
     userToken,
     setShoppingCartItems,
+    setOrderData
 }: PostUserDataArgs) => {
     try {
-        const { data } = await axios.post(URL, orderData, {
+        const { data } = await axios.post(URL, orderInfo, {
             headers: {
                 authorization: `Bearer ${userToken}`,
             },
         });
+        const newOrderId = data?.order._id;
         setShoppingCartItems([]);
-        navigate(`/order/${data.order._id}`);
+        setOrderData(orderInfo);
+        toast.success('Order was placed successfully')
+        navigate(`/order/${newOrderId}`);
     } catch (error: any) {
         toast.error(error?.message);
     }

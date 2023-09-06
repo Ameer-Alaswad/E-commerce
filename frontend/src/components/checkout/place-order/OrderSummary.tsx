@@ -21,17 +21,22 @@ import {
     CURRENCY_DOLLAR,
     ITEMS_TEXT,
     ORDER_SUMMARY_TITLE,
-    PLACE_ORDER_TEXT,
     SHIPPING_TITLE,
     TAX_TEXT,
     TOTAL_TEXT,
 } from "../../constants/text";
 import { API_PLACE_ORDER } from "../../constants/path";
+import useOrdersContext from "../../../hooks/context/useOrdersContext";
+import { toast } from "react-toastify";
+import { PayPalButtons } from "@paypal/react-paypal-js";
 
 export default function OrderSummary() {
+    const { userSignedIn } = useUserAuthContext()
+
+    const { setOrderData, orderData } = useOrdersContext()
+
     const navigate = useNavigate();
     const { shippingAddressData, paymentMethod } = useCheckoutContext();
-    const { userSignedIn } = useUserAuthContext();
     const {
         shoppingCartItems,
 
@@ -41,7 +46,7 @@ export default function OrderSummary() {
     const { totalItemsPrice, shippingPrice, taxes, totalPrice } =
         calculateCartTotalPrices(shoppingCartItems);
 
-    const orderData = {
+    const orderInfo = {
         orderItems: shoppingCartItems,
         shippingAddress: shippingAddressData,
         paymentMethod: paymentMethod,
@@ -49,18 +54,41 @@ export default function OrderSummary() {
         shippingPrice,
         taxes,
         totalPrice,
+        isPaid: true
     };
     const token = userSignedIn?.token;
 
-    const handlePlacingOrder = () => {
-        postUser({
-            URL: API_PLACE_ORDER,
-            orderData,
-            navigate,
-            userToken: token,
-            setShoppingCartItems,
+    const createOrder = (data: any, actions: any) => {
+        return actions.order
+            .create({
+                purchase_units: [
+                    {
+                        amount: { value: orderData?.totalPrice },
+
+                    },
+                ],
+            })
+            .then((orderId: string) => {
+                return orderId;
+            });
+    };
+
+    const onApprove = (data: any, actions: any) => {
+        return actions.order.capture().then(async (details: any) => {
+            postUser({
+                URL: API_PLACE_ORDER,
+                orderInfo,
+                navigate,
+                userToken: token,
+                setShoppingCartItems,
+                setOrderData
+            });
         });
     };
+    const onError = (err: any) => {
+        toast.error(err)
+    }
+
 
     return (
         <Card sx={ orderSummaryContainerStyles }>
@@ -94,13 +122,11 @@ export default function OrderSummary() {
                     </Typography>
                     <Divider sx={ divider } />
                     <Box sx={ placeOrderButtonStyles }>
-                        <Button
-                            onClick={ handlePlacingOrder }
-                            sx={ placeOrderButtonStyles }
-                            variant="contained"
-                        >
-                            { PLACE_ORDER_TEXT }
-                        </Button>
+                        <PayPalButtons
+                            createOrder={ createOrder }
+                            onApprove={ onApprove }
+                            onError={ onError }
+                        ></PayPalButtons>
                     </Box>
                 </Box>
             </CardContent>

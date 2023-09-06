@@ -24,6 +24,7 @@ orderRouter.post("/", isAuth, async (req, res) => {
     shippingPrice,
     taxPrice: taxes,
     totalPrice,
+    isPaid: true,
     user: req.user._id,
   });
   const order = await newOrder.save();
