@@ -1,5 +1,5 @@
 import React from "react";
-import { IconButton } from "@mui/material";
+import { IconButton, Typography } from "@mui/material";
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import useMenuSettingsContext from "../../hooks/context/useMenuSettingsContext";
 
@@ -19,9 +19,13 @@ const UserSettingMenu: React.FC<UserSettingMenuProps> = ({ userName }) => {
             aria-label="account of current user"
             aria-haspopup="true"
             onClick={ handleProfileMenuOpen }
-            color="inherit"
+            sx={ { color: "#0000CD" } }
         >
-            { userName }&nbsp;
+            <Typography
+                variant="h5"
+                sx={ { color: "#ff5200" } }>
+                { userName }&nbsp;
+            </Typography>
             <AccountCircle />
         </IconButton>
     );

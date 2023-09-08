@@ -1,6 +1,19 @@
+import { buttonHover } from "../cart-page/cartStyles";
+
 export const formButton = {
     mt: 3,
     mb: 2,
+    fontSize: "0.9rem",
+    backgroundColor: "#FF5722",
+    color: "white",
+    borderRadius: "20px",
+    padding: "10px 20px",
+    transition: "transform 0.3s ease-in-out",
+    "&:hover": {
+        backgroundColor: "#0000CD",
+
+        animation: `${buttonHover} 0.3s ease-in-out`,
+    },
 };
 export const formTitle = {
     textAlign: "center",
@@ -114,11 +127,22 @@ export const orderItemsTitleStyles = {
 };
 
 export const itemsContainerStyles = {
-    minWidth: 350,
+    width: "500px",
+    minWidth: 330,
     display: "flex",
     justifyContent: "space-around",
     alignItems: "center",
+    padding: "20px",
+    borderRadius: "8px",
+    boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
+    backgroundColor: "#ffffff",
+    border: "1px solid #dddddd",
     marginBottom: "10px",
+    transition: "transform 0.2s",
+    "&:hover": {
+        transform: "scale(1.01)",
+        boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)",
+    },
 };
 
 export const itemImageStyles = {
@@ -127,5 +151,16 @@ export const itemImageStyles = {
 };
 export const deleteItemButton = {
     fontSize: "0.7rem",
-    padding: "10px 10px",
+    backgroundColor: "#FF5722",
+    color: "white",
+    borderRadius: "20px",
+    padding: "10px 20px",
+    transition: "transform 0.3s ease-in-out",
+    "&:hover": {
+        backgroundColor: "#0000CD",
+
+        animation: `${buttonHover} 0.3s ease-in-out`,
+    },
 };
+
+export const itemsContainer = { maxHeight: "600px", overflow: "auto", }

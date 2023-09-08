@@ -7,8 +7,9 @@ const displayConfig = {
 };
 
 export const landingLinkStyles = {
-    color: "white",
+    color: "#ff5200",
     textDecoration: "none",
+
 }
 export const linkDisplayStyles = {
     ...displayConfig.xsNone,
@@ -24,3 +25,4 @@ export const mobileMenuDisplayStyles = {
     ...displayConfig.xsFlex,
     ...displayConfig.mdNone,
 };
+export const navbarStyles = { backgroundColor: "#ADD8E6", color: "#ff5200" }

@@ -6,6 +6,7 @@ import DisplaySiteName from "./DisplaySiteName";
 import UserSettings from "./UserSettings";
 import UserAuthenticationLinks from "./UserAuthenticationLinks";
 import useUserAuthContext from "../../hooks/context/useUserAuthContext";
+import { navbarStyles } from "./styles";
 
 const Navbar = () => {
 
@@ -13,7 +14,7 @@ const Navbar = () => {
 
     return (
         <div id="navbar-container">
-            <AppBar position="fixed">
+            <AppBar sx={ navbarStyles } position="fixed">
                 <Toolbar>
                     <DisplaySiteName />
                     <ProductSearch />

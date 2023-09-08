@@ -10,7 +10,7 @@ const DisplaySiteName = () =>
             variant="h6"
             noWrap
             component="div"
-            sx={ { display: { ...linkDisplayStyles } } }
+            sx={ { display: { ...linkDisplayStyles }, color: "#ff5200" } }
         >
             FashionHub
         </Typography>

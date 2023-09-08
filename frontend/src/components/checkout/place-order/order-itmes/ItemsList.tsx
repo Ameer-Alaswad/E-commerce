@@ -1,4 +1,4 @@
-import { Button, Card, Typography } from "@mui/material";
+import { Button, Typography, Paper, Box } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
@@ -7,6 +7,7 @@ import { useShoppingCartHandlers } from "./handlers";
 import {
     deleteItemButton,
     itemImageStyles,
+    itemsContainer,
     itemsContainerStyles,
 } from "../../styles";
 import { CURRENCY_DOLLAR } from "../../../constants/text";
@@ -22,7 +23,7 @@ export default function ItemsList() {
     } = useShoppingCartHandlers();
 
     return (
-        <>
+        <Box sx={ itemsContainer } id="items-container">
             { shoppingCartItems &&
                 shoppingCartItems?.map(
                     ({
@@ -35,7 +36,6 @@ export default function ItemsList() {
                     }: Product) => {
                         const isQuantityEqualToLimit = quantity === productLimit;
                         const minimumProductQuantity = 1;
-                        // countInStock is what's left of that specific product in the store.
                         const isQuantityGreaterThanStock = quantity >= countInStock;
                         const isDecrementButtonDisabled =
                             quantity === minimumProductQuantity;
@@ -43,25 +43,26 @@ export default function ItemsList() {
                             isQuantityEqualToLimit || isQuantityGreaterThanStock;
 
                         return (
-                            <Card
-                                id="card-container"
+                            <Paper
+                                elevation={ 3 }
                                 sx={ itemsContainerStyles }
                                 key={ productId }
                             >
-                                <Card id="image-container">
+                                <div id="image-container">
                                     <img
                                         id="image"
                                         style={ itemImageStyles }
                                         src={ image }
                                         alt="items-img"
                                     />
-                                </Card>
+                                </div>
                                 <Typography id="product-id">{ productId }</Typography>
-                                <Typography id="product-price">
+                                <Typography sx={ { color: "#0000CD" } } id="product-price">
                                     { price }
                                     { CURRENCY_DOLLAR }
                                 </Typography>
                                 <Button
+                                    sx={ { color: "#0000CD" } }
                                     id="decrement-button"
                                     onClick={ handleQuantityDecrement(productId) }
                                     disabled={ isDecrementButtonDisabled }
@@ -70,6 +71,7 @@ export default function ItemsList() {
                                 </Button>
                                 <Typography id="product-quantity">{ quantity }</Typography>
                                 <Button
+                                    sx={ { color: "#0000CD" } }
                                     id="increment-button"
                                     onClick={ handleQuantityIncrement({
                                         productId,
@@ -90,10 +92,10 @@ export default function ItemsList() {
                                 >
                                     DELETE
                                 </Button>
-                            </Card>
+                            </Paper>
                         );
                     }
                 ) }
-        </>
+        </Box >
     );
 }
