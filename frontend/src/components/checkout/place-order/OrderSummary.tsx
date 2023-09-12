@@ -28,7 +28,7 @@ import {
 import { API_PLACE_ORDER } from "../../constants/path";
 import useOrdersContext from "../../../hooks/context/useOrdersContext";
 import { toast } from "react-toastify";
-import { PayPalButtons } from "@paypal/react-paypal-js";
+import { PayPalButtons, usePayPalScriptReducer } from "@paypal/react-paypal-js";
 
 export default function OrderSummary() {
     const { userSignedIn } = useUserAuthContext()
@@ -88,6 +88,7 @@ export default function OrderSummary() {
     const onError = (err: any) => {
         toast.error(err)
     }
+
 
 
     return (

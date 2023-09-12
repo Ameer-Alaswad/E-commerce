@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import useCheckoutContext from "../../../hooks/context/useCheckoutContext";
 import useSignInCheck from "../../../hooks/useSignInCheck";
 
-import { PAYMENT_PATH, SHIPPING_PATH } from "../../constants/path";
+import { PAYMENT_PATH, SHIPPING_PATH, SHOPPING_CART_PATH } from "../../constants/path";
 import { SHIPPING_ADDRESS } from "../../constants/text";
 
 import ProgressSteps from "../ProgressSteps";
@@ -13,6 +13,7 @@ import { formContainer, formTitle, mainContainer } from "../styles";
 
 import ShoppingAddressForm from "./ShoppingAdressForm";
 import ContinueButton from "./ContinueButton";
+import GoBackButton from "../../GoBackButton";
 
 const ShippingAddressUi = () => {
   const navigate = useNavigate();
@@ -47,6 +48,8 @@ const ShippingAddressUi = () => {
   return (
     <>
       <ProgressSteps />
+      <GoBackButton goBackLink={ SHOPPING_CART_PATH } />
+
       <Box sx={ mainContainer }>
         <Box
           sx={ formContainer }

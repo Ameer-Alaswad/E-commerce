@@ -7,6 +7,8 @@ import { ordersDetailsContainer, placeOrderContainerStyles } from "../styles";
 import PlaceOrderTitle from "./PlaceOrderTitle";
 import ShippingInfo from "./ShippingInfo";
 import usePlaceOrderValidationAndRedirect from "../../../hooks/usePlaceOrderValidationAndRedirect";
+import GoBackButton from "../../GoBackButton";
+import { PAYMENT_PATH } from "../../constants/path";
 
 
 const PlaceOrderUi = () => {
@@ -16,6 +18,7 @@ const PlaceOrderUi = () => {
     return (
         <div style={ placeOrderContainerStyles }>
             <ProgressSteps />
+            <GoBackButton goBackLink={ PAYMENT_PATH } />
             <Box sx={ ordersDetailsContainer }>
                 <Box>
                     <PlaceOrderTitle />

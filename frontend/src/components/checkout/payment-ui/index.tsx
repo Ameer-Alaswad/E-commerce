@@ -7,10 +7,9 @@ import { useNavigate } from "react-router-dom";
 
 import { toast } from "react-toastify";
 
-import ProgressSteps from "../ProgressSteps";
 import Title from "./Title";
 import SubmitMethodButton from "./SubmitMethodButton";
-import PaymentMethodSelector from "./PaymentMethodSelector";
+import PaymentMethodSelector from "./payment-method-selectore/PaymentMethodSelector";
 
 import useCheckoutContext from "../../../hooks/context/useCheckoutContext";
 import usePaymentValidationAndRedirect from "../../../hooks/usePaymentValidationAndRedirect";
@@ -20,7 +19,9 @@ import {
     CHOOSE_PAYMENT_METHOD_ERROR,
     PAYMENT_METHOD_TEXT,
 } from "../../constants/text";
-import { PLACE_ORDER } from "../../constants/path";
+import { PLACE_ORDER, SHIPPING_PATH } from "../../constants/path";
+import GoBackButton from "../../GoBackButton";
+import ProgressSteps from "../ProgressSteps";
 
 const PaymentUi = () => {
     const navigate = useNavigate();
@@ -47,6 +48,7 @@ const PaymentUi = () => {
     return (
         <>
             <ProgressSteps />
+            <GoBackButton goBackLink={ SHIPPING_PATH } />
             <Box sx={ paymentUiContainerStyles }>
                 <Box
                     sx={ paymentUiFormStyles }

@@ -8,7 +8,7 @@ const steps = ["Shipping Address", "Payment", "Place Order"];
 
 const progressStepsContainer = {
     width: "100%",
-    marginTop: "100px", // Should be lowercase 'px'
+    marginTop: "100px",
 };
 
 export default function ProgressSteps() {
@@ -19,19 +19,22 @@ export default function ProgressSteps() {
             <Stepper activeStep={ progressStep } alternativeLabel>
                 { steps.map((label, index) => (
                     <Step key={ label }>
-                        <StepLabel sx={
-                            index === progressStep
-                                ? {
-                                    "& .MuiStepIcon-root": {
-                                        color: "#FFA500",
-                                    },
-                                    "& .MuiStepLabel-label": {
-                                        color: "#0000CD",
-                                    },
-                                }
-                                : {}
-
-                        }> { label }</StepLabel>
+                        <StepLabel
+                            sx={
+                                index === progressStep
+                                    ? {
+                                        "& .MuiStepIcon-root": {
+                                            color: "#FFA500",
+                                        },
+                                        "& .MuiStepLabel-label": {
+                                            color: "#0000CD",
+                                        },
+                                    }
+                                    : {}
+                            }
+                        >
+                            { label }
+                        </StepLabel>
                     </Step>
                 )) }
             </Stepper>

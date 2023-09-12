@@ -47,6 +47,17 @@ export const heading = {
 export const submitMethodButtonStyles = {
     mt: 3,
     mb: 2,
+    fontSize: "0.9rem",
+    backgroundColor: "#FF5722",
+    color: "white",
+    borderRadius: "20px",
+    padding: "10px 20px",
+    transition: "transform 0.3s ease-in-out",
+    "&:hover": {
+        backgroundColor: "#0000CD",
+
+        animation: `${buttonHover} 0.3s ease-in-out`,
+    },
 };
 
 export const orderSummaryContainerStyles = {
