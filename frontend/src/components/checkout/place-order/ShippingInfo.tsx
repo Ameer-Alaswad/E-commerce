@@ -5,9 +5,8 @@ import {
     Button,
     Typography,
 } from "@mui/material";
-
 import { useNavigate } from "react-router-dom";
-import { shippingInfoContainerStyles, shippingInfoTitleStyles } from "../styles";
+import { shippingInfoContainerStyles, shippingInfoTitleStyles, editShippingDataStyles } from "../styles";
 import { SHIPPING_PATH } from "../../constants/path";
 import { ADDRESS_TEXT, EDIT_TEXT, NAME_TEXT, SHIPPING_TITLE } from "../../constants/text";
 
@@ -19,6 +18,7 @@ const ShippingInfo = () => {
     const { fullName, address } = shippingAddressData;
     const navigate = useNavigate();
     const handleNavigateToShipping = () => navigate(SHIPPING_PATH);
+
 
     return (
         <Card sx={ shippingInfoContainerStyles }>
@@ -34,7 +34,7 @@ const ShippingInfo = () => {
                 </Typography>
             </CardContent>
             <CardActions>
-                <Button onClick={ handleNavigateToShipping } size="small">
+                <Button sx={ editShippingDataStyles } onClick={ handleNavigateToShipping } size="small">
                     { EDIT_TEXT }
                 </Button>
             </CardActions>

@@ -7,7 +7,7 @@ import {
 
 import { useNavigate } from 'react-router-dom';
 import ItemsList from './ItemsList';
-import { orderItemsContainerStyles } from '../../styles';
+import { editItemsButtonStyles, orderItemsContainerStyles } from '../../styles';
 import Title from "./Title";
 
 
@@ -24,7 +24,7 @@ export default function Items() {
                 <ItemsList />
             </CardContent>
             <CardActions>
-                <Button onClick={ handleNavigate } size="small">Edit</Button>
+                <Button sx={ editItemsButtonStyles } onClick={ handleNavigate } size="small">Edit</Button>
             </CardActions>
         </Card>
     );

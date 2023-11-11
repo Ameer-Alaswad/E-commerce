@@ -12,7 +12,6 @@ import useUserAuthContext from "../../../hooks/context/useUserAuthContext";
 import AnimatedLoadingIcon from "../../AnimatedLoadingIcon";
 
 const orderHistoryContainer = {
-    height: "100vh",
     display: "flex",
     justifyContent: "center",
     alignItems: "center",

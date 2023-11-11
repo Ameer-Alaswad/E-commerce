@@ -24,6 +24,7 @@ export const EmptyCartContainerStyles = {
     flexDirection: "column",
     alignItems: "center",
     textAlign: "center",
+
 }
 
 export const emptyCardPaperStyles = {
@@ -33,6 +34,8 @@ export const emptyCardPaperStyles = {
     flexDirection: "column",
     alignItems: "center",
     textAlign: "center",
+    backgroundColor: "#ADD8E6",
+
 }
 export const emptyCartButton = {
     backgroundColor: "#FF5722",
@@ -49,11 +52,15 @@ export const cartCardStyle = {
     minWidth: 275,
     width: "600px",
     marginRight: "40px",
+    backgroundColor: "#ADD8E6",
+    borderRadius: "10px",
+    padding: "20px",
 };
 
 export const totalCardStyle = {
     width: "300px",
     height: "150px",
+    backgroundColor: "#ADD8E6"
 };
 
 export const buttonContainerStyle = {

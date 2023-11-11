@@ -25,40 +25,6 @@ const OrderPreview = () => {
 
     const [{ isPending }, paypalDispatch] = usePayPalScriptReducer();
 
-    const createOrder = (data: any, actions: any) => {
-        return actions.order
-            .create({
-                purchase_units: [
-                    {
-                        amount: { value: orderData?.totalPrice },
-
-                    },
-                ],
-            })
-            .then((orderId: string) => {
-                return orderId;
-            });
-    };
-
-    const onApprove = (data: any, actions: any) => {
-        return actions.order.capture().then(async (details: any) => {
-            try {
-                const { data } = await axios.put(
-                    `/api/orders/${orderData?._id}/pay`,
-                    details,
-                    {
-                        headers: { authorization: `Bearer ${userSigned?.token}` },
-                    }
-                );
-                toast.success('Order is paid')
-            } catch (error) {
-                toast.error("Payment failed");
-            }
-        });
-    };
-    const onError = (err: any) => {
-        toast.error(err)
-    }
 
     useEffect(() => {
         if (!userSigned) {
@@ -98,6 +64,7 @@ const OrderPreview = () => {
                 justifyContent: "space-between",
                 marginTop: "120px",
                 width: "1000px",
+                height: "100vh"
             } }
         >
             { orderData && (

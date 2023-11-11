@@ -6,7 +6,12 @@ const ProductsList = () => {
     const { orderData } = useOrdersContext();
 
     return (
-        <Card sx={ { minWidth: 275, width: "600px" } }>
+        <Card sx={ {
+            minWidth: 275, width: "600px", backgroundColor: "#ADD8E6",
+            borderRadius: "10px",
+            padding: "20px",
+            marginBottom: "20px",
+        } }>
             <CardContent>
 
                 <Typography sx={ { marginBottom: "10px" } } fontWeight="fontWeightBold">

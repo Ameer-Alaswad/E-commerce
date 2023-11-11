@@ -14,7 +14,12 @@ const ShippingData = () => {
     return (
         <>
             { orderData?.shippingAddress && (
-                <Card sx={ { minWidth: 275, width: "600px", marginBottom: "15px" } }>
+                <Card sx={ {
+                    backgroundColor: "#ADD8E6",
+                    borderRadius: "10px",
+                    padding: "20px",
+                    marginBottom: "20px",
+                } }>
                     <CardContent>
                         <Typography
                             sx={ { marginBottom: "10px" } }

@@ -17,6 +17,10 @@ const OrderSummary = () => {
             sx={ {
                 width: "300px",
                 height: "400px",
+                backgroundColor: "#ADD8E6",
+                borderRadius: "10px",
+                padding: "20px",
+                marginBottom: "20px",
             } }
         >
             <CardContent>

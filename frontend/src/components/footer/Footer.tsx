@@ -14,7 +14,7 @@ const styles = {
         display: "flex",
         alignItems: "center",
         justifyContent: "space-between",
-        color: "#ADD8E6"
+        color: "#ADD8E6",
     },
     copy: {
         marginLeft: "10px",

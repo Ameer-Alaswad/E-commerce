@@ -22,7 +22,7 @@ const TableHeaderData = [
     { label: "DELIVERED", align: "right" },
     { label: "ACTIONS", align: "right" },
 ];
-const tableContainerStyles = { marginTop: "40px", width: "800px" };
+const tableContainerStyles = { marginTop: "40px", width: "800px", height: "800px", marginBottom: "100px" };
 
 const OrdersTable = ({ orderHistory }: tableProps) => {
     return (
@@ -47,7 +47,7 @@ const OrdersTable = ({ orderHistory }: tableProps) => {
                             }) }
                         </TableRow>
                     </TableHead>
-                    <TableBody>
+                    <TableBody >
                         <OrdersTableRow orderHistory={ orderHistory } />
                     </TableBody>
                 </Table>
