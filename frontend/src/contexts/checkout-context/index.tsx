@@ -9,6 +9,7 @@ import {
     paymentMethodInStorage,
 } from "../app-context/data";
 import { ContextChildren } from "../app-context/Types";
+import { PAYMENT_METHOD_PAYBAL } from "../../components/constants/text";
 
 export const CheckoutContext = createContext({} as CheckoutContextTypes);
 
@@ -19,8 +20,9 @@ const CheckoutContextProvider = ({ children }: ContextChildren) => {
         );
     const [progressStep, setProgressStep] = useState<number>(0);
     const [paymentMethod, setPaymentMethod] = useState<string>(
-        paymentMethodInStorage || ""
+        paymentMethodInStorage || PAYMENT_METHOD_PAYBAL
     );
+
     return (
         <CheckoutContext.Provider
             value={ {

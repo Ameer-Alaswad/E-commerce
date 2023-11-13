@@ -11,6 +11,7 @@ import { radioButtonStyles, radioButtonTextStyles } from "./styles";
 
 const PaymentMethodSelector = () => {
     const { paymentMethod, setPaymentMethod } = useCheckoutContext();
+
     const handlePaymentMethodChange = (event: ChangeEvent<HTMLInputElement>) => {
         const paymentMethodValue = (event.target as HTMLInputElement).value;
 
@@ -43,7 +44,7 @@ const PaymentMethodSelector = () => {
                 control={
                     <Radio
                         sx={ radioButtonStyles }
-                    />
+                        disabled />
                 }
 
                 label={
