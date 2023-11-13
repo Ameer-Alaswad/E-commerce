@@ -27,8 +27,8 @@ const tableContainerStyles = { marginTop: "40px", width: "800px", height: "800px
 const OrdersTable = ({ orderHistory }: tableProps) => {
     return (
         <Box>
-            <Typography variant="h3" component="h2">
-                Order History
+            <Typography sx={ { marginTop: "100px" } } variant="h3" component="h2">
+                Orders History
             </Typography>
             <TableContainer sx={ tableContainerStyles } component={ Paper }>
                 <Table aria-label="simple table">
