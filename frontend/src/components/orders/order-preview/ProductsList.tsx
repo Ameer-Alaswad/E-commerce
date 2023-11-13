@@ -18,6 +18,7 @@ const ProductsList = () => {
         alignItems: "center",
         marginBottom: "10px",
     }
+    const productCardImageStyles = { width: "60px", height: "80px" }
     return (
         <Card sx={ productsListContainerStyles }>
             <CardContent>
@@ -33,7 +34,7 @@ const ProductsList = () => {
                             >
                                 <Card>
                                     <img
-                                        style={ { width: "60px", height: "80px" } }
+                                        style={ productCardImageStyles }
                                         src={ image }
                                         alt="items-img"
                                     />
