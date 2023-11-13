@@ -10,11 +10,19 @@ import {
 
 const ShippingData = () => {
     const { orderData } = useOrdersContext();
+    const { isDelivered, shippingAddress } = orderData || {}
+
+    const shippingDataContainerStyles = {
+        backgroundColor: "#ADD8E6",
+        borderRadius: "10px",
+        padding: "20px",
+        marginBottom: "20px",
+    }
 
     return (
         <>
             { orderData?.shippingAddress && (
-                <Card sx={ { minWidth: 275, width: "600px", marginBottom: "15px" } }>
+                <Card sx={ shippingDataContainerStyles }>
                     <CardContent>
                         <Typography
                             sx={ { marginBottom: "10px" } }
@@ -24,15 +32,15 @@ const ShippingData = () => {
                         </Typography>
                         <Typography variant="body1">
                             <strong>{ NAME_TEXT }:</strong>{ " " }
-                            { orderData?.shippingAddress?.fullName }
+                            { shippingAddress?.fullName }
                         </Typography>
                         <Typography variant="body1">
                             <strong>{ ADDRESS_TEXT }:</strong>{ " " }
-                            { orderData?.shippingAddress?.address }
+                            { shippingAddress?.address }
                         </Typography>
                         <Typography
                             sx={
-                                !orderData.isDelivered ? { color: "red" } : { color: "green" }
+                                !isDelivered ? { color: "red" } : { color: "green" }
                             }
                             variant="body1"
                         >

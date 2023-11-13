@@ -10,10 +10,11 @@ const styles = {
         bottom: "0",
         width: "100%",
         height: "50px",
-        backgroundColor: "#f2f2f2",
+        backgroundColor: "#FFA500",
         display: "flex",
         alignItems: "center",
         justifyContent: "space-between",
+        color: "#ADD8E6",
     },
     copy: {
         marginLeft: "10px",
@@ -25,6 +26,7 @@ const styles = {
     Button: {
         marginLeft: 1,
         fontSize: "1.5rem",
+        color: "#0000CD"
     },
 };
 

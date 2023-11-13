@@ -4,9 +4,33 @@ import { useNavigate } from "react-router-dom";
 import { Button, TableCell, TableRow } from "@mui/material";
 // types 
 import { tableProps } from "../OrdersTypes";
+import { buttonHover } from "../../../cart-page/cartStyles";
+import { DETAILS_BUTTON } from "../../../constants/text";
 
 const OrdersTableRow: React.FC<tableProps> = ({ orderHistory }) => {
     const navigate = useNavigate();
+
+    const ordersDetailsButtonStyles = {
+        fontSize: "0.9rem",
+        backgroundColor: "#FF5722",
+        color: "white",
+        borderRadius: "20px",
+        padding: "10px 20px",
+        transition: "transform 0.3s ease-in-out",
+        "&:hover": {
+            backgroundColor: "#0000CD",
+
+            animation: `${buttonHover} 0.3s ease-in-out`,
+        },
+    }
+
+    const tableRowStyles = {
+        "&:last-child td, &:last-child th": { border: 0 }, backgroundColor: "#ADD8E6",
+        borderRadius: "10px",
+        padding: "20px",
+        marginBottom: "20px",
+    }
+
     return (
         <>
             { orderHistory &&
@@ -23,7 +47,7 @@ const OrdersTableRow: React.FC<tableProps> = ({ orderHistory }) => {
                         return (
                             <TableRow
                                 key={ orderId }
-                                sx={ { "&:last-child td, &:last-child th": { border: 0 } } }
+                                sx={ tableRowStyles }
                             >
                                 <TableCell component="th" scope="row" align="left">
                                     { orderId }
@@ -42,8 +66,9 @@ const OrdersTableRow: React.FC<tableProps> = ({ orderHistory }) => {
                                     <Button
                                         onClick={ () => navigate(`/order/${orderId}`) }
                                         variant="contained"
+                                        sx={ ordersDetailsButtonStyles }
                                     >
-                                        Details
+                                        { DETAILS_BUTTON }
                                     </Button>
                                 </TableCell>
                             </TableRow>

@@ -13,6 +13,8 @@ import ShippingData from "./ShippingData";
 import PaymentUi from "./PaymentUi";
 import ProductsList from "./ProductsList";
 import OrderSummary from "./OrderSummary";
+import { API_PAYPAL_KEYS_PATH, API_PLACE_ORDER, SIGNIN_PATH } from "../../constants/path";
+import { SIGN_IN_FIRST_ERROR } from "../../constants/errorMessages";
 
 const OrderPreview = () => {
     const navigate = useNavigate();
@@ -25,53 +27,18 @@ const OrderPreview = () => {
 
     const [{ isPending }, paypalDispatch] = usePayPalScriptReducer();
 
-    const createOrder = (data: any, actions: any) => {
-        return actions.order
-            .create({
-                purchase_units: [
-                    {
-                        amount: { value: orderData?.totalPrice },
-
-                    },
-                ],
-            })
-            .then((orderId: string) => {
-                return orderId;
-            });
-    };
-
-    const onApprove = (data: any, actions: any) => {
-        return actions.order.capture().then(async (details: any) => {
-            try {
-                const { data } = await axios.put(
-                    `/api/orders/${orderData?._id}/pay`,
-                    details,
-                    {
-                        headers: { authorization: `Bearer ${userSigned?.token}` },
-                    }
-                );
-                toast.success('Order is paid')
-            } catch (error) {
-                toast.error("Payment failed");
-            }
-        });
-    };
-    const onError = (err: any) => {
-        toast.error(err)
-    }
 
     useEffect(() => {
         if (!userSigned) {
-            navigate("/user/signin");
-            setTimeout(() => {
-                toast.error("Sign in first !");
-            }, 100);
+            navigate(SIGNIN_PATH);
+            toast.error(SIGN_IN_FIRST_ERROR);
+            return
         }
         if (!orderData?._id) {
-            fetchOrder(`/api/orders/${orderId}`, userSigned, setOrderData);
+            fetchOrder(`${API_PLACE_ORDER}/${orderId}`, userSigned, setOrderData);
         } else {
             const loadPaypalScript = async () => {
-                const { data: clientId } = await axios.get("/api/keys/paypal", {
+                const { data: clientId } = await axios.get(API_PAYPAL_KEYS_PATH, {
                     headers: { authorization: `Bearer ${userSigned?.token}` },
                 });
                 paypalDispatch({
@@ -90,15 +57,17 @@ const OrderPreview = () => {
         }
     }, [userSigned, navigate, orderId, setOrderData, paypalDispatch, orderData]);
 
+    const orderPreviewMainContainerStyles = {
+        display: "flex",
+        margin: "0 auto",
+        justifyContent: "space-between",
+        marginTop: "120px",
+        width: "1000px",
+        height: "100vh"
+    }
     return (
         <Box
-            sx={ {
-                display: "flex",
-                margin: "0 auto",
-                justifyContent: "space-between",
-                marginTop: "120px",
-                width: "1000px",
-            } }
+            sx={ orderPreviewMainContainerStyles }
         >
             { orderData && (
                 <Box id="order-preview-container">

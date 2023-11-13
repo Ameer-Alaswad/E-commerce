@@ -1,4 +1,4 @@
-import { Box, Button, CardContent, Divider, Typography } from "@mui/material";
+import { Box, CardContent, Divider, Typography } from "@mui/material";
 import Card from "@mui/material/Card";
 import { postUser } from "../../../fetchers/postOrder";
 import { useNavigate } from "react-router-dom";
@@ -7,7 +7,7 @@ import {
     itemsPriceStyles,
     orderSummaryContainerStyles,
     orderSummaryTitleStyles,
-    placeOrderButtonStyles,
+    placeOrderTitleStyles,
     pricesContainerStyles,
     shippingInfoStyles,
     taxStyles,
@@ -21,6 +21,7 @@ import {
     CURRENCY_DOLLAR,
     ITEMS_TEXT,
     ORDER_SUMMARY_TITLE,
+    PLACE_ORDER_NOW_TEXT,
     SHIPPING_TITLE,
     TAX_TEXT,
     TOTAL_TEXT,
@@ -30,19 +31,20 @@ import useOrdersContext from "../../../hooks/context/useOrdersContext";
 import { toast } from "react-toastify";
 import { PayPalButtons } from "@paypal/react-paypal-js";
 
+
 export default function OrderSummary() {
     const { userSignedIn } = useUserAuthContext()
 
-    const { setOrderData, orderData } = useOrdersContext()
+    const { setOrderData } = useOrdersContext()
 
     const navigate = useNavigate();
     const { shippingAddressData, paymentMethod } = useCheckoutContext();
+
     const {
         shoppingCartItems,
 
         setShoppingCartItems,
     } = useShoppingCartContext();
-
     const { totalItemsPrice, shippingPrice, taxes, totalPrice } =
         calculateCartTotalPrices(shoppingCartItems);
 
@@ -59,11 +61,13 @@ export default function OrderSummary() {
     const token = userSignedIn?.token;
 
     const createOrder = (data: any, actions: any) => {
+        console.log(totalPrice);
+
         return actions.order
             .create({
                 purchase_units: [
                     {
-                        amount: { value: orderData?.totalPrice },
+                        amount: { value: totalPrice },
 
                     },
                 ],
@@ -88,7 +92,6 @@ export default function OrderSummary() {
     const onError = (err: any) => {
         toast.error(err)
     }
-
 
     return (
         <Card sx={ orderSummaryContainerStyles }>
@@ -121,13 +124,19 @@ export default function OrderSummary() {
                         { totalPrice }
                     </Typography>
                     <Divider sx={ divider } />
-                    <Box sx={ placeOrderButtonStyles }>
+                    <Typography
+                        sx={ placeOrderTitleStyles }
+                    >
+                        { PLACE_ORDER_NOW_TEXT }
+                    </Typography>
+                    <div>
                         <PayPalButtons
                             createOrder={ createOrder }
                             onApprove={ onApprove }
                             onError={ onError }
+                            fundingSource="paypal"
                         ></PayPalButtons>
-                    </Box>
+                    </div>
                 </Box>
             </CardContent>
         </Card>

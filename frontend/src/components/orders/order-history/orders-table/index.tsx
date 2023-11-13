@@ -22,13 +22,13 @@ const TableHeaderData = [
     { label: "DELIVERED", align: "right" },
     { label: "ACTIONS", align: "right" },
 ];
-const tableContainerStyles = { marginTop: "40px", width: "800px" };
+const tableContainerStyles = { marginTop: "40px", width: "800px", height: "800px", marginBottom: "100px" };
 
 const OrdersTable = ({ orderHistory }: tableProps) => {
     return (
         <Box>
-            <Typography variant="h3" component="h2">
-                Order History
+            <Typography sx={ { marginTop: "100px" } } variant="h3" component="h2">
+                Orders History
             </Typography>
             <TableContainer sx={ tableContainerStyles } component={ Paper }>
                 <Table aria-label="simple table">
@@ -47,7 +47,7 @@ const OrdersTable = ({ orderHistory }: tableProps) => {
                             }) }
                         </TableRow>
                     </TableHead>
-                    <TableBody>
+                    <TableBody >
                         <OrdersTableRow orderHistory={ orderHistory } />
                     </TableBody>
                 </Table>

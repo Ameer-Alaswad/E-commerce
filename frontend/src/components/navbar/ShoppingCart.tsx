@@ -17,7 +17,7 @@ const ShoppingCart = () => {
                 onClick={ () => navigate(SHOPPING_CART_PATH) }
                 size="large"
                 aria-label="shopping cart"
-                color="inherit"
+                sx={ { color: "#0000CD" } }
             >
                 <Badge badgeContent={ shoppingCartItems?.length } color="error">
                     <ShoppingCartIcon />

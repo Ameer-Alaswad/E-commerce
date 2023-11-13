@@ -4,9 +4,9 @@ import { COPYRIGHT, WEBSITE_TITLE } from "../constants/text";
 
 const Copyright = (props: any) => {
     return (
-        <Typography variant="body2" color="text.secondary" align="center" { ...props }>
+        <Typography sx={ { color: "#0000CD" } } variant="body2" color="text.secondary" align="center" { ...props }>
             { COPYRIGHT }
-            <RouterLink to="/" style={ { color: "inherit" } }>
+            <RouterLink to="/" style={ { color: "#0000CD" } }>
                 { WEBSITE_TITLE }
             </RouterLink>{ " " }
             { new Date().getFullYear() }.

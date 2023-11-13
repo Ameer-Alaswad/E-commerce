@@ -16,11 +16,13 @@ import {
     productImageStyles,
     productPriceStyles,
     productDescriptionStyles,
+    fadeIn,
 } from "./styles";
 
 import { productsType } from "./Types";
 import { CURRENCY_DOLLAR } from "../constants/text";
 import { PRODUCT_LABEL_URL } from "../constants/path";
+
 
 
 const ProductCard: FC<{ product: productsType }> = ({
@@ -44,12 +46,17 @@ const ProductCard: FC<{ product: productsType }> = ({
         <Card
             onClick={ () => navigate(`${PRODUCT_LABEL_URL}${label}`) }
             key={ label }
-            sx={ productCardContainerStyles }
+            sx={ {
+                ...productCardContainerStyles,
+                "&:hover": {
+                    animation: `${fadeIn} 0.3s ease-in-out`,
+                },
+            } }
         >
             <CardActionArea>
                 <CardMedia
                     component="img"
-                    sx={ productImageStyles }
+                    sx={ { ...productImageStyles, transition: "transform 0.3s ease-in-out" } }
                     image={ image }
                     alt={ `${productName} product image` }
                 />
@@ -63,7 +70,8 @@ const ProductCard: FC<{ product: productsType }> = ({
                         component="div"
                         sx={ productPriceStyles }
                     >
-                        { productPrice }{ CURRENCY_DOLLAR }
+                        { productPrice }
+                        { CURRENCY_DOLLAR }
                     </Typography>
                     <RatingComponent { ...reviewProps } />
                     <Typography

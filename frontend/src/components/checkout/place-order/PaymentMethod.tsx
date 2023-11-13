@@ -9,6 +9,7 @@ import {
 import { useNavigate } from "react-router-dom";
 import {
     paymentMethodContainerStyles,
+    paymentMethodEditButtonStyles,
     paymentMethodTitleStyles,
 } from "../styles";
 import useCheckoutContext from "../../../hooks/context/useCheckoutContext";
@@ -36,7 +37,7 @@ const PaymentMethod = () => {
                 </Typography>
             </CardContent>
             <CardActions>
-                <Button onClick={ handleToPaymentNavigate } size="small">
+                <Button sx={ paymentMethodEditButtonStyles } onClick={ handleToPaymentNavigate } size="small">
                     { EDIT_TEXT }
                 </Button>
             </CardActions>

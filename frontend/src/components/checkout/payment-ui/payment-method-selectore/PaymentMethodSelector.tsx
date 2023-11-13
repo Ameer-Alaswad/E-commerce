@@ -2,14 +2,16 @@ import { ChangeEvent } from "react";
 
 import { FormControlLabel, Radio, RadioGroup } from "@mui/material";
 
-import useCheckoutContext from "../../../hooks/context/useCheckoutContext";
+import useCheckoutContext from "../../../../hooks/context/useCheckoutContext";
 import {
     PAYMENT_METHOD_PAYBAL,
     PAYMENT_METHOD_STRIPE,
-} from "../../constants/text";
+} from "../../../constants/text";
+import { radioButtonStyles, radioButtonTextStyles } from "./styles";
 
 const PaymentMethodSelector = () => {
     const { paymentMethod, setPaymentMethod } = useCheckoutContext();
+
     const handlePaymentMethodChange = (event: ChangeEvent<HTMLInputElement>) => {
         const paymentMethodValue = (event.target as HTMLInputElement).value;
 
@@ -24,13 +26,34 @@ const PaymentMethodSelector = () => {
         >
             <FormControlLabel
                 value={ PAYMENT_METHOD_PAYBAL }
-                control={ <Radio /> }
-                label={ PAYMENT_METHOD_PAYBAL }
+                control={
+                    <Radio
+                        sx={ radioButtonStyles }
+                    />
+                }
+                label={ <span
+                    style={ {
+                        color: "#0000CD",
+                    } }
+                >
+                    { PAYMENT_METHOD_PAYBAL }
+                </span> }
             />
             <FormControlLabel
                 value={ PAYMENT_METHOD_STRIPE }
-                control={ <Radio /> }
-                label={ PAYMENT_METHOD_STRIPE }
+                control={
+                    <Radio
+                        sx={ radioButtonStyles }
+                        disabled />
+                }
+
+                label={
+                    <span
+                        style={ radioButtonTextStyles }
+                    >
+                        { PAYMENT_METHOD_STRIPE }
+                    </span>
+                }
             />
         </RadioGroup>
     );

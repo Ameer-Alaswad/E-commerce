@@ -11,46 +11,58 @@ import {
 
 const OrderSummary = () => {
     const { orderData } = useOrdersContext();
+    const orderSummaryContainerStyles = {
+        width: "300px",
+        height: "400px",
+        backgroundColor: "#ADD8E6",
+        borderRadius: "10px",
+        padding: "20px",
+        marginBottom: "20px",
+    };
+
+    const orderSummaryItemStyles = {
+        paddingTop: "10px",
+        paddingBottom: "10px",
+    };
+    const { itemsPrice, shippingPrice, taxPrice, totalPrice } = orderData || {};
 
     return (
-        <Card
-            sx={ {
-                width: "300px",
-                height: "400px",
-            } }
-        >
+        <Card sx={ orderSummaryContainerStyles }>
             <CardContent>
                 <Typography
                     sx={ { marginBottom: "10px" } }
                     variant="h5"
                     fontWeight="fontWeightBold"
                 >
-                    { " " }
                     { ORDER_SUMMARY_TITLE }
                 </Typography>
                 <Box sx={ { marginLeft: "10px" } }>
-                    <Typography sx={ { paddingTop: "10px", paddingBottom: "10px" } }>
-                        { ITEMS_TEXT }: { CURRENCY_DOLLAR }
-                        { orderData?.itemsPrice }
-                    </Typography>
+                    { itemsPrice && (
+                        <Typography sx={ orderSummaryItemStyles }>
+                            { ITEMS_TEXT }: { CURRENCY_DOLLAR } { itemsPrice }
+                        </Typography>
+                    ) }
                     <Divider />
-                    <Typography sx={ { paddingTop: "10px", paddingBottom: "10px" } }>
-                        { SHIPPING_TITLE }: { CURRENCY_DOLLAR }
-                        { orderData?.shippingPrice }
-                    </Typography>
+                    { shippingPrice && (
+                        <Typography sx={ orderSummaryItemStyles }>
+                            { SHIPPING_TITLE }: { CURRENCY_DOLLAR } { shippingPrice }
+                        </Typography>
+                    ) }
                     <Divider />
-                    <Typography sx={ { paddingTop: "10px", paddingBottom: "10px" } }>
-                        { TAX_TEXT }: { CURRENCY_DOLLAR }
-                        { orderData?.taxPrice }
-                    </Typography>
+                    { taxPrice && (
+                        <Typography sx={ orderSummaryItemStyles }>
+                            { TAX_TEXT }: { CURRENCY_DOLLAR } { taxPrice }
+                        </Typography>
+                    ) }
                     <Divider />
-                    <Typography
-                        sx={ { paddingTop: "10px", paddingBottom: "10px" } }
-                        fontWeight="fontWeightBold"
-                    >
-                        { TOTAL_TEXT }: { CURRENCY_DOLLAR }
-                        { orderData?.totalPrice }
-                    </Typography>
+                    { totalPrice && (
+                        <Typography
+                            sx={ { paddingTop: "10px", paddingBottom: "10px" } }
+                            fontWeight="fontWeightBold"
+                        >
+                            { TOTAL_TEXT }: { CURRENCY_DOLLAR } { totalPrice }
+                        </Typography>
+                    ) }
                 </Box>
             </CardContent>
         </Card>

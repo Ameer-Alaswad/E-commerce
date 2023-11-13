@@ -1,11 +1,14 @@
+import React from "react";
 import { TextField } from "@mui/material";
 import { ShippingAddressDataType } from "../../../contexts/checkout-context/Types";
 import { ChangeEvent } from "react";
+import { shippingDataFormStyles } from "./styles";
 
 type ShoppingAddressFormType = {
     handleShippingAddressDataChange: (event: ChangeEvent<HTMLInputElement>) => void;
     shippingAddressData: ShippingAddressDataType;
 };
+
 
 const ShoppingAddressForm = ({
     handleShippingAddressDataChange,
@@ -26,7 +29,9 @@ const ShoppingAddressForm = ({
                 name="fullName"
                 autoComplete="fullName"
                 autoFocus
+                sx={ shippingDataFormStyles }
             />
+
             <TextField
                 onChange={ handleShippingAddressDataChange }
                 margin="normal"
@@ -37,6 +42,7 @@ const ShoppingAddressForm = ({
                 label="Address"
                 id="address"
                 autoComplete="address"
+                sx={ shippingDataFormStyles }
             />
             <TextField
                 onChange={ handleShippingAddressDataChange }
@@ -48,6 +54,8 @@ const ShoppingAddressForm = ({
                 label="City"
                 id="city"
                 autoComplete="city"
+                sx={ shippingDataFormStyles }
+
             />
             <TextField
                 onChange={ handleShippingAddressDataChange }
@@ -59,6 +67,8 @@ const ShoppingAddressForm = ({
                 label="Postal code"
                 id="postalCode"
                 autoComplete="postalCode"
+                sx={ shippingDataFormStyles }
+
             />
             <TextField
                 onChange={ handleShippingAddressDataChange }
@@ -70,6 +80,8 @@ const ShoppingAddressForm = ({
                 label="Country"
                 id="country"
                 autoComplete="country"
+                sx={ shippingDataFormStyles }
+
             />
         </>
     );
