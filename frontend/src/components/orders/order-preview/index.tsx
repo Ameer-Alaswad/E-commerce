@@ -13,6 +13,8 @@ import ShippingData from "./ShippingData";
 import PaymentUi from "./PaymentUi";
 import ProductsList from "./ProductsList";
 import OrderSummary from "./OrderSummary";
+import { API_PAYPAL_KEYS_PATH, API_PLACE_ORDER, SIGNIN_PATH } from "../../constants/path";
+import { SIGN_IN_FIRST_ERROR } from "../../constants/errorMessages";
 
 const OrderPreview = () => {
     const navigate = useNavigate();
@@ -28,16 +30,15 @@ const OrderPreview = () => {
 
     useEffect(() => {
         if (!userSigned) {
-            navigate("/user/signin");
-            setTimeout(() => {
-                toast.error("Sign in first !");
-            }, 100);
+            navigate(SIGNIN_PATH);
+            toast.error(SIGN_IN_FIRST_ERROR);
+            return
         }
         if (!orderData?._id) {
-            fetchOrder(`/api/orders/${orderId}`, userSigned, setOrderData);
+            fetchOrder(`${API_PLACE_ORDER}/${orderId}`, userSigned, setOrderData);
         } else {
             const loadPaypalScript = async () => {
-                const { data: clientId } = await axios.get("/api/keys/paypal", {
+                const { data: clientId } = await axios.get(API_PAYPAL_KEYS_PATH, {
                     headers: { authorization: `Bearer ${userSigned?.token}` },
                 });
                 paypalDispatch({
@@ -56,16 +57,17 @@ const OrderPreview = () => {
         }
     }, [userSigned, navigate, orderId, setOrderData, paypalDispatch, orderData]);
 
+    const orderPreviewMainContainerStyles = {
+        display: "flex",
+        margin: "0 auto",
+        justifyContent: "space-between",
+        marginTop: "120px",
+        width: "1000px",
+        height: "100vh"
+    }
     return (
         <Box
-            sx={ {
-                display: "flex",
-                margin: "0 auto",
-                justifyContent: "space-between",
-                marginTop: "120px",
-                width: "1000px",
-                height: "100vh"
-            } }
+            sx={ orderPreviewMainContainerStyles }
         >
             { orderData && (
                 <Box id="order-preview-container">

@@ -1,15 +1,17 @@
-// External library
 import { useEffect, useRef, useState } from "react";
 import { toast } from "react-toastify";
-// Internal component
+
 import { Box } from "@mui/material";
-// Component
+
 import OrdersTable from "./orders-table";
 import { OrderHistory } from "./OrdersTypes";
 import { fetchOrderHistory } from "../../../fetchers/fetchOrdersHistory";
 import { useNavigate } from "react-router-dom";
 import useUserAuthContext from "../../../hooks/context/useUserAuthContext";
 import AnimatedLoadingIcon from "../../AnimatedLoadingIcon";
+import { API_ORDERS_MINE_PATH, SIGNIN_PATH } from "../../constants/path";
+import { SIGN_IN_FIRST_ERROR } from "../../constants/errorMessages";
+import { checkUserLoggedIn } from "../../../utils/utils";
 
 const orderHistoryContainer = {
     display: "flex",
@@ -25,15 +27,12 @@ const OrdersHistory = () => {
     const [loading, setLoading] = useState<boolean>(false);
     const userSignedRef = useRef<any>(null);
 
-    const user: any = localStorage.getItem("userData");
-    const parsedUser = JSON.parse(user);
-    let userSigned = userSignedIn;
-    !userSignedIn ? (userSigned = parsedUser) : (userSigned = userSignedIn);
+    const userSigned = checkUserLoggedIn(userSignedIn)
 
     useEffect(() => {
         if (!userSigned) {
-            navigate("/user/signin");
-            toast.error("Sign in first !");
+            navigate(SIGNIN_PATH);
+            toast.error(SIGN_IN_FIRST_ERROR);
         }
     }, [userSigned, navigate]);
 
@@ -44,7 +43,7 @@ const OrdersHistory = () => {
     useEffect(() => {
         fetchOrderHistory(
             setLoading,
-            `/api/orders/mine`,
+            API_ORDERS_MINE_PATH,
             userSignedRef.current
         ).then((orderHistory) => {
             setOrderHistory(orderHistory);

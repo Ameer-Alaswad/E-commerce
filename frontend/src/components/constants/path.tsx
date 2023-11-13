@@ -17,3 +17,5 @@ export const PRODUCT_API_LABEL_URL = "/api/product/label/";
 export const PRODUCT_API_NAME = "/api/product/name/";
 export const PLACE_ORDER = "/placeOrder"
 export const API_PLACE_ORDER = "/api/orders"
+export const API_PAYPAL_KEYS_PATH = "/api/keys/paypal";
+export const API_ORDERS_MINE_PATH = "/api/orders/mine";

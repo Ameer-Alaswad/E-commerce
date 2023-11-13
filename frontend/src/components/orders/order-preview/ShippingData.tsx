@@ -12,7 +12,7 @@ const ShippingData = () => {
     const { orderData } = useOrdersContext();
     const { isDelivered, shippingAddress } = orderData || {}
 
-    const shippingDataContainer = {
+    const shippingDataContainerStyles = {
         backgroundColor: "#ADD8E6",
         borderRadius: "10px",
         padding: "20px",
@@ -22,7 +22,7 @@ const ShippingData = () => {
     return (
         <>
             { orderData?.shippingAddress && (
-                <Card sx={ shippingDataContainer }>
+                <Card sx={ shippingDataContainerStyles }>
                     <CardContent>
                         <Typography
                             sx={ { marginBottom: "10px" } }
