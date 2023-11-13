@@ -47,3 +47,4 @@ export const GO_SHOPPING_TEXT = "Go Shopping!"
 export const SHOPPING_CART_TITLE = "Shopping Cart"
 export const PLACE_ORDER_NOW_TEXT = " Place Order Now!"
 export const DETAILS_BUTTON = "Details"
+export const UPDATE_PROFILE_MESSAGE = "Update your Profile";

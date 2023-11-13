@@ -8,8 +8,11 @@ import {
     Typography,
 } from "@mui/material";
 import { toast } from "react-toastify";
-import useProfileUpdate from "../hooks/useProfileUpdate";
-import useUserAuthContext from "../hooks/context/useUserAuthContext";
+import useProfileUpdate from "../../hooks/useProfileUpdate";
+import useUserAuthContext from "../../hooks/context/useUserAuthContext";
+import { formContainer, profileUpdateContainer, profileUpdateFormStyles, updateProfileButton } from "./styles";
+import { UPDATE_PROFILE_MESSAGE } from "../constants/text";
+import { PROFILE_UPDATE_FAILED_MESSAGE } from "../constants/errorMessages";
 interface UserData {
     _id: string;
     name: string;
@@ -17,20 +20,6 @@ interface UserData {
     isAdmin: boolean;
     token: string;
 }
-const styles = {
-    profileUpdateContainer: {
-        marginTop: "60px",
-    },
-    formContainer: {
-        width: "100%",
-        display: "flex",
-        alignItems: "center",
-        flexDirection: "column",
-        height: "100vh",
-        justifyContent: "center",
-    },
-};
-const { profileUpdateContainer, formContainer } = styles;
 
 const ProfileUpdate = () => {
     const { handleProfileUpdate } = useProfileUpdate();
@@ -69,7 +58,7 @@ const ProfileUpdate = () => {
             setUserSignedIn(data);
             localStorage.setItem("userData", JSON.stringify(data));
         } catch (error) {
-            toast.error("Failed to update profile. Please try again later.");
+            toast.error(PROFILE_UPDATE_FAILED_MESSAGE);
         } finally {
             setIsLoading(false);
         }
@@ -77,13 +66,13 @@ const ProfileUpdate = () => {
 
     return (
         <Container component="main" maxWidth="xs" sx={ profileUpdateContainer }>
-            <Box className="kalb">
+            <Box>
                 <CssBaseline />
                 <Box
                     sx={ formContainer }
                 >
-                    <Typography component="h1" variant="h5">
-                        Update your Profile
+                    <Typography component="h1" variant="h4">
+                        { UPDATE_PROFILE_MESSAGE }
                     </Typography>
                     <Box component="form" sx={ { mt: 1 } } onSubmit={ handleSubmit }>
                         <TextField
@@ -94,6 +83,7 @@ const ProfileUpdate = () => {
                             name="Name"
                             autoFocus
                             value={ name }
+                            sx={ profileUpdateFormStyles }
                             onChange={ (e) => setName(e.target.value) }
                         />
                         <TextField
@@ -105,6 +95,7 @@ const ProfileUpdate = () => {
                             type="email"
                             autoComplete="current-password"
                             value={ email }
+                            sx={ profileUpdateFormStyles }
                             onChange={ (e) => setEmail(e.target.value) }
                         />
                         <TextField
@@ -115,6 +106,7 @@ const ProfileUpdate = () => {
                             type="password"
                             autoComplete="current-password"
                             value={ password }
+                            sx={ profileUpdateFormStyles }
                             onChange={ (e) => setPassword(e.target.value) }
                         />
                         <TextField
@@ -124,13 +116,14 @@ const ProfileUpdate = () => {
                             name="repeat-password"
                             type="password"
                             value={ repeatPassword }
+                            sx={ profileUpdateFormStyles }
                             onChange={ (e) => setRepeatPassword(e.target.value) }
                         />
                         <Button
                             type="submit"
                             fullWidth
                             variant="contained"
-                            sx={ { mt: 3, mb: 2 } }
+                            sx={ updateProfileButton }
                             disabled={ isLoading }
                         >
                             { isLoading ? "Updating..." : "Update" }

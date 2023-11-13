@@ -13,7 +13,7 @@ import PaymentUi from './components/checkout/payment-ui';
 import PlaceOrderUi from './components/checkout/place-order';
 import OrderScreen from './components/orders/order-preview';
 import OrdersHistory from './components/orders/order-history';
-import ProfileUpdate from './components/ProfileUpdate';
+import ProfileUpdate from './components/profile-update/ProfileUpdate';
 import Footer from './components/footer/Footer';
 import { PayPalScriptProvider } from "@paypal/react-paypal-js"
 

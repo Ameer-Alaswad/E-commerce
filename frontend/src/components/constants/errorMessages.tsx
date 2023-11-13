@@ -12,3 +12,4 @@ export const OUT_OF_STOCK = "This product is out of stock";
 export const LIMIT_REACHED_MESSAGE = "You have reached the limit for this product"
 export const CANNOT_ADD_MORE_MESSAGE = "You cannot add more than";
 export const SIGN_IN_FIRST_ERROR = "Sign in first !"
+export const PROFILE_UPDATE_FAILED_MESSAGE = "Failed to update profile. Please try again later.";

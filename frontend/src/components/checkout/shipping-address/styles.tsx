@@ -1,4 +1,4 @@
-const orangeColor = "#FFA500";
+export const orangeColor = "#FFA500";
 
 export const shippingDataFormStyles = {
     '& .MuiInputLabel-root': { color: orangeColor },
