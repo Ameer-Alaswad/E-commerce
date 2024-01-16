@@ -29,18 +29,18 @@ app.use("/api/product", productsRouter);
 app.use("/api/users", userRouter);
 app.use("/api/orders", orderRouter);
 
-// const __dirname = path.resolve();
-// app.use(express.static(path.join(__dirname, "/frontend/build")));
-// app.get("*", (req, res) =>
-//   res.sendFile(path.join(__dirname, "/frontend/build/index.html"))
-// );
-// app.use((err, req, res, next) => {
-//   res.status(500).send({ message: err.message });
-// });
-// const port = process.env.PORT || 8000;
-// app.listen(port, () => {
-//   console.log(`server is connected at http://localhost:${port}`);
-// });
+const __dirname = path.resolve();
+app.use(express.static(path.join(__dirname, "/frontend/build")));
+app.get("*", (req, res) =>
+  res.sendFile(path.join(__dirname, "/frontend/build/index.html"))
+);
+app.use((err, req, res, next) => {
+  res.status(500).send({ message: err.message });
+});
+const port = process.env.PORT || 8000;
+app.listen(port, () => {
+  console.log(`server is connected at http://localhost:${port}`);
+});
 // "build": "cd backend && npm install && ../frontend && npm install && npm run build",
 export const handler = async (event, context) => {
   const serverlessFunction = express();
