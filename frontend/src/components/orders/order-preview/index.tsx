@@ -26,6 +26,7 @@ const OrderPreview = () => {
     const { id: orderId } = useParams();
 
     const [{ isPending }, paypalDispatch] = usePayPalScriptReducer();
+    console.log(isPending);
 
 
     useEffect(() => {

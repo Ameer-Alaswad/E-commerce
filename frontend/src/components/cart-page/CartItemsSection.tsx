@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { Card, CardContent, Typography, Paper } from "@mui/material";
+import { CardContent, Typography, Paper } from "@mui/material";
 import { cartCardStyle } from "./cartStyles";
 import ItemsList from "../checkout/place-order/order-itmes/ItemsList";
 import EmptyCartMessage from "./EmptyCartMessage";
