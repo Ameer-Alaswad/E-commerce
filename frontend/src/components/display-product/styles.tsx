@@ -15,10 +15,12 @@ export const productCardsContainer = {
     justifyContent: "space-around",
     alignItems: "flex-start",
     width: "1200px",
-};
-
-export const imageContainer = {
-    width: "500px",
+    '@media (max-width: 986px)': {
+        width: '90%',
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center",
+    },
 };
 
 export const productQuantityImageContainer = {

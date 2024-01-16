@@ -1,20 +1,20 @@
-import React, { FC } from "react";
+import { FC } from "react";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Divider from "@mui/material/Divider";
-import RatingComponent from "../display-products/Rating";
+import RatingComponent from "../../display-products/Rating";
 import {
-    productInfoContainer,
     productNameStyles,
     ratingContainer,
     pricesStyles,
     descriptionStyles,
-} from "./styles";
+} from "../styles";
 import {
     CURRENCY_DOLLAR,
     DESCRIPTION_TEXT,
     PRICE_TEXT,
-} from "../constants/text";
+} from "../../constants/text";
+import { productInfoContainerStyles } from "./styles";
 
 type ProductDataProps = {
     productName: string;
@@ -24,6 +24,8 @@ type ProductDataProps = {
     description: string;
 };
 
+
+
 const ProductInfoCard: FC<ProductDataProps> = ({
     productName,
     totalReviews,
@@ -32,7 +34,7 @@ const ProductInfoCard: FC<ProductDataProps> = ({
     description,
 }) => {
     return (
-        <Box id="product-info-container" sx={ productInfoContainer }>
+        <Box id="product-info-container" sx={ productInfoContainerStyles }>
             <Typography sx={ productNameStyles } variant="h4">
                 { productName }
             </Typography>
@@ -49,7 +51,6 @@ const ProductInfoCard: FC<ProductDataProps> = ({
             <Typography sx={ descriptionStyles }>
                 { DESCRIPTION_TEXT }: { description }
             </Typography>
-            <Divider />
         </Box>
     );
 };

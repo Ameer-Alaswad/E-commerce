@@ -2,13 +2,11 @@ import { FC, MouseEvent } from "react";
 import Box from "@mui/material/Box";
 import { Card, CardContent, Divider, Typography } from "@mui/material";
 import {
-    productSummaryCardContainerStyles,
     productSummaryCardContentContainerStyles,
     productSummaryCardPriceStyles,
     productSummaryCardStatusStyles,
     addToCartButtonContainerStyles,
-    addToCartButtonStyles,
-} from "./styles";
+} from "../styles";
 import Button from "@mui/material/Button";
 import {
     ADD_TO_CART_TEXT,
@@ -17,7 +15,8 @@ import {
     NOT_IN_STOCK_TEXT,
     PRICE_TEXT,
     STATUS,
-} from "../constants/text";
+} from "../../constants/text";
+import { addToCartButtonStyles, productSummaryCardContainerStyles } from "./styles";
 
 type ProductSummaryCardProps = {
     price: number;
@@ -40,12 +39,12 @@ const ProductSummaryCard: FC<ProductSummaryCardProps> = ({
                     id="product-summary-card-content-container"
                     sx={ productSummaryCardContentContainerStyles }
                 >
-                    <Typography sx={ productSummaryCardPriceStyles }>
+                    <Typography variant="h6" sx={ productSummaryCardPriceStyles }>
                         { PRICE_TEXT }: { CURRENCY_DOLLAR }
                         { price }
                     </Typography>
                     <Divider />
-                    <Typography sx={ productSummaryCardStatusStyles }>
+                    <Typography variant="h6" sx={ productSummaryCardStatusStyles }>
                         { STATUS }: { countInStock ? IN_STOCK_TEXT : NOT_IN_STOCK_TEXT }
                     </Typography>
                     <Divider />

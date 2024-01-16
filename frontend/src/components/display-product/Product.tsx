@@ -7,10 +7,10 @@ import {
 
 } from "./styles";
 import useShoppingCartContext from "../../hooks/context/useShoppingCartContext";
-import ProductSummaryCard from "./ProductSummaryCard";
+import ProductSummaryCard from "./product-summary-card";
 import { addToCart } from "./handlers";
-import ProductImageQuantityCard from "./ProductImageQuantityCard";
-import ProductInfoCard from "./ProductInfoCard";
+import ProductImageQuantityCard from "./product-image-quantity-card";
+import ProductInfoCard from "./product-info-card";
 
 
 type ProductProps = {
