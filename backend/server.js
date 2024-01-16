@@ -42,12 +42,3 @@ app.listen(port, () => {
   console.log(`server is connected at http://localhost:${port}`);
 });
 // "build": "cd backend && npm install && ../frontend && npm install && npm run build",
-export const handler = async (event, context) => {
-  const serverlessFunction = express();
-  serverlessFunction.use(app);
-
-  return {
-    statusCode: 200,
-    body: "Function executed successfully!",
-  };
-};
